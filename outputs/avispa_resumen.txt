@@ -1,0 +1,294 @@
+=== 1. CALIDAD DEL DATO ===
+Filas: 24954; por año: {2017: 108, 2018: 4252, 2019: 2255, 2020: 2821, 2021: 2419, 2022: 2796, 2023: 3323, 2024: 3309, 2025: 3671}
+Especie: {'AVISPA ASIÁTICA': 22765, 'AVISPA COMÚN': 1576, 'ABEJA': 573, 'ELEVADA PELIGROSIDAD': 20, nan: 20}
+Estado: {'CERRADA - ELIMINADO': 22346, 'CERRADA - NO ELIMINABLE': 2175, 'PENDIENTE DE GRUPO': 301, 'ANULADA': 132}
+Agente de cierre: {'BASALAN': 19573, 'BOMBEROS': 4952, 'AYUNTAMIENTO': 408, nan: 20, 'PAINT BALL': 1}
+Quién avisa (agrupado): {'AYUNTAMIENTO': 22959, 'BASALAN': 1720, 'OTROS': 275}
+Filas duplicadas exactas (sin _id ni nº actuación): 42
+Nº actuación repetido dentro del año: 58
+Misma fecha de alta y mismas coordenadas: 304
+Puntos con >=10 nidos en coordenada idéntica (centroides o puntos por defecto): 21 puntos, 412 filas
+Coordenadas nulas: 1102 (4.4%); por año: {2017: 12, 2018: 683, 2019: 331, 2020: 10, 2021: 4, 2022: 62}
+Coordenadas fuera del rectángulo de Bizkaia: 57
+Distancia GEO vs UTM: mediana 1 m; >1 km: 44 filas
+Nidos a >15 km de la mediana de su municipio (posible municipio o coordenada errónea): 104
+Fecha cierre '9999-12-31' (centinela): 161; cierre nulo: 312; estados de las centinela: {'PENDIENTE DE GRUPO': 107, 'ANULADA': 54}
+FECHAS 2018-2022 CON DÍA Y MES INTERCAMBIADOS (día <= 12): altas corregidas 5073, cierres corregidos 5037. Prueba: correlación de Spearman nº actuación-fecha alta antes/después por año: 2018: 0.57->1.000, 2019: 0.54->0.999, 2020: 0.59->1.000, 2021: 0.56->1.000, 2022: 0.57->1.000, 2023: 1.00->1.000, 2024: 1.00->1.000, 2025: 1.00->1.000
+Tras corregir, cierre anterior al alta: 11; mismo día: 5499; >365 días: 0
+Año de la columna distinto del año de la fecha de alta: 148
+Altura: =0 341, >=100 m 64, =255 11; diámetro: =0 30, >=150 cm 85, =255 53
+2017: 108 filas; por mes {1: 24, 2: 16, 3: 24, 4: 6, 5: 4, 6: 2, 7: 2, 8: 12, 9: 12, 10: 2, 11: 2, 12: 2}; estados {'PENDIENTE DE GRUPO': 102, 'CERRADA - ELIMINADO': 6}
+2025 por mes de alta: {1: 34, 2: 13, 3: 17, 4: 36, 5: 148, 6: 236, 7: 562, 8: 681, 9: 604, 10: 638, 11: 554, 12: 148}; última alta 2025-12-30; último cierre 2026-01-15
+Pendientes de grupo por año: {2017: 102, 2018: 53, 2019: 1, 2020: 63, 2021: 23, 2022: 22, 2024: 17, 2025: 20}
+
+=== 2. SERIE DE NIDOS DE AVISPA ASIÁTICA (sin anuladas, 2018-2025) ===
+Por año: {2018: 4037, 2019: 2049, 2020: 2613, 2021: 2166, 2022: 2510, 2023: 2938, 2024: 2956, 2025: 3282}
+Otras especies por año:
+especie  ABEJA  AVISPA COMÚN  ELEVADA PELIGROSIDAD
+anio                                              
+2018        68           147                     0
+2019        77           129                     0
+2020        52           156                     0
+2021        81           155                     0
+2022        51           199                     0
+2023        78           274                     7
+2024        89           236                    11
+2025        75           280                     2
+Por año y mes:
+      ene  feb  mar  abr  may  jun  jul  ago  sep  oct  nov  dic
+anio                                                            
+2018    0    0    0   28  172  255  646  832  706  735  520  143
+2019   26    3   30   43   82  151  270  416  379  375  186   88
+2020    7    1    6   38  130  207  435  478  441  344  440   86
+2021    5    8   15   29   52  103  288  454  444  370  314   84
+2022   18    7   16   20  115  182  327  379  465  495  323  163
+2023   49    2   17   28   76  173  430  574  530  596  326  137
+2024   99   33   14   26   81  168  410  644  497  547  353   84
+2025   33   12   15   32  122  193  498  573  517  599  540  148
+Peso de cada mes (2018-2025): ene 1.1%, feb 0.3%, mar 0.5%, abr 1.1%, may 3.7%, jun 6.4%, jul 14.7%, ago 19.3%, sep 17.6%, oct 18.0%, nov 13.3%, dic 4.1%
+Mes pico por año: {2018: 'ago', 2019: 'ago', 2020: 'ago', 2021: 'ago', 2022: 'oct', 2023: 'oct', 2024: 'ago', 2025: 'oct'}
+Día del año mediano del aviso: {2018: 248, 2019: 245, 2020: 245, 2021: 251, 2022: 256, 2023: 249, 2024: 246, 2025: 251}
+Nidos marzo-junio (nidos primarios probables) por año: {2018: 455, 2019: 306, 2020: 381, 2021: 199, 2022: 333, 2023: 294, 2024: 289, 2025: 362}
+Nidos sep-dic por año: {2018: 2104, 2019: 1028, 2020: 1311, 2021: 1212, 2022: 1446, 2023: 1589, 2024: 1481, 2025: 1804}
+Diámetro mediano (cm) por mes: ene 40, feb 30, mar 20, abr 10, may 10, jun 15, jul 20, ago 20, sep 30, oct 30, nov 40, dic 40
+
+=== 3. MUNICIPIOS (asiática 2018-2025) ===
+Población: INE, padrón a 1/1/2025 (113 municipios). Sin cruzar: []
+Municipios con algún nido: 113 de 113; sin ninguno: []
+Top 15 en total:
+                                   nidos       pob  por_1000_hab_anual
+muni                                                                  
+MUNGIA                              1055   18129.0                7.27
+GALDAKAO                             883   24776.0                4.45
+GETXO                                794   75752.0                1.31
+AMOREBIETA-ETXANO                    692   19660.0                4.40
+LEIOA                                581   32748.0                2.22
+ERANDIO                              536   24659.0                2.72
+BARAKALDO                            526  102986.0                0.64
+SOPUERTA                             510    2820.0               22.61
+LOIU                                 426    2364.0               22.53
+ABANTO Y CIERVANA-ABANTO ZIERBENA    419    9379.0                5.58
+DURANGO                              391   30192.0                1.62
+ELORRIO                              386    7277.0                6.63
+ZALLA                                382    8334.0                5.73
+BASAURI                              367   40274.0                1.14
+BERMEO                               364   17038.0                2.67
+Top 15 por 1.000 hab. y año (media 2018-2025, municipios >=500 hab.):
+                    nidos     pob  por_1000_hab_anual
+muni                                                 
+GALDAMES              219   829.0               33.02
+MEÑAKA                190   789.0               30.10
+ARRIETA               130   582.0               27.92
+ZEANURI               266  1234.0               26.94
+MARURI-JATABE         238  1129.0               26.35
+MUXIKA                321  1546.0               25.95
+ARTZENTALES           155   754.0               25.70
+AULESTI               130   639.0               25.43
+ARRANKUDIAGA-ZOLLO    196  1018.0               24.07
+ZEBERIO               209  1087.0               24.03
+BUSTURIA              314  1693.0               23.18
+EA                    152   824.0               23.06
+SOPUERTA              510  2820.0               22.61
+LOIU                  426  2364.0               22.53
+TRUCIOS-TURTZIOZ       89   515.0               21.60
+Los 8 más poblados (Bilbao tiene servicio propio: no comparable):
+             nidos       pob  por_1000_hab_anual
+muni                                            
+BILBAO           3  351124.0                0.00
+BARAKALDO      526  102986.0                0.64
+GETXO          794   75752.0                1.31
+SANTURTZI      186   46442.0                0.50
+PORTUGALETE    107   44843.0                0.30
+BASAURI        367   40274.0                1.14
+LEIOA          581   32748.0                2.22
+DURANGO        391   30192.0                1.62
+Concentración: el 10 % de municipios con más nidos acumula 30.2%
+Quién avisa por año (asiática):
+usuario_tipo  AYUNTAMIENTO  BASALAN  OTROS
+anio                                      
+2018                  3754      242     41
+2019                  1789      232     28
+2020                  2420      162     31
+2021                  1995      130     41
+2022                  2316      178     16
+2023                  2677      225     36
+2024                  2743      184     29
+2025                  2946      317     19
+
+=== 4. TIEMPO DE RESPUESTA (días cierre - alta; asiática, cerradas, 0-365 d) ===
+Filas válidas: 22320 de 22551
+         n  p25  mediana  p75  p90  <=3d  >14d
+anio                                          
+2018  3926  1.0      2.0  4.0  6.0  0.72  0.02
+2019  2044  0.0      1.0  3.0  6.0  0.75  0.04
+2020  2549  1.0      2.0  5.0  8.0  0.62  0.03
+2021  2143  1.0      2.0  5.0  7.0  0.62  0.03
+2022  2490  1.0      2.0  5.0  7.0  0.61  0.03
+2023  2938  1.0      2.0  5.0  7.0  0.64  0.04
+2024  2950  1.0      2.0  4.0  7.0  0.66  0.03
+2025  3280  1.0      2.0  5.0  8.0  0.64  0.05
+Tendencia de la mediana anual (Kendall): tau=0.36, p=0.275
+Por agente de cierre (p25/med/p75/p90; n):
+  AYUNTAMIENTO: 0 / 3 / 20 / 84; n=103
+  BASALAN: 1 / 2 / 5 / 7; n=19329
+  BOMBEROS: 0 / 0 / 1 / 4; n=2888
+Por agente y año (mediana):
+agente  AYUNTAMIENTO  BASALAN  BOMBEROS
+anio                                   
+2018             NaN      2.0       0.0
+2019            18.0      2.0       0.0
+2020             4.0      3.0       0.0
+2021             0.0      3.0       0.0
+2022             0.0      3.0       0.0
+2023             1.0      3.0       0.0
+2024             0.0      3.0       0.0
+2025             0.0      2.0       0.0
+Agente por año (%):
+agente  AYUNTAMIENTO  BASALAN  BOMBEROS
+anio                                   
+2018             2.5     83.9      13.5
+2019             1.7     88.1      10.2
+2020             2.5     84.2      13.3
+2021             1.0     83.1      15.8
+2022             0.8     84.8      14.4
+2023             0.5     86.7      12.8
+2024             0.1     87.3      12.6
+2025             0.2     89.7      10.2
+Por estado eliminado/no eliminable (mediana): {'CERRADA - ELIMINADO': 2.0, 'CERRADA - NO ELIMINABLE': 3.0}
+Por mes de alta (mediana): ene 7, feb 21, mar 6, abr 3, may 1, jun 2, jul 2, ago 2, sep 2, oct 2, nov 2, dic 2
+Municipios (n>=150) más rápidos:
+                                       n  mediana  p90
+muni                                                  
+BERMEO                               364      1.0  6.0
+LARRABETZU                           198      1.0  6.3
+KARRANTZA HARANA/VALLE DE CARRANZA   151      1.0  5.0
+ERANDIO                              532      1.0  6.0
+URDULIZ                              250      1.0  6.0
+MUNGIA                              1052      1.0  6.0
+ARTZENTALES                          155      2.0  7.0
+ABADIÑO                              325      2.0  6.0
+Más lentos:
+                  n  mediana  p90
+muni                             
+DIMA            205      3.0  8.0
+ERMUA           155      3.0  8.6
+ELORRIO         379      3.0  8.0
+BAKIO           262      3.0  6.9
+MARKINA-XEMEIN  248      3.0  7.0
+OROZKO          172      3.0  7.9
+ZALDIBAR        162      3.0  7.0
+ZEANURI         262      3.0  8.0
+
+=== 5. ALTURA Y DIÁMETRO (asiática) ===
+Altura (m) p25/med/p75/p90: 2 / 6 / 12 / 20; máximo válido 98
+Diámetro (cm) p25/med/p75/p90: 14 / 27 / 40 / 50
+  ARBOLADO: altura 4 / 8 / 15 / 20; diámetro 20 / 35 / 50 / 60
+  CONSTRUCCIÓN: altura 2 / 4 / 10 / 15; diámetro 10 / 20 / 30 / 45
+Ubicación por año (%):
+ubic  ARBOLADO  CONSTRUCCIÓN
+anio                        
+2018      48.1          51.9
+2019      51.2          48.8
+2020      53.2          46.8
+2021      52.0          48.0
+2022      52.7          47.3
+2023      51.2          48.8
+2024      39.2          60.8
+2025      49.2          50.8
+Altura mediana por año y ubicación:
+ubic  ARBOLADO  CONSTRUCCIÓN
+anio                        
+2018       4.0           8.0
+2019       9.0           4.0
+2020      10.0           4.0
+2021      10.0           4.0
+2022      10.0           4.0
+2023       8.0           4.0
+2024      10.0           4.0
+2025      10.0           3.0
+Diámetro mediano por año y ubicación:
+ubic  ARBOLADO  CONSTRUCCIÓN
+anio                        
+2018      20.0          30.0
+2019      40.0          15.0
+2020      40.0          16.0
+2021      40.0          16.0
+2022      40.0          20.0
+2023      40.0          20.0
+2024      40.0          20.0
+2025      40.0          17.0
+No eliminables: 8.2%; por ubicación: {'ARBOLADO': 0.094, 'CONSTRUCCIÓN': 0.07}
+No eliminables por año (%): {2018: 7.6, 2019: 10.2, 2020: 9.0, 2021: 11.9, 2022: 9.4, 2023: 6.1, 2024: 7.4, 2025: 6.5}
+Altura mediana eliminados vs no eliminables: {False: 6.0, True: 7.0}
+Nidos a >=20 m: 2439 (11.0%); cierre por bomberos según altura >=20 m: {'BASALAN': 0.86, 'BOMBEROS': 0.13, 'AYUNTAMIENTO': 0.01}
+Ubicación por mes (nidos):
+mes            1   2   3    4    5     6     7     8     9     10    11   12
+ubic                                                                        
+ARBOLADO      213  49  51   17   53   137   649  1456  2041  2873  2614  870
+CONSTRUCCIÓN   24  17  61  227  764  1276  2626  2859  1904  1167   369   62
+
+=== 6. AVANCE GEOGRÁFICO (asiática, coordenadas válidas) ===
+Nidos con coordenada válida: 21462 de 22551
+Centroide anual (media):
+         lon      lat  km_desde_año_anterior  km_desde_2018  dx_km_vs_2018(+E)  dy_km_vs_2018(+N)
+anio                                                                                             
+2018 -2.8564  43.2818                    NaN            0.0                0.0                0.0
+2019 -2.8444  43.2883                    1.2            1.2                1.0                0.7
+2020 -2.8412  43.2708                    2.0            1.7                1.2               -1.2
+2021 -2.8510  43.2732                    0.8            1.0                0.4               -0.9
+2022 -2.8265  43.2743                    2.0            2.6                2.4               -0.8
+2023 -2.8535  43.2861                    2.6            0.5                0.2                0.5
+2024 -2.8420  43.2792                    1.2            1.2                1.2               -0.3
+2025 -2.8424  43.2638                    1.7            2.3                1.1               -2.0
+Dispersión (distancia típica al centroide, km): {2018: 17.6, 2019: 17.2, 2020: 17.6, 2021: 17.5, 2022: 18.5, 2023: 17.7, 2024: 17.5, 2025: 19.4}
+Celdas de 1 km con nidos por año: {2018: 788, 2019: 690, 2020: 783, 2021: 708, 2022: 860, 2023: 813, 2024: 840, 2025: 921}
+Celdas nunca vistas antes: {np.int64(2018): 788, np.int64(2019): 164, np.int64(2020): 145, np.int64(2021): 68, np.int64(2022): 106, np.int64(2023): 66, np.int64(2024): 48, np.int64(2025): 63}
+Celdas acumuladas: 1448 (Bizkaia ~2.217 km²)
+Persistencia (de las celdas del año anterior, % con nidos este año): {np.int64(2019): 66.8, np.int64(2020): 73.9, np.int64(2021): 68.1, np.int64(2022): 77.1, np.int64(2023): 70.5, np.int64(2024): 73.8, np.int64(2025): 75.4}
+Nidos por celda ocupada: {2018: 4.3, 2019: 2.54, 2020: 3.32, 2021: 3.05, 2022: 2.84, 2023: 3.61, 2024: 3.5, 2025: 3.53}
+% de nidos en el 10 % de celdas más densas: {2018: 35.3, 2019: 32.5, 2020: 34.6, 2021: 32.1, 2022: 33.0, 2023: 32.9, 2024: 34.4, 2025: 32.0}
+Municipios por año de primera aparición: {2018: 110, 2019: 1, 2022: 1, 2024: 1}
+Aparecen después de 2018: {2019: ['LANESTOSA'], 2022: ['BILBAO'], 2024: ['USANSOLO']}
+Municipios con nidos por año: {2018: 110, 2019: 109, 2020: 110, 2021: 108, 2022: 112, 2023: 110, 2024: 112, 2025: 112}
+Nidos por zona aproximada y año:
+anio                               2018  2019  2020  2021  2022  2023  2024  2025
+zona                                                                             
+Costa/Uribe-Busturia-Lea           1219   729   844   707   799  1185  1065   964
+Interior (Durango/Arratia)         1366   698  1239   971  1142  1192  1319  1570
+Oeste (Encartaciones/Margen izq.)   800   326   516   480   499   554   559   719
+Mayor aumento 2018-19 -> 2024-25:
+                                    2018_19  2024_25  dif
+muni                                                     
+MARKINA-XEMEIN                           40       83   43
+MUSKIZ                                    1       45   44
+MUXIKA                                   70      115   45
+BALMASEDA                                17       67   50
+ARRIGORRIAGA                             29       79   50
+KARRANTZA HARANA/VALLE DE CARRANZA       24       75   51
+BASAURI                                  76      128   52
+ZEANURI                                  46      106   60
+Mayor descenso:
+                                   2018_19  2024_25  dif
+muni                                                    
+GALDAKAO                               351      135 -216
+BAKIO                                   96       27  -69
+ERANDIO                                161      102  -59
+ABANTO Y CIERVANA-ABANTO ZIERBENA      139       80  -59
+AMOREBIETA-ETXANO                      205      154  -51
+ORTUELLA                                87       46  -41
+LEIOA                                  174      135  -39
+GALDAMES                                68       37  -31
+
+=== 7. DIEZ HALLAZGOS (cifra + limitación) ===
+1. Récord del periodo en 2025: 3282 nidos de asiática, +60% sobre el mínimo de 2019 (2049) y cuarto año seguido al alza desde 2021 (2166). 2018 (4037) fue mayor aún. LIMITACIÓN: son avisos atendidos, no nidos existentes; dependen de que vecinos y ayuntamientos avisen.
+2. No se expande: ya en 2018 había nidos en 110 municipios (de 113 con padrón y servicio foral) y solo 3 aparecen después (Lanestosa, Bilbao, Usansolo: este último por segregarse de Galdakao). El centroide se mueve <3 km en 8 años. Está asentada: es endémica, no un frente que avanza. LIMITACIÓN: la serie empieza cuando la plaga ya había llegado (2010-2014 aprox.).
+3. Saturación del territorio: celdas de 1 km con nidos 2018-2025 690-921; las celdas nunca vistas caen de 164 (2019) a 63 (2025); acumuladas 1448 km² (≈65% de Bizkaia). En 2025, máximo de celdas ocupadas (921). LIMITACIÓN: la detección depende de que haya gente que vea el nido (bosque deshabitado infrarrepresentado).
+4. Es un problema rural: municipios <2.000 hab. 17.5 nidos por 1.000 hab. y año frente a 1.22 en los de >=20.000 (sin Bilbao); Galdames 33, Meñaka 30. LIMITACIÓN: la tasa por habitante premia lo rural por definición; por km² el orden cambiaría (no se ha calculado: falta superficie municipal).
+5. Bilbao, agujero negro: 3 nidos en 8 años para 351.000 habitantes. No es que no haya avispas: tiene servicio propio y sus avisos no están en este conjunto. LIMITACIÓN: imprescindible decirlo en cualquier mapa.
+6. En casa en verano, en el árbol en otoño: de mayo a agosto el 77% de los nidos está en construcciones; de septiembre a diciembre el 71% en árboles. Encaja con el ciclo de nido primario (pequeño, bajo, en aleros) y secundario (grande, en copa); diámetro mediano de 10 cm en primavera a 40 cm en noviembre-diciembre. LIMITACIÓN: en otoño los árboles se deshojan y los nidos se ven más (sesgo de detección).
+7. El pico es tardío: agosto-octubre concentran el 55% de los avisos y el día mediano del aviso es ~248 (principios de septiembre); en 2022, 2023 y 2025 el mes pico fue octubre. Hipótesis a verificar con expertos: parte de los nidos se retira cuando ya ha podido soltar reinas. LIMITACIÓN: la fecha es la del aviso, no la de formación del nido.
+8. Respuesta rápida y estable: mediana de 2 días todos los años, p90 de 6-8 días; sin tendencia (Kendall p=0.28). Los bomberos cierran el 58% de sus casos el mismo día. LIMITACIÓN: en 2018-2022 hubo que corregir fechas con día y mes intercambiados; sin corregir salían medianas de 30-90 días falsas.
+9. Los primarios de primavera no crecen: nidos de marzo-junio {2018: 455, 2019: 306, 2020: 381, 2021: 199, 2022: 333, 2023: 294, 2024: 289, 2025: 362}, mientras que los de sep-dic suben a 1804 en 2025. Los avisos de primavera no anticipan los de otoño (hipótesis a contrastar con expertos: nidos primarios poco detectados, o que no predicen el otoño). LIMITACIÓN: no hay datos de trampeo en el conjunto; no permite evaluar ninguna política.
+10. Cambios locales grandes: Galdakao pasa de 351 (2018-19) a 135 (2024-25) nidos; Muskiz de 1 a 45. Ver si es plaga o cambio en quién avisa. LIMITACIÓN: Usansolo (segregado de Galdakao) solo explica 18 nidos.
+
+OTRAS ANOMALÍAS: 2018 tiene la altura invertida respecto a otros años (mediana árbol 4 m, construcción 8 m; resto de años 8-10 m y 3-4 m), no usar 2018 en altura/diámetro por ubicación. 2024: solo 39 % en árbol (49-53 % el resto), posible cambio de criterio. 2017 son 108 filas casi todas 'pendiente de grupo': descartar.

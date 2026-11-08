@@ -1,0 +1,160 @@
+# ¿Ha mejorado el control de la avispa asiática en Bizkaia? Indicadores de respuesta, 2018-2025
+
+## Base y limpieza
+  Nidos de asiática sin anuladas, temporadas 2018-2025 (preparar): 22551.
+  Ventana común abril-diciembre: se apartan 416 avisos de enero-marzo (nidos viejos); quedan 22135.
+  Días aviso-cierre negativos: 7 ([-4, -18, -19, -27, -28, -2, -14]), anulados (todos en 2018-2020, años con fechas día/mes corregidas). Más de 90 días: 18, se conservan (los percentiles no dependen de ellos).
+  Altura no válida (0 m o > 60 m): 359; los 0 m son de 2018-2019 ({2018: 188, 2019: 102, 2020: 1}), relleno. Diámetro no válido (0 o >= 250 cm): 59.
+  Días en números enteros (las fechas no traen hora): «<= 3 días» incluye el mismo día.
+  PERIODO PRINCIPAL 2019-2025 (7 temporadas). 2018 (primer año del registro, incompleto: empieza en abril, alturas a 0, 16 % sin coordenadas) solo como sensibilidad, marcada «[sensib.]».
+  Las tendencias usan la temporada como unidad: poca potencia, y un p > 0,05 no demuestra que no haya cambio.
+  Proporciones: GLM cuasibinomial por temporada (escala = chi2 de Pearson / gl). Los modelos ajustados por mes usan celdas temporada x mes; su IC puede ser algo optimista porque las celdas de una misma temporada no son independientes.
+
+## 1. Días entre aviso y cierre (nidos eliminados con fecha válida)
+  temp   n  mediana  p75  p90   <=3d    <=7d  | todos cerrados: mediana p90
+  2018  3633      2     4    6  72.8 %  94.9 % |    2    6
+  2019  1793      1     3    6  76.7 %  94.1 % |    1    6
+  2020  2308      2     5    7  63.0 %  90.2 % |    2    8
+  2021  1881      2     5    6  63.0 %  93.2 % |    2    7
+  2022  2235      2     5    7  62.5 %  91.6 % |    2    7
+  2023  2706      2     5    7  65.1 %  92.3 % |    2    7
+  2024  2599      2     4    6  68.2 %  95.3 % |    2    6
+  2025  3040      2     5    8  65.2 %  89.9 % |    2    8
+  % cerrados en <= 3 días (2019-2025): OR/año 0.976 [IC95 0.901-1.057], p=0.548; ajustado 67.8 % -> 64.5 % (escala 24.5)
+  [sensib.] % cerrados en <= 3 días (2018-2025): OR/año 0.955 [IC95 0.901-1.012], p=0.119; ajustado 70.8 % -> 63.6 % (escala 23.5)
+  % cerrados en <= 7 días (2019-2025): OR/año 0.985 [IC95 0.878-1.106], p=0.804; ajustado 92.6 % -> 92.0 % (escala 16.4)
+  [sensib.] % cerrados en <= 7 días (2018-2025): OR/año 0.951 [IC95 0.871-1.039], p=0.265; ajustado 93.9 % -> 91.5 % (escala 16.2)
+  % <= 3 días, ajustado por mes de aviso (2019-2025): OR/año 0.980 [IC95 0.931-1.031], p=0.429 (escala 9.7)
+  [sensib.] % <= 3 días, ajustado por mes de aviso (2018-2025): OR/año 0.957 [IC95 0.920-0.995], p=0.028 (escala 10.5)
+  % <= 7 días, ajustado por mes de aviso (2019-2025): OR/año 0.993 [IC95 0.922-1.069], p=0.850 (escala 6.5)
+  [sensib.] % <= 7 días, ajustado por mes de aviso (2018-2025): OR/año 0.957 [IC95 0.903-1.014], p=0.134 (escala 6.8)
+  Mediana de días (2019-2025): +0.11 días/año [IC95 -0.05 a +0.27], p=0.144
+  [sensib.] Mediana de días (2018-2025): +0.06 días/año [IC95 -0.07 a +0.19], p=0.310
+  p75 de días (2019-2025): +0.14 días/año [IC95 -0.24 a +0.53], p=0.384
+  [sensib.] p75 de días (2018-2025): +0.14 días/año [IC95 -0.13 a +0.42], p=0.248
+  p90 de días (2019-2025): +0.18 días/año [IC95 -0.17 a +0.52], p=0.242
+  [sensib.] p90 de días (2018-2025): +0.18 días/año [IC95 -0.07 a +0.42], p=0.125
+  Mediana de días, regresión cuantílica q=0.5 a nivel de nido (2019-2025): +0.00 días/año [IC95 -0.02 a +0.02] (IC demasiado estrecho: trata los nidos como independientes)
+  p90 de días, regresión cuantílica q=0.9 a nivel de nido (2019-2025): +0.00 días/año [IC95 -0.04 a +0.04] (IC demasiado estrecho: trata los nidos como independientes)
+  Carga y espera: correlación (Pearson, 2019-2025) entre nidos y p90 de días: 0.75.
+  Por agente (eliminados): mediana / p90 de días
+    2018: Basalan 2 / 6; bomberos 0 / 4
+    2019: Basalan 1 / 6; bomberos 0 / 3
+    2020: Basalan 3 / 8; bomberos 0 / 3
+    2021: Basalan 3 / 7; bomberos 0 / 4
+    2022: Basalan 3 / 7; bomberos 0 / 5
+    2023: Basalan 3 / 7; bomberos 0 / 3
+    2024: Basalan 3 / 6; bomberos 0 / 2
+    2025: Basalan 2 / 8; bomberos 0 / 3
+  Basalan, % <= 7 días (2019-2025): OR/año 0.961 [IC95 0.849-1.089], p=0.535; ajustado 92.7 % -> 91.0 % (escala 17.5)
+  [sensib.] Basalan, % <= 7 días (2018-2025): OR/año 0.937 [IC95 0.856-1.027], p=0.164; ajustado 93.8 % -> 90.6 % (escala 16.0)
+
+## 2. Nidos no eliminables y pendientes (sobre todos los avisos abr-dic)
+  2018: 7.6 % / 1.3 %  2019: 9.6 % / 0.1 %  2020: 9.0 % / 2.2 %  2021: 11.1 % / 0.9 %  2022: 8.7 % / 0.8 %  2023: 5.7 % / 0.0 %  2024: 7.3 % / 0.2 %  2025: 5.6 % / 0.1 %   (no elim. / pend.)
+  % no eliminables (2019-2025): OR/año 0.901 [IC95 0.841-0.965], p=0.003; ajustado 10.6 % -> 5.9 % (escala 6.4)
+  [sensib.] % no eliminables (2018-2025): OR/año 0.948 [IC95 0.888-1.012], p=0.109; ajustado 9.2 % -> 6.5 % (escala 10.6)
+  % no eliminables, ajustado por mes de aviso (2019-2025): OR/año 0.899 [IC95 0.861-0.939], p=0.000 (escala 2.5)
+  [sensib.] % no eliminables, ajustado por mes de aviso (2018-2025): OR/año 0.946 [IC95 0.914-0.980], p=0.002 (escala 3.0)
+  Pendientes: 158 en total; por temporada {2018: 53, 2019: 1, 2020: 56, 2021: 20, 2022: 20, 2023: 0, 2024: 6, 2025: 2}. Son registros antiguos sin cerrar (no se ha comprobado su motivo), no colas actuales: no sirven como indicador de mejora.
+
+## 3. Altura: ¿se retiran ahora nidos más altos?
+  temp  alt.med elim / no elim   %>=15 m elim / no elim   % eliminados entre los >=15 m
+  2018      6 / 6             19.1 % / 19.2 %         92.1 %
+  2019      6 / 6             18.8 % / 23.0 %         88.3 %
+  2020      6 / 10            19.9 % / 32.9 %         85.8 %
+  2021      6 / 6             21.9 % / 25.3 %         87.3 %
+  2022      6 / 8             20.6 % / 30.8 %         87.4 %
+  2023      6 / 4             19.3 % / 21.6 %         93.7 %
+  2024      5 / 5             15.8 % / 24.6 %         89.1 %
+  2025      6 / 6             19.9 % / 24.4 %         93.2 %
+  % eliminados entre nidos >= 15 m (2019-2025): OR/año 1.126 [IC95 1.021-1.242], p=0.018; ajustado 85.6 % -> 92.4 % (escala 3.2)
+  [sensib.] % eliminados entre nidos >= 15 m (2018-2025): OR/año 1.040 [IC95 0.940-1.151], p=0.443; ajustado 88.6 % -> 91.2 % (escala 5.9)
+  % >= 15 m entre eliminados (2019-2025): OR/año 0.983 [IC95 0.937-1.030], p=0.465; ajustado 20.3 % -> 18.6 % (escala 5.9)
+  [sensib.] % >= 15 m entre eliminados (2018-2025): OR/año 0.992 [IC95 0.960-1.026], p=0.645; ajustado 19.7 % -> 18.9 % (escala 5.3)
+  Ojo: la altura la anota quien avisa o quien acude; no se sabe si es medida o estimada.
+
+## 4. Quién cierra (nidos cerrados): Basalan / bomberos / ayuntamiento
+  2018: 84.9/13.7/1.4  2019: 87.9/10.4/1.7  2020: 85.2/13.6/1.2  2021: 83.8/16.0/0.2  2022: 84.7/14.6/0.7  2023: 86.6/12.9/0.5  2024: 86.9/13.1/0.0  2025: 89.7/10.2/0.1
+  % cerrados por bomberos (2019-2025): OR/año 0.975 [IC95 0.909-1.046], p=0.483; ajustado 13.8 % -> 12.1 % (escala 10.4)
+  [sensib.] % cerrados por bomberos (2018-2025): OR/año 0.979 [IC95 0.933-1.026], p=0.374; ajustado 13.9 % -> 12.2 % (escala 8.7)
+  Bomberos frente a Basalan: altura mediana de lo que cierran 5 m frente a 6 m; % no eliminable 12.8 % frente a 7.1 %.
+  El conjunto no tiene columna de método de retirada (pértiga, biocida, plataforma...).
+
+## 5. Calendario: avisos en primavera (abr-jun) y eliminados antes del 01/11
+  2018: 11.3 % / 83.3 %  2019: 13.9 % / 84.4 %  2020: 14.4 % / 77.9 %  2021: 8.6 % / 79.5 %  2022: 12.8 % / 76.4 %  2023: 9.7 % / 80.7 %  2024: 9.8 % / 83.3 %  2025: 10.8 % / 76.3 %
+  % avisos en primavera (2019-2025): OR/año 0.941 [IC95 0.878-1.008], p=0.083; ajustado 13.4 % -> 9.7 % (escala 9.0)
+  [sensib.] % avisos en primavera (2018-2025): OR/año 0.968 [IC95 0.917-1.021], p=0.231; ajustado 12.5 % -> 10.2 % (escala 9.9)
+  % eliminados antes del 01/11 (2019-2025): OR/año 0.976 [IC95 0.904-1.054], p=0.540; ajustado 80.9 % -> 78.5 % (escala 16.4)
+  [sensib.] % eliminados antes del 01/11 (2018-2025): OR/año 0.962 [IC95 0.911-1.016], p=0.163; ajustado 82.4 % -> 78.1 % (escala 14.6)
+  «Antes del 01/11» depende sobre todo de cuándo se avisa (calendario de la población y de la detección), no solo de la rapidez de la respuesta.
+  Avisados en octubre y eliminados antes del 01/11 (2019-2025): OR/año 1.026 [IC95 0.801-1.315], p=0.838; ajustado 84.6 % -> 86.5 % (escala 23.2)
+  [sensib.] Avisados en octubre y eliminados antes del 01/11 (2018-2025): OR/año 0.912 [IC95 0.725-1.149], p=0.435; ajustado 91.0 % -> 84.1 % (escala 31.9)
+
+## 6. Diámetro de los nidos eliminados (cm)
+  mediana (todos | avisados jul-dic) y % <= 10 cm: 2018: 22|20 26.1 %  2019: 30|30 23.4 %  2020: 30|30 22.9 %  2021: 30|30 20.8 %  2022: 30|30 20.6 %  2023: 30|30 21.0 %  2024: 20|25 25.0 %  2025: 25|30 23.7 %
+  Mediana de diámetro (2019-2025): -1.25 cm/año [IC95 -2.77 a +0.27], p=0.089
+  [sensib.] Mediana de diámetro (2018-2025): -0.35 cm/año [IC95 -2.02 a +1.33], p=0.632
+  Mediana de diámetro, regresión cuantílica q=0.5 a nivel de nido (2019-2025): -0.83 cm/año [IC95 -1.05 a -0.62] (IC demasiado estrecho: trata los nidos como independientes)
+  % eliminados <= 10 cm (2019-2025): OR/año 1.014 [IC95 0.976-1.053], p=0.474; ajustado 21.7 % -> 23.2 % (escala 4.4)
+  [sensib.] % eliminados <= 10 cm (2018-2025): OR/año 0.986 [IC95 0.952-1.021], p=0.431; ajustado 24.1 % -> 22.3 % (escala 6.8)
+  % <= 10 cm, ajustado por mes de aviso (2019-2025): OR/año 1.046 [IC95 1.014-1.079], p=0.004 (escala 2.4)
+  [sensib.] % <= 10 cm, ajustado por mes de aviso (2018-2025): OR/año 0.995 [IC95 0.921-1.075], p=0.902 (escala 31.0)
+  No consta si el diámetro se anota al avisar o al retirar; es una estimación redondeada (picos en 10, 20, 30... y 1 y 5 cm).
+
+## 7. Avisos de asiática por cada aviso de avispa común (abr-dic)
+  2018: 4037/147=27.5  2019: 1990/127=15.7  2020: 2599/156=16.7  2021: 2138/153=14.0  2022: 2469/188=13.1  2023: 2870/271=10.6  2024: 2810/234=12.0  2025: 3222/276=11.7
+  Peso de la asiática en (asiática + común) (2019-2025): OR/año 0.940 [IC95 0.905-0.975], p=0.001; ajustado 94.1 % -> 91.6 % (escala 1.8)
+  [sensib.] Peso de la asiática en (asiática + común) (2018-2025): OR/año 0.903 [IC95 0.861-0.947], p=0.000; ajustado 95.5 % -> 91.1 % (escala 4.9)
+  La avispa común es nativa y no se gestiona igual: es un control aproximado de las ganas de avisar, no una medida de población.
+
+## 8. Por tamaño de municipio (padrón 2025): 2019-20 frente a 2023-25
+  Sin tamaño (municipio no cruzado): 0
+  tamaño         periodo   nidos  med.días p90  %<=7d   %no elim  diám.med
+  <2.000        2019-20    1376      2     7   90.8 %    8.1 %     30
+  <2.000        2023-25    2776      2     7   90.6 %    5.4 %     30
+  2.000-5.000   2019-20     817      2     7   91.3 %    7.5 %     30
+  2.000-5.000   2023-25    1760      2     7   92.0 %    4.3 %     30
+  5.000-20.000  2019-20    1475      2     7   92.3 %   10.0 %     30
+  5.000-20.000  2023-25    2778      2     6   94.5 %    6.4 %     20
+  >20.000       2019-20     921      2     7   93.3 %   11.4 %     20
+  >20.000       2023-25    1588      2     7   92.2 %    9.2 %     20
+
+## 9. Por mes de aviso (todas las temporadas): mediana / p90 de días, % <= 7 días (eliminados)
+  mes  4: n=  219  3 / 12  78.3 %
+  mes  5: n=  762  1 / 6  96.7 %
+  mes  6: n= 1358  2 / 6  96.2 %
+  mes  7: n= 3113  2 / 6  95.8 %
+  mes  8: n= 3970  2 / 6  95.2 %
+  mes  9: n= 3591  2 / 6  94.8 %
+  mes 10: n= 3727  2 / 8  87.7 %
+  mes 11: n= 2690  2 / 7  90.1 %
+  mes 12: n=  814  2 / 10  85.7 %
+
+## 10. Cambio del campo «usuario» el 01/01/2023: ¿saltos falsos?
+  Quién da el aviso (% ayuntamiento / Basalan / otros: bomberos, administrador): 2018: 93.0/6.0/1.0  2019: 87.5/11.1/1.4  2020: 92.6/6.2/1.2  2021: 92.0/6.1/1.9  2022: 92.2/7.2/0.6  2023: 90.9/7.8/1.3  2024: 93.0/6.0/1.0  2025: 89.6/9.8/0.6
+  El reparto por tipo de usuario no cambia en 2023: solo se pierde el nombre del municipio en «AYUNTAMIENTO <municipio>» (el municipio sigue en su columna).
+  % no eliminables: 2019-2022 9.5 % -> 2023-2025 6.2 %; escalón en 2023 (con tendencia): OR 0.65 [IC95 0.41-1.04], p=0.071
+  % cerrados por bomberos: 2019-2022 13.7 % -> 2023-2025 12.0 %; escalón en 2023 (con tendencia): OR 0.75 [IC95 0.42-1.34], p=0.331
+  % cerrados por ayuntamiento: 2019-2022 0.9 % -> 2023-2025 0.2 %; escalón en 2023 (con tendencia): OR 1.31 [IC95 0.21-8.36], p=0.773
+  % avisos dados por Basalan: 2019-2022 7.5 % -> 2023-2025 8.0 %; escalón en 2023 (con tendencia): OR 1.25 [IC95 0.47-3.33], p=0.661
+  % eliminados en <= 3 días: 2019-2022 65.9 % -> 2023-2025 66.1 %; escalón en 2023 (con tendencia): OR 1.49 [IC95 0.81-2.77], p=0.202
+  % no eliminables según quién avisa: AYUNTAMIENTO 2019-22 10.0 % (n=8392); AYUNTAMIENTO 2023-25 6.4 % (n=8109); BASALAN 2019-22 3.3 % (n=690); BASALAN 2023-25 2.1 % (n=710); OTROS 2019-22 14.9 % (n=114); OTROS 2023-25 15.7 % (n=83)
+  No eliminables por agente que cierra (Basalan / bomberos): 2019: 152/36  2020: 197/36  2021: 181/56  2022: 170/44  2023: 120/42  2024: 150/55  2025: 143/37
+  Avisos de usuario «otros» (sobre todo BOMBEROS) cerrados por bomberos: 2019-22 32.5 % (n=114); 2023-25 0.0 % (n=83)
+  Pendientes 2019-2025: {2019: 1, 2020: 56, 2021: 20, 2022: 20, 2023: 0, 2024: 6, 2025: 2}.
+  Campos vacíos (% coordenadas / % ubicación): 2019: 13.3/2.8  2020: 0.3/0.0  2021: 0.1/0.0  2022: 1.9/0.0  2023: 0.0/0.0  2024: 0.0/0.0  2025: 0.0/0.0
+
+## 11. Avisos de enero-marzo de 2019 (temporada 2018): ¿hueco real o efecto de la corrección?
+  Registro 2018: nº 1 el 12/04/2018, última fecha 30/12/2018; filas con fecha original en ene-mar: 369, tras corregir (ene-mar de 2018): 0
+  Registro 2019: nº 1 el 11/03/2019, última fecha 04/02/2020; filas con fecha original en ene-mar: 264, tras corregir (ene-mar de 2019): 30
+  Registro 2020: nº 1 el 13/02/2020, última fecha 11/01/2021; filas con fecha original en ene-mar: 315, tras corregir (ene-mar de 2020): 10
+  Registro 2021: nº 1 el 13/01/2021, última fecha 03/01/2022; filas con fecha original en ene-mar: 262, tras corregir (ene-mar de 2021): 28
+  Registro 2022: nº 1 el 04/01/2022, última fecha 30/12/2022; filas con fecha original en ene-mar: 311, tras corregir (ene-mar de 2022): 52
+  Registro 2023: nº 1 el 01/01/2023, última fecha 30/12/2023; filas con fecha original en ene-mar: 74, tras corregir (ene-mar de 2023): 74
+  Registro 2024: nº 1 el 02/01/2024, última fecha 29/12/2024; filas con fecha original en ene-mar: 157, tras corregir (ene-mar de 2024): 157
+  Registro 2025: nº 1 el 02/01/2025, última fecha 30/12/2025; filas con fecha original en ene-mar: 64, tras corregir (ene-mar de 2025): 64
+  Registro 2019, actuaciones 1-5 (original -> corregida): 1: 2019-11-03 -> 2019-03-11; 2: 2019-12-03 -> 2019-03-12; 3: 2019-12-03 -> 2019-03-12; 4: 2019-12-03 -> 2019-03-12; 5: 2019-03-13 -> 2019-03-13
+  Filas del registro 2019 con fecha original en ene-feb de 2019: 147; con día <= 12: 147; nº de actuación entre 30 y 2148 (las fechas de esos números no ambiguas caen de abril a diciembre).
+  Conclusión: el registro 2018 acaba el 30/12/2018 y el 2019 empieza con el nº 1 el 11/03/2019 (el nº 5, 13/03/2019, no es ambiguo). Las fechas originales de ene-feb de 2019 son día/mes intercambiados de abril-diciembre, según su nº correlativo. El hueco de enero-febrero de 2019 está en el registro publicado, no lo crea la corrección. No afecta a este script, que solo usa avisos de abril a diciembre. Hasta 2022 los registros no siguen el año natural (el de 2020 empieza el 13/02/2020 y el de 2019 acaba el 04/02/2020), así que los avisos de invierno son incomparables entre años: en la web, mejor no sumar ene-mar del año siguiente a la temporada.
+
+Archivos: avispa_indicadores_temporada.csv (una fila por temporada) y avispa_indicadores_mes.csv (temporada x mes de aviso); avispa_dias_tramos.csv (tramos de días).

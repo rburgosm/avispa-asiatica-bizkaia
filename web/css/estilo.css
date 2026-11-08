@@ -1,0 +1,177 @@
+/* Diseño sobrio, móvil primero. Colores con contraste AA sobre el fondo. */
+
+/* Tipografías alojadas en la propia web (licencia OFL; scripts/web_descargar_fuentes.py). */
+@font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../vendor/fonts/source-serif-4-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("../vendor/fonts/source-serif-4-latin-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("../vendor/fonts/source-serif-4-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../vendor/fonts/source-sans-3-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("../vendor/fonts/source-sans-3-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("../vendor/fonts/source-sans-3-latin-700-normal.woff2") format("woff2"); }
+
+:root {
+  /* Paleta «avispa»: docs/paleta_colores.md (validada para daltonismo y contraste).
+     Los componentes usan SOLO estas variables (en el SVG, "var(--...)"; en MapLibre se leen con getComputedStyle). */
+  --fondo: #faf7f0;             /* papel cálido */
+  --tinta: #1d1a16;             /* negro pardo del tórax; 16,2:1 */
+  --tinta-suave: #5a5248;       /* ejes y notas; 7,2:1 */
+  --linea: #ddd5c7;             /* rejilla y bordes */
+  --gris-dato: #b8afa2;         /* contexto y 2018 (registro incompleto) */
+  --acento: #c4600a;            /* serie 1, naranja velutina: la avispa asiática */
+  --acento-texto: #9a4a06;      /* naranja para cifras en el texto; 5,9:1 */
+  --acento-2: #3a62c9;          /* serie 2, azul: acción pública (retiradas, Basalan, gasto) */
+  --acento-3: #1a9a8a;          /* serie 3, verde azulado */
+  --rampa-1: #f6cf86;           /* rampa ámbar del mapa, de menos a más */
+  --rampa-2: #eba545;
+  --rampa-3: #cf7414;
+  --rampa-4: #9c4f08;
+  --rampa-5: #5a2a05;
+  --tarjeta: rgba(250, 247, 240, 0.96);
+  --sombra-zona: rgba(29, 26, 22, 0.07);  /* zonas resaltadas en los gráficos (tinta al 7 %) */
+  --mapa-tierra: #fffdf8;
+  --mapa-mar: #e9edf0;
+  --mapa-borde: #a39a8c;
+  --blanco: #ffffff;
+  --letra: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --letra-texto: "Source Serif 4", Georgia, "Noto Serif", serif;
+  --alto-grafico: 58svh;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--tinta);
+  font-family: var(--letra-texto);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+a { color: var(--acento-2); }
+a:focus-visible, summary:focus-visible, select:focus-visible, button:focus-visible, input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--acento-2);
+  outline-offset: 2px;
+}
+.sr {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+.saltar { position: absolute; left: -999px; top: 0; background: var(--blanco); padding: .5rem; }
+.saltar:focus { left: 1rem; z-index: 10; }
+
+.cabecera, .cierre, .pie { max-width: 40rem; margin: 0 auto; padding: 2rem 16px; }
+.cabecera { padding-top: 12svh; padding-bottom: 6svh; }
+h1 { font-family: var(--letra); font-size: 2.4rem; line-height: 1.1; margin: .5rem 0; letter-spacing: -0.01em; }
+.subtitulo { font-size: 1.25rem; color: var(--tinta-suave); margin: 0 0 .75rem; }
+.firma { font-family: var(--letra); font-size: .875rem; color: var(--tinta-suave); }
+.aviso { max-width: 40rem; margin: 1rem auto; padding: 0 16px; }
+strong { font-weight: 600; }
+
+/* ---- Scrollytelling: gráfico fijo + pasos ---- */
+.scrolly { position: relative; padding: 0 0 20svh; }
+.grafico {
+  position: sticky; top: 0; z-index: 2;  /* en el móvil, los pasos pasan por debajo del gráfico */
+  height: var(--alto-grafico);
+  padding: .5rem 16px 0;
+  background: var(--fondo);
+}
+.panel { margin: 0; height: 100%; display: flex; flex-direction: column; }
+.panel[hidden] { display: none; }
+.titulo-grafico { font-family: var(--letra); font-weight: 600; font-size: .9375rem; margin: 0 0 .15rem; line-height: 1.25; }
+.lienzo { flex: 1; min-height: 0; position: relative; }
+.lienzo svg { display: block; width: 100%; height: 100%; font-family: var(--letra); overflow: visible; }
+.lienzo-mapa { border: 1px solid var(--linea); background: var(--mapa-mar); }
+.nota-grafico { font-family: var(--letra); font-size: .8125rem; color: var(--tinta); margin: .3rem 0 0;
+  border-left: 3px solid var(--gris-dato); padding: .1rem .5rem; line-height: 1.3; }
+.nota-grafico:empty { display: none; }
+.alt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+.pasos { position: relative; z-index: 1; padding: 0 16px; pointer-events: none; }
+.paso {
+  max-width: 34rem; margin: 0 auto 50svh;
+  background: var(--tarjeta); border: 1px solid var(--linea); border-radius: 4px;
+  padding: 1rem 1.1rem; box-shadow: 0 1px 3px rgba(0,0,0,.08);
+  pointer-events: auto;
+}
+.paso:first-child { margin-top: 2svh; }
+.paso:last-child { margin-bottom: 30svh; }
+.paso p { margin: 0 0 .6rem; }
+.paso p:last-child { margin-bottom: 0; }
+.paso.activo { border-color: var(--tinta-suave); }
+.paso .boton { margin-top: .75rem; }
+.boton {
+  font: 600 1rem var(--letra); color: var(--blanco); background: var(--acento-2);
+  border: 0; border-radius: 3px; padding: .55rem .9rem; cursor: pointer;
+}
+.boton:disabled { background: var(--gris-dato); color: var(--tinta); cursor: default; }
+
+.leyenda { font-family: var(--letra); font-size: .8125rem; color: var(--tinta-suave); margin: .25rem 0 0; line-height: 1.5; }
+.leyenda .clase { white-space: nowrap; margin-right: .5rem; display: inline-block; }
+.leyenda .muestra { display: inline-block; width: .9rem; height: .7rem; vertical-align: -1px; margin-right: .25rem; border: 1px solid var(--mapa-borde); }
+.leyenda .muestra.rayada { background: repeating-linear-gradient(45deg, var(--gris-dato) 0 2px, var(--mapa-tierra) 2px 5px); }
+.marca-mapa { font-family: var(--letra); font-size: .75rem; color: var(--tinta); background: var(--tarjeta);
+  border: 1px solid var(--mapa-borde); padding: 1px 5px; border-radius: 2px; white-space: nowrap; pointer-events: none; }
+
+/* Gráficos SVG */
+.eje text { fill: var(--tinta-suave); font-size: 12px; }
+.eje line, .eje path { stroke: var(--linea); }
+.etiqueta-valor { fill: var(--tinta); font-size: 12px; font-weight: 600; }
+/* Halo del color del fondo para que las etiquetas se lean sobre rejillas y rayados */
+.etiqueta-valor, .etiqueta-nota, .etiqueta-serie { paint-order: stroke; stroke: var(--fondo); stroke-width: 3px; stroke-linejoin: round; }
+.etiqueta-serie { font-size: 12px; font-weight: 600; }
+.etiqueta-nota { fill: var(--tinta-suave); font-size: 12px; }
+.titulo-eje { fill: var(--tinta-suave); font-size: 12px; }
+.esquema text { font-size: 13px; fill: var(--tinta); }
+.esquema .pequeno { font-size: 12px; fill: var(--tinta-suave); }
+.esquema .grande { font-size: 15px; font-weight: 600; }
+.barra-estimacion { cursor: pointer; }
+.lienzo-estimacion svg { touch-action: pan-y; }
+
+.datos { font-family: var(--letra); font-size: .8125rem; margin-top: .25rem; }
+.datos summary { cursor: pointer; color: var(--acento-2); }
+.datos .tabla { max-height: 30svh; overflow: auto; background: var(--blanco); }
+.datos table { border-collapse: collapse; width: 100%; }
+.datos th, .datos td { border-bottom: 1px solid var(--linea); padding: .15rem .35rem; text-align: right; }
+.datos th:first-child, .datos td:first-child { text-align: left; }
+
+.explorador, .descargas { max-width: 40rem; margin: 0 auto; padding: 1.5rem 16px; font-family: var(--letra); }
+.explorador h2, .descargas h2, .cierre h2 { font-family: var(--letra); font-size: 1.35rem; }
+.explorador label { display: block; font-weight: 600; margin-bottom: .25rem; }
+.explorador input { font: inherit; width: 100%; max-width: 22rem; padding: .45rem .5rem; border: 1px solid var(--tinta-suave); border-radius: 3px; background: var(--blanco); }
+.resumen-municipio { min-height: 4.5em; }
+.lienzo-explorador { height: 240px; }
+.enlaces { font-family: var(--letra); }
+.pie h3 { font-size: .9375rem; margin-bottom: .25rem; }
+
+.pie { font-family: var(--letra); font-size: .875rem; border-top: 1px solid var(--linea); }
+.pie h2 { font-size: 1rem; }
+.notas { color: var(--tinta-suave); }
+
+/* Metodología */
+.metodologia { font-family: var(--letra-texto); }
+.metodologia h2 { font-family: var(--letra); font-size: 1.2rem; margin-top: 2rem; }
+.metodologia li { margin-bottom: .35rem; }
+.metodologia code { font-size: .875em; }
+.metodologia li, .metodologia p, .pie li { overflow-wrap: anywhere; }
+
+/* Escritorio: texto a la izquierda, gráfico fijo a la derecha */
+@media (min-width: 900px) {
+  :root { --alto-grafico: 100svh; }
+  .scrolly { display: grid; grid-template-columns: minmax(18rem, 2fr) 3fr; padding-bottom: 0; }
+  .grafico { grid-column: 2; grid-row: 1; padding: 1.5rem 24px; z-index: 0; }
+  .pasos { grid-column: 1; grid-row: 1; padding: 0 24px; }
+  .paso { margin-bottom: 80svh; }
+  .paso:first-child { margin-top: 30svh; }
+  .paso:last-child { margin-bottom: 40svh; }
+  h1 { font-size: 3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; scroll-behavior: auto !important; }
+}

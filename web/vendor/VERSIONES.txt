@@ -1,0 +1,8 @@
+fichero	origen (npm)	sha256
+d3.min.js	d3@7.9.0/dist/d3.min.js	f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539
+scrollama.min.js	scrollama@3.2.0/build/scrollama.min.js	17d8c6db877708006d0f22a42d030b192fa68a721292253ce70a7d85301e7433
+maplibre-gl.js	maplibre-gl@4.7.1/dist/maplibre-gl.js	be9633c4d870e26fb37f1cfe5c5a77181667114003ea16207ac7850d8da8add1
+maplibre-gl.css	maplibre-gl@4.7.1/dist/maplibre-gl.css	576b085fdd9487a65a19215328c1e086c07ce5bf6da09b666b3806d3d008dae9
+LICENCIA-d3.txt	d3@7.9.0/LICENSE	3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4
+LICENCIA-scrollama.txt	scrollama@3.2.0/LICENSE	fe771e9233e0799859ed7f779bc60611e7c3f093d958cf08a25fad974adacf9b
+LICENCIA-maplibre-gl.txt	maplibre-gl@4.7.1/LICENSE.txt	ee5fc05a0677eaf69601d2c7db0d9ecd6cc27c3abc1d0733bc9ed34707cf8ef2

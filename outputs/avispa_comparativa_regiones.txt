@@ -1,0 +1,23 @@
+Comparativa de nidos anuales de Vespa velutina: Bizkaia frente a otras regiones
+(fuentes y limitaciones en docs/avispa_comparativa_regiones.md; NO es una prueba causal)
+
+Series por años desde la primera detección (nidos; entre paréntesis, por 1.000 km²):
+- Bizkaia (llegada 2012; avisos de nidos en el registro abierto (todos los estados)): a1=14 (6), a2=127 (57), a3=2.114 (954), a5=2.231 (1006), a6=4.067 (1834), a7=2.026 (914), a8=2.632 (1187), a9=2.181 (984), a10=2.537 (1144), a11=3.016 (1360), a12=2.870 (1294), a13=3.222 (1453)
+- Gipuzkoa (llegada 2010; nidos retirados): a2=1.140 (576), a3=278 (140), a4=882 (446), a5=1.440 (727)
+- Araba (llegada 2012; nidos detectados y/o eliminados): a0=2 (1), a1=6 (2), a2=24 (8), a3=164 (54), a4=426 (140), a5=268 (88), a6=663 (218), a7=350 (115), a8=392 (129), a9=391 (129), a10=498 (164), a11=316 (104), a12=439 (145)
+- Asturias (llegada 2014; nidos de V. velutina detectados (activos e inactivos)): a3=500 (47), a4=1.261 (119), a5=5.351 (505), a6=9.217 (869), a7=9.073 (856), a8=12.719 (1200), a9=12.315 (1161), a10=9.413 (888), a11=10.633 (1003)
+- Galicia (llegada 2012; nidos retirados por Seaga (plan Xunta-concellos)): a8=16.700 (565), a9=14.651 (495), a10=22.223 (751), a13=24.500 (828)
+- Jersey (llegada 2016; nidos encontrados (voluntarios y gobierno)): a3=83 (703), a4=38 (322), a5=63 (534), a6=174 (1475), a7=338 (2864), a8=259 (2195), a9=694 (5881)
+- Reino Unido (llegada 2016; nidos destruidos confirmados (búsqueda activa)): a0=1, a1=1, a2=4, a3=3, a4=1, a5=2, a6=1, a7=73, a8=24, a9=161
+
+Cifras sueltas (no forman serie): Cantabria 2017: 2.342; Cataluña 2016: 116; Cataluña 2017: 370; Portugal continental 2021: 31.666
+
+Tendencia en la fase de meseta (regresión log-lineal; cambio anual medio e IC 95 %; CV = variación interanual):
+- Bizkaia 2019-2025 (n=7): +7,0 % al año [IC 95 %: +2,2 %; +12,0 %]; CV 16 %; media 2.641
+- Asturias 2020-2025 (n=6): +2,3 % al año [IC 95 %: -8,1 %; +13,8 %]; CV 15 %; media 10.562
+- Asturias 2022-2025 (n=4): -7,7 % al año [IC 95 %: -25,8 %; +14,7 %]; CV 14 %; media 11.270
+- Araba 2019-2024 (n=6): +2,1 % al año [IC 95 %: -9,1 %; +14,6 %]; CV 16 %; media 398
+- Galicia 2020-2025 (n=4): +9,6 % al año [IC 95 %: -9,6 %; +32,9 %]; CV 24 %; media 19.518
+- Jersey 2019-2025 (n=7): +52,9 % al año [IC 95 %: +19,8 %; +95,1 %]; CV 98 %; media 236
+
+Densidad media en la meseta (nidos por 1.000 km²): Bizkaia 2019-2025 1191; Asturias 2021-2025 1021; Galicia (4 años, solo operativo Seaga) 660; Gipuzkoa 2015 727; Araba 2019-2024 131; Jersey 2025 5881

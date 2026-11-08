@@ -1,0 +1,218 @@
+=== 0. DATOS Y CLAVES ===
+Municipios (parcelario catastral): 113; superficie total 2212 km²; sin población cruzada: 0; sin renta IRPF: 0
+Nidos de asiática 2018-2025 (sin anuladas): 22551; sin municipio cruzado: 0; con coordenada dentro de Bizkaia: 21484 (95.3%); el punto cae en el municipio declarado en el 97.2%
+Densidad de nidos (asiática, media anual 2018-2025): mediana 1.38 nidos/km²; p90 4.14; máx 8.76 (LEIOA)
+Nidos/km² frente a densidad de población: rho=0.79 (p=1.8e-25); nidos/1.000 hab frente a densidad: rho=-0.85. Los avisos siguen a la gente: por eso todos los modelos controlan por densidad de población.
+
+=== 1. APICULTURA (registro de explotaciones ganaderas, especie «Abejas») ===
+Qué mide: una fila = una explotación apícola registrada (REGA); «CENSO» = nº de colmenas declarado (la declaración anual se hace en enero-febrero del año siguiente: la «fecha censo» de 2025 cae en 2025-2026). La columna de capacidad máxima vale 0 en todas: no informa. No hay enjambres ni producción de miel.
+      explot  colmenas  mediana  censo0  prof  col_prof  autoconsumo  trashum  munis  con_parcela    p90
+anio                                                                                                    
+2021     247      9774     10.0      35    21      5653          112       85     80          164  118.8
+2022     248      9848     10.0      33    21      5147          113       84     80          171   93.9
+2023     236      9617     10.0      27    22      5978          104       84     76          171   94.0
+2024     196      9214     14.5      19    22      5880           78       73     70          150  142.5
+2025     191      9871     14.0      20    24      6828           76       74     69          156  150.0
+  Explotaciones <10 colmenas: 2021 116 (395 colmenas) -> 2025 78 (243 colmenas)
+  Explotaciones 10-49: 2021 88 (1775 colmenas) -> 2025 73 (1411 colmenas)
+  Explotaciones 50-149: 2021 23 (1954 colmenas) -> 2025 20 (1608 colmenas)
+  Explotaciones >=150: 2021 20 (5650 colmenas) -> 2025 20 (6609 colmenas)
+Lectura: se pierden explotaciones pequeñas (autoconsumo y <10 colmenas); las colmenas totales se mantienen (~9.200-9.900) y crecen las grandes. Caída brusca 2023->2024 (-40 explotaciones, -26 de autoconsumo): puede ser una depuración del registro, no solo abandonos.
+
+1a. Municipios con colmenares en 2021 (sin Bilbao): 79. Pierden explotaciones 42, igual 25, ganan 12
+Por cuartil de densidad de nidos 2021-2025 (nidos/km²/año):
+                 munis  nidos_km2  expl_2021  expl_2025  colm_2021  colm_2025  var_expl_%  var_colm_%
+nidos_km2_21_25                                                                                      
+Q1 menos nidos      20       0.53         99         77       4007       4236       -22.2         5.7
+Q2                  20       0.92         55         49       2829       2896       -10.9         2.4
+Q3                  19       1.61         46         36       1387       1258       -21.7        -9.3
+Q4 más nidos        20       3.12         41         22       1259       1107       -46.3       -12.1
+  Spearman nidos/km² vs variación relativa de explotaciones 2021-25: rho=-0.19, p=0.0869, n=79
+  Spearman nidos/1.000 hab vs variación relativa de explotaciones: rho=0.01, p=0.938, n=79
+  Spearman nidos/km² vs variación relativa de colmenas: rho=-0.09, p=0.428, n=75
+  Cuasi-Poisson expl_2025 ~ log(nidos/km²) + log(densidad), offset log(expl_2021): log_nkm2: exp(b)=0.933 (p=0.561); log_dens: exp(b)=0.986 (p=0.848); dispersión 0.62
+  MCO log((expl25+0,5)/(expl21+0,5)) ~ log nidos/km² + log densidad + log población (HC3): log_nkm2: b=-0.079 (p=0.553); log_dens: b=-0.094 (p=0.434); log_pob: b=0.095 (p=0.363); R²=0.05
+  Spearman nidos/km² vs colmenares 2021 por km² (todos los municipios): rho=-0.02, p=0.845, n=112
+
+1b. Colmenar a colmenar (parcela catastral municipio-polígono-parcela; servicio REST del parcelario):
+  Situados: 2021 152 de 247 explotaciones; 2025 145 de 191. (Parcela pedida sin respuesta en el catastro: 15 de 234; se usa el centroide de la parcela.)
+  Nidos de 2025 a <= 1 km de cada colmenar de 2025: mediana 3, p75 8, máx 39; colmenares con >=1 nido: 80%; con >=10: 20%
+  Nidos de 2025 a <= 2 km de cada colmenar de 2025: mediana 18, p75 29, máx 90; colmenares con >=1 nido: 95%; con >=10: 71%
+  Colmenar frente a 30 puntos al azar de su mismo municipio (nidos 2025 a <=2 km): mediana colmenar 18 vs azar 13.7; Wilcoxon p=0.00188, n=145
+  Parcelas con colmenar en 2021 y situadas: 152; sin colmenar en esa parcela en 2025: 62 (41%)
+  Nidos/año a <=2 km (2021-24): bajas mediana 15.1, siguen 11.9; Mann-Whitney p=0.0701
+  Profesionales situados en 2021: 7, de ellos sin colmenar en 2025: 0 (separación perfecta: se deja fuera del logit)
+  (n=149; fuera 3 sin dato de censo o en Bilbao)
+  Logit baja ~ log(1+nidos/año 2 km) + log(1+colmenas) + log densidad + autoconsumo: log_nidos2km: exp(b)=1.485 (p=0.0548); log_censo: exp(b)=0.585 (p=0.00103); log_dens: exp(b)=0.802 (p=0.152); auto: exp(b)=1.108 (p=0.812) (exp(b) = odds ratio); pseudo-R²=0.11
+  Colmenares 2025 con más nidos a <=1 km (sin titular; el registro no lo publica): IURRETA (3 colmenas): 39 nidos; SOPUERTA (50 colmenas): 26 nidos; ZEANURI (30 colmenas): 19 nidos; MEÑAKA (15 colmenas): 19 nidos; ELORRIO (3 colmenas): 18 nidos; LEZAMA (25 colmenas): 16 nidos; BERMEO (150 colmenas): 16 nidos; ABADIÑO (5 colmenas): 16 nidos
+
+=== 2. CULTIVOS SENSIBLES (declaración anual de superficies; registro vitícola) ===
+Hectáreas declaradas por grupo (nogal y avellano fuera: la avispa no los daña):
+                    2021     2022     2023     2024     2025
+grupo                                                       
+kiwi                75.0     81.6     72.3     76.6     76.7
+manzano            248.7    246.4    195.0    184.4    234.0
+otros_frutales     199.8    213.1    144.6    152.0     80.2
+peq_frutos          13.6     14.1     15.0     14.9     16.5
+vina               410.4    415.0    389.5    417.0    413.9
+total_sensible     947.5    970.2    816.4    844.9    821.3
+total_declarado  31348.0  31484.0  29114.0  29191.0  33275.0
+Ojo: en 2023 y sobre todo en 2025 cambia la nomenclatura (variedades SIGPAC). Viña, kiwi y pequeños frutos son comparables; «otros frutales» cae de 200 a 80 ha y manzano oscila: la variación 2021-25 de la superficie sensible está contaminada por el cambio de códigos. El viñedo del registro vitícola es la serie limpia.
+  Spearman nidos de otoño/km² vs ha sensibles/km² (112 municipios): rho=0.02, p=0.814, n=112
+  MCO log(nidos otoño/km²) ~ log(ha sensibles/km²) + log densidad: log_sens: b=0.140 (p=0.000895); log_dens: b=0.302 (p=2.84e-27); R²=0.56
+  Spearman nidos otoño/km² vs variación relativa de ha sensibles 2021-25 (municipios con >=1 ha, n=90): rho=-0.18, p=0.0813, n=90
+  Municipios con más cultivo sensible 2025 (ha; nidos de otoño/km²/año): MUXIKA 76 ha, 0.51; LARRABETZU 43 ha, 0.69; AMOREBIETA-ETXANO 35 ha, 0.73; BAKIO 30 ha, 0.68; ZALLA 29 ha, 0.81; LEZAMA 28 ha, 1.15; MORGA 26 ha, 0.58; MUNGIA 23 ha, 1.31; ZAMUDIO 21 ha, 0.74; GAMIZ-FIKA 20 ha, 0.39
+Registro vitícola, superficie de viñedo (ha): 2021: 471, 2022: 475, 2023: 479, 2024: 480, 2025: 479; municipios con viña 2025: 76
+  Parcelas de viñedo 2025 (1633, 477 ha) con nidos de ago-oct 2025 a <= 500 m: 66%; mediana 1; ha de viña con >=3 nidos: 55
+  Parcelas de viñedo 2025 (1633, 477 ha) con nidos de ago-oct 2025 a <= 1000 m: 91%; mediana 4; ha de viña con >=3 nidos: 247
+  Municipios txakolineros (ha de viña; media de nidos ago-oct 2025 a <=1 km de cada parcela): MUXIKA 64 ha, 4.3; LARRABETZU 28 ha, 3.4; ZALLA 27 ha, 5.1; BAKIO 26 ha, 3.7; LEZAMA 26 ha, 10.0; MORGA 19 ha, 4.1; GAMIZ-FIKA 19 ha, 1.6; ZAMUDIO 18 ha, 3.8
+  Spearman nidos otoño/km² vs variación relativa del viñedo registrado 2021-25 (n=51): rho=-0.12, p=0.386, n=51
+
+=== 3. DINERO PÚBLICO ===
+Encomiendas/encargos de gestión (obligaciones reconocidas, €; último fichero acumulado de cada año):
+     fichero_mes  lineas_avispa  eur_avispa  eur_basalan_total  eur_basalan_patrimonio_natural
+anio                                                                                          
+2017   diciembre              1     71000.0          6913459.0                       2956000.0
+2018   diciembre              3    136887.0          7663731.0                       1752403.0
+2019   diciembre              3     49909.0          8287814.0                       2280777.0
+2020   diciembre              6    537270.0          8612316.0                       2200000.0
+2021   diciembre              0         0.0          9919063.0                       2400000.0
+2022   diciembre              0         0.0         12311288.0                       2400000.0
+2023   diciembre              0         0.0         13182438.0                       2737000.0
+2024   diciembre              0         0.0         12018419.0                       2100000.0
+2025   diciembre              0         0.0         12979976.0                       2100000.0
+2026  septiembre              0         0.0          8630359.0                       1051514.0
+  2017: TRABAJOS ELIMINACION VESPA VELUTINA -> 71,000.00 €
+  2018: MAYO-JUNIO SERV RETIRADA NIDOS AVISPA ASIÁTICA -> 22,660.52 €
+  2018: SERV. RETIRADA NIDOS AVISPA ASIÁTICA SEPTIEMBRE Y OCTUBRE -> 82,929.04 €
+  2018: SERV. RETIRADA NIDOS AVISPA ASIÁTICA NOVIEMBRE -> 31,297.72 €
+  2019: SERVICIO RETIRADA DE NIDOS DE AVISPA ASITICA JUNIO -> 10,103.08 €
+  2019: (DOK) ENCARGO BASALAN 2019-RETIRADA NIDOS AVISPA ASIATICA SE -> 24,283.33 €
+  2019: (DOK) ENCARGO BASALAN 2019-RETIRADA NIDOS AVISPA ASIATICA NO -> 15,523.01 €
+  2020: RETIRADA AVISPA ASITICA ENERO Y FEBRERO Y SERVICIOS PARQUES -> 107,372.67 €
+  2020: TRABAJOS ASOCIADOS SERV PATRIMONIO_RETIRADA NIDOS AVISPA VEL -> 399.79 €
+  2020: (DOK) TRAB SERV PATRIMONIO_RETIRADA NIDOS AVISPA VELUTINA AB -> 1,267.01 €
+  2020: (DOK) MAYO TRAB EXTRAORD Y AVISPA VELUTINA ENCARGO BASALAN_P -> 171,500.84 €
+  2020: (DOK) OCT TRAB EXTRAORD Y AVISPA VELUTINA ENCARGO BASALAN_PA -> 102,436.51 €
+  2020: (DOK) NOV TRAB EXTRAORD Y AVISPA VELUTINA ENCARGO BASALAN_PA -> 154,293.30 €
+Las líneas de 2020 de mayo, octubre y noviembre mezclan «trabajos extraordinarios y avispa velutina»: no permiten aislar el coste de los nidos.
+Desde 2021 la retirada de nidos ya no aparece como línea propia: queda dentro del «encargo anual Basalan - Servicio de Patrimonio Natural» (2,1-2,7 M€/año, que incluye parques, áreas y otros trabajos).
+Coste por nido retirado por Basalan (importe de la línea / nidos cerrados por Basalan esos meses):
+  MAYO-JUNIO 2018: 22,661 € / 316 nidos = 72 €/nido
+  SEPTIEMBRE-OCTUBRE 2018: 82,929 € / 1224 nidos = 68 €/nido
+  NOVIEMBRE 2018: 31,298 € / 450 nidos = 70 €/nido
+  JUNIO 2019: 10,103 € / 122 nidos = 83 €/nido
+  «SE...» 2019 si es solo septiembre: 24,283 € / 306 nidos = 79 €/nido
+  «SE...» 2019 si es septiembre-octubre: 24,283 € / 657 nidos = 37 €/nido
+  «NO...» 2019 si es noviembre: 15,523 € / 158 nidos = 98 €/nido
+  2018 con las tres líneas (may-jun, sep-oct, nov): 136,887 € / 1990 nidos = 69 €/nido. Julio-agosto de 2018 no tiene línea propia (1218 nidos cerrados por Basalan).
+Subvenciones otorgadas (programa «Ayudas a la apicultura» y similares; importes acumulados del último fichero del año):
+             mes  eur_ayudas_apicultura  lineas  eur_asociaciones  otras_a_asoc_apic  lineas_avispa  eur_por_colmena
+anio                                                                                                                
+2017   diciembre               19815.96       2          19815.96           30718.37              0              NaN
+2018   diciembre               57343.49      20          37343.49            4978.46              0              NaN
+2019   diciembre               38439.61       2          38439.61            5000.00              0              NaN
+2020   diciembre               38533.52       4          32076.72            5000.00              0              NaN
+2021   diciembre               38706.45       4          32336.00            4983.83              0             3.96
+2022   diciembre               38602.11       4          32314.61            5000.00              0             3.92
+2023   diciembre               78107.82       4          65879.22            4997.52              0             8.12
+2024   diciembre               29473.84       1          29473.84            5000.00              0             3.20
+2025   diciembre               40000.00       3          34988.03           11249.41              0             4.05
+2026  septiembre                   0.00       0              0.00             740.29              0              NaN
+Ninguna línea de subvenciones otorgadas menciona avispa, velutina, nidos o trampeo (búsqueda en el texto del programa).
+contratos-menores: 13 líneas con avispa/velutina/nidos/trampeo/apicultura
+  2018: PROTEC SOLANA SL | VESTUARIO Y UNIFORMES | PROTEC SOLANA, SUMINSTRO 16 TRAJES PARA VESPA VELUTINA PERSO -> 8.734,84
+  2019: ASOCIACION DE APICULTORES DE VIZCAYA | OTROS SUMINISTROS Y BIENES -> 101
+  2020: ASOCIACION DE APICULTORES DE VIZCAYA | OTROS SUMINISTROS Y BIENES -> 230,25
+  2021: ASOCIACION DE APICULTORES DE VIZCAYA | OTROS SUMINISTROS Y BIENES -> 45,59
+  2022: ASOCIACION DE APICULTORES DE VIZCAYA | OTROS SUMINISTROS Y BIENES -> 44,50
+  2022: ASOCIACION DE APICULTORES DE VIZCAYA | OTROS SUMINISTROS Y BIENES -> 23,99
+  2023: ASOCIACION DE APICULTORES DE VIZCAYA | OTROS SUMINISTROS Y BIENES -> 68,50
+  2023: ASOCIACION DE APICULTORES DE VIZCAYA | OTROS SUMINISTROS Y BIENES -> 130,99
+  2023: ASOCIACION DE APICULTORES DE VIZCAYA | OTROS SUMINISTROS Y BIENES -> 39,00
+  2024: ASOCIACION DE APICULTORES DE VIZCAYA | Productos manufacturados diversos y artículos conexos -> 314,84
+  2024: ASOCIACION DE APICULTORES DE VIZCAYA | Productos manufacturados diversos y artículos conexos -> 175,30
+  2024: ASOCIACION DE APICULTORES DE VIZCAYA | Productos de la agricultura, ganadería, pesca, silvicultura -> 7249,52
+contratos-no-menores: 3 líneas con avispa/velutina/nidos/trampeo/apicultura
+  2021: PROTEC SOLANA SL | VESTUARIO Y UNIFORMES | CONTRATO SUMINISTRO VESTUARIO PARA EL PERSONAL DEL SPEIS 202 | PROTEC SOLANA, SL: SUM VESTUARIO: TRAJES ABE -> 8803,57
+  2024: PROTEC SOLANA SL | VESTUARIO Y UNIFORMES | CONTRATO DE SUMINISTRO DE VESTUARIO PARA EL SPEIS 2024 | PROTEC SOLANA: SUM. TRAJES DE PROTECCIÓN DE ABEJAS -> 18873,70
+  2025: PROTEC SOLANA SL | VESTUARIO Y UNIFORMES | CONTRATO DE SUMINISTRO DE VESTUARIO PARA EL SPEIS 2025 | PROTEC SOLANA: TRAJES DE PROTECCIÓN PARA ABEJAS Y  -> 18161,85
+convenios: 0 líneas con avispa/velutina/nidos/trampeo/apicultura
+plan-anual-contratacion: 0 líneas con avispa/velutina/nidos
+plan-anual-contratacion-basalan: 0 líneas con avispa/velutina/nidos
+liquidacion-presupuestos (gastos 2017-2024): 0 partidas con avispa/velutina en el texto. La retirada se paga desde los proyectos de encargo a Basalan (Patrimonio Natural), sin partida propia.
+
+=== 4. SALUD, OCIO Y ACTIVIDAD ===
+SPEIS «Neutralización de abejas y avispas» 2023-2025: 3153 salidas; por año {2023: 1099, 2024: 1074, 2025: 980}
+  Spearman nidos de asiática vs salidas SPEIS por avispas/abejas, por municipio 2023-25: rho=0.84, p=1.17e-31, n=112
+  Cuasi-Poisson salidas SPEIS ~ log(1+nidos) + log(población): log_nidos: exp(b)=2.029 (p=4.77e-41); log_pob: exp(b)=1.394 (p=3.88e-39)
+  Nidos de asiática cerrados por BOMBEROS en el registro de nidos 2023-25: 1081 (frente a 3153 salidas SPEIS por avispas/abejas: el SPEIS incluye avispa común, abejas y salidas sin nido retirado)
+  Perfil mensual (correlación de Spearman entre meses): rho=0.81; SPEIS por mes {1: 10, 2: 10, 3: 19, 4: 88, 5: 209, 6: 463, 7: 664, 8: 725, 9: 541, 10: 308, 11: 101, 12: 15}
+  Salidas SPEIS 2024-25 con coordenadas: 2018; con un nido registrado (cualquier especie) del mismo año a <=100 m: 70%; a <=500 m: 97%; especie del nido más cercano (<=100 m): {'AVISPA ASIÁTICA': 857, 'AVISPA COMÚN': 390, 'ABEJA': 151, 'ELEVADA PELIGROSIDAD': 4}
+  (Las coordenadas del SPEIS pueden estar redondeadas o desplazadas: la proximidad es orientativa.)
+Playas (socorristas, jun-sep, 34 playas; sin punto geográfico: []):
+      picaduras  asistencias   usuarios  pic_100k_usuarios  nidos_jun_sep_costeros
+anio                                                                              
+2019      435.0       6955.0  3392673.0              12.82                   448.0
+2020      332.0       5739.0  3123310.0              10.63                   512.0
+2021      260.0       4323.0  2705609.0               9.61                   456.0
+2022      348.0       4506.0  3171371.0              10.97                   460.0
+2023      191.0       2738.0  2252944.0               8.48                   702.0
+2024      118.0       2818.0   812200.0              14.53                   717.0
+2025      215.0       3226.0  1102342.0              19.50                   579.0
+2026      222.0       3277.0  1256391.0              17.67                     NaN
+  Ojo: los usuarios contados caen a un tercio desde 2024 (cambio de conteo o de playas aforadas): la tasa por usuario no es comparable entre 2019-23 y 2024-26.
+  Spearman nidos jun-sep a <=2 km de la playa vs picaduras de insecto por 100.000 usuarios (playa-año 2019-25): rho=-0.22, p=0.00442, n=170
+  Spearman lo mismo dentro de cada playa (desviaciones respecto a su media): rho=-0.07, p=0.368, n=170
+  «Picadura de insectos» no distingue avispa, abeja, tábano ni mosquito; el sabirón (pez) va aparte.
+  Tendencia anual 2019-25: picaduras/100k usuarios vs nidos costeros jun-sep, rho=0.14 (n=7)
+Áreas de esparcimiento forales (75): nidos de asiática 2018-25 a <=500 m: mediana 2, p90 25, máx 111; áreas con >=1: 60%
+  Avisos dados por la propia Basalan: 14% de los nidos a <=500 m de un área, frente al 7% en el total (Basalan mantiene las áreas y avisa de lo que ve).
+  Áreas con más nidos alrededor: Artaza (Leioa) 111; Parque De La Marisma-Toña (Sukarrieta) 59; Txatxarramendi (Sukarrieta) 58; Santarena (Busturia) 46; Ollargan-Montefuerte (Arrigorriaga) 43; Akarlanda (Erandio) 33; El Calero (Trucios-Turtzioz) 29; Apoyo A La Playa De San Antonio (Busturia) 29
+Senderos PR: el servicio WFS/REST de ODB solo trae los de Armañón y Urkiola (dos parques); no se cruzan.
+
+=== 5. PERFIL DE LOS MUNICIPIOS MÁS AFECTADOS ===
+Cuartiles de nidos/km²/año 2018-25 (sin Bilbao; renta = base liquidable media por declaración IRPF 2023, €):
+                munis  nidos_km2  nidos_1000hab  pob_mediana  dens_mediana  renta_decl  nidos_total  pob_total  con_colmenar  ha_sensibles
+nidos_km2_anio                                                                                                                            
+Q1                 28       0.54          17.22       1096.5         27.99    26530.85         3355    47174.0          0.79        217.15
+Q2                 28       1.04          16.61       1064.5         62.20    27478.89         4354    72890.0          0.82        263.24
+Q3                 28       1.77          11.42       1663.0        167.03    27476.43         5503   125014.0          0.64        212.26
+Q4                 28       3.69           3.10      10708.5       1202.16    28393.38         9336   570614.0          0.57        117.52
+Cuartiles de nidos/1.000 hab./año:
+                    munis  nidos_1000hab  pob_mediana  dens_mediana  renta_decl  con_colmenar
+nidos_1000hab_anio                                                                           
+Q1                     28           2.16      15282.0       1549.10    25025.90          0.61
+Q2                     28           6.56       4120.5        202.10    27157.48          0.89
+Q3                     28          16.61        767.0         60.12    27661.44          0.71
+Q4                     28          25.56        548.5         40.68    28049.15          0.61
+  Spearman nidos/1.000 hab vs renta media declarada: rho=0.29, p=0.00204, n=112
+  Spearman nidos/1.000 hab vs densidad: rho=-0.85, p=1.37e-32, n=112
+  MCO log(nidos/1.000 hab) ~ log densidad + log renta: log_dens: b=-0.602 (p=1.23e-111); log_renta: b=1.617 (p=7.3e-06); R²=0.83
+Top 12 por nidos/km²/año (nidos/km², nidos/1.000 hab, hab., hab/km², renta/decl., colmenares 2021->2025):
+  LEIOA: 8.76; 2.2; 32748; 3949; 30,393 €; 0->0
+  GETXO: 8.31; 1.3; 75752; 6343; 42,814 €; 0->0
+  LEKEITIO: 8.29; 2.1; 7211; 3954; 27,356 €; 1->1
+  BASAURI: 6.64; 1.1; 40274; 5832; 22,365 €; 0->0
+  ETXEBARRI: 5.14; 1.4; 12038; 3559; 27,591 €; 0->0
+  GALDAKAO: 4.60; 4.5; 24776; 1032; 27,328 €; 3->2
+  BERANGO: 4.59; 4.9; 8242; 940; 35,118 €; 1->0
+  DURANGO: 4.55; 1.6; 30192; 2813; 31,995 €; 1->1
+  SONDIKA: 4.46; 6.5; 4670; 683; 31,542 €; 0->0
+  PLENTZIA: 4.40; 5.9; 4407; 749; 31,393 €; 2->2
+  SOPELA: 4.21; 2.4; 15048; 1789; 33,723 €; 1->0
+  PORTUGALETE: 4.15; 0.3; 44843; 13921; 24,228 €; 0->0
+Top 12 por nidos/1.000 hab./año (>=500 hab.):
+  GALDAMES: 33.0; 0.62/km²; 829 hab; 19 hab/km²; 24,890 €; colmenares 3->1
+  MEÑAKA: 30.1; 1.91/km²; 789 hab; 63 hab/km²; 29,913 €; colmenares 0->2
+  ARRIETA: 27.9; 1.11/km²; 582 hab; 40 hab/km²; 30,671 €; colmenares 3->1
+  ZEANURI: 26.9; 0.49/km²; 1234 hab; 18 hab/km²; 29,395 €; colmenares 6->7
+  MARURI-JATABE: 26.4; 1.86/km²; 1129 hab; 70 hab/km²; 38,864 €; colmenares 2->0
+  MUXIKA: 26.0; 0.81/km²; 1546 hab; 31 hab/km²; 27,921 €; colmenares 4->3
+  ARTZENTALES: 25.7; 0.53/km²; 754 hab; 21 hab/km²; 23,034 €; colmenares 2->2
+  AULESTI: 25.4; 0.64/km²; 639 hab; 25 hab/km²; 24,584 €; colmenares 1->0
+  ARRANKUDIAGA-ZOLLO: 24.1; 1.08/km²; 1018 hab; 45 hab/km²; 28,178 €; colmenares 2->1
+  ZEBERIO: 24.0; 0.55/km²; 1087 hab; 23 hab/km²; 28,813 €; colmenares 5->3
+  BUSTURIA: 23.2; 1.90/km²; 1693 hab; 82 hab/km²; 28,217 €; colmenares 2->1
+  EA: 23.1; 1.35/km²; 824 hab; 59 hab/km²; 27,229 €; colmenares 1->1
+Paro registrado: no está en ODB (Lanbide/SEPE); no se cruza.

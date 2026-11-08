@@ -1,0 +1,254 @@
+
+### FAUNA (centro de recuperación)
+filas por año: {'2021': 1373, '2022': 1583, '2023': 1556, '2024': 1689, '2025': 1448}
+rango fechas: 2021-01-02 14:00:00 2025-12-30 18:21:00
+estado ingreso %: {'VIVO/BIZIRIK': 52.9, 'MUERTO/HILDA': 47.1}
+top 15 especies: {'Jabalí': 479, 'Tortuga de Florida (orejas amarillas)': 431, 'Gaviota Patiamarilla': 272, 'Mirlo Común': 265, 'Gaviota patiamarilla': 254, 'Corzo': 225, 'Gorrión Común': 221, 'Vencejo Común': 211, 'Paloma Doméstica': 177, 'Vencejo común': 168, 'Tortuga de Florida híbrida': 157, 'Arao común': 149, 'Mirlo común': 149, 'Gorrión común': 141, 'Paloma doméstica': 133}
+causas ingreso: {'Cría': 2068, 'Traumatismo': 1273, 'Control poblacional': 637, 'Captura': 617, 'Debilidad': 461, 'Atropello': 386, 'Cedido por Particular': 339, 'Batida': 274, 'Desconocido': 249, 'Ataque de otro animal': 197, 'Barreras artificiales': 130, 'Enfermedad': 127, 'Descaste ó eliminación de la especie': 106, 'Temporal': 97, 'Disparo': 85, 'Electrocución': 35, 'Decomisado': 34, 'Intoxicación': 23, 'Artes de pesca': 23, 'Control Epidemiológico': 12, 'Trampas': 9, 'Petroleado': 9, 'Colisión línea eléctrica o aerogenerador': 9, 'Cautividad': 7, 'Malformación congénita': 4}
+evolución: {nan: 3616, 'Liberados': 1800, 'Muerto': 1078, 'Sacrificado': 855, 'Instalaciones del Centro': 94, 'No entra en el Centro-Intervención Guardería': 84, 'Cedido': 70, 'Devuelto al dueño': 19, 'Dejado para cría': 14, 'NO ENTRA EN EL CENTRO-INTERVENCIÓN GUARDERÍA': 14, 'Fugado de las instalaciones.': 5}
+vivos: 4044 liberados entre vivos %: 44.5
+ingresos por mes (total): {1: 364, 2: 494, 3: 408, 4: 466, 5: 795, 6: 1266, 7: 1447, 8: 614, 9: 574, 10: 518, 11: 394, 12: 309}
+top municipios recogida: {'BILBAO': 1058, 'GETXO': 481, 'MUNGIA': 404, 'BARAKALDO': 310, 'GORLIZ': 293, 'LEIOA': 251, 'SOPELA': 224, 'SANTURTZI': 196, 'PORTUGALETE': 172, 'GALDAKAO': 135}
+  Tortuga: 869 | por año {'2021': 85, '2022': 236, '2023': 154, '2024': 250, '2025': 144}
+  Erizo: 242 | por año {'2021': 51, '2022': 35, '2023': 36, '2024': 62, '2025': 58}
+  Búho|Lechuza|Cárabo|Mochuelo: 253 | por año {'2021': 42, '2022': 55, '2023': 26, '2024': 79, '2025': 51}
+  Milano|Busardo|Águila|Halcón|Buitre|Azor|Gavilán: 401 | por año {'2021': 96, '2022': 92, '2023': 84, '2024': 59, '2025': 70}
+  Murciélago: 89 | por año {'2021': 15, '2022': 16, '2023': 25, '2024': 9, '2025': 24}
+  Corzo: 285 | por año {'2021': 38, '2022': 39, '2023': 148, '2024': 30, '2025': 30}
+  Nutria|Visón|Garduña|Tejón|Zorro: 264 | por año {'2021': 51, '2022': 41, '2023': 40, '2024': 53, '2025': 79}
+  Delfín|Marsopa|Tortuga boba|Alcatraz|Arao|Frailecillo: 259 | por año {'2021': 12, '2022': 24, '2023': 51, '2024': 143, '2025': 29}
+  causa Atropello: 386 | top especies {'Tejón': 48, 'Tejón común': 41, 'Zorro común': 37, 'Corzo': 33}
+  causa Electrocuc: 35 | top especies {'Busardo Ratonero': 9, 'Buitre Leonado': 7, 'Cárabo Común': 3, 'Urraca': 3}
+  causa Disparo|Arma: 85 | top especies {'Gaviota patiamarilla': 13, 'Gaviota Patiamarilla': 8, 'Zorzal Alirrojo': 7, 'Tórtola turca': 5}
+  causa Envenen|Intoxica: 23 | top especies {'Buitre leonado': 6, 'Gaviota Patiamarilla': 5, 'Buitre Leonado': 5, 'Mochuelo Común': 1}
+  causa Colisi: 9 | top especies {'Buitre Leonado': 3, 'Murciélago montañero': 1, 'Halcón Peregrino': 1, 'Aguila culebrera': 1}
+  causa Petrol|Hidrocarb: 9 | top especies {'Ánade real': 3, 'Gaviota Patiamarilla': 2, 'Arao Común': 1, 'Gaviota Reidora': 1}
+  causa Captura|Control: 1267 | top especies {'Tortuga de Florida (orejas amarillas)': 244, 'Jabalí': 162, 'Corzo': 131, 'Tortuga de Florida híbrida': 101}
+
+### GANADERÍA
+censo por especie y año (top 12):
+EJERCICIO               2021     2022     2023     2024    2025
+ESPECIE                                                        
+Gallinas             1473066  1489801  1270129  1352705  442790
+Ovino                  55101    54349    52544    52570   52060
+Bovidos                41480    40582    39419    38999   38796
+Conejos                47244    46024    41236    18925   30275
+Patos                  30257    30310    30360    30094   30107
+Caprino                14960    14736    13572    13723   13998
+Equidos                11126    11512    11702    12575   13115
+Abejas                  9774     9848     9617     9214    9871
+Cerdos                  1215     1231     1512     1434    1590
+Palomas                  816      861      848      607     838
+Ocas                      99      106      174      163     129
+Tortugas (Chelonia)      128      128      128      128     128
+explotaciones por año: {'2021': 10558, '2022': 10518, '2023': 10207, '2024': 10215, '2025': 10990}
+2025 top municipios por nº explotaciones: {'KARRANTZA HARANA/VALLE DE CARRANZA': 575, 'AMOREBIETA-ETXANO': 336, 'MUNGIA': 327, 'MARKINA-XEMEIN': 278, 'OROZKO': 255, 'BERMEO': 224, 'DIMA': 221, 'ABANTO Y CIERVANA-ABANTO ZIERBENA': 206}
+movimientos (guías) por año: {'2023': 21559, '2024': 21507, '2025': 20743} animales: {'2023': 1530847, '2024': 1645793, '2025': 1531431}
+2025 trashumancia S: guías 4819 animales 64660
+  trashumancia por mes (guías): {1: 330, 2: 206, 3: 184, 4: 453, 5: 708, 6: 661, 7: 308, 8: 285, 9: 560, 10: 503, 11: 205, 12: 416}
+  trashumancia especies (animales): {'Bovinos': 25601, 'Ovinos': 24080, 'Équidos': 8864, 'Caprinos': 5339, 'Caballo': 406, 'Gallinas': 200, 'Abejas': 64, 'Cerdos': 64, 'Ocas': 20, 'Asno': 14, 'Conejos': 8}
+  trashumancia origen top: {'KARRANTZA HARANA/VALLE DE CARRANZA': 508, 'OROZKO': 403, 'ZEANURI': 325, 'DIMA': 245, 'GUEÑES': 199, 'ALONSOTEGI': 194}
+  trashumancia destino top: {nan: 480, 'KARRANTZA HARANA/VALLE DE CARRANZA': 474, 'OROZKO': 380, 'ZEANURI': 314, 'DIMA': 243, 'ALONSOTEGI': 194}
+2025 destino (comunidad) animales: {'País Vasco': 465967, 'Navarra': 453938, 'Castilla y León': 303360, 'Galicia': 297287, 'Cantabria': 7057, 'Rioja': 2489, 'Aragón': 528, 'Asturias': 176, 'Andalucía': 137, 'Cataluña': 119}
+2025 origen (comunidad) animales: {'País Vasco': 1521347, 'Aragón': 3154, 'Navarra': 2636, 'Castilla y León': 1411, 'Cantabria': 1355, 'Francia': 404, 'Asturias': 291, 'Rioja': 283, 'Murcia': 231, 'Andalucía': 82}
+2025 explotación destino top (animales): {'ES311640000850': 450262, 'ES270280293501': 297011, 'ES010140018000': 182503, 'ES470520000005': 172103, 'ES240340000307': 124700}
+2025 bovinos a Francia/Italia/otros países: {('Francia', 'Équidos'): 8, ('Italia', 'Équidos'): 1, ('Portugal', 'Équidos'): 3}
+nacimientos por fichero: {'nacimientos-ganado-2023': 29620, 'nacimientos-ganado-2024': 28294, 'nacimientos-ganado-2025': 26144}
+razas top (todas): {'Conjunto Mestizo': 31571, 'FRISONA': 7051, 'LATXA': 6544, 'LIMUSINA': 6348, 'LATXA CARA NEGRA': 5731, 'PIRENAICA': 5228, 'SASI ARDI': 2267, 'TERREÑA': 2197, 'CARRANZANA': 1846, 'AZPI GORRI': 1578, 'Caballo de Monte de País Vasco': 1307, 'LATXA CARA RUBIA': 1241, 'MONCHINA': 1139, 'ASTURIANA DE LOS VALLES': 993, 'CARRANZANA CARA RUBIA': 902}
+  raza BETIZU: 117 nacimientos | por fichero {'nacimientos-ganado-2023': 41, 'nacimientos-ganado-2024': 34, 'nacimientos-ganado-2025': 42}
+  raza POTTOKA: 428 nacimientos | por fichero {'nacimientos-ganado-2023': 96, 'nacimientos-ganado-2024': 158, 'nacimientos-ganado-2025': 174}
+  raza MONCHINA: 1139 nacimientos | por fichero {'nacimientos-ganado-2023': 348, 'nacimientos-ganado-2024': 351, 'nacimientos-ganado-2025': 440}
+  raza TERREÑA: 2197 nacimientos | por fichero {'nacimientos-ganado-2023': 639, 'nacimientos-ganado-2024': 763, 'nacimientos-ganado-2025': 795}
+  raza SASI: 2267 nacimientos | por fichero {'nacimientos-ganado-2023': 827, 'nacimientos-ganado-2024': 894, 'nacimientos-ganado-2025': 546}
+  raza CARRANZANA: 3469 nacimientos | por fichero {'nacimientos-ganado-2023': 1309, 'nacimientos-ganado-2024': 1184, 'nacimientos-ganado-2025': 976}
+  raza AZPI: 1578 nacimientos | por fichero {'nacimientos-ganado-2023': 698, 'nacimientos-ganado-2024': 543, 'nacimientos-ganado-2025': 337}
+  raza PIRENAICA: 5228 nacimientos | por fichero {'nacimientos-ganado-2023': 1761, 'nacimientos-ganado-2024': 1733, 'nacimientos-ganado-2025': 1734}
+  nacimientos con día=1 (fecha aproximada) %: 16.1
+
+### REGISTRO VITÍCOLA
+           parcelas     ha
+EJERCICIO                 
+2021           1741  470.6
+2022           1751  474.7
+2023           1752  479.5
+2024           1797  479.9
+2025           1800  478.5
+estado parcela por año:
+EJERCICIO                                                         2021  2022  2023  2024  2025
+ESTADO PARCELA                                                                                
+Ejercido su derecho de nueva plantación                             71    71    70    70    65
+Ejercido su derecho de replantación o sustitución                  462   457   443   439   428
+Reparto de Autorización de Nueva Plantación del Ministerio - ANP    20    21    23    26    28
+Replantación Anticipada de Viñedo - RPA                              0     0     0     7     8
+Replantación de Viñedo - ARP                                        99   113   129   148   161
+Viñedo cultivado                                                  1089  1089  1087  1107  1110
+2025 ha por municipio top 12: {'MUXIKA': 64.4, 'LARRABETZU': 28.0, 'ZALLA': 27.3, 'BAKIO': 26.3, 'LEZAMA': 25.9, 'GAMIZ-FIKA': 20.0, 'MORGA': 19.2, 'ZAMUDIO': 18.5, 'MENDEXA': 18.3, 'MUNGIA': 17.2, 'AMOREBIETA-ETXANO': 17.0, 'SOPUERTA': 11.5}
+2025 municipios con viña: 76 | parcelas con 0 m2: 162
+2025 ha por variedad 1: {'HONDARRIBI ZURI': 327.2, 'PETIT COURBU _ HONDARRIBI ZURI ZERRATIA': 82.0, 'RIESLING': 16.9, 'No identificada/Identifikatu gabekoa': 16.6, 'FOLLE BLANCHE _ MUNE MAHATSA': 14.6, 'HONDARRIBI BELTZA': 8.1, 'GROS MANSENG _ IZKIRIOTA': 4.4, 'SAUVIGNON BLANC': 2.0, 'Variedad no tipificada para Bizkaia/Barietate ez-tipifikatua Bizkaiarako': 1.7, 'PETIT MANSENG _IZKIRIOTA TTIPPIA': 1.2, 'CABERNET FRANC   Berdexarie': 1.0, 'CHARDONNAY': 1.0, 'MEZCLA DE VARIEDADES': 0.7, 'PINOT NOIR': 0.2}
+tamaño parcela m2 (2025, >0): mediana 734.405 p90 8100.153999999999
+cambio ha 2021-2025 por municipio (peores/mejores): {'GALDAKAO': -10.18, 'MORGA': -4.54, 'ELORRIO': -4.33, 'MUNGIA': -2.82, 'ARRANKUDIAGA-ZOLLO': -1.69} {'MUXIKA': 1.79, 'ARTEA': 1.85, 'GAMIZ-FIKA': 2.99, 'LARRABETZU': 6.78, 'USANSOLO': 11.46}
+
+### DECLARACIÓN DE SUPERFICIES
+total ha por año: {'2021': 31348.0, '2022': 31484.0, '2023': 29114.0, '2024': 29191.0, '2025': 33268.0}
+top 15 cultivos ha:
+EJERCICIO                                        2021  2022  2023  2024     2025
+TIPO CULTIVO                                                                    
+PASTOS PERMANENTES DE 5 O MÁS AÑOS-SIN VARIEDAD   0.0   0.0   0.0   0.0  30372.8
+MEZCLA DE FORESTALES-SIN VARIEDAD                 0.0   0.0   0.0   0.0    914.4
+VIÑA-SIN VARIEDAD                                 0.0   0.0   0.0   0.0    392.5
+PASTOS DE MENOS DE 5 AÑOS-SIN VARIEDAD            0.0   0.0   0.0   0.0    323.8
+HUERTA-SIN VARIEDAD                               0.0   0.0   0.0   0.0    212.1
+MAÍZ-MAÍZ CONVENCIONAL                            0.0   0.0   0.0   0.0    203.4
+MANZANO-MOKO                                      0.0   0.0   0.0   0.0    101.6
+KIWI-HAYWARD CLON B                               0.0   0.0   0.0   0.0     74.9
+OTROS FRUTALES-SIN VARIEDAD                       0.0   0.0   0.0   0.0     71.2
+RAYGRASS PERENNE-SIN VARIEDAD                     0.0   0.0   0.0   0.0     59.1
+MANZANO-REINA DE REINETAS                         0.0   0.0   0.0   0.0     56.0
+TOMATE-SIN VARIEDAD                               0.0   0.0   0.0   0.0     48.0
+VIVERO - PRODUCTOR MVR-SIN VARIEDAD               0.0   0.0   0.0   0.0     35.8
+CALABAZA-SIN VARIEDAD                             0.0   0.0   0.0   0.0     30.8
+PIMIENTO-SIN VARIEDAD                             0.0   0.0   0.0   0.0     30.4
+mayores cambios (cultivos >20 ha en 2025):
+EJERCICIO                                        2021  2022  2023  2024     2025      dif%
+TIPO CULTIVO                                                                              
+CALABAZA-SIN VARIEDAD                             0.0   0.0   0.0   0.0     30.8  102467.0
+PASTOS PERMANENTES DE 5 O MÁS AÑOS-SIN VARIEDAD   0.0   0.0   0.0   0.0  30372.8       inf
+VIÑA-SIN VARIEDAD                                 0.0   0.0   0.0   0.0    392.5       inf
+MEZCLA DE FORESTALES-SIN VARIEDAD                 0.0   0.0   0.0   0.0    914.4       inf
+MEZCLA AVENA-VEZA-SIN VARIEDAD                    0.0   0.0   0.0   0.0     23.8       inf
+MANZANO-GOLDEN DELICIOUS                          0.0   0.0   0.0   0.0     22.7       inf
+VIÑA-HONDARRABI ZURI                              0.0   0.0   0.0   0.0     21.4       inf
+MANZANO-ERREZILA                                  0.0   0.0   0.0   0.0     20.8       inf
+  KIWI:  {'2021': 75.0, '2022': 81.6, '2023': 72.3, '2024': 76.6, '2025': 76.7} <StringArray>
+[     'AKTINIDIA (KIWI)-HAYWARD',       'AKTINIDIA (KIWI)-GRACIE',
+      'AKTINIDIA (KIWI)-JB GOLD', 'AKTINIDIA (KIWI)-SIN VARIEDAD']
+Length: 4, dtype: str
+  ARANDANO|ARÁNDANO:  {'2021': 12.0, '2022': 12.5, '2023': 12.4, '2024': 12.4, '2025': 14.0} <StringArray>
+['ARANDANOS-SIN VARIEDAD', 'ARANDANOS', 'ARÁNDANO-LIBERTY', 'ARÁNDANO-AURORA']
+Length: 4, dtype: str
+  VIÑ:  {'2021': 410.4, '2022': 414.9, '2023': 389.4, '2024': 416.9, '2025': 413.9} <StringArray>
+[   'VIÑEDO DE TXAKOLI',       'VIÑEDO TXAKOLI',    'VIÑA-SIN VARIEDAD',
+ 'VIÑA-HONDARRABI ZURI']
+Length: 4, dtype: str
+  MANZAN:  {'2021': 248.7, '2022': 246.4, '2023': 195.0, '2024': 184.4, '2025': 234.0} <StringArray>
+['MANZANO-MANZANO CONSUMO MESA',  'MANZANO-MANZANO SIDRA EXTEN',
+  'MANZANO-MANZANO SIDRA INTEN',            'MANZANO EXTENSIVO']
+Length: 4, dtype: str
+  PIMIENT:  {'2021': 3.7, '2022': 6.2, '2023': 16.4, '2024': 22.1, '2025': 30.5} <StringArray>
+['PIMIENTO-BAJO PLASTICO',    'PIMIENTO-AIRE LIBRE',    'PIMIENTO AIRE LIBRE',
+ 'PIMIENTO BAJO PLASTICO']
+Length: 4, dtype: str
+  INVERNADERO:  {} <StringArray>
+[]
+Length: 0, dtype: str
+  EUCALIP:  {'2021': 0.0, '2022': 0.0, '2023': 0.0} <StringArray>
+['FRONDOSAS-EUCALIPTOS', 'FRONDOSAS EUCALIPTO']
+Length: 2, dtype: str
+  PINO:  {'2021': 0.0, '2022': 0.0, '2023': 0.0, '2025': 7.5} <StringArray>
+['CONIFERAS-PINO INSIGNIS', 'CONIFERAS PINO INSIGNIS',
+       'PINO-PINO INSIGNE',       'PINO-SIN VARIEDAD']
+Length: 4, dtype: str
+
+### RESIDUOS URBANOS
+años: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'] municipios/año: {'2015': 112, '2016': 112, '2017': 112, '2018': 112, '2019': 112, '2020': 112, '2021': 112, '2022': 112, '2023': 112, '2024': 113}
+nombres municipio raros: ['ETXEBARRI,ANTEIGLESIA']
+totales (unidad sin documentar, prob. kg):
+           RECOGIDA_EN_MASA  PAPEL-CARTON  VIDRIO  VOLUMINOSOS  ENVASES  REUTILIZACION  BIORRESIDUO  EH_TOTALA  %selectiva
+EJERCICIO                                                                                                                 
+2015                  327.4          32.6    24.3          6.2     15.7            0.0          0.0      406.2         0.0
+2016                  331.2          34.4    24.1          6.6     16.0            0.0          0.0      412.3         0.0
+2017                  329.2          34.8    24.4          7.6     16.9            4.1          2.7      419.6         0.0
+2018                  326.1          34.6    25.9          8.8     18.1            4.4          5.3      423.3         0.0
+2019                  316.6          35.1    26.6         10.2     19.4            4.5          7.4      419.9         0.0
+2020                  306.8          34.2    25.7         10.6     21.4            4.3          8.4      411.5         0.0
+2021                  310.4          34.1    27.8         11.7     21.5            4.3         10.5      420.3         0.0
+2022                  299.5          32.1    28.2         11.1     20.7            4.4         10.6      406.6         0.0
+2023                  295.8          31.8    28.6         10.4     21.5            4.4         10.8      403.3         0.0
+2024                  299.4          33.3    28.7         10.7     22.1            4.7         11.4      410.2         0.0
+último año: % selectiva top/bottom: {'ZIERBENA': 16.0, 'MUSKIZ': 16.0, 'SOPUERTA': 18.0, 'GUEÑES': 19.0, 'ZALLA': 19.0} {'MUNITIBAR-ARBATZEGI GERRIKAITZ': 49.0, 'GIZABURUAGA': 49.0, 'ZIORTZA-BOLIBAR': 51.0, 'AMOROTO': 53.0, 'MENDEXA': 55.0}
+último año: biorresiduo 0 en 6 municipios; bio% top: {'MENDEXA': 16.0, 'AMOROTO': 17.0, 'MUNITIBAR-ARBATZEGI GERRIKAITZ': 18.0, 'GIZABURUAGA': 18.0, 'AULESTI': 19.0}
+comprobación suma: |total - suma fracciones|/total mediana: 0.0
+
+### PLAYAS
+años: ['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'] playas: 34
+asistencias por año y tipo:
+EJERCICIO                    2019  2020  2021  2022  2023  2024  2025  2026
+OTROS                         628   391   326   407   157   232   225   198
+CAIDA                           0     0     0     0   206   383   513   354
+CANSANCIO                      77    43    34    43    36     8     8    41
+CORRIENTES_AGUA               136   127    68   114    37    45    39    70
+CUERPO_EXTRANO                165   130   119   114    75    62    72    79
+ENFERMEDAD                     32    10    15    13     6     8    14    14
+HERIDA                       3654  3099  2311  2300   942  1170  1327  1407
+LESIONES_POR_SOL               13    15    38     9    17    14     2     7
+LIPOTIMIA                       0    49    13    49    30    72    60    50
+PICADURA_INSECTOS             435   332   260   348   191   118   215   222
+PICADURA_MEDUSA                29    89    69    24   483    65    44    24
+PICADURA_SABIRON             1269   844   621   624   343   386   290   461
+QUEMADURA_NO_SOLAR             72    39    65    54    16    28    25    64
+RESCATE_POR_CANSANCIO           0    81    76    79     6     8    58   107
+RESCATE_POR_CORRIENTES_AGUA     0   143    63    85    91   145   238   117
+TRAUMATISMO_CERRADO           445   347   245   243   102    74    96    62
+total por tipo: {'HERIDA': 16210, 'PICADURA_SABIRON': 4838, 'OTROS': 2564, 'PICADURA_INSECTOS': 2121, 'TRAUMATISMO_CERRADO': 1614, 'CAIDA': 1456, 'RESCATE_POR_CORRIENTES_AGUA': 882, 'PICADURA_MEDUSA': 827, 'CUERPO_EXTRANO': 816, 'CORRIENTES_AGUA': 636, 'RESCATE_POR_CANSANCIO': 415, 'QUEMADURA_NO_SOLAR': 363, 'LIPOTIMIA': 323, 'CANSANCIO': 290, 'LESIONES_POR_SOL': 115, 'ENFERMEDAD': 112}
+sabirón por playa top: {'Laga': 488.0, 'La Arena (Z)': 412.0, 'La Arena (M)': 412.0, 'La Arena': 352.0, 'Bakio': 338.0, 'Laida': 323.0}
+medusa por año: {'2019': 29.0, '2020': 89.0, '2021': 69.0, '2022': 24.0, '2023': 483.0, '2024': 65.0, '2025': 44.0, '2026': 24.0}
+asistencia (personas usuarias?) total por año: {'2019': 3392673.0, '2020': 3123310.0, '2021': 2705609.0, '2022': 3171371.0, '2023': 2252944.0, '2024': 812200.0, '2025': 1102342.0, '2026': 1256391.0}
+top playas: {'Ereaga': 1863618.0, 'La Arena (Z)': 1677373.0, 'La Arena (M)': 1677333.0, 'Arriatera - Atxabiribil': 1514460.0, 'Gorliz': 1281424.0, 'Bakio': 991048.0}
+estado-playas: filas por año {'2024': 3782, '2025': 3782, '2026': 3782}
+  estado-playas: % filas idénticas entre años 2024 2025 0.0 | 2025 2026 0.0
+  estado-playas meses presentes: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+
+### SAIP
+por año: {'2016': 11, '2017': 19, '2018': 25, '2019': 41, '2020': 74, '2021': 67, '2022': 75, '2023': 65, '2024': 95, '2025': 115}
+finalización %: {'Estimada': 74.6, 'Inadmitida': 9.0, 'Denegada': 6.1, 'Desistida': 3.1, 'Parcialmente estimada': 2.6, 'Derivada a otra admin.': 2.0, 'Se desconoce': 1.7, 'Silencio administrativo (denegatorio)': 0.9}
+días hasta resolver: mediana 11.0 p90 25.0 | en plazo: {'Sí': 477, 'No': 94, 'Se desconoce': 16}
+tema: {'Servicios sociales': 111, 'Medio natural': 93, 'Empleo público': 90, 'Convenios, contratos y subvenciones': 81, 'Obras públicas y urbanismo': 72, 'Información ecómico-financiera': 39, 'Otros': 21, 'Movilidad': 19}
+subtema: {'-': 163, 'Residencias de mayores': 40, 'Obras públicas': 39, 'Menores y atención temprana': 35, 'Sostenibilidad y medio ambiente': 32, 'Convenios': 32, 'Urbanismo': 32, 'Subvenciones': 28}
+persona: {'Hombre': 322, 'Mujer': 178, 'Persona jurídica': 87} | reclamación: {'No': 526, 'Sí': 61}
+denegadas/inadmitidas por departamento: {'Ogasun eta finantza saila': 20, 'Azpiegituretarako eta lurralde garapenerako saila': 17, 'Herri administraziorako eta erakunde harremanetarako saila': 14, 'Enplegua, gizarte inklusioa eta berdintasuna sustatzeko saila': 10, 'Ekonomi eta lurralde garapena sustatzeko saila': 4}
+ejemplos resumen: ['Catálogo completo de los puestos definidos como de designación política de la DFB, incluye', 'Datos de interrupción del servicio viario en carreteras por desprendimientos en los último', 'Información acerca del transporte de viajeros en autobús: expediente administrativo corres', 'Solicitud de resolución completa notificada a una persona (se aportan sus datos) de la Ord', 'Relación de puesto de trabajo (RPT) de funcionarios con al menos, elementos para identific', 'Información acerca del expediente de ayuda pública o contratación por el que la DFB colabo', 'Memoria de justificación de un expediente de Artesanía', 'Información acerca de Elkarkidetza: acuerdo de la DFB donde se establecen las aportaciones']
+
+### BIZKAIBUS expediciones 2025 (112 municipios)
+ficheros: 224 carpetas: 112
+municipios: 111 | suma plan 6556006 real 6629808
+ratio real/plan: describe {'count': 111.0, 'mean': 1.097, 'std': 0.44, 'min': 0.956, '25%': 1.0, '50%': 1.0, '75%': 1.004, 'max': 5.062}
+ratio más bajo: {'LEIOA': {'plan': 245545, 'real': 234646, 'ratio': 0.956}, 'ABADIÑO': {'plan': 74117, 'real': 74145, 'ratio': 1.0}, 'AMOROTO': {'plan': 19653, 'real': 19653, 'ratio': 1.0}, 'ALONSOTEGI': {'plan': 26498, 'real': 26498, 'ratio': 1.0}, 'ARTZENTALES': {'plan': 7500, 'real': 7500, 'ratio': 1.0}, 'ARRIGORRIAGA': {'plan': 79602, 'real': 79622, 'ratio': 1.0}, 'ARRIETA': {'plan': 10052, 'real': 10052, 'ratio': 1.0}, 'AULESTI': {'plan': 5696, 'real': 5696, 'ratio': 1.0}}
+ratio más alto: {'EA': {'plan': 6248, 'real': 10162, 'ratio': 1.626}, 'EREÑO': {'plan': 1750, 'real': 3730, 'ratio': 2.131}, 'NABARNIZ': {'plan': 1750, 'real': 3730, 'ratio': 2.131}, 'AJANGIZ': {'plan': 1500, 'real': 3863, 'ratio': 2.575}, 'ERRIGOITI': {'plan': 1500, 'real': 7593, 'ratio': 5.062}}
+menos expediciones planificadas/año: {'AJANGIZ': 1500, 'ERRIGOITI': 1500, 'EREÑO': 1750, 'GARAI': 1750, 'NABARNIZ': 1750, 'MENDEXA': 2147, 'ETXEBARRIA': 3500, 'ZIORTZA-BOLIBAR': 3500}
+fechas extracción real: {'2026-02-25': 4009}
+por línea (deduplicado): líneas 105 plan 1315835 real 1328365
+líneas ratio bajo: {'A3932': {'plan': 38585, 'real': 38476, 'ratio': 0.997}, 'A0652': {'plan': 4000, 'real': 4000, 'ratio': 1.0}, 'A0654': {'plan': 6498, 'real': 6498, 'ratio': 1.0}, 'A0653': {'plan': 3500, 'real': 3500, 'ratio': 1.0}, 'A2153': {'plan': 11729, 'real': 11729, 'ratio': 1.0}, 'A3144': {'plan': 20680, 'real': 20680, 'ratio': 1.0}}
+
+### VISITAS Y DESCARGAS
+visitas-descargas-2018-enero conjuntos 16 | sin ninguna visita en el mes: 0 | totales {'VISITAS': 572, 'DESCARGAS WEB': 0, 'DESCARGAS API': 0}
+  top visitas: {'Informes periódicos de ejecución de presupuestos': 107, 'Retribuciones de las y los altos cargos': 60, 'Contratos no menores': 59, 'Estructura orgánica foral': 55, 'Relación de puestos de trabajo reservados a personal funcionario': 51, 'Relación de puestos de trabajo y retribuciones del personal eventual': 50, 'Bienes inmuebles': 43, 'Inversiones': 33}
+  top desc API: {'Bienes inmuebles': 0, 'Contratos menores': 0, 'Contratos no menores': 0, 'Convenios': 0, 'Encomiendas de gestión': 0}
+visitas-descargas-2025-noviembre conjuntos 1267 | sin ninguna visita en el mes: 263 | totales {'VISITAS': 6729, 'DESCARGAS WEB': 1594, 'DESCARGAS API': 125586}
+  top visitas: {'Intervenciones del Servicio de Prevención, Extinción de Incendios y Salvamento de la Diputación Foral de Bizkaia': 325, 'Parcelario catastral de Bizkaia': 115, 'Cartografía 1:5000 (BTB 1:5000), máxima actualidad, de Bizkaia': 100, 'Relación de puestos de trabajo reservados a personal funcionario': 99, 'Retribuciones de las y los altos cargos': 96, 'Relación de puestos de trabajo y retribuciones del personal eventual': 93, 'Planeamiento urbanístico - Amorebieta-Etxano': 73, 'Indicadores de Acción Social': 69}
+  top desc API: {'Informes periódicos de ejecución de presupuestos': 6330, 'Subvenciones otorgadas': 1876, 'Informes periódicos de ejecución de presupuestos del IFAS': 1784, 'Visitas y descargas por dataset y día': 1493, 'Visitas y descargas': 1138}
+visitas-descargas-2025-octubre conjuntos 1241 | sin ninguna visita en el mes: 232 | totales {'VISITAS': 4789, 'DESCARGAS WEB': 807, 'DESCARGAS API': 81135}
+  top visitas: {'Cartografía 1:5000 (BTB 1:5000), máxima actualidad, de Bizkaia': 160, 'Cartografía 1:5000 (BTB 1:5000), versión 2021, de Bizkaia': 127, 'Relación de puestos de trabajo reservados a personal funcionario': 86, 'Relación de puestos de trabajo y retribuciones del personal eventual': 81, 'Parcelario catastral de Bizkaia': 73, 'Retribuciones de las y los altos cargos': 63, 'Etapas del sendero GR 123 - Bizkaiko Bira': 54, 'Carreteras forales de Bizkaia': 50}
+  top desc API: {'Informes periódicos de ejecución de presupuestos': 3219, 'Informes periódicos de ejecución de presupuestos del IFAS': 1719, 'Subvenciones otorgadas': 1605, 'Contratos menores': 1509, 'Visitas y descargas por dataset y día': 1205}
+descargas semanales por año (web, api): {'2018': {'web': 3175, 'api': 0}, '2019': {'web': 2813, 'api': 0}, '2020': {'web': 2789, 'api': 0}, '2021': {'web': 4848, 'api': 0}, '2022': {'web': 5825, 'api': 805477}, '2023': {'web': 7735, 'api': 983771}, '2024': {'web': 9413, 'api': 2306214}, '2025': {'web': 10531, 'api': 3633104}, '2026': {'web': 9074, 'api': 6032528}}
+visitas semanales por año: {'2018': 6816, '2019': 7628, '2020': 15971, '2021': 22351, '2022': 34530, '2023': 38694, '2024': 51020, '2025': 55506, '2026': 64346}
+
+### ENERGÍA DFB
+ejemplo columnas: ['CONSUMO_ELECTRICIDAD_ENE(KWH)', 'CONSUMO_ELECTRICIDAD_FEB(KWH)', 'CONSUMO_ELECTRICIDAD_MAR(KWH)', 'CONSUMO_ELECTRICIDAD_ABR(KWH)', 'CONSUMO_ELECTRICIDAD_MAY(KWH)', 'CONSUMO_ELECTRICIDAD_JUN(KWH)'] ... ['COSTE_GNC_MAY(€)', 'COSTE_GNC_JUN(€)', 'COSTE_GNC_JUL(€)', 'COSTE_GNC_AGO(€)', 'COSTE_GNC_SEPT(€)', 'COSTE_GNC_OCT(€)', 'COSTE_GNC_NOV(€)', 'COSTE_GNC_DIC(€)']
+n cols elec 12 cost 84
+elec GWh por año: {'2023': 71.58, '2024': 69.11, '2025': 64.0} coste M€: {'2023': 15.11, '2024': 8.77, '2025': 11.01}
+elec por tipología 2025 (GWh): {'TÚNEL': 22.38, 'INFRAESTRUCTURA DE SERVICIOS': 11.74, 'ALUMBRADO': 8.03, 'OFICINA': 7.89, 'OTROS': 5.99, 'ALBERGUE': 3.14, 'BIBLIOTECA - ARCHIVO': 1.45, 'OTRAS INSTALACIONES': 1.24}
+top elementos 2025: {'TMB PLANTA': 7487361.0, 'TÚNEL; RED ALTA VARIANTE SUR METROPOLITANA UGARTE': 5752146.0, 'EUSKALDUNA JAUREGIA': 4705025.0, 'LIXIBIATUEN KUDEAKETA PLANTA': 3350364.0, 'TÚNEL; RED ALTA VARIANTE SUR METROPOLITANA LARRASKITU': 2959569.0, 'TÚNELES DE ARTXANDA': 2090950.0}
+
+### PARQUE MÓVIL
+TIPO DE COMBUSTIBLE   0  Combustión Gasoil  Elctrico  Eléctrico  Gasoleo  Gasolina  HEV gasolina  No motorizado  PHEV gasolina/electrico   ¿?
+EJERCICIO                                                                                                                                    
+2017                  0                  0         0          0        0         0             0              0                        0  522
+2018                  0                  0         0          0        0         0             0              0                        0  457
+2019                  0                  0         0          0        0         0             0              0                        0  596
+2020                  0                  0         0          0        0         0             0              0                        0  587
+2021                  0                  0         0          0        0         0             0              0                        0  554
+2022                  0                  0         0         22      383        13            30             84                       44    0
+2023                  0                 98         0         24      336         5            30             37                       44   55
+2024                 91                  0        46          0      376         5            30              0                       78    0
+2025                  0                  0         0          0        0         0             0              0                        0  550
+vehículos por año: {'2017': 522, '2018': 457, '2019': 596, '2020': 587, '2021': 554, '2022': 576, '2023': 629, '2024': 626, '2025': 550}

@@ -1,0 +1,10 @@
+Avisos abril-diciembre: 2018-2025 22135; periodo principal 2019-2025 18098
+Tramos de días: diferencia máxima con pct_le7 = 0.0000
+Nidos 2019-2025 en avispa_indicadores_temporada.csv: 18098 (base recalculada: 18098)
+Reparto mensual recalculado igual que outputs/avispa_reparto_mensual.csv: True
+Hitos en cronologia.json (estado confirmado, confirmado_secundaria): 35
+Tasas por tamaño (media 2019-2025): {'<2.000': 16.4, '2.000-5.000': 7.8, '5.000-20.000': 3.3, '>20.000': 1.1}; sin cruzar: []
+Cortes de la tasa por 1.000 habitantes (quintiles de 112 municipios): [2.8, 6.3, 14.7, 20.7]
+Puntos 2018-2025 abr-dic: sin coordenadas 965; fuera de Bizkaia (>200 m): 49; en el mapa 21121
+Puntos con coordenadas por temporada: {2018: 3392, 2019: 1726, 2020: 2591, 2021: 2132, 2022: 2409, 2023: 2867, 2024: 2802, 2025: 3202}
+Tamaño: indicadores.json 1 KB, mensual.json 1 KB, esquemas.json 0 KB, regiones.json 3 KB, gasto.json 1 KB, cronologia.json 12 KB, municipios.geojson 171 KB, nidos.json 436 KB, municipios_serie.json 14 KB, descargas/avisos_por_temporada_y_mes_abr_dic.csv 2 KB, descargas/indicadores_por_temporada.csv 1 KB, descargas/municipios.csv 7 KB, descargas/nidos_coordenadas_redondeadas.csv 436 KB

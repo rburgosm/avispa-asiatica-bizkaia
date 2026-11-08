@@ -1,0 +1,9 @@
+# Datos brutos: se obtienen con los scripts de descarga (pesan ~2 GB y algunos son de terceros)
+data/raw/
+# Notas internas de trabajo
+CLAUDE.md
+docs/
+# Python
+__pycache__/
+*.pyc
+.venv/

@@ -1,0 +1,13 @@
+## recogida-contenerizada-residuos-urbanos.csv  [utf-8-sig+mojibake-fix, sep=',']  1121 filas x 12 cols
+  - _id: uniq=1121 nulos=0% | 1(1); 2(1); 3(1); 4(1)
+  - EKITALDIA/EJERCICIO: uniq=10 nulos=0% | 2024(113); 2023(112); 2022(112); 2021(112)
+  - CODIGO/KODEA: uniq=113 nulos=0% | ="001"(10); ="002"(10); ="911"(10); ="912"(10)
+  - MUNICIPIO/UDALERRIA: uniq=126 nulos=0% | ABADIÑO(10); AJANGIZ(10); ALONSOTEGI(10); AMOREBIETA-ETXANO(10)
+  - MASA_BILKETA/RECOGIDA_EN_MASA: uniq=1118 nulos=0% | 366.530(2); 70.271(2); 133.320(2); 2075683(1)
+  - PAPERA-KARTOIA/PAPEL-CARTON: uniq=1111 nulos=0% | 45.840(3); 46.764(2); 10.044.620(2); 7.813(2)
+  - BEIRA/VIDRIO: uniq=1118 nulos=0% | 8.533(2); 8.915(2); 117.168(2); 193618(1)
+  - BOLUMEN_HANDIKOAK/VOLUMINOSOS: uniq=1096 nulos=0% | 0(3); 210(2); 12.390(2); 2.069(2)
+  - ONTZIAK/ENVASES: uniq=1114 nulos=0% | 17.742(2); 10.449(2); 9.242(2); 32.037(2)
+  - BERRERABILTZEA/REUTILIZACION: uniq=859 nulos=20% | 0(18); 2.448(2); 2.236(2); 3.180(2)
+  - BIOHONDAKINA/BIORRESIDUO: uniq=744 nulos=20% | 0(146); 1.219(2); 743(2); 1.448(2)
+  - TOTAL_RD/EH_TOTALA: uniq=1120 nulos=0% | 522.505(2); 2842728(1); 3567012(1); 192380(1)

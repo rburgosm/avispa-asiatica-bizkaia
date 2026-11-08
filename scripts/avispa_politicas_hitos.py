@@ -1,0 +1,196 @@
+"""Escribe outputs/avispa_politicas_hitos.csv: cronología de políticas frente a la avispa asiática.
+
+Los hitos salen de la revisión documental de docs/avispa_politicas_cronologia.md (fuentes
+guardadas en data/raw/externos/politicas_avispa/ cuando se pudieron descargar; texto extraído
+con scripts/avispa_politicas_textos.py) y de los conjuntos de Open Data Bizkaia ya descargados
+(fechas del registro con scripts/avispa_politicas_fechas_registro.py).
+
+Columnas: fecha, precision_fecha (dia/mes/año/periodo), medida, ambito, tipo, fuente_url,
+cita (literal y corta) y estado (confirmado / confirmado_secundaria / no_confirmado).
+- confirmado: fuente primaria oficial leída (BOE, DOUE, DFB, Gobierno Vasco, MITECO, ODB).
+- confirmado_secundaria: prensa leída que reproduce una nota oficial; sin la nota original.
+- no_confirmado: solo visto en el extracto de un buscador o en prensa que no se pudo leer.
+Uso: python -I scripts/avispa_politicas_hitos.py
+"""
+import csv
+from pathlib import Path
+
+ODB = "https://www.opendatabizkaia.eus/es/catalogo/"
+AGRO_JUN16 = ("https://www.agronewscastillayleon.com/"
+              "la-diputacion-de-bizkaia-ha-retirado-ya-135-nidos-de-vespa-velutina-entre-mayo-y-junio")
+AGRO_SEP16 = ("https://www.agronewscastillayleon.com/"
+              "la-diputacion-de-vizcaya-retira-853-nidos-de-vespa-velutina-entre-mayo-y-agosto")
+ECOTICIAS = "https://www.ecoticias.com/naturaleza/64782_euskadi-pendiente-avispa-asiatica"
+GV_MANUAL = "https://www.euskadi.eus/contenidos/documentacion/vespa_velutina/es_def/adjuntos/vespa_velutina.pdf"
+MITECO = ("https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/publicaciones/"
+          "estrategias/estrategia_vespavelutina_tcm30-69976.pdf")
+DFB_N = "https://www.bizkaia.eus/es/web/comunicacion/noticias/-/news/detailView/"
+DEIA_0616 = "https://www.deia.eus/bizkaia/2016/06/13/bizkaia-forma-doscientos-tecnicos-locales-5029724.html"
+
+HITOS = [
+    # fecha, precision, medida, ambito, tipo, url, cita, estado
+    ("2004", "año", "Llegada de Vespa velutina a Europa (Francia), probablemente en un barco de mercancías",
+     "Europa", "contexto_deteccion", "https://www.bizkaia.eus/es/tema-detalle/-/edukia/dt/10074",
+     "su introducción se produjese de forma accidental a través de Francia en 2004", "confirmado"),
+    ("2010-08", "mes", "Primera cita confirmada en España (Amaiur, Navarra); ese año también en Gipuzkoa",
+     "España / Gipuzkoa", "contexto_deteccion", MITECO,
+     "En España la primera cita confirmada se realizó en agosto de 2010 en Amaiur", "confirmado"),
+    ("2010", "año", "Primeros ejemplares en la CAPV (Irún) y unos 15 nidos en localidades cercanas",
+     "Euskadi", "contexto_deteccion", GV_MANUAL,
+     "los primeros ejemplares se encontraron en Irún en 2010", "confirmado"),
+    ("2011-09", "mes", "La Dirección de Agricultura de la DFB crea la Mesa de Seguimiento de la Vespa velutina "
+     "(red de trampas, formación de guardas y bomberos, protocolos)", "Bizkaia", "coordinacion", ECOTICIAS,
+     "en septiembre de 2011 la dirección de Agricultura del departamento foral formó una Mesa de Seguimiento",
+     "confirmado_secundaria"),
+    ("2012-04-10", "dia", "Primera avispa asiática confirmada en Bizkaia: ejemplar capturado en la trampa de un "
+     "apicultor y enviado a Neiker (confirmación al Servicio de Ganadería al día siguiente)", "Bizkaia",
+     "deteccion", ECOTICIAS,
+     "un apicultor de la Asociación de Apicultores de Bizkaia remitía al laboratorio Neiker el cuerpo",
+     "confirmado_secundaria"),
+    ("2012", "periodo", "Ensayos en la CAPV: cámara térmica para localizar nidos (sin éxito) y pértigas para "
+     "inactivar nidos (2012-2013)", "Euskadi (sobre todo Gipuzkoa)", "medio_tecnico", GV_MANUAL,
+     "Empleo de cámara térmica para localizar nidos (2012). Resultados no satisfactorios", "confirmado"),
+    ("2013-04-16", "dia", "Mesa de Seguimiento de Euskadi (Gobierno Vasco, diputaciones, sector apícola y "
+     "Neiker) acuerda un ensayo de cebos con biocida", "Euskadi", "coordinacion",
+     "https://www.infoagro.com/noticias/2013/la_eficacia_de_biocidas_contra_vespa_velutina.asp",
+     "en la que trabajan conjuntamente Gobierno Vasco, diputaciones forales, el sector Apicultor y NEIKER",
+     "confirmado_secundaria"),
+    ("2013-08-03", "dia", "Real Decreto 630/2013 (Catálogo Español de Especies Exóticas Invasoras): incluye "
+     "el epígrafe genérico «Vespa spp. (especies no europeas)»", "España", "normativa",
+     "https://www.boe.es/boe/dias/2013/08/03/pdfs/BOE-A-2013-8565.pdf",
+     "Vespa spp. (especies no europeas)", "confirmado"),
+    ("2013-11", "mes", "Flujograma operativo vasco: en Bizkaia el aviso entra por SOS Deiak 112 y lo atiende "
+     "la DFB/Base Gorria (bomberos)", "Bizkaia", "protocolo", MITECO,
+     "Flujograma operativo (noviembre 2013) ... SOS Deiak ... 112 ... Bizkaia -DFB/Base Gorria",
+     "confirmado"),
+    ("2013/2015", "periodo", "Nidos retirados en Bizkaia antes del registro abierto: 14 (2013), 127 (2014) y "
+     "2.180 (2015) según el Gobierno Vasco; 16 en 2013 según MITECO; 2.114 en 2015 según la DFB",
+     "Bizkaia", "contexto_cifra", GV_MANUAL, "Bizkaia - 14 127 2180", "confirmado"),
+    ("2014-11-14", "dia", "Estrategia estatal de gestión, control y posible erradicación del avispón asiático: "
+     "aprobada por la Comisión Estatal para el Patrimonio Natural (y por la Conferencia Sectorial el 16/04/2015)",
+     "España", "plan", MITECO,
+     "VERSIÓN APROBADA POR COMISIÓN ESTATAL ... EL 14 DE NOVIEMBRE DE 2014 Y POR LA CONFERENCIA SECTORIAL "
+     "DE MEDIO AMBIENTE EL 16 DE ABRIL DE 2015", "confirmado"),
+    ("2015", "año", "Antes del protocolo, los bomberos forales hacían la mayor parte de las retiradas: 2.114 "
+     "intervenciones (1.754 bomberos y 360 Basalan), un 600 % más que en 2014", "Bizkaia", "contexto_cifra",
+     AGRO_JUN16, "1.754 por parte de los bomberos forales y 360 por parte de Basalan", "confirmado_secundaria"),
+    ("2016-05", "mes", "Manual del Gobierno Vasco para la gestión de la avispa asiática (drones «en fase de "
+     "experimentación»; reservas sobre el trampeo de fundadoras)", "Euskadi", "plan", GV_MANUAL,
+     "inactivación de nidos mediante el uso de drones etc. No obstante estos estudios están en fase de "
+     "experimentación", "confirmado"),
+    ("2016-06", "mes", "Formación de más de 200 técnicos municipales en cuatro sesiones comarcales (Derio, "
+     "Gernika, Portugalete y Zornotza) para aplicar el nuevo protocolo", "Bizkaia", "protocolo", AGRO_JUN16,
+     "Más de 200 técnicos de los municipios de Bizkaia han tomado parte en las sesiones formativas",
+     "confirmado_secundaria"),
+    ("2016-06", "mes", "El protocolo crea un registro de empresas y agentes autorizados, incluido en la "
+     "aplicación de Lantik", "Bizkaia", "protocolo", AGRO_JUN16,
+     "cuya relación estará incluida en la aplicación informática desarrollada por la empresa foral Lantik",
+     "confirmado_secundaria"),
+    ("2016-06", "mes", "Primera línea de ayudas (30.000 €) a apicultores afectados", "Bizkaia", "ayuda_apicultura",
+     DEIA_0616, "(solo extracto del buscador; Deia rechaza la descarga)", "no_confirmado"),
+    ("2016-06", "mes", "El protocolo prevé un dron para casos especiales", "Bizkaia", "medio_tecnico", DEIA_0616,
+     "(solo extracto del buscador; Deia rechaza la descarga)", "no_confirmado"),
+    ("2016-07-01", "dia", "Entra en funcionamiento el protocolo foral: el ayuntamiento recibe el aviso, verifica "
+     "y marca el nido y lo registra en la aplicación; el aviso se deriva a Basalan o, en casos especiales, a "
+     "los bomberos. Todos los municipios salvo Bilbao", "Bizkaia", "protocolo", AGRO_SEP16,
+     "El pasado 1 de julio entró en funcionamiento un nuevo protocolo de actuación", "confirmado_secundaria"),
+    ("2016", "año", "La DFB confirma el año de arranque del protocolo y el papel excepcional de los bomberos "
+     "(parques, escuelas, hospitales, centros de mayores, riesgos adicionales)", "Bizkaia", "protocolo",
+     DFB_N + "18402", "Desde que en 2016 entró en funcionamiento el protocolo de actuación frente a la vespa "
+     "velutina, los bomberos sólo intervienen en ocasiones excepcionales", "confirmado"),
+    ("2016", "año", "Medios de Basalan: camión-grúa con cesta, pértigas para introducir biocida, escaleras y "
+     "sistemas de trepa; bomberos cuando no se llega desde el suelo, escalera o plataforma comercial",
+     "Bizkaia", "medio_tecnico", AGRO_SEP16,
+     "un camión-grúa con cesta, pértigas para introducir el biocida en los nidos", "confirmado_secundaria"),
+    ("2016-07-14", "dia", "Vespa velutina nigrithorax entra en la lista de especies exóticas invasoras "
+     "preocupantes para la Unión (Reglamento de Ejecución UE 2016/1141; en vigor a los 20 días)", "UE",
+     "normativa", "https://eur-lex.europa.eu/legal-content/ES/TXT/HTML/?uri=CELEX:32016R1141",
+     "Vespa velutina nigrithorax de Buysson, 1905", "confirmado"),
+    ("2016/2018", "periodo", "Grupo operativo EIP-AGRI: estudio socioeconómico del impacto de la velutina en la "
+     "apicultura vasca (coordina la Asociación de Apicultores de Gipuzkoa; 38.673 €)", "Euskadi",
+     "estudio", "https://eu-cap-network.ec.europa.eu/projects/2016-008-socioeconomic-study-impact-vespa-velutina-"
+     "apiculture-autonomous-community-basque_en",
+     "identify the strengths and current threats to beekeeping related to Vespa velutina", "confirmado"),
+    ("2017", "año", "Encomienda a Basalan con línea propia «Trabajos eliminación Vespa velutina» (71.000 €)",
+     "Bizkaia", "gasto", ODB + "encomiendas-gestion", "TRABAJOS ELIMINACION VESPA VELUTINA", "confirmado"),
+    ("2017-04", "mes", "Estudio DFB y Neiker de seguimiento de las trampas de las asociaciones apícolas (BAMEPE y "
+     "BEE): 6 apicultores, 1.013 reinas, la mayoría en abril; el atrayente casero no es selectivo",
+     "Bizkaia", "trampeo", DFB_N + "18164",
+     "ha constatado la captura de 1.013 reinas de vespa velutina, la mayor parte de ellas en el mes de abril",
+     "confirmado"),
+    ("2017", "año", "Proyecto piloto de asentamientos apícolas en altura (Gorbea) en la época de máxima "
+     "actividad: 8 asentamientos, 6 apicultores, 240 colmenas", "Bizkaia", "ayuda_apicultura", DFB_N + "18164",
+     "ha servido para autorizar ocho asentamientos en el entorno del Gorbea", "confirmado"),
+    ("2017-11-10", "dia", "Presupuesto foral 2018: partida de 259.000 € para la retirada de nidos de avispa "
+     "asiática", "Bizkaia", "gasto", DFB_N + "18131",
+     "la prevista para la retirada de nidos de avispa asiática (259.000 euros)", "confirmado"),
+    ("2017-11-23", "dia", "Comparecencia de la diputada de Sostenibilidad y Medio Natural en Juntas Generales: "
+     "1.542 nidos entre enero y octubre de 2017 (1.339 Basalan, 203 bomberos)", "Bizkaia", "balance",
+     DFB_N + "18164", "1.339 nidos han sido inactivados por la sociedad pública foral Basalan y otros 203, por "
+     "los Bomberos de la Diputación", "confirmado"),
+    ("2018-01-06", "dia", "Primer aviso del registro de nidos publicado en Open Data Bizkaia (inicio de la serie "
+     "comparable 2018-2025)", "Bizkaia", "registro", ODB + "avispa-asiatica",
+     "FECHA ALTA mínima 2018-01-06 (scripts/avispa_politicas_fechas_registro.py)", "confirmado"),
+    ("2018-02-22", "dia", "Balance 2017 de la DFB: 2.231 nidos (1.949 Basalan, 267 bomberos, 15 ayuntamientos); "
+     "caen las intervenciones de bomberos por avispa", "Bizkaia", "balance", DFB_N + "18402",
+     "la mayor parte de los nidos de esta especie fueron eliminados por la empresa pública foral Basalan (1.949)",
+     "confirmado"),
+    ("2018", "año", "Contrato menor de 16 trajes «para Vespa velutina» para bomberos (8.734,84 €)", "Bizkaia",
+     "medio_tecnico", ODB + "contratos-menores", "SUMINSTRO 16 TRAJES PARA VESPA VELUTINA", "confirmado"),
+    ("2018/2020", "periodo", "Encomiendas a Basalan con líneas por tramos de meses para la retirada de nidos "
+     "(2018-2019); en 2020 mezcladas con «trabajos extraordinarios»", "Bizkaia", "gasto",
+     ODB + "encomiendas-gestion", "MAYO-JUNIO SERV RETIRADA NIDOS AVISPA ASIÁTICA", "confirmado"),
+    ("2019-06-11", "dia", "Decreto Foral 71/2019 de ayudas al fomento de la apicultura (convocatoria 2019); no "
+     "se ha leído su texto: se desconoce si incluye medidas frente a la velutina", "Bizkaia", "ayuda_apicultura",
+     ODB + "subvenciones", "Decreto Foral de la Diputación Foral 71/2019, de 11 de Junio, de ayudas económicas "
+     "destinadas al fomento de la apicultura", "confirmado"),
+    ("2021", "año", "La retirada de nidos deja de tener línea propia en las encomiendas: pasa al encargo anual "
+     "de Basalan para Patrimonio Natural (cambio contable, no operativo)", "Bizkaia", "gasto",
+     ODB + "encomiendas-gestion", "(ninguna línea con velutina/avispa en 2021-2026)", "confirmado"),
+    ("2021", "año", "«Vespa Velutina Data Challenge» de la DFB en la plataforma Kopuru: predecir nidos por "
+     "municipio con los nidos retirados en 2020", "Bizkaia", "datos",
+     "https://gardentasuna.bizkaia.eus/documents/1261696/1267395/Memoria+2021_cas.pdf",
+     "crear un algoritmo que sea capaz de predecir los nidos de vespa velutina por cada municipio", "confirmado"),
+    ("2022", "año", "Un grupo de vecinos de Muskiz empieza a trampear por su cuenta", "Muskiz", "trampeo",
+     "https://www.deia.eus/bizkaia/2026/02/11/vecinos-muskiz-lucha-avispa-asiatica-10685237.html",
+     "(solo extracto del buscador; Deia rechaza la descarga; cifras del propio grupo)", "no_confirmado"),
+    ("2023-01-01", "dia", "En el registro, el campo «usuario» pasa de «AYUNTAMIENTO <municipio>» a "
+     "«AYUNTAMIENTO» genérico: cambio de aplicación o de exportación, causa desconocida", "Bizkaia", "registro",
+     ODB + "avispa-asiatica", "primera alta con «AYUNTAMIENTO» genérico: 2023-01-01; última con nombre: "
+     "2022-12-30", "confirmado"),
+    ("2023", "año", "Portugalete hace su primera campaña municipal de trampeo (1.500 ejemplares)", "Portugalete",
+     "trampeo", "https://www.deia.eus/bizkaia/2023/07/05/portugalete-elimina-1-500-ejemplares-7008366.html",
+     "(solo extracto del buscador; Deia rechaza la descarga)", "no_confirmado"),
+    ("2023", "año", "Galdames hace su primera campaña de trampeo de reinas (3.722) y anuncia 55 trampas para "
+     "2024", "Galdames", "trampeo",
+     "https://www.deia.eus/bizkaia/2024/03/05/galdames-colocara-55-trampas-avispas-7957333.html",
+     "(solo extracto del buscador; Deia rechaza la descarga)", "no_confirmado"),
+    ("2024", "año", "Contratos de vestuario del SPEIS con lotes de trajes de protección contra abejas y avispas "
+     "(también en 2021 y 2025)", "Bizkaia", "medio_tecnico", ODB + "contratos-no-menores",
+     "SUM. TRAJES DE PROTECCIÓN DE ABEJAS Y AVISPAS", "confirmado"),
+    ("2025", "año", "Muskiz (ayuntamiento) coloca 90 trampas en primavera (más de 1.800 ejemplares)", "Muskiz",
+     "trampeo", "https://www.deia.eus/bizkaia/2026/02/11/vecinos-muskiz-lucha-avispa-asiatica-10685237.html",
+     "(solo extracto del buscador; Deia rechaza la descarga)", "no_confirmado"),
+    ("2025-04-17", "dia", "Charla en Urdaibai sobre la avispa asiática (Urremendi y Asociación de Apicultores, con "
+     "apoyo de la DFB)", "Busturialdea", "comunicacion",
+     "https://www.deia.eus/bizkaia/2025/04/17/charla-amenaza-urdaibai-avispa-asiatica-biodiversidad-"
+     "busturialdea-9534189.html", "Organizada por la Asociación de Desarrollo Rural Urremendi, en colaboración con la "
+     "Asociación de Apicultores de Bizkaia (extracto del buscador)", "no_confirmado"),
+    ("2025-05-17", "dia", "Único registro con agente de cierre «PAINT BALL» (Elorrio, 10 m, anulado)", "Elorrio",
+     "registro", ODB + "avispa-asiatica", "AGENTE CIERRE = PAINT BALL; ESTADO = ANULADA", "confirmado"),
+]
+
+COLS = ["fecha", "precision_fecha", "medida", "ambito", "tipo", "fuente_url", "cita", "estado"]
+
+
+def main() -> None:
+    salida = Path("outputs/avispa_politicas_hitos.csv")
+    with salida.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(COLS)
+        w.writerows(HITOS)
+    print(f"{len(HITOS)} hitos -> {salida}")
+
+
+if __name__ == "__main__":
+    main()

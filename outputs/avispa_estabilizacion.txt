@@ -1,0 +1,38 @@
+## Nidos por temporada (asiática, sin anuladas)
+  2018: 4067  2019: 2026  2020: 2632  2021: 2181  2022: 2537  2023: 3016  2024: 2870  2025: 3222
+  2018 empieza en abril y tiene menos coordenadas; 2017 se descarta.
+  Tendencia desde 2018 (binomial negativa): -0.1 % al año (IC 95 %: -6.6 % a +6.9 %; p = 0.984)
+  Tendencia desde 2019 (binomial negativa): +6.9 % al año (IC 95 %: -1.6 % a +16.1 %; p = 0.117)
+  Coeficiente de variación 2019-2025: 0.16
+
+## Ocupación por cuadrículas de 1 km² (UTM 30N)
+  Nidos con coordenadas válidas: 2018: 84.1 %  2019: 85.5 %  2020: 99.7 %  2021: 99.6 %  2022: 97.7 %  2023: 99.9 %  2024: 99.7 %  2025: 99.5 %
+           ocupadas  nuevas  colonizadas  abandonadas  persistencia  ocupadas_igualadas  nuevas_igualadas
+temporada                                                                                                
+2018            793     793          NaN          NaN           NaN               793.0             793.0
+2019            685     164        164.0        272.0         0.657               680.0             162.0
+2020            785     144        279.0        179.0         0.739               736.0             126.0
+2021            711      69        177.0        251.0         0.680               664.0              64.0
+2022            869     109        320.0        162.0         0.772               818.0             106.0
+2023            825      69        212.0        256.0         0.705               775.0              65.0
+2024            817      43        229.0        237.0         0.713               766.0              44.0
+2025            914      64        300.0        203.0         0.752               864.0              64.0
+  Celdas con algún nido en 2018-2025: 1455 (Bizkaia mide unos 2.217 km²: 65.6 %)
+  Celdas presentes los 8 años: 272
+
+## Municipios
+  Municipios con nidos: 2018: 110  2019: 109  2020: 110  2021: 107  2022: 112  2023: 110  2024: 111  2025: 112
+  Municipios con nidos algún año: 113; los 8 años: 105
+  Spearman de nidos por municipio entre años consecutivos: 0.80, 0.75, 0.84, 0.78, 0.75, 0.85, 0.75
+  Spearman 2018 frente a 2025: 0.72
+  Nidos al año por 1.000 hab. (media 2019-2025), 8 primeros: IZURTZA 31.2, GALDAMES 30.8, AJANGIZ 30.6, MEÑAKA 29.5, ARAKALDO 28.4, ZEANURI 28.0, ARRIETA 27.2, MUNITIBAR-ARBATZEGI GERRIKAITZ 26.9
+
+## Desplazamiento del centroide respecto a 2018 (km): 2018: 0.0  2019: 1.2  2020: 1.7  2021: 1.0  2022: 2.7  2023: 0.5  2024: 1.2  2025: 2.4
+
+## Antes de 2018 (contexto, GBIF)
+GBIF: 43 registros de Vespa velutina en el rectángulo de Bizkaia entre 2010 y 2017 (descarga: 2026-11-07; clave de taxón 1311477).
+  Por año: 2012: 25, 2013: 2, 2014: 5, 2015: 4, 2016: 4, 2017: 3
+  Primer registro: {'year': 2012, 'eventDate': '2012-12-31', 'locality': 'Munitibar', 'municipality': None, 'stateProvince': nan, 'basisOfRecord': 'HUMAN_OBSERVATION', 'datasetName': None}
+  Tipo de registro: {'HUMAN_OBSERVATION': 43}
+  Fuentes: {}
+  Ojo: el rectángulo incluye bordes de Cantabria, Álava y Gipuzkoa; son registros dispersos, no un seguimiento sistemático.

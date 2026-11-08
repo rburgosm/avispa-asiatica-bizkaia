@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tres mil nidos al año</title>
+  <meta name="description" content="Qué consigue Bizkaia retirando nidos de avispa asiática, y qué no. Con datos de Open Data Bizkaia.">
+  <link rel="preload" href="vendor/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="vendor/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="vendor/maplibre-gl.css" id="css-maplibre">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <a class="saltar" href="#historia">Saltar a la historia</a>
+
+  <header class="cabecera">
+    <h1 id="titulo">Tres mil nidos al año</h1>
+    <p class="subtitulo" id="subtitulo"></p>
+    <p class="firma"><span id="autoria"></span> · <span id="fecha"></span></p>
+    <div class="intro" id="intro"></div>
+  </header>
+
+  <noscript><p class="aviso">Esta página necesita JavaScript para mostrar los gráficos. La metodología está en <a href="metodologia.html">metodologia.html</a>.</p></noscript>
+
+  <main id="historia" class="scrolly">
+    <!-- Los paneles de cada gráfico los crea js/app.js (lista PANELES). -->
+    <div class="grafico" id="grafico" aria-live="off">
+      <p class="sr" id="anuncio" aria-live="polite"></p>
+    </div>
+    <div class="pasos" id="pasos"></div>
+  </main>
+
+  <section class="explorador" aria-labelledby="titulo-explorador">
+    <h2 id="titulo-explorador"></h2>
+    <p id="texto-explorador"></p>
+    <div id="explorador"></div>
+  </section>
+
+  <section class="cierre" id="cierre" aria-labelledby="titulo-cierre">
+    <h2 id="titulo-cierre"></h2>
+    <div id="texto-cierre"></div>
+    <ul class="enlaces" id="enlaces-cierre"></ul>
+  </section>
+
+  <section class="descargas" id="descargas" aria-labelledby="titulo-descargas">
+    <h2 id="titulo-descargas"></h2>
+    <ul id="lista-descargas"></ul>
+  </section>
+
+  <footer class="pie">
+    <h2 id="titulo-fuentes"></h2>
+    <h3 id="titulo-conjuntos"></h3>
+    <ul id="fuentes"></ul>
+    <h3 id="titulo-otras"></h3>
+    <ul id="otras-fuentes"></ul>
+    <ul class="notas" id="notas"></ul>
+    <p id="herramientas"></p>
+    <p><a id="enlace-metodologia" href="metodologia.html">Metodología</a></p>
+  </footer>
+
+  <script src="js/cargador.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+=== DIFICULTAD: ALTURA Y NIDOS NO ELIMINABLES POR MES DE AVISO (asiática 2018-2025) ===
+        n  altura_mediana  pct_ge10m  pct_ge15m  pct_no_eliminable  pct_bomberos  diam_mediano  pct_arbolado
+ene   237            10.0       62.9       37.1               20.7           3.4          40.0          89.9
+feb    66            10.0       59.1       39.4               42.4           7.6          30.0          74.2
+mar   113             6.0       42.5       29.2               38.9          15.0          20.0          45.1
+abr   244             3.0       19.3       12.3                9.4          15.6          10.0           7.0
+may   830             3.0       20.6       12.9                7.3          12.9          10.0           6.4
+jun  1432             4.0       24.2       13.3                4.5          15.2          15.0           9.6
+jul  3304             4.0       27.3       14.7                5.4          15.2          20.0          19.6
+ago  4350             5.0       30.3       15.7                8.3          14.9          20.0          33.5
+sep  3979             6.0       35.3       19.2                9.1          15.7          30.0          51.3
+oct  4061             7.0       39.1       21.2                8.0          10.6          30.0          70.7
+nov  3002            10.0       51.4       30.6                9.2           7.6          40.0          87.1
+dic   933            10.0       57.2       33.5                8.9           6.8          40.0          93.2
+
+No eliminables: 1854 (8.2 %). Altura mediana 7 m frente a 6 m en los eliminados.
+No eliminables por año: {2018: 307, 2019: 208, 2020: 235, 2021: 257, 2022: 237, 2023: 178, 2024: 220, 2025: 212}
+
+=== ELIMINADOS SEGÚN FECHA DE CIERRE Y FECHA DE CORTE (misma temporada; ene-feb se cuentan como tardíos del año anterior) ===
+           n  pct_desde_10-15  pct_desde_11-01  pct_desde_12-01
+anio                                                           
+2018    3634             28.9             16.6              3.8
+2019    1840             28.8             16.5              7.0
+2020    2315             28.9             22.0              3.6
+2021    1886             28.8             20.5              6.2
+2022    2253             33.7             23.4              7.4
+2023    2760             30.0             18.9              6.0
+2024    2730             28.0             15.9              4.1
+2025    3068             34.4             23.5              4.8
+total  20486             30.3             19.6              5.1
+Nota: los nidos cerrados en ene-feb del año siguiente cuentan como tardíos; los avisados en ene-feb del mismo año (restos de la temporada anterior, ~1,4 %) no se reasignan aquí.

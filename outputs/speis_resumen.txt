@@ -1,0 +1,25 @@
+Filas por año: {2021: 6084, 2022: 17321, 2023: 7706, 2024: 7374, 2025: 7189}
+Tipos distintos por año: {2021: 56, 2022: 92, 2023: 42, 2024: 34, 2025: 31}
+Con coordenadas por año: {2021: 0.0, 2022: 0.0, 2023: 0.0, 2024: 0.99, 2025: 0.99}
+Simulaciones informáticas por año: {2021: 256, 2022: 1790, 2023: 466, 2024: 306, 2025: 359}
+Accidentes de tráfico por año: {2021: 430, 2022: 1322, 2023: 542, 2024: 515, 2025: 446}
+Top 10 tipos 2023-2025:
+tipo
+APERTURA CON RIESGO                              3372
+NEUTRALIZACIÓN DE ABEJAS Y AVISPAS               3153
+INCENDIO EXTERIOR                                2243
+INCENDIO ESTRUCTURAL                             2194
+SANEADO DE CONSTRUCCIONES                        1538
+ACCIDENTE DE TRÁFICO                             1500
+SIMULACIÓN INFORMÁTICA                           1057
+RETÉN DE PREVENCIÓN (SPEIS)                       959
+OTRO RESCATE O SALVAMENTO DE PERSONA/ANIMALES     814
+RETIRADA/PODA DE ÁRBOLES                          771
+Avispas y abejas por año y mes:
+mes   1   2   3   4   5    6    7    8    9    10  11  12
+anio                                                     
+2022   0   0   0   0   0    0    0    0    0    0   0  19
+2023   4   2   5  34  86  185  214  258  181  100  27   3
+2024   3   3  10  21  62  113  274  249  173  125  34   7
+2025   3   5   4  33  61  165  176  218  187   83  40   5
+Top municipios avispas 2023-2025: {'GETXO': 173, 'MUNGIA': 156, 'BARAKALDO': 154, 'BASAURI': 125, 'AMOREBIETA-ETXANO': 102, 'LEIOA': 91, 'GALDAKAO': 89, 'ZALLA': 84, 'DURANGO': 83, 'ERANDIO': 77}

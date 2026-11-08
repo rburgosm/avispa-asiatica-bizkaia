@@ -1,0 +1,135 @@
+# Medios y gasto público en el control de la avispa asiática (Open Data Bizkaia)
+Candidatos de la búsqueda (sin duplicados de ficheros acumulados): 853. Decisión: excluido 753, incluido 90, dudoso 8, contexto 2.
+Detalle auditable: avispa_gasto_candidatos.csv (todos, con motivo) y avispa_gasto_registros.csv (incluidos).
+Importes: obligaciones reconocidas del ejercicio (lo que la Diputación reconoce deber), salvo que se diga. Los conjuntos no indican si los contratos incluyen IVA. No se suman tipos de naturaleza distinta.
+
+## 1. Gasto identificable por año y tipo (€; n = registros)
+     retirada_eur retirada_n retirada_mixta_eur retirada_mixta_n material_eur material_n trajes_speis_eur trajes_speis_n ayud_apic_eur ayud_apic_n otros_apic_eur otros_apic_n
+anio                                                                                                                                                                          
+2017      71000.0          1                                   0     11063.82          1                               0      19815.96           2       29026.47            2
+2018    136887.28          3                                   0                       0          8734.84              1      57343.49          20        3673.66            1
+2019     49909.42          3                                   0                       0                               0      38439.61           2        3808.61            2
+2020       1666.8          2          535603.32                4                       0                               0      38533.52           4        5230.25            3
+2021                       0                                   0                       0          8803.57              1      38706.45           4        5029.42            2
+2022                       0                                   0                       0                               0      38602.11           4        5068.49            4
+2023                       0                                   0                       0          14108.6              1      78107.82           4        5236.01            5
+2024                       0                                   0                       0          18873.7              1      29473.84           1       12739.66            4
+2025                       0                                   0                       0         18161.85              1       40000.0           3        6927.72            2
+2026                       0                                   0                       0                               0                         0          507.0            2
+Tipos: retirada_nidos_basalan = Encomienda a Basalan: línea propia de retirada de nidos; retirada_nidos_basalan_mixta = Encomienda a Basalan: línea que mezcla avispa con otros trabajos; material_retirada_nidos = Material para la retirada de nidos (contrato menor); equipos_proteccion_bomberos = Trajes de protección contra abejas y avispas del SPEIS; ayudas_apicultura = Ayudas a la apicultura (no mencionan la avispa); otros_pagos_apicultores = Otros pagos a asociaciones o apicultores (seguros, razas, suministros)
+Control identificable = retirada (líneas propias) + material + trajes SPEIS (todo obligaciones reconocidas). No incluye la parte de avispa de las líneas mixtas de 2020 ni las ayudas a la apicultura.
+     control_identificable_eur retirada_nidos_basalan_mixta_eur ayudas_apicultura_eur
+anio                                                                                 
+2017                  82063.82                                               19815.96
+2018                 145622.12                                               57343.49
+2019                  49909.42                                               38439.61
+2020                    1666.8                        535603.32              38533.52
+2021                   8803.57                                               38706.45
+2022                                                                         38602.11
+2023                   14108.6                                               78107.82
+2024                   18873.7                                               29473.84
+2025                  18161.85                                                40000.0
+2026                                                                                 
+
+## 2. El contenedor: encargo anual de Basalan para el Servicio de Patrimonio Natural (encomiendas-gestion)
+      encargo_basalan_patrimonio_natural_eur  encomiendas_basalan_total_eur                     detalle_retirada_en_encomiendas
+anio                                                                                                                           
+2017                              2956000.00                     6913458.79                                  línea anual propia
+2018                              1752402.63                     7663731.05              líneas propias (may-jun, sep-oct, nov)
+2019                              2280777.00                     8287814.36                      líneas propias (jun, sep, nov)
+2020                              2199999.90                     8612315.73                 líneas mezcladas con otros trabajos
+2021                              2400000.00                     9919063.40  no: dentro del encargo anual de Patrimonio Natural
+2022                              2400000.00                    12311287.56  no: dentro del encargo anual de Patrimonio Natural
+2023                              2737000.00                    13182437.63  no: dentro del encargo anual de Patrimonio Natural
+2024                              2100000.00                    12018418.73  no: dentro del encargo anual de Patrimonio Natural
+2025                              2100000.00                    12979975.98  no: dentro del encargo anual de Patrimonio Natural
+2026                              1051514.21                     8630358.91  no: dentro del encargo anual de Patrimonio Natural
+Desde 2021 la retirada de nidos va dentro de este encargo, que incluye mantenimiento de parques naturales, áreas de esparcimiento, San Juan de Gaztelugatxe y trabajos extraordinarios. Las líneas mensuales de 2021-2025 no nombran la avispa: el coste de la retirada no se puede aislar con los datos abiertos.
+En presupuestos, liquidación (2017-2024), ejecución (2016-2026) y modificaciones presupuestarias no hay ninguna partida ni proyecto con avispa, velutina, nido o apicultura. El encargo figura como proyecto «BASALAN ENCARGO ESPACIOS NAT. PROTEGIDOS» del programa 172103 Patrimonio Natural en la liquidación de 2024 y la ejecución de 2025-2026. El contenido del encargo cambia entre años (en 2017 incluía la limpieza de las áreas de esparcimiento, que en 2024-2025 es un proyecto aparte de 2,5-2,8 M€): la serie no es homogénea.
+Contexto (ejecucion-presupuestos 2026, hasta el mes 9): PATRIMONIO NATURAL | BASALAN ENCARGO ESPECIES INVASORAS URDAI | OTROS TRABAJOS EXTERIORES: crédito final 860,000 €, obligación 0 € (crédito inicial 0: entra por modificación). Encargo a Basalan de especies invasoras en Urdaibai (crédito 2026); no consta que incluya la velutina.
+
+## 3. Coste por nido
+a) Líneas de la encomienda que nombran meses, divididas entre los nidos de asiática cerrados por Basalan en esos meses (fecha de cierre; año natural):
+  2017 TRABAJOS ELIMINACION VESPA VELUTINA: 71,000 € (sin meses identificables)
+  2018 MAYO-JUNIO SERV RETIRADA NIDOS AVISPA ASIATICA: 22,661 € / 316 nidos = 72 €/nido
+  2018 SERV. RETIRADA NIDOS AVISPA ASIATICA SEPTIEMBRE Y OCTUBRE: 82,929 € / 1224 nidos = 68 €/nido
+  2018 SERV. RETIRADA NIDOS AVISPA ASIATICA NOVIEMBRE: 31,298 € / 450 nidos = 70 €/nido
+  2019 SERVICIO RETIRADA DE NIDOS DE AVISPA ASITICA JUNIO: 10,103 € / 122 nidos = 83 €/nido
+  2019 (DOK) ENCARGO BASALAN 2019-RETIRADA NIDOS AVISPA ASIATICA SE: 24,283 € / 306 nidos = 79 €/nido
+  2019 (DOK) ENCARGO BASALAN 2019-RETIRADA NIDOS AVISPA ASIATICA NO: 15,523 € / 158 nidos = 98 €/nido
+  2020 TRABAJOS ASOCIADOS SERV PATRIMONIO_RETIRADA NIDOS AVISPA VEL: 400 € (sin meses identificables)
+  2020 (DOK) TRAB SERV PATRIMONIO_RETIRADA NIDOS AVISPA VELUTINA AB: 1,267 € (sin meses identificables)
+  2020 RETIRADA AVISPA ASITICA ENERO Y FEBRERO Y SERVICIOS PARQUES: 107,373 € (mezclada con otros trabajos; nidos de Basalan en esos meses: 43; no se calcula €/nido)
+  2020 (DOK) MAYO TRAB EXTRAORD Y AVISPA VELUTINA ENCARGO BASALAN_P: 171,501 € (mezclada con otros trabajos; nidos de Basalan en esos meses: 100; no se calcula €/nido)
+  2020 (DOK) OCT TRAB EXTRAORD Y AVISPA VELUTINA ENCARGO BASALAN_PA: 102,437 € (mezclada con otros trabajos; nidos de Basalan en esos meses: 241; no se calcula €/nido)
+  2020 (DOK) NOV TRAB EXTRAORD Y AVISPA VELUTINA ENCARGO BASALAN_PA: 154,293 € (mezclada con otros trabajos; nidos de Basalan en esos meses: 447; no se calcula €/nido)
+  2018, las tres líneas juntas: 136,887 € / 1990 nidos = 69 €/nido. Julio-agosto de 2018 no tiene línea propia (1218 nidos cerrados por Basalan).
+  Las líneas de 2019 vienen cortadas a 60 caracteres («…ASIATICA SE», «…ASIATICA NO»): se asume septiembre y noviembre. Si «SE» cubriera septiembre y octubre: 24,283 € / 657 nidos = 37 €/nido.
+b) Por temporada (gasto de retirada con línea propia / nidos de la temporada). Cobertura parcial de meses: es una cota inferior, no el coste del año.
+      retirada_nidos_basalan_eur  retirada_nidos_basalan_mixta_eur  nidos_temporada  nidos_temporada_basalan  retirada_eur_por_nido_temporada
+anio                                                                                                                                         
+2017                    71000.00                               NaN              NaN                      NaN                              NaN
+2018                   136887.28                               NaN           4067.0                   3418.0                             33.7
+2019                    49909.42                               NaN           2026.0                   1782.0                             24.6
+2020                     1666.80                         535603.32           2632.0                   2215.0                              NaN
+2021                         NaN                               NaN           2181.0                   1816.0                              NaN
+  2020: las líneas que nombran la avispa suman 537,270 €, casi todo mezclado con otros trabajos; dividido entre los 2215.0 nidos de Basalan de la temporada = 243 €/nido como cota superior (no es un coste real).
+c) Escenario, no dato: si el coste por nido de 2018 se mantuviera, la retirada por Basalan costaría 2021: 125 mil €, 2022: 148 mil €, 2023: 181 mil €, 2024: 172 mil €, 2025: 199 mil € (precios de 2018, sin actualizar). Frente al encargo de Patrimonio Natural de cada año sería: 2021: 5%, 2022: 6%, 2023: 7%, 2024: 8%, 2025: 9%.
+
+## 4. Medios
+      nidos_temporada  nidos_temporada_basalan  nidos_temporada_bomberos  nidos_temporada_ayuntamientos  salidas_speis_abejas_avispas
+anio                                                                                                                                 
+2018           4067.0                   3418.0                     548.0                          101.0                           NaN
+2019           2026.0                   1782.0                     210.0                           34.0                           NaN
+2020           2632.0                   2215.0                     350.0                           67.0                           NaN
+2021           2181.0                   1816.0                     343.0                           22.0                           NaN
+2022           2537.0                   2155.0                     363.0                           19.0                           NaN
+2023           3016.0                   2625.0                     377.0                           14.0                        1099.0
+2024           2870.0                   2496.0                     372.0                            2.0                        1074.0
+2025           3222.0                   2889.0                     328.0                            5.0                         980.0
+  Comprobación con avispa_estabilizacion.txt (nidos por temporada): coinciden.
+  Salidas del SPEIS por «neutralización de abejas y avispas»: solo 2023-2025 son comparables (ruptura de serie a finales de 2022); no distinguen especie y no traen coste.
+  Trajes del SPEIS: 2018: 8,734.84 €; 2021: 8,803.57 €; 2023: 14,108.60 €; 2024: 18,873.70 €; 2025: 18,161.85 €. 2019, 2020 y 2022 tienen compras de vestuario a Protec Solana sin desglose (contratos menores sin texto desde 2019; lotes de vestuario genéricos): no se puede saber si incluyen trajes.
+
+## 5. Ayudas a la apicultura (subvenciones-otorgadas; no se suman al control)
+           eur  beneficiarios
+anio                         
+2017  19815.96              2
+2018  57343.49             20
+2019  38439.61              2
+2020  38533.52              4
+2021  38706.45              4
+2022  38602.11              4
+2023  78107.82              4
+2024  29473.84              1
+2025  40000.00              3
+  Ninguna línea de ayudas menciona la avispa, el trampeo ni los nidos. 2026 aún no aparece (fichero hasta septiembre). El conjunto «subvenciones» (concesiones) solo trae estas ayudas en 2019, con importes concedidos algo distintos de las obligaciones (23.734 € frente a 23.674 €; 15.519 € frente a 14.765 €).
+  Otros pagos a asociaciones apícolas (seguros y sustituciones, razas puras, pequeños suministros): 2017: 29,026 €; 2018: 3,674 €; 2019: 3,809 €; 2020: 5,230 €; 2021: 5,029 €; 2022: 5,068 €; 2023: 5,236 €; 2024: 12,740 €; 2025: 6,928 €; 2026: 507 €.
+
+## 6. Lo que no aparece en los datos
+- Coste de la retirada de nidos desde 2021: no hay línea propia; va dentro del encargo de Patrimonio Natural.
+- Meses sin línea propia de retirada: 2018 enero-abril, julio-agosto y diciembre; 2019 enero-mayo, julio-agosto, octubre (si «SE» es solo septiembre) y diciembre; 2020 casi todo (solo 1.667 € en líneas propias).
+- Fechas: solo los contratos menores desde 2019 traen fecha de adjudicación; el resto, solo ejercicio y mes del fichero acumulado.
+- Contratos propios de Basalan (compras de material, pértigas, biocidas, plataformas): no están en ODB; su plan de contratación solo existe para 2024-2025 y no nombra la avispa.
+- Trampeo, ayudas a ayuntamientos o particulares por trampas o retirada: 0 registros en subvenciones, subvenciones-otorgadas y convenios.
+- Drones: hay compras a Drone by Drone SL (2019, 2023-2025) sin objeto ni departamento: marcadas como dudosas.
+- Contratos menores desde 2019: solo traen la categoría económica o el CPV, no el objeto; la búsqueda por texto solo es completa en 2017-2018.
+- Gasto de los ayuntamientos (Bilbao tiene servicio propio) y del Gobierno Vasco: fuera de ODB.
+- Coste de las salidas de bomberos (horas, vehículos): no está.
+
+## 7. Cobertura de cada fuente (último mes del último fichero; ¿trae texto libre del gasto?)
+anio                             2017  2018  2019  2020  2021  2022  2023  2024  2025  2026
+conjunto                                                                                   
+contratos-menores                12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0   6.0
+contratos-no-menores             12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0   9.0
+convenios                        12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0   9.0
+ejecucion-presupuestos           12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0   9.0
+encomiendas-gestion              12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0   9.0
+liquidacion-presupuestos         12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0            
+modificaciones-presupuestos      12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0   9.0
+plan-anual-contratacion                      12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0
+plan-anual-contratacion-basalan                                            12.0  12.0      
+presupuestos-completos           12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0
+subvenciones                                 12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0
+subvenciones-otorgadas           12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0  12.0   9.0
+  (12 = año completo; en contratos menores, texto libre solo en: 2017, 2018)

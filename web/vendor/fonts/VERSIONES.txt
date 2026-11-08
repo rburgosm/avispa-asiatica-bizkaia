@@ -1,0 +1,9 @@
+fichero	origen (npm)	sha256
+LICENCIA-source-serif-4.txt	@fontsource/source-serif-4@5.2.5/LICENSE	18aabf190848725e2576eefb5c29ba06aac1029d02132252a7f312eac2e50cf3
+source-serif-4-latin-400-normal.woff2	@fontsource/source-serif-4@5.2.5/files/source-serif-4-latin-400-normal.woff2	5e7fda9cec061fcef363f78ccd099988e89683633a3ed46bf0bfb460e7246a2c
+source-serif-4-latin-400-italic.woff2	@fontsource/source-serif-4@5.2.5/files/source-serif-4-latin-400-italic.woff2	b9ca45ecab30d27712ffbd86c256adc615943e05a6dd7cb52f5f4241cab45299
+source-serif-4-latin-600-normal.woff2	@fontsource/source-serif-4@5.2.5/files/source-serif-4-latin-600-normal.woff2	2847f4d3b333168cf9254cbdecb8b7735c8663469e701deab452b34c16e9092e
+LICENCIA-source-sans-3.txt	@fontsource/source-sans-3@5.2.5/LICENSE	18aabf190848725e2576eefb5c29ba06aac1029d02132252a7f312eac2e50cf3
+source-sans-3-latin-400-normal.woff2	@fontsource/source-sans-3@5.2.5/files/source-sans-3-latin-400-normal.woff2	6edbd48bf7fa0e34a5ad9f8da9e73a70d3ae7f51791deb8362c868fed9a7f68c
+source-sans-3-latin-600-normal.woff2	@fontsource/source-sans-3@5.2.5/files/source-sans-3-latin-600-normal.woff2	580c6561987cd9c704bc20c808c2aa7543cbdd4eaca8ec334ae4985e61971333
+source-sans-3-latin-700-normal.woff2	@fontsource/source-sans-3@5.2.5/files/source-sans-3-latin-700-normal.woff2	1fc65bcc7790d534cf67a5e046f3f324aad8cc6dc364ec5ad296a18d42868464

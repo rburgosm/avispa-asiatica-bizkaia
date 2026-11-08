@@ -1,0 +1,59 @@
+Filas brutas: 24954; base (asiática, sin anuladas, 2018-2025): 22551
+Eliminados: 20529; no eliminables: 1854; otros estados: 168
+Con fecha de cierre utilizable: 22320 (99.0 %)
+Altas de enero-marzo (nidos viejos de la temporada anterior): 416
+
+## Altas por mes (toda la serie, % del total)
+  1:1.1  2:0.3  3:0.5  4:1.1  5:3.7  6:6.4  7:14.7  8:19.3  9:17.6  10:18.0  11:13.3  12:4.1
+Primavera (abr-jun): 11.1 %; verano (jul-sep): 51.6 %; otoño (oct-dic): 35.5 %; invierno (ene-mar): 1.8 %
+
+## Proporción de nidos tardíos según la fecha de corte
+Corte 15/10: por fecha de alta 29.7 % | eliminados por fecha de cierre 31.6 % (rango anual 29.1 %-35.6 %) | no eliminables por alta 35.8 %
+Corte 01/11: por fecha de alta 19.3 % | eliminados por fecha de cierre 20.9 % (rango anual 17.0 %-25.4 %) | no eliminables por alta 25.9 %
+Corte 01/12: por fecha de alta 6.0 % | eliminados por fecha de cierre 6.4 % (rango anual 3.8 %-10.5 %) | no eliminables por alta 11.0 %
+
+## Corte 01/11, eliminados por fecha de cierre, por temporada
+  2018: 3652 retirados, 624 tardíos (17.1 %)
+  2019: 1823 retirados, 310 tardíos (17.0 %)
+  2020: 2313 retirados, 515 tardíos (22.3 %)
+  2021: 1899 retirados, 404 tardíos (21.3 %)
+  2022: 2289 retirados, 582 tardíos (25.4 %)
+  2023: 2837 retirados, 652 tardíos (23.0 %)
+  2024: 2627 retirados, 463 tardíos (17.6 %)
+  2025: 3040 retirados, 721 tardíos (23.7 %)
+  (2018 empieza en abril: su proporción puede estar sesgada.)
+
+## Perfil de los nidos según la fase (eliminados, fecha de cierre)
+  primavera: n=2123, en árbol 7.3 %, diámetro mediano 10 cm, altura mediana 3 m
+  tardio: n=4271, en árbol 86.9 %, diámetro mediano 40 cm, altura mediana 10 m
+  verano-otono: n=14086, en árbol 42.6 %, diámetro mediano 25 cm, altura mediana 5 m
+
+## Nidos dados de alta en primavera (abr-jun) por temporada
+  2018: 455 de 4067 (11.2 %)
+  2019: 276 de 2026 (13.6 %)
+  2020: 375 de 2632 (14.2 %)
+  2021: 184 de 2181 (8.4 %)
+  2022: 317 de 2537 (12.5 %)
+  2023: 277 de 3016 (9.2 %)
+  2024: 275 de 2870 (9.6 %)
+  2025: 347 de 3222 (10.8 %)
+Nidos del resto del año por cada nido de primavera: mediana 8.1 (rango 6.0-10.9)
+
+Nidos avisados en octubre y retirados ya en noviembre o después: 12.4 % (mediana de espera 2 días)
+No eliminables: 1854; avisados desde el 01/11: 25.9 %; en árbol: 55.8 %
+
+## Nidos avisados por mes: % en árbol, diámetro y altura medianos (árbol / casa)
+   1: n=  237, en árbol  89.9 %, diám. árbol 40 cm / casa 35 cm, altura árbol 12 m / casa 4 m
+   2: n=   66, en árbol  74.2 %, diám. árbol 35 cm / casa 30 cm, altura árbol 15 m / casa 5 m
+   3: n=  113, en árbol  45.1 %, diám. árbol 40 cm / casa 10 cm, altura árbol 15 m / casa 3 m
+   4: n=  244, en árbol   7.0 %, diám. árbol 35 cm / casa 10 cm, altura árbol 12 m / casa 3 m
+   5: n=  830, en árbol   6.4 %, diám. árbol 15 cm / casa 10 cm, altura árbol 1 m / casa 3 m
+   6: n= 1432, en árbol   9.6 %, diám. árbol 20 cm / casa 15 cm, altura árbol 2 m / casa 4 m
+   7: n= 3304, en árbol  19.6 %, diám. árbol 25 cm / casa 20 cm, altura árbol 4 m / casa 4 m
+   8: n= 4350, en árbol  33.5 %, diám. árbol 30 cm / casa 20 cm, altura árbol 6 m / casa 5 m
+   9: n= 3979, en árbol  51.3 %, diám. árbol 35 cm / casa 20 cm, altura árbol 8 m / casa 5 m
+  10: n= 4061, en árbol  70.7 %, diám. árbol 40 cm / casa 25 cm, altura árbol 8 m / casa 4 m
+  11: n= 3002, en árbol  87.1 %, diám. árbol 40 cm / casa 25 cm, altura árbol 10 m / casa 4 m
+  12: n=  933, en árbol  93.2 %, diám. árbol 40 cm / casa 30 cm, altura árbol 10 m / casa 4 m
+Nidos en árbol avisados en oct-nov: 49.8 %
+Nidos en árbol de 40 cm o más: 5479; avisados oct-dic 63.6 %, nov-dic 36.2 %
