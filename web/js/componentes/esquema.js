@@ -398,8 +398,9 @@ export function crearEsquema(contenedor, { esquemas, indicadores, cronologia, im
     gh.append("text").attr("class", "hilo-texto").attr("x", xh + r(nh.diametro_cm) + 10).attr("y", y(nh.altura_m)).attr("dy", "0.35em");
     let ultimo = null;  // el texto del nido hilo solo se vuelve a partir si cambia (mide texto)
     actualizarProgreso = (p) => {
-      // las épocas aparecen una a una con el scroll
-      const n = Math.min(cols.length, 1 + Math.floor(Math.min(1, p / 0.8) * cols.length));
+      // las épocas aparecen una a una con el scroll, deprisa: el gráfico entero queda a la vista
+      // desde el 40 % de su tramo (≈70 % del paso, tras las fotos), con tiempo para leerlo
+      const n = Math.min(cols.length, 1 + Math.floor(Math.min(1, p / 0.4) * cols.length));
       cols.forEach((c) => { const v = c.i < n ? 1 : 0; if (+c.gd.attr("opacity") !== v) c.gd.interrupt().transition().duration(duracion(450)).attr("opacity", v); });
       gh.attr("opacity", hiloTexto && n >= 2 ? 1 : 0);
       if (ultimo !== hiloTexto) {
