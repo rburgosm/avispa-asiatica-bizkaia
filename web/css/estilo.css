@@ -112,7 +112,7 @@ strong { font-weight: 600; }
 .etiquetas-mapa { position: absolute; inset: 0; pointer-events: none; }
 .anotacion {
   position: absolute; max-width: 15rem;
-  font: 600 var(--t-etiqueta)/1.25 var(--letra); color: var(--tinta);
+  font: 700 clamp(1.1rem, 1.5vw, 1.3rem)/1.25 var(--letra); color: var(--tinta);
   text-shadow: 0 0 3px var(--fondo), 0 0 3px var(--fondo), 0 0 6px var(--fondo);
   opacity: 0; transition: opacity .6s ease;
 }
@@ -386,11 +386,11 @@ strong { font-weight: 600; }
 .rotulo-comarca { font: 600 13px var(--letra); letter-spacing: .16em; fill: var(--tinta-suave);
   paint-order: stroke; stroke: var(--mapa-tierra); stroke-width: 3px; stroke-linejoin: round; transition: opacity .4s; }
 .cabecera circle { fill: var(--tinta); stroke: var(--fondo); stroke-width: 1.2; }
-.cabecera text { font: 600 13.5px var(--letra); fill: var(--tinta); paint-order: stroke; stroke: var(--fondo); stroke-width: 3px; stroke-linejoin: round; }
+.cabecera text { font: 600 15px var(--letra); fill: var(--tinta); paint-order: stroke; stroke: var(--fondo); stroke-width: 3px; stroke-linejoin: round; }
 .titulo-leyenda { font-weight: 600; color: var(--tinta); }
 @media (min-width: 900px) {
   .rotulo-comarca { font-size: 14px; }
-  .cabecera text { font-size: 15px; }
+  .cabecera text { font-size: 17px; }
 }
 
 /* ---------------------------------------------------------------- fotografías a sangre (paradas de la especie) */
