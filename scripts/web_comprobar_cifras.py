@@ -26,7 +26,7 @@ t = dict(zip(ind["temporadas"], ind["nidos"]))
 pooled = lambda a, b: (sum(ind["no_eliminables"][i] for i in per if a <= ind["temporadas"][i] <= b)  # noqa: E731
                        / sum(ind["nidos"][i] for i in per if a <= ind["temporadas"][i] <= b))
 meseta = {s["region"]: s["meseta"]["densidad"] for s in reg["series"] if s["meseta"]}
-coste = [v for c in gas["coste_nido"].values() for v in (c["min"], c["max"])]
+coste = [c["min"] for c in gas["coste_nido"].values()]
 encargo = [a["encargo_eur"] for a in gas["anios"] if a["estado"] == "sin_desglose"]
 tam = {r["tamano"]: r["media"] for r in mun["tasas_tamano"]}
 anios_hitos = {h["fecha"][:4] for h in cro["hitos"]}
@@ -52,7 +52,7 @@ C = [
      round(100 * min(serie("pct_elim_despues_1nov"))) == 16 and round(100 * max(serie("pct_elim_despues_1nov"))) == 24),
     ("Paso 10", "Asturias unos 1.000 por 1.000 km²", meseta.get("Asturias"), round(meseta.get("Asturias", 0), -2) == 1000),
     ("Paso 10", "Bizkaia unos 1.200 por 1.000 km²", meseta.get("Bizkaia"), round(meseta.get("Bizkaia", 0), -2) == 1200),
-    ("Paso 11", "unos 70-100 euros por nido", [min(coste), max(coste)], 65 <= min(coste) and max(coste) <= 100),
+    ("Paso 11", "en 2018 salen unos 70 euros por nido", coste, len(coste) == 1 and round(coste[0], -1) == 70),
     ("Paso 11", "encargo de más de 2 millones", [min(encargo), max(encargo)], min(encargo) > 2e6),
     ("Paso 12", "unos 16 nidos por 1.000 en los de menos de 2.000", tam.get("<2.000"), round(tam.get("<2.000", 0)) == 16),
     ("Paso 12", "uno en los de más de 20.000", tam.get(">20.000"), round(tam.get(">20.000", 0)) == 1),

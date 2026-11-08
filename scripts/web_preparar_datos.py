@@ -250,8 +250,10 @@ def gasto() -> dict:
                       "encargo_eur": limpio(r.encargo_basalan_patrimonio_natural_eur, 2),
                       "detalle": r.detalle_retirada_en_encomiendas})
     tot18 = K[K.tipo.eq("total_2018")]
-    coste = {str(a): {"min": limpio(g.eur_nido.min(), 1), "max": limpio(g.eur_nido.max(), 1)}
-             for a, g in lin.groupby("anio")}
+    # Coste por nido: solo 2018 (tres líneas con meses claros). En 2019 el texto de las líneas viene
+    # cortado («…ASIATICA SE»), el resultado depende de a qué meses se asignen (37 o 79-98 €/nido) y
+    # no se muestra; queda en avispa_gasto.txt, apartado 3 a).
+    coste = {}
     if len(tot18):
         coste["2018"] = {"min": limpio(tot18.eur_nido.iloc[0], 1), "max": limpio(tot18.eur_nido.iloc[0], 1),
                          "nota": "las tres líneas juntas"}

@@ -150,7 +150,8 @@ export function crearGasto(contenedor, datos, textos, periodoEl) {
     gEtiq.selectAll("text.coste").data(estrecho && costes.length ? [0] : [])
       .join((e) => e.append("text").attr("class", "coste etiqueta-nota").attr("opacity", 0))
       .attr("x", x(conImporte[0].anio)).attr("y", d3.min(conImporte, (a) => y(a.retirada_eur)) - largo - 14)
-      .text(plantilla(I.eur_nido, { v: `${fmt(d3.min(costes, (c) => c.min))}-${fmt(d3.max(costes, (c) => c.max))}` }));
+      .text(plantilla(I.eur_nido, { v: d3.min(costes, (c) => c.min) === d3.max(costes, (c) => c.max) ? fmt(d3.min(costes, (c) => c.min))
+        : `${fmt(d3.min(costes, (c) => c.min))}-${fmt(d3.max(costes, (c) => c.max))}` }));
 
     // Rótulos del bloque (arriba, dentro) y de la franja (justo encima de ella)
     if (bloque.length) {

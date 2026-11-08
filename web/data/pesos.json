@@ -1,6 +1,6 @@
 {
  "primera_pintura_e_interaccion_kb": 165,
- "primera_carga_comprimida_kb": 688,
+ "primera_carga_comprimida_kb": 689,
  "total_comprimido_sin_mapa_base_kb": 9332,
  "mapa_base_pmtiles_kb": 25328,
  "primera_carga": {
@@ -22,7 +22,7 @@
   "vendor/fonts/source-sans-3-latin-400-normal.woff2": 15.3,
   "vendor/fonts/source-sans-3-latin-600-normal.woff2": 15.3,
   "data/portada.webp": 105.8,
-  "content/es.json": 19.5,
+  "content/es.json": 19.7,
   "data/imagenes.json": 2.5,
   "data/nidos.json": 84.6,
   "data/municipios.geojson": 47.5,

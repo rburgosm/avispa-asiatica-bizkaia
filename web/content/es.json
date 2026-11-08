@@ -598,10 +598,10 @@
     "alto": 170
    },
    "texto": [
-    "Hasta 2019, la retirada de nidos tenía partida propia: unos 70-100 euros por nido. Desde 2021 va dentro de un encargo anual a Basalan de más de 2 millones de euros, y con los datos abiertos ya no se puede saber cuánto cuesta."
+    "Hasta 2020, los encargos a Basalan tenían líneas propias para la retirada de nidos: en 2018 salen unos 70 euros por nido. Desde 2021 ninguna línea nombra la avispa. El gasto queda, previsiblemente, dentro de un encargo anual de más de 2 millones de euros, y con los datos abiertos ya no se puede saber cuánto cuesta retirar un nido."
    ],
    "nota": "El coste por nido es una estimación: hay meses sin línea de gasto propia.",
-   "alt": "Gráfico del gasto en retirada de nidos. 2017, 2018 y 2019 tienen importe propio, de 50.000 a 137.000 euros. 2020 aparece mezclado con otros trabajos. De 2021 a 2025, un bloque grande representa el encargo anual a Basalan, de 2,1 a 2,7 millones de euros, con una franja estimada del 5 al 9 % donde estaría la retirada de nidos, sin desglose.",
+   "alt": "Gráfico del gasto en retirada de nidos. 2017, 2018 y 2019 tienen importe propio, de 50.000 a 137.000 euros. 2020 aparece mezclado con otros trabajos. De 2021 a 2025, un bloque grande representa el encargo anual a Basalan, de 2,1 a 2,7 millones de euros, con una franja estimada del 5 al 9 % donde previsiblemente estaría la retirada de nidos, sin desglose.",
    "hilo": ""
   }
  ],
@@ -919,9 +919,9 @@
   "eur_nido_corto": "€/nido",
   "gasto_mezclado": "Mezclado con otros trabajos",
   "gasto_mezclado_corto": "mezclado con otros trabajos",
-  "gasto_sin_desglose": "Sin desglose: dentro del encargo anual a Basalan ({min} a {max} al año)",
+  "gasto_sin_desglose": "Sin desglose: previsiblemente dentro del encargo anual a Basalan ({min} a {max} al año)",
   "sin_desglose": "sin desglose",
-  "gasto_desc": "De {desde} a {hasta}, sin desglose: va dentro de un encargo anual a Basalan de {min} a {max}.",
+  "gasto_desc": "De {desde} a {hasta}, sin desglose: previsiblemente va dentro de un encargo anual a Basalan de {min} a {max}.",
   "retirada_nidos": "Retirada de nidos (línea propia)",
   "eur_por_nido": "Coste por nido",
   "encargo_basalan": "Encargo anual a Basalan (Patrimonio Natural)",
@@ -1041,7 +1041,7 @@
   "mensual_secundario_corto": "Nido secundario",
   "mensual_nota_asturias": "Solo de abril a diciembre: en enero, febrero y marzo apenas hay avisos (menos del 2 %, casi todos de nidos viejos del año anterior) y, hasta 2022, el registro de Bizkaia no sigue el año natural, así que esos meses no se pueden comparar. Asturias: avisos semanales de {desde}-{hasta} leídos de una gráfica de su informe de 2025; se compara solo la forma del calendario.",
   "mensual_desc_asturias": "En Asturias ({desde}-{hasta}), la primavera reúne el {v} de los avisos.",
-  "gasto_franja": "Aquí dentro, sin desglose",
+  "gasto_franja": "Previsiblemente aquí dentro, sin desglose",
   "gasto_franja_sub": "Escenario, no dato: al coste por nido de 2018 ({eur} €), unos {min}-{max} al año, el {pmin}-{pmax} del encargo",
   "gasto_bloque": "Encargo anual a Basalan: de {min} a {max}",
   "gasto_escenario": "Escenario al coste de 2018",
@@ -1341,7 +1341,7 @@
      "Solo hay siete temporadas comparables (2019-2025). La subida de los nidos avisados, de alrededor del 7 % al año, depende del modelo: con una regresión log-lineal el intervalo de confianza del 95 % va del 2 % al 12 %; con una binomial negativa va del −1,6 % al 16,1 % y no es concluyente. Además, puede deberse a que se avisa más: la proporción de avisos de avispa asiática frente a los de avispa común baja.",
      "El 1 de enero de 2023 cambia la aplicación o el criterio de registro. La bajada de los nidos no eliminables (del 9,5 % al 6,2 %) es un escalón justo en esa fecha: no se puede presentar como una mejora.",
      "Hasta 2022 los registros anuales no siguen el año natural; por eso se usan solo los avisos de abril a diciembre.",
-     "El coste de retirar los nidos solo se ve en 2017-2019 (unos 70-100 € por nido). Es una estimación con meses sin línea de gasto propia; las líneas de 2019 vienen cortadas y se ha supuesto a qué meses corresponden. Desde 2021 la retirada va sin desglose dentro del encargo anual a Basalan, cuyo contenido además cambia entre años.",
+     "El coste de retirar los nidos solo se ve con líneas propias hasta 2020. Por nido solo se puede calcular en 2018 (unos 69 €), y es una estimación con meses sin línea de gasto propia. En 2019 las líneas vienen cortadas a 60 caracteres y el resultado depende de a qué meses se asignen (37 € o 79-98 € por nido), así que no se da. Desde 2021 ninguna línea nombra la avispa: la retirada va, previsiblemente, sin desglose dentro del encargo anual a Basalan, cuyo contenido además cambia entre años. Que vaya ahí es una deducción (en 2020 las líneas mezcladas ya se cargaban a ese encargo), no un dato publicado.",
      "Las series de las regiones miden cosas distintas (avisos, nidos detectados, nidos retirados) y el esfuerzo de búsqueda cambia entre regiones: solo sirven para comparar órdenes de magnitud y no prueban ninguna causa.",
      "El tamaño y la altura de los nidos los anota quien avisa o quien acude; no consta si se miden o se estiman, y se redondean.",
      "En el mapa las coordenadas se redondean a unos 100 m y faltan los avisos sin coordenadas (la mayoría, de 2018 y 2019); sí cuentan en las series, en las tasas y en el buscador.",
