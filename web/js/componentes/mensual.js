@@ -33,6 +33,11 @@ function pegarPorcentaje(texto) {
 const ESCALON = 110; // ms entre el arranque de una barra y el de la siguiente
 const CRECER = 650; // ms que tarda cada barra en crecer
 const RETRASO_LINEA = 500, DIBUJO_LINEA = 1700; // la línea de Asturias, mientras crecen las barras
+// === móvil: calendario (ronda 9) === En el móvil (< 900 px) el gráfico va limpio: sin iconos de
+// nido ni anotaciones de texto (las tarjetas ya lo cuentan), solo la zona sombreada, el anillo de
+// Morga con su nombre y, en el paso de reinas, un rótulo corto. La nota larga pasa al desplegable
+// «Ver los datos del gráfico». El escritorio no cambia.
+const esMovil = () => window.matchMedia("(max-width: 899px)").matches;
 
 export function crearMensual(contenedor, { mensual, indicadores, asturias, hilo }, textos) {
   const d3 = window.d3;
@@ -53,7 +58,7 @@ export function crearMensual(contenedor, { mensual, indicadores, asturias, hilo 
   const mesHilo = hilo && hilo.nido ? hilo.nido.mes : null;
   let estado = { resaltar: "primavera" }, hiloTexto = "", esc = null;
   // fase: 0 sin empezar, 1 creciendo, 2 completo; n: barras ya mostradas (iconos y nido hilo)
-  let fase = 0, n = 0, medida = "", inicio = 0;
+  let fase = 0, n = 0, medida = "", inicio = 0, movil = esMovil();
 
   const svg = d3.select(contenedor).append("svg").attr("role", "img");
   const g = svg.append("g");
@@ -97,23 +102,36 @@ export function crearMensual(contenedor, { mensual, indicadores, asturias, hilo 
 
   function dibujar(animar = true) {
     const te = tamano("--t-etiqueta"), tj = tamano("--t-eje"), tl = tamano("--t-leyenda");
+    movil = esMovil();
+    ponerNota();
     const estrecho = (contenedor.clientWidth || 320) < 520;
     const a = Math.round(Math.min(estrecho ? 46 : 64, (contenedor.clientHeight || 300) * 0.13)); // tamaño del icono
     // en el móvil, los rótulos largos de los iconos ocupan dos líneas
-    const arriba = Math.max(a + te * (estrecho ? 4.4 : 3.2), te * 5.2);
-    const { ancho, alto, w, h, m } = medidas(contenedor, { arriba, derecha: 6, abajo: tj * 2 + tl * 1.9, izquierda: tj * 3.2 });
+    const arriba = movil ? te * 1.9 : Math.max(a + te * (estrecho ? 4.4 : 3.2), te * 5.2);
+    // móvil: la leyenda va antes para saber si ocupa una o dos líneas
+    const ley = leyenda();
+    let abajo = tj * 2 + tl * 1.9;
+    if (movil) {
+      const anchoW = (contenedor.clientWidth || 320) - tj * 3.2 - 6;
+      const anchos = gLeyenda.selectAll("g.item").nodes().map((nd) => nd.getBBox().width);
+      const dosLineas = anchos.length > 1 && d3.sum(anchos) + 18 > anchoW;
+      abajo = tj * 2.1 + tl * (dosLineas ? 2.9 : 1.6);
+    }
+    const { ancho, alto, w, h, m } = medidas(contenedor, { arriba, derecha: 6, abajo, izquierda: tj * 3.2 });
     const dur = animar ? duracion(700) : 0;
     medida = `${contenedor.clientWidth}x${contenedor.clientHeight}`;
     svg.attr("viewBox", `0 0 ${ancho} ${alto}`);
     g.attr("transform", `translate(${m.izquierda},${m.arriba})`);
     const x = d3.scaleBand().domain(meses).range([0, w]).padding(0.2);
     const vmax = d3.max([...filas, ...ast], (f) => f.v);
-    const y = d3.scaleLinear().domain([0, vmax * 1.55]).range([h, 0]);
+    // móvil: casi sin margen por arriba (sin anotaciones) y solo tres marcas en el eje Y
+    const y = d3.scaleLinear().domain([0, movil ? Math.max(vmax, 0.2) * 1.15 : vmax * 1.55]).range([h, 0]);
     esc = { x, y, h, w, te, m };
     gEjeX.attr("transform", `translate(0,${h})`).call(d3.axisBottom(x).tickSizeOuter(0)
       .tickFormat((mm) => I.meses[mm - 1]));
-    gEjeY.call(d3.axisLeft(y).ticks(4).tickFormat((v) => pct0(v)).tickSize(-w))
-      .call((s) => s.select(".domain").remove());
+    const ejeY = d3.axisLeft(y).ticks(4).tickFormat((v) => pct0(v)).tickSize(-w);
+    if (movil) ejeY.tickValues([0, 0.1, 0.2]);
+    gEjeY.call(ejeY).call((s) => s.select(".domain").remove());
 
     // Zona resaltada (primavera o desde el 1 de noviembre)
     const medio = x.step() * x.padding() / 2;
@@ -142,6 +160,7 @@ export function crearMensual(contenedor, { mensual, indicadores, asturias, hilo 
     // aparta a la derecha si los rótulos se pisan)
     const ic = [{ k: "primario", mm: 5, texto: I.mensual_primario },
       { k: "secundario", mm: 8, texto: I.mensual_secundario }];
+    gIconos.attr("display", movil ? "none" : null);
     const gi = gIconos.selectAll("g.icono").data(ic, (q) => q.k).join((e) => {
       const gg = e.append("g").attr("class", "icono").attr("opacity", 0);
       gg.append("g").attr("class", "dibujo");
@@ -161,25 +180,8 @@ export function crearMensual(contenedor, { mensual, indicadores, asturias, hilo 
       icono(gg.select("g.dibujo").attr("transform", `translate(${cx},${suelo})`), q.k, a);
     });
 
-    // Leyenda bajo el eje: barra de Bizkaia y línea de Asturias
-    const ley = [{ k: "biz", t: plantilla(I.mensual_bizkaia, { desde, hasta }) },
-      ...(ast.length ? [{ k: "ast", t: plantilla(I.mensual_asturias, { desde: asturias.periodo[0], hasta: asturias.periodo[1] }) }] : [])];
-    const li = gLeyenda.selectAll("g.item").data(ley, (q) => q.k).join((e) => {
-      const gg = e.append("g").attr("class", "item");
-      gg.append("g").attr("class", "muestra");
-      gg.append("text").attr("class", "etiqueta-pequena").attr("fill", "var(--tinta)").attr("x", 22).attr("dy", "0.35em");
-      return gg;
-    });
-    li.each(function (q) {
-      const s = d3.select(this).select("g.muestra");
-      s.selectAll("*").remove();
-      if (q.k === "biz") s.append("rect").attr("x", 2).attr("y", -6).attr("width", 14).attr("height", 12).attr("fill", "var(--acento)");
-      else {
-        s.append("path").attr("d", "M0,0H18").attr("stroke", "var(--tinta-suave)").attr("stroke-width", 2.2);
-        s.append("circle").attr("cx", 9).attr("r", 3.6).attr("fill", "var(--tinta-suave)").attr("stroke", "var(--fondo)").attr("stroke-width", 1.5);
-      }
-    });
-    li.select("text").text((q) => q.t);
+    // Leyenda bajo el eje (la crea leyenda(), al principio)
+    const li = ley;
     let cx = 0, cy = h + tj * 2.1 + tl * 0.6;
     li.attr("transform", function () {
       const bw = this.getBBox().width;
@@ -190,7 +192,8 @@ export function crearMensual(contenedor, { mensual, indicadores, asturias, hilo 
     });
 
     // Anotación de la zona
-    const texto = prim()
+    const texto = movil ? (prim() ? "" : I.mensual_noviembre_corto || "")
+      : prim()
       ? plantilla(I.mensual_primavera, { v: pct(mensual.estaciones.primavera) })
         + (asturias && asturias.primavera != null ? `. ${plantilla(I.mensual_primavera_asturias, { v: pct(asturias.primavera) })}` : "")
       : plantilla(I.mensual_noviembre, { min: pct(d3.min(despues, (r) => r.v)), max: pct(d3.max(despues, (r) => r.v)) });
@@ -199,7 +202,12 @@ export function crearMensual(contenedor, { mensual, indicadores, asturias, hilo 
       (u) => u,
       (s) => s.transition().duration(dur ? duracion(250) : 0).attr("opacity", 0).remove());
     const anchoZona = z1 - z0;
-    if (prim()) {
+    if (movil) {
+      // Móvil: en primavera, sin texto; desde el 1 de noviembre, rótulo corto en la franja de
+      // arriba, alineado al borde derecho de la zona
+      esc.anot = null;
+      ta.attr("x", z1 - 4).attr("y", -m.arriba + te * 1.05).attr("text-anchor", "end").attr("data-texto", null).text(texto);
+    } else if (prim()) {
       // Primavera: dentro del gráfico, sobre las barras bajas de la zona. Anchos posibles, por
       // preferencia (colocarEtiquetas elige el primero que no pisa nada)
       const anchos = estrecho
@@ -257,7 +265,7 @@ export function crearMensual(contenedor, { mensual, indicadores, asturias, hilo 
       lista.push({ x0: +anillo.attr("x"), y0: +anillo.attr("y"), x1: +anillo.attr("x") + +anillo.attr("width"), y1: h });
     }
     const iconos = [];
-    if (prim()) {
+    if (prim() && !movil) {
       gIconos.selectAll("g.icono").each(function () {
         const gg = d3.select(this);
         iconos.push(caja(gg.select("text").node()));
@@ -296,6 +304,15 @@ export function crearMensual(contenedor, { mensual, indicadores, asturias, hilo 
     t.attr("transform", `translate(0,${dy})`);
     return caja(t.node(), dy);
   }
+  // Móvil: solo el nombre del municipio, centrado encima del anillo
+  function ponerHiloMovil() {
+    const { x, te } = esc;
+    const anillo = gHilo.select("rect");
+    const t = gHilo.select("text").attr("transform", null).attr("x", x(mesHilo) + x.bandwidth() / 2)
+      .attr("y", +anillo.attr("y") - te * 0.4).attr("text-anchor", "middle").attr("data-texto", null)
+      .text(hilo.nido.municipio || "");
+    return caja(t.node());
+  }
   function colocarEtiquetas() {
     if (!esc || !esc.ta || !esc.ta.node()) return;
     ponerAnillo();
@@ -304,7 +321,7 @@ export function crearMensual(contenedor, { mensual, indicadores, asturias, hilo 
     const nodoAnot = esc.ta.node();
     const anchos = esc.anot ? esc.anot.anchos : [null];
     const conHilo = hiloActivo();
-    const cands = conHilo ? candidatosHilo() : [null];
+    const cands = conHilo && !movil ? candidatosHilo() : [null];
     let mejor = null;
     buscar: for (const wa of anchos) {
       if (wa != null) esc.ta.attr("data-texto", null).text(esc.anot.texto).call(envolver, wa).call(pegarPorcentaje);
@@ -321,7 +338,8 @@ export function crearMensual(contenedor, { mensual, indicadores, asturias, hilo 
       esc.ta.attr("data-texto", null).text(esc.anot.texto).call(envolver, mejor.wa).call(pegarPorcentaje);
     }
     let H = null;
-    if (mejor.c) H = ponerHilo(mejor.c, bajos);
+    if (movil && conHilo) H = ponerHiloMovil();
+    else if (mejor.c) H = ponerHilo(mejor.c, bajos);
     gHilo.raise();
     colocarAsturias([...obst, caja(nodoAnot), ...(H ? [H] : [])]);
   }
@@ -330,7 +348,7 @@ export function crearMensual(contenedor, { mensual, indicadores, asturias, hilo 
   function colocarAsturias(obst) {
     const { x, y, te } = esc, { punto, estrecho } = esc.etAst;
     etAst.text(null);
-    if (!punto) return;
+    if (!punto || movil) return;  // móvil: la leyenda, justo debajo, identifica la línea
     const nombre = plantilla(I.mensual_asturias, { desde: asturias.periodo[0], hasta: asturias.periodo[1] });
     const partes = estrecho ? [nombre.slice(0, nombre.indexOf(" ")), nombre.slice(nombre.indexOf(" ") + 1)] : [nombre];
     const orden = [punto, ...ast.filter((f) => f !== punto).sort((a, b) => Math.abs(a.mm - punto.mm) - Math.abs(b.mm - punto.mm))];
@@ -423,6 +441,51 @@ export function crearMensual(contenedor, { mensual, indicadores, asturias, hilo 
     if (+gHilo.attr("opacity") < 1) gHilo.transition().duration(animar ? duracion(500) : 0).delay(animar ? duracion(400) : 0).attr("opacity", 1);
   }
 
+  // Leyenda: barra de Bizkaia y línea de Asturias (no depende de las escalas; la coloca dibujar())
+  function leyenda() {
+    const ley = [{ k: "biz", t: plantilla(I.mensual_bizkaia, { desde, hasta }) },
+      ...(ast.length ? [{ k: "ast", t: plantilla(I.mensual_asturias, { desde: asturias.periodo[0], hasta: asturias.periodo[1] }) }] : [])];
+    const li = gLeyenda.selectAll("g.item").data(ley, (q) => q.k).join((e) => {
+      const gg = e.append("g").attr("class", "item");
+      gg.append("g").attr("class", "muestra");
+      gg.append("text").attr("class", "etiqueta-pequena").attr("fill", "var(--tinta)").attr("x", 22).attr("dy", "0.35em");
+      return gg;
+    });
+    li.each(function (q) {
+      const s = d3.select(this).select("g.muestra");
+      s.selectAll("*").remove();
+      if (q.k === "biz") s.append("rect").attr("x", 2).attr("y", -6).attr("width", 14).attr("height", 12).attr("fill", "var(--acento)");
+      else {
+        s.append("path").attr("d", "M0,0H18").attr("stroke", "var(--tinta-suave)").attr("stroke-width", 2.2);
+        s.append("circle").attr("cx", 9).attr("r", 3.6).attr("fill", "var(--tinta-suave)").attr("stroke", "var(--fondo)").attr("stroke-width", 1.5);
+      }
+    });
+    li.select("text").text((q) => q.t);
+    return li;
+  }
+
+  // Nota del gráfico: en el escritorio, bajo la leyenda (la pone app.js con nota()); en el móvil,
+  // dentro del desplegable «Ver los datos del gráfico», encima de la tabla
+  const textoNota = () => (ast.length ? plantilla(I.mensual_nota_asturias, { desde: asturias.periodo[0], hasta: asturias.periodo[1] }) : "");
+  function ponerNota() {
+    const panel = contenedor.closest(".panel");
+    if (!panel) return;
+    const notaEl = panel.querySelector(".nota-grafico"), datos = panel.querySelector("details.datos");
+    let p = datos && datos.querySelector(".nota-datos");
+    if (movil) {
+      if (notaEl) notaEl.textContent = "";
+      if (datos && !p) {
+        p = document.createElement("p");
+        p.className = "nota-datos";
+        datos.querySelector("summary").after(p);
+      }
+      if (p) { p.textContent = textoNota(); p.hidden = !p.textContent; }
+    } else {
+      // al pasar del móvil al escritorio sin cambiar de paso (si no, no se toca nada)
+      if (p) { p.hidden = true; if (notaEl && !notaEl.textContent) notaEl.textContent = textoNota(); }
+    }
+  }
+
   function tablaDatos() {
     const cab = [I.mes, `${I.porcentaje} ${T[0]}-${T[T.length - 1]}`, ...T];
     if (ast.length) cab.splice(2, 0, `${plantilla(I.mensual_asturias, { desde: asturias.periodo[0], hasta: asturias.periodo[1] })} (%)`);
@@ -456,7 +519,7 @@ export function crearMensual(contenedor, { mensual, indicadores, asturias, hilo 
     hilo(texto) { hiloTexto = texto; ponerAnillo(); colocarEtiquetas(); pintarHilo(n, true); },
     tablaDatos,
     nota() {
-      return ast.length ? plantilla(I.mensual_nota_asturias, { desde: asturias.periodo[0], hasta: asturias.periodo[1] }) : "";
+      return esMovil() ? "" : textoNota();
     },
     describir() {
       const max = filas.reduce((a, b) => (b.v > a.v ? b : a));

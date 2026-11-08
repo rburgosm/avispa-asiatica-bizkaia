@@ -908,3 +908,15 @@ strong { font-weight: 600; }
   .anotacion { background: rgba(250, 247, 240, .92); padding: .15rem .4rem; border-radius: 3px; text-shadow: none; }
 }
 @media (max-width: 899px) { .etiqueta-asturias { display: none; } }  /* móvil: Asturias ya está en la leyenda y en la nota */
+
+/* === móvil: calendario (ronda 9) ===
+   La nota larga del calendario mensual va dentro de «Ver los datos del gráfico» (mensual.js). */
+@media (max-width: 899px) {
+  .datos .nota-datos { font-size: var(--t-leyenda); color: var(--tinta); line-height: 1.35; margin: .3rem 0 .4rem;
+    border-left: 3px solid var(--gris-dato); padding: .1rem .5rem; }
+  /* Desplegable abierto: el gráfico conserva al menos el 55 % del panel; la nota y la tabla se
+     desplazan dentro del hueco que queda */
+  #panel-mensual .lienzo { min-height: 55%; }
+  #panel-mensual details.datos[open] { flex: 0 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+}
+/* === fin móvil: calendario (ronda 9) === */
