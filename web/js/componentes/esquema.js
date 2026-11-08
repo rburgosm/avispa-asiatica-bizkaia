@@ -56,6 +56,7 @@ export function crearEsquema(contenedor, { esquemas, indicadores, cronologia, im
       </picture>
       <figcaption class="pie-foto">${f.descripcion_es} ${plantilla(I.foto_credito, {
         autor: `<a href="${f.url_pagina}">${f.autor}</a>`, licencia: `<a href="${f.url_licencia}">${f.licencia}</a>` })}, ${I.foto_adaptada}</figcaption>`;
+    fig.dataset.clave = clave;
     capaFotos.appendChild(fig);
     const img = fig.querySelector("img");
     fotos[clave] = { fig, img, maximo: { ancho: mayor(an), alto: mayor(al) }, foco: f.adaptacion.foco };
@@ -77,6 +78,11 @@ export function crearEsquema(contenedor, { esquemas, indicadores, cronologia, im
       o.img.style.width = limitada ? `${Math.min(W, m.w)}px` : "";
       o.img.style.height = limitada ? `${Math.min(H, m.h)}px` : "";
       o.img.style.objectPosition = `${o.foco[0] * 100}% ${o.foco[1] * 100}%`;
+      // Móvil: la avispa ocupa todo el ancho de la foto y con «cover» se cortaba la cabeza; se muestra
+      // entera («contain») sobre su fondo difuminado. Las demás fotos se ven bien recortadas.
+      const entera = !ESCRITORIO.matches && o.fig.dataset.clave === "avispa";
+      o.img.style.objectFit = entera ? "contain" : "";
+      if (entera) { o.img.style.width = "100%"; o.img.style.height = "100%"; o.img.style.objectPosition = "50% 25%"; }
     }
   }
   encajarFotos();
