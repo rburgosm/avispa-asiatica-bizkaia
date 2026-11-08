@@ -482,11 +482,13 @@ export async function iniciar() {
     const r = c.getBoundingClientRect();
     pa.classList.toggle("dentro", r.top < innerHeight * arriba && r.bottom > innerHeight);
   });
-  // Móvil: el primer paso de las paradas de gráfico (que no empiezan con el mapa) se activa cuando el
-  // gráfico ya está fijo en su sitio (sticky, arriba): su borde de arriba, que coincide con el del
-  // gráfico, llega a lo alto de la pantalla. Así el gráfico no empieza a dibujarse mientras sube.
-  // Su progreso se cuenta desde esa línea (lo mide Scrollama).
-  const LINEA_FIJO = 0.002;
+  // Móvil: línea del primer paso de las paradas de gráfico (que no empiezan con el mapa). Su progreso
+  // se cuenta desde esa línea (lo mide Scrollama).
+  // === móvil: tarjetas que suben (ronda 8) === la primera tarjeta va una pantalla por debajo del
+  // borde de arriba del gráfico (CSS) y asoma por abajo cuando el gráfico ya está fijo. El gráfico se
+  // enciende (fundido) cuando su borde de arriba llega al 60 % de la pantalla, con el rótulo ya
+  // saliendo: así no queda una pantalla en blanco entre el rótulo y el gráfico.
+  const LINEA_FIJO = 0.6;
   const primeroDeGrafico = (el) => innerWidth < 900 && el.matches(".parada-grafico:not(.empieza-mapa) .paso:first-child");
 
   function lineaDe(el) {
@@ -494,7 +496,7 @@ export async function iniciar() {
     if (!el.classList.contains("paso-grafico") || !el.previousElementSibling) return LINEA;
     const t = el.querySelector(".tarjeta");
     if (innerWidth >= 900) return Math.max(0.05, Math.min(LINEA, 0.6 - (parseFloat(getComputedStyle(t).marginTop) || 0) / innerHeight));
-    return LINEA; // móvil: la tarjeta no se mueve (fija abajo), se cambia con el paso
+    return LINEA; // móvil: la tarjeta sube con el scroll y el gráfico cambia cuando llega al 75 %
   }
   const ponerLineas = () => document.querySelectorAll(".paso").forEach((el) => {
     el._linea = lineaDe(el);
@@ -552,5 +554,66 @@ export async function iniciar() {
   };
   window.addEventListener("scroll", () => requestAnimationFrame(leer), { passive: true });
   leer();
+  movilTarjetas();
   window.__historia = { activar, contenido, graficos }; // para pruebas
+
+  // === móvil: tarjetas que suben (ronda 8) ===
+  // Solo con menos de 900 px de ancho (el escritorio no cambia):
+  // - avance dentro de la parada: puntitos sobre el borde de cada tarjeta (el actual, más grande);
+  // - pista «sigue bajando»: una flecha que aparece si el dedo lleva 2 s quieto y la parada aún tiene
+  //   tarjetas por delante; desaparece al mover el dedo (con movimiento reducido, sin animación).
+  function movilTarjetas() {
+    const mq = window.matchMedia("(max-width: 899px)");
+    let pista = null, quieto = null;
+    const ponerAvance = () => document.querySelectorAll(".parada .pasos").forEach((caja) => {
+      const pasos = [...caja.querySelectorAll(":scope > .paso")];
+      if (pasos.length < 2) return;
+      pasos.forEach((el, n) => {
+        const t = el.querySelector(".tarjeta");
+        if (t.querySelector(".avance-paso")) return;
+        const a = document.createElement("span");
+        a.className = "avance-paso";
+        a.setAttribute("aria-hidden", "true");
+        a.innerHTML = pasos.map((_, k) => `<i class="${k < n ? "hecho" : k === n ? "este" : ""}"></i>`).join("");
+        t.appendChild(a);
+      });
+    });
+    const quitarPista = () => { clearTimeout(quieto); if (pista) pista.classList.remove("visible"); };
+    function mirarPista() {
+      if (!pista || document.hidden) return;
+      const paso = contenido.pasos[actual], el = paso && $(`paso-${paso.id}`);
+      if (!el || !el.nextElementSibling) return;  // fuera de la historia o última tarjeta de la parada
+      const r = el.getBoundingClientRect(), h = $("historia").getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight || h.bottom < innerHeight) return;
+      // Si la tarjeta ocupa el pie de la pantalla, la flecha va justo encima de ella
+      const t = el.querySelector(".tarjeta").getBoundingClientRect();
+      const tapa = t.top < innerHeight - 40 && t.bottom > innerHeight - 104;
+      pista.style.bottom = tapa ? `${Math.round(innerHeight - t.top + 10)}px` : "";
+      pista.classList.add("visible");
+    }
+    const esperar = () => { quitarPista(); quieto = setTimeout(mirarPista, 2000); };
+    const eventos = ["scroll", "touchstart", "touchmove", "wheel", "keydown"];
+    function aplicar() {
+      if (mq.matches) {
+        ponerAvance();
+        if (!pista) {
+          pista = document.createElement("div");
+          pista.className = "pista-bajar";
+          pista.setAttribute("aria-hidden", "true");
+          pista.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>`;
+          document.body.appendChild(pista);
+          eventos.forEach((e) => window.addEventListener(e, esperar, { passive: true }));
+          esperar();
+        }
+      } else {
+        document.querySelectorAll(".avance-paso").forEach((a) => a.remove());
+        if (pista) {
+          quitarPista(); pista.remove(); pista = null;
+          eventos.forEach((e) => window.removeEventListener(e, esperar));
+        }
+      }
+    }
+    aplicar();
+    mq.addEventListener("change", aplicar);
+  }
 }

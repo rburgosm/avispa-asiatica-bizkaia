@@ -1,13 +1,13 @@
 {
- "primera_pintura_e_interaccion_kb": 164,
- "primera_carga_comprimida_kb": 686,
- "total_comprimido_sin_mapa_base_kb": 9328,
+ "primera_pintura_e_interaccion_kb": 165,
+ "primera_carga_comprimida_kb": 688,
+ "total_comprimido_sin_mapa_base_kb": 9330,
  "mapa_base_pmtiles_kb": 25328,
  "primera_carga": {
   "index.html": 3.3,
-  "css/estilo.css": 13.0,
+  "css/estilo.css": 13.9,
   "js/cargador.js": 1.2,
-  "js/app.js": 9.8,
+  "js/app.js": 10.7,
   "js/util.js": 2.7,
   "js/componentes/mapa.js": 6.9,
   "js/componentes/mapa_narrativo.js": 8.1,

@@ -840,3 +840,64 @@ strong { font-weight: 600; }
 .esquema .nota-crono .nota-anio { font-weight: 700; }
 .esquema .flecha-crono { fill: none; stroke: var(--tinta-suave); stroke-width: 1.1; }
 /* === fin cronología (ronda 7) === */
+
+/* === móvil: tarjetas que suben (ronda 8) ===
+   Solo móvil (< 900 px): sustituye la tarjeta fija del bloque «maquetación móvil (ronda 4)». Las
+   tarjetas vuelven al flujo y suben con el scroll por encima del gráfico fijo (sticky arriba), con
+   fondo casi opaco. Entre una tarjeta y la siguiente hay al menos una pantalla (100 svh): nunca hay
+   dos a la vez. El gráfico cambia cuando la tarjeta nueva llega al 75 % del alto (app.js, Scrollama).
+   Las reglas llevan #historia para ganar a las del bloque ronda 4 sin tocarlo. */
+@media (max-width: 899px) {
+  #historia .grafico { z-index: 0; }  /* las tarjetas pasan por encima del gráfico y de la foto */
+  /* Paradas solo de gráfico: papel bajo el gráfico (no asoma el mapa mientras el gráfico sube) */
+  #historia .parada-grafico:not(.empieza-mapa) .grafico { background: var(--fondo); }
+  /* Primera tarjeta: en las paradas de gráfico, una pantalla por debajo del borde de arriba del gráfico
+     (entra por abajo cuando el gráfico ya está fijo arriba); en las que empiezan con el mapa, después del rótulo */
+  #historia .parada-grafico:not(.empieza-mapa) .paso:first-child { padding-top: 100svh; }
+  #historia .parada-grafico.empieza-mapa .pasos { margin-top: -70svh; }
+  #historia .parada-mapa .pasos { margin-top: 0; padding-top: 30svh; }
+  /* Cada paso: la tarjeta y, debajo, el hueco hasta la siguiente (≥ 100 svh; más en los pasos largos,
+     que necesitan recorrido para su progreso: fotos, caída de puntos, contador de años) */
+  #historia .paso, #historia .parada-grafico:not(.empieza-mapa) .paso:first-child {
+    min-height: 0; margin-bottom: 0; justify-content: flex-start;
+    padding-bottom: max(100svh, calc(var(--alto-paso, 130svh) * .72 - 30svh));
+  }
+  #historia .paso:last-child { padding-bottom: max(70svh, calc(var(--alto-paso, 130svh) * .72 - 30svh)); }
+  #historia .paso .tarjeta {
+    position: relative; left: auto; right: auto; bottom: auto; top: auto; z-index: auto;
+    max-height: none; overflow: visible; margin: 0;
+    opacity: 1; transform: none; pointer-events: auto; transition: none;
+    box-shadow: 0 4px 14px rgba(29, 26, 22, .16);
+  }
+  #historia .paso-grafico .tarjeta { background: rgba(250, 247, 240, .97); }
+  /* Avance dentro de la parada: puntitos sobre el borde de arriba de la tarjeta (app.js) */
+  .avance-paso {
+    position: absolute; top: 0; right: 14px; transform: translateY(-50%);
+    display: flex; gap: 5px; align-items: center; padding: 5px 8px; border-radius: 999px;
+    background: var(--fondo); border: 1px solid var(--linea); pointer-events: none;
+  }
+  .avance-paso i { display: block; width: 6px; height: 6px; border-radius: 50%; border: 1px solid var(--tinta-suave); box-sizing: border-box; }
+  .avance-paso i.hecho { background: var(--gris-dato); border-color: var(--gris-dato); }
+  .avance-paso i.este { background: var(--tinta); border-color: var(--tinta); width: 8px; height: 8px; }
+  /* Pista «sigue bajando»: aparece si no se mueve el dedo en 2 s y la parada no ha terminado (app.js) */
+  .pista-bajar {
+    position: fixed; left: 50%; bottom: 48px; z-index: 7; width: 44px; height: 44px; margin-left: -22px;  /* por encima de la atribución del mapa */
+    display: flex; align-items: center; justify-content: center; border-radius: 50%;
+    background: var(--tarjeta); border: 1px solid var(--linea); box-shadow: 0 2px 8px rgba(29, 26, 22, .18);
+    color: var(--tinta-suave); pointer-events: none; opacity: 0; transition: opacity .4s ease;
+  }
+  .pista-bajar svg { width: 22px; height: 22px; }
+  .pista-bajar.visible { opacity: .92; }
+}
+@media (max-width: 899px) and (prefers-reduced-motion: no-preference) {
+  .pista-bajar.visible svg { animation: pista-bota 1.8s ease-in-out infinite; }
+  @keyframes pista-bota { 50% { transform: translateY(4px); } }
+  @supports (animation-timeline: view()) {
+    /* El titular vuelve a entrar con la tarjeta (en la ronda 4 no tenía recorrido) */
+    #historia .tarjeta .titular { animation: titular-entra linear both; animation-timeline: view(); animation-range: entry 0% entry 80%; }
+  }
+}
+@media (max-width: 899px) and (prefers-reduced-motion: reduce) {
+  .pista-bajar { transition: none; }
+}
+/* === fin móvil: tarjetas que suben (ronda 8) === */
