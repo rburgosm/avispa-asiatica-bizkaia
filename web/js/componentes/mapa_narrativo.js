@@ -79,7 +79,10 @@ export function crearMapaNarrativo(contenedor, datos, textos) {
 
   // Puntos en canvas (miles de nidos: SVG sería lento en un móvil)
   const lienzo = d3.select(contenedor).append("canvas").attr("class", "mapa-puntos").attr("aria-hidden", "true")
-    .style("transform-origin", "0 0");
+    .style("transform-origin", "0 0")
+    // Nace con tamaño 0, como la «caja» de abajo: si naciera a pantalla completa (CSS) y luego se
+    // encogiera a la caja de los puntos, el navegador lo contaría como desplazamiento (CLS) al cargar
+    .style("width", "0px").style("height", "0px");
   const ctx = lienzo.node().getContext("2d");
   const pts = [];
   const nidos = datos.nidos, c = nidos.campos.length;
