@@ -102,14 +102,18 @@ export function crearEsquema(contenedor, { esquemas, indicadores, cronologia, im
   function llegada(g, w, h) {
     const lista = (estado.hitos || []).map(hito).filter(Boolean);
     const fraccion = (hh) => +hh.fecha.slice(0, 4) + (hh.fecha.length > 4 ? (+hh.fecha.slice(5, 7) - 1) / 12 : 0);
+    // Posición de cualquier hito: año, mes y día si los tiene; los periodos («2013/2015»), en su inicio
+    const fechaNum = (hh) => {
+      const m = /^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/.exec(hh.fecha);
+      return m ? +m[1] + (m[2] ? (+m[2] - 1 + (m[3] ? (+m[3] - 1) / 31 : 0)) / 12 : 0) : null;
+    };
     const a0 = Math.min(...lista.map(fraccion)) - 1.5, a1 = Math.max(hasta + 1, 2026);
     const te = tamano("--t-etiqueta"), tf = tamano("--t-fecha");
     // Margen lateral para que las etiquetas de los años del eje (centradas en su marca) quepan
     const borde = Math.max(8, tamano("--t-eje") * 1.4);
     const x = d3.scaleLinear().domain([a0, a1]).range([borde, w - borde]);
     const yl = Math.round(h * 0.55);
-    // Móvil: solo los hitos del paso y los años de referencia cada cinco años (sin los puntos
-    // pequeños del resto de la cronología, que en 360 px se amontonan)
+    // Móvil: años de referencia cada cinco años y solo dos anotaciones menores (anotarMenores)
     const movil = w < 480;
     const marcas = d3.range(Math.ceil(a0 / 5) * 5, a1 + 0.01, 5);
     const eje = g.append("g").attr("class", "eje").attr("transform", `translate(0,${yl + 14})`)
@@ -119,11 +123,12 @@ export function crearEsquema(contenedor, { esquemas, indicadores, cronologia, im
     g.append("line").attr("x1", x(a0)).attr("x2", x(a1)).attr("y1", yl).attr("y2", yl).attr("stroke", "var(--linea)").attr("stroke-width", 6).attr("stroke-linecap", "round");
     const trazo = g.append("line").attr("x1", x(a0)).attr("y1", yl).attr("y2", yl).attr("x2", x(a0))
       .attr("stroke", "var(--acento)").attr("stroke-width", 6).attr("stroke-linecap", "round");
-    // los demás hitos confirmados de la cronología, como puntos pequeños
-    const otros = []; // sin puntos sueltos: sin rótulo no se entienden (lo pidió el usuario); la cronología completa está en la tabla
-    const puntos = g.append("g").selectAll("circle").data(otros).join("circle").attr("cx", (hh) => x(fraccion(hh))).attr("cy", yl)
-      .attr("r", 3).attr("fill", "var(--fondo)").attr("stroke", "var(--tinta-suave)").attr("opacity", 0);
-    const anio = g.append("text").attr("class", "enorme").attr("y", yl - 22).attr("text-anchor", "middle").attr("opacity", 0); // el año que sigue al trazo se confundía con un hito: oculto
+    // Los demás hitos confirmados de la cronología, como puntos pequeños (también en el móvil)
+    const confirmado = new Set(cronologia.estados);
+    const enLista = new Set(lista.map((hh) => hh.fecha));
+    const otros = cronologia.hitos.filter((hh) => confirmado.has(hh.estado) && !enLista.has(hh.fecha) && fechaNum(hh) !== null);
+    const puntos = g.append("g").selectAll("circle").data(otros).join("circle").attr("cx", (hh) => x(fechaNum(hh))).attr("cy", yl)
+      .attr("r", 3.5).attr("fill", "var(--fondo)").attr("stroke", "var(--tinta-suave)").attr("stroke-width", 1.2).attr("opacity", 0);
     const ancho = Math.min(220, w / lista.length - 10);
     const grupos = lista.map((hh, i) => {
       const xx = x(fraccion(hh));
@@ -145,20 +150,138 @@ export function crearEsquema(contenedor, { esquemas, indicadores, cronologia, im
       }
       return { gg, a: fraccion(hh) };
     });
+    const notas = anotarMenores(g, w, h, x, yl, fechaNum, grupos.map((q) => q.gg), eje, movil);
     actualizarProgreso = (p, animar) => {
       const a = a0 + (a1 - a0) * Math.min(1, p / 0.85);
       const xa = x(a);
       trazo.interrupt().transition().duration(animar ? duracion(250) : 0).attr("x2", xa);
-      anio.text(Math.floor(a)).attr("opacity", p < 0.85 ? 0.9 : 0);
-      // el año en grande sigue la punta del trazo sin salirse del lienzo (se mide su ancho real)
-      const mitad = (anio.node().getComputedTextLength() || tf * 2.4) / 2;
-      anio.attr("x", Math.max(mitad, Math.min(w - mitad, xa)));
-      for (const q of grupos) {
-        const v = a >= q.a ? 1 : 0;
-        if (+q.gg.attr("opacity") !== v) q.gg.interrupt().transition().duration(duracion(450)).attr("opacity", v);
-      }
-      puntos.attr("opacity", (hh) => (a >= fraccion(hh) ? 0.9 : 0));
+      // Hitos grandes, anotaciones menores y puntos: fundido al pasar el trazo por su fecha
+      // (solo se lanza la transición cuando cambia el objetivo: no se reinicia en cada evento de scroll)
+      const fundir = (sel, v, ms) => {
+        const n = sel.node();
+        if (n.__objetivo === v) return;
+        n.__objetivo = v;
+        sel.interrupt().transition().duration(animar ? duracion(ms) : 0).attr("opacity", v);
+      };
+      for (const q of grupos) fundir(q.gg, a >= q.a ? 1 : 0, 450);
+      for (const q of notas) fundir(q.gg, a >= q.a ? 1 : 0, 600);
+      puntos.each(function (hh) { fundir(d3.select(this), a >= fechaNum(hh) ? 0.9 : 0, 300); });
     };
+  }
+
+  // Anotaciones de algunos hitos menores (confirmados): texto corto en tinta suave con flecha curva
+  // fina hasta su punto, con menos jerarquía que los hitos grandes. Fecha y texto salen de
+  // cronologia.json: cada entrada da la fecha y un fragmento literal del título que se muestra (si el
+  // fragmento no está en el título, la anotación no se pone). Se colocan en orden de prioridad,
+  // arriba o abajo y a un lado u otro del punto, en la primera posición que no pisa los hitos
+  // grandes, el eje, otras anotaciones ni el borde; si no cabe, no se pone. Móvil: solo las dos primeras.
+  const MENORES = [
+    ["2016-07-01", "Entra en funcionamiento el protocolo foral", "abajo"],
+    ["2018-01-06", "Primer aviso del registro de nidos", "arriba"],
+    ["2013-08-03", "Catálogo Español de Especies Exóticas Invasoras", "arriba"],
+    ["2014-11-14", "Estrategia estatal", "abajo"],
+    ["2011-09", "Mesa de Seguimiento de la Vespa velutina", "arriba"],
+  ];
+  function anotarMenores(g, w, h, x, yl, fechaNum, grandes, eje, movil) {
+    const capa = g.append("g").attr("class", "notas-crono");
+    const id = "punta-crono";
+    if (svg.select(`#${id}`).empty()) {
+      svg.append("defs").append("marker").attr("id", id).attr("viewBox", "0 0 10 10").attr("refX", 8).attr("refY", 5)
+        .attr("markerWidth", 6).attr("markerHeight", 6).attr("orient", "auto")
+        .append("path").attr("d", "M0,1 L9,5 L0,9").attr("fill", "none").attr("stroke", "var(--tinta-suave)").attr("stroke-width", 1.5);
+    }
+    // Caja de un elemento en las coordenadas de g (con las transformaciones de sus padres)
+    const ref = g.node().getCTM().inverse();
+    const caja = (n) => {
+      const b = n.getBBox(), m = ref.multiply(n.getCTM());
+      const pts = [[b.x, b.y], [b.x + b.width, b.y], [b.x, b.y + b.height], [b.x + b.width, b.y + b.height]]
+        .map(([px, py]) => [m.a * px + m.c * py + m.e, m.b * px + m.d * py + m.f]);
+      return { x0: d3.min(pts, (q) => q[0]), x1: d3.max(pts, (q) => q[0]), y0: d3.min(pts, (q) => q[1]), y1: d3.max(pts, (q) => q[1]) };
+    };
+    const choca = (a, b, m = 6) => a.x0 < b.x1 + m && a.x1 > b.x0 - m && a.y0 < b.y1 + m && a.y1 > b.y0 - m;
+    // Obstáculos: hitos grandes (rótulo, año y palo), eje con sus años y la propia línea
+    // (pieza a pieza: la caja del grupo entero taparía el hueco entre el palo y el rótulo)
+    const piezas = grandes.flatMap((gg) => gg.selectChildren().nodes().map(caja));
+    const centros = grandes.map((gg) => +gg.select("circle").attr("cx"));
+    const etiquetasEje = eje.selectAll("text").nodes().map(caja);
+    const ocupado = [...piezas, caja(eje.node()), { x0: x.range()[0] - 6, x1: x.range()[1] + 6, y0: yl - 10, y1: yl + 10 }];
+    const lin = 15 * 1.2, anchoMax = Math.min(200, w * (movil ? 0.5 : 0.42));
+    const lista = MENORES.slice(0, movil ? 2 : MENORES.length).map(([fecha, fragmento, lado]) => {
+      const hh = cronologia.hitos.find((q) => q.fecha === fecha && cronologia.estados.includes(q.estado));
+      if (!hh || !hh.titulo.includes(fragmento)) return null;
+      return { hh, fragmento, lado, a: fechaNum(hh) };
+    }).filter(Boolean);
+    // Flecha curva desde el borde del texto del lado del punto, a media altura de la línea más
+    // cercana a la línea del tiempo, hasta el borde del punto (como las de los mapas)
+    let lineas = 1, alto = 0, radio = 7;
+    const flecha = (c, lado, dx, px, py) => {
+      // centrada sobre o bajo el punto (dx = 0): desde el centro del borde más cercano a la línea
+      const sx = dx === 0 ? (c.x0 + c.x1) / 2 + 6 : dx > 0 ? c.x0 - 4 : c.x1 + 4;
+      const sy = dx === 0 ? (lado === "arriba" ? c.y1 + 3 : c.y0 - 3)
+        : lado === "arriba" ? c.y1 - (lineas > 1 ? lin * 0.5 : alto / 2) : c.y0 + (lineas > 1 ? lin * 0.5 : alto / 2);
+      const ang = Math.atan2(py - sy, px - sx);
+      const ex = px - Math.cos(ang) * radio, ey = py - Math.sin(ang) * radio;
+      const curva = dx === 0 ? 0.15 : (dx > 0) === (lado === "arriba") ? -0.3 : 0.3;
+      return { sx, sy, ex, ey, mx: (sx + ex) / 2 - (ey - sy) * curva, my: (sy + ey) / 2 + (ex - sx) * curva };
+    };
+    const notas = [];
+    for (const n of lista) {
+      const px = x(n.a), py = yl;
+      // si el punto queda bajo el de un hito grande (protocolo de 2016 y lista de la UE, dos semanas
+      // después), la punta se queda en el borde del punto grande
+      radio = centros.some((cx) => Math.abs(cx - px) < 8) ? 14 : 7;
+      const gg = capa.append("g").attr("opacity", 0);
+      const t = gg.append("text").attr("class", "nota-crono").attr("x", 0).attr("y", 0);
+      // envolver() reparte por palabras: se escribe el texto completo y se marca el año después
+      t.text(`${n.hh.fecha.slice(0, 4)} ${n.fragmento}`).call(envolver, anchoMax, 1.2);
+      t.select("tspan").each(function () {
+        const s = d3.select(this), [anio, ...resto] = s.text().split(" ");
+        s.text(null);
+        s.append("tspan").attr("class", "nota-anio").text(anio);
+        s.append("tspan").text(` ${resto.join(" ")}`);
+      });
+      const b0 = t.node().getBBox();
+      lineas = +t.attr("data-lineas") || 1;
+      alto = b0.height;
+      const ancho = b0.width;
+      const otro = n.lado === "arriba" ? "abajo" : "arriba";
+      let elegida = null;
+      for (const lado of [n.lado, otro]) {
+        for (const dy of [34, 64, 96, 128, 160, 192]) {
+          for (const dx of [18, -18, 60, -60, 110, -110, 0]) {
+            const x0 = dx === 0 ? px - ancho / 2 : dx > 0 ? px + dx : px + dx - ancho;
+            const y0 = lado === "arriba" ? py - dy - alto : py + dy;
+            const c = { x0, y0, x1: x0 + ancho, y1: y0 + alto };
+            if (c.x0 < 0 || c.x1 > w || c.y0 < 0 || c.y1 > h) continue;
+            if (ocupado.some((o) => choca(c, o))) continue;
+            const f = flecha(c, lado, dx, px, py);
+            if (Math.hypot(f.ex - f.sx, f.ey - f.sy) > 120) continue;  // sin flechas largas que crucen el gráfico
+            // la flecha tampoco cruza hitos grandes ni otras anotaciones (salvo junto a su punto)
+            const muestras = d3.range(0.05, 1, 0.05).map((k) => [
+              (1 - k) ** 2 * f.sx + 2 * (1 - k) * k * f.mx + k * k * f.ex,
+              (1 - k) ** 2 * f.sy + 2 * (1 - k) * k * f.my + k * k * f.ey])
+              .filter(([qx, qy]) => Math.hypot(qx - px, qy - py) > radio + 14);
+            const tapan = [...piezas, ...etiquetasEje, ...notas.map((q) => q.c)];
+            if (muestras.some(([qx, qy]) => tapan.some((o) => qx > o.x0 - 8 && qx < o.x1 + 8 && qy > o.y0 - 8 && qy < o.y1 + 8))) continue;
+            // ni se cruza o roza con las flechas ya puestas
+            if (muestras.some(([qx, qy]) => notas.some((q) => q.muestras.some(([rx, ry]) => Math.hypot(qx - rx, qy - ry) < 8)))) continue;
+            elegida = { c, lado, dx, muestras };
+            break;
+          }
+          if (elegida) break;
+        }
+        if (elegida) break;
+      }
+      if (!elegida) { gg.remove(); continue; }
+      const { c, lado, dx, muestras } = elegida;
+      t.attr("transform", `translate(${c.x0 - b0.x},${c.y0 - b0.y})`);
+      const f = flecha(c, lado, dx, px, py);
+      gg.insert("path", "text").attr("class", "flecha-crono").attr("marker-end", `url(#${id})`)
+        .attr("d", `M${f.sx.toFixed(1)},${f.sy.toFixed(1)} Q${f.mx.toFixed(1)},${f.my.toFixed(1)} ${f.ex.toFixed(1)},${f.ey.toFixed(1)}`);
+      ocupado.push(c);
+      notas.push({ gg, a: n.a, c, muestras });
+    }
+    return notas;
   }
 
   function ciclo(g, w, h) {

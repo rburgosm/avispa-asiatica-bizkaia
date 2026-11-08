@@ -1037,7 +1037,7 @@
   "mensual_secundario": "Nido secundario: grande, en la copa",
   "mensual_primario_corto": "Nido primario",
   "mensual_secundario_corto": "Nido secundario",
-  "mensual_nota_asturias": "Asturias: avisos semanales de {desde}-{hasta} leídos de una gráfica de su informe de 2025 (sin enero ni febrero). Se compara solo la forma del calendario.",
+  "mensual_nota_asturias": "Solo de abril a diciembre: en enero, febrero y marzo apenas hay avisos (menos del 2 %, casi todos de nidos viejos del año anterior) y, hasta 2022, el registro de Bizkaia no sigue el año natural, así que esos meses no se pueden comparar. Asturias: avisos semanales de {desde}-{hasta} leídos de una gráfica de su informe de 2025; se compara solo la forma del calendario.",
   "mensual_desc_asturias": "En Asturias ({desde}-{hasta}), la primavera reúne el {v} de los avisos.",
   "gasto_franja": "Aquí dentro, sin desglose",
   "gasto_franja_sub": "Escenario, no dato: al coste por nido de 2018 ({eur} €), unos {min}-{max} al año, el {pmin}-{pmax} del encargo",

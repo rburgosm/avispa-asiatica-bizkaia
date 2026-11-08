@@ -833,3 +833,10 @@ strong { font-weight: 600; }
 /* Navegación oculta en el cierre y el buscador (coordinador) */
 .navegacion { transition: opacity .4s; }
 .navegacion.oculta-final { opacity: 0; pointer-events: none; }
+
+/* === cronología (ronda 7) === */
+/* Anotaciones de los hitos menores de la línea del tiempo (esquema.js, paso «llegada») */
+.esquema .nota-crono { font-family: var(--letra); font-size: 14px; fill: var(--tinta-suave); }
+.esquema .nota-crono .nota-anio { font-weight: 700; }
+.esquema .flecha-crono { fill: none; stroke: var(--tinta-suave); stroke-width: 1.1; }
+/* === fin cronología (ronda 7) === */
