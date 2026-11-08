@@ -54,7 +54,7 @@ LON0, LAT0, KM_LON, KM_LAT = -2.9, 43.2, 111.32, 110.57
 K = math.cos(math.radians(43.2))
 
 # Imagen de portada: ancho de la página A4 a sangre y alto de la franja del mapa
-PORTADA_MM = (210, 150)
+PORTADA_MM = (210, 165)
 PORTADA_PX = 2100  # ancho en píxeles (unos 250 ppp)
 KM_ANCHO = 112.0   # kilómetros que caben a lo ancho (Bizkaia mide unos 84 km de oeste a este)
 
@@ -167,7 +167,7 @@ def css() -> str:
     return "\n".join(caras) + f"""
 :root {{ --papel: {PAPEL}; --tinta: {TINTA}; --tinta-suave: {TINTA_SUAVE}; --linea: {LINEA};
          --acento: {ACENTO}; --acento-texto: {ACENTO_TEXTO}; }}
-@page {{ size: A4; margin: 24mm 23mm 22mm 23mm; background: {PAPEL};
+@page {{ size: A4; margin: 21mm 21mm 20mm 21mm; background: {PAPEL};
   @top-left {{ content: "Tres mil nidos al año"; font: 600 7.6pt {sans}; color: {TINTA};
               vertical-align: bottom; padding-bottom: 3mm; }}
   @top-right {{ content: "Memoria técnica"; font: 400 7.6pt {sans}; color: {TINTA_SUAVE};
@@ -180,55 +180,55 @@ def css() -> str:
   @top-left {{ content: none; }} @top-right {{ content: none; }}
   @bottom-left {{ content: none; }} @bottom-right {{ content: none; }} }}
 
-html {{ font-family: 'Source Serif 4', serif; font-size: 9.9pt; line-height: 1.45; color: var(--tinta); }}
+html {{ font-family: 'Source Serif 4', serif; font-size: 9.5pt; line-height: 1.4; color: var(--tinta); }}
 body {{ margin: 0; }}
 
 /* Portada */
 .portada {{ page: portada; height: 297mm; position: relative; break-after: page; }}
 .portada img {{ display: block; width: 210mm; height: {PORTADA_MM[1]}mm; }}
-.portada .texto {{ position: absolute; left: 23mm; right: 23mm; top: {PORTADA_MM[1] - 16}mm; }}
+.portada .texto {{ position: absolute; left: 21mm; right: 21mm; top: {PORTADA_MM[1] - 16}mm; }}
 .portada .antetitulo {{ font: 600 8.5pt {sans}; letter-spacing: .14em; text-transform: uppercase;
                        color: var(--acento-texto); margin: 0 0 4mm; }}
 .portada h1 {{ font: 600 44pt/1.02 'Source Serif 4', serif; letter-spacing: -.012em; margin: 0; }}
 .portada .linea {{ width: 18mm; height: 1mm; background: var(--acento); margin: 7mm 0 6mm; }}
 .portada .subtitulo {{ font: 400 16pt/1.32 'Source Serif 4', serif; color: var(--tinta); margin: 0;
-                      max-width: 140mm; }}
-.portada .datos {{ position: absolute; left: 23mm; right: 23mm; bottom: 22mm; font: 400 9.5pt/1.5 {sans};
+                      max-width: 150mm; hyphens: none; }}
+.portada .datos {{ position: absolute; left: 21mm; right: 21mm; bottom: 22mm; font: 400 9.5pt/1.5 {sans};
                   color: var(--tinta-suave); border-top: 0.6pt solid var(--linea); padding-top: 4mm; }}
 .portada .datos p {{ margin: 0; }}
 .portada .datos .autor {{ font-weight: 600; color: var(--tinta); font-size: 11pt; margin-bottom: 1mm; }}
 .portada .datos a {{ color: var(--acento-texto); font-weight: 600; }}
-.portada .pie-mapa {{ position: absolute; right: 23mm; top: {PORTADA_MM[1] - 22}mm; font: 400 7pt {sans};
+.portada .pie-mapa {{ position: absolute; right: 21mm; top: {PORTADA_MM[1] - 22}mm; font: 400 7pt {sans};
                      color: var(--tinta-suave); text-align: right; }}
 
 /* Índice */
-.indice {{ break-after: avoid; margin: 0 0 9mm; }}
+.indice {{ break-after: avoid; margin: 0 0 6mm; }}
 .indice h2 {{ margin-top: 0; }}
-.indice ol {{ list-style: none; padding: 0; margin: 0; font: 400 10pt/1.3 {sans}; }}
-.indice li {{ margin: 0; padding: 1.6mm 0; border-bottom: 0.4pt solid var(--linea); }}
+.indice ol {{ list-style: none; padding: 0; margin: 0; font: 400 9.5pt/1.25 {sans}; columns: 2; column-gap: 10mm; }}
+.indice li {{ margin: 0; padding: 1.2mm 0; break-inside: avoid; border-bottom: 0.4pt solid var(--linea); }}
 .indice a {{ color: var(--tinta); text-decoration: none; }}
 .indice a .n {{ display: inline-block; width: 8mm; color: var(--acento-texto); font-weight: 600; }}
 .indice a::after {{ content: leader(' ') target-counter(attr(href), page); font-weight: 600; }}
 
 /* Títulos: misma jerarquía que las aperturas de la web (filete naranja, número en naranja) */
-h2 {{ font: 700 15pt/1.2 {sans}; margin: 9mm 0 3.5mm; break-after: avoid; color: var(--tinta); }}
+h2 {{ font: 700 14pt/1.2 {sans}; margin: 7mm 0 3mm; break-after: avoid; color: var(--tinta); }}
 h2::before {{ content: ""; display: block; width: 14mm; height: 0.9mm; background: var(--acento);
-             margin-bottom: 3mm; }}
+             margin-bottom: 2.5mm; }}
 h2 .n {{ color: var(--acento-texto); margin-right: 2.2mm; font-weight: 600; }}
-p {{ margin: 0 0 2.6mm; hyphens: auto; orphans: 3; widows: 3; }}
+p {{ margin: 0 0 2.2mm; hyphens: auto; orphans: 3; widows: 3; }}
 strong {{ font-weight: 600; }}
 ul {{ margin: 0 0 3mm; padding-left: 4.5mm; }}
-li {{ margin-bottom: 1.4mm; hyphens: auto; }}
+li {{ margin-bottom: 1.1mm; hyphens: auto; }}
 li::marker {{ color: var(--acento); }}
-a {{ color: var(--acento-texto); text-decoration: none; }}
+a {{ color: var(--acento-texto); text-decoration: none; hyphens: none; }}
 code {{ font-family: 'DejaVu Sans Mono', monospace; font-size: 7.6pt; color: #3d362e; }}
 pre {{ background: #f1ece1; border-left: 0.9mm solid var(--linea); padding: 3mm 4mm; margin: 2mm 0 4mm;
       font-size: 7.4pt; line-height: 1.45; white-space: pre-wrap; break-inside: avoid; }}
 pre code {{ font-size: 7.4pt; color: var(--tinta); }}
-table {{ border-collapse: collapse; width: 100%; margin: 2mm 0 5mm; font: 400 8.4pt/1.32 {sans}; }}
-thead th {{ text-align: left; font-weight: 700; border-bottom: 1pt solid var(--tinta); padding: 1.6mm 2mm;
+table {{ border-collapse: collapse; width: 100%; margin: 2mm 0 5mm; font: 400 8.2pt/1.28 {sans}; }}
+thead th {{ text-align: left; font-weight: 700; border-bottom: 1pt solid var(--tinta); padding: 1.3mm 1.8mm;
            background: #f1ece1; }}
-td {{ vertical-align: top; border-bottom: 0.4pt solid var(--linea); padding: 1.4mm 2mm; }}
+td {{ vertical-align: top; border-bottom: 0.4pt solid var(--linea); padding: 1.1mm 1.8mm; }}
 td strong {{ font-weight: 700; }}
 tr {{ break-inside: avoid; }}
 td a {{ overflow-wrap: anywhere; }}
@@ -277,6 +277,8 @@ def main() -> None:
     texto = texto[texto.index("\n## ") + 1:]  # la cabecera del .md la sustituye la portada
     cuerpo = markdown.markdown(texto, extensions=["tables", "fenced_code", "sane_lists", "toc"])
     cuerpo, indice = numerar_titulos(cuerpo)
+    # Espacio de no separación entre la cifra y su unidad («16 %», «7 m», «IC 95 %»)
+    cuerpo = re.sub(r"(\d) (%|km|m\b|€|euros\b|días\b|nidos\b)", "\\1\u00a0\\2", cuerpo)
     filas = "".join(f'<li><a href="#{i}"><span class="n">{n}</span>{t}</a></li>' for i, n, t in indice)
     html_indice = f'<nav class="indice"><h2>Índice</h2><ol>{filas}</ol></nav>'
     doc_html = (f"<!doctype html><html lang='es'><head><meta charset='utf-8'>"
