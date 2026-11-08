@@ -141,7 +141,7 @@ const datos = async (claves) => Object.fromEntries(await Promise.all(claves.map(
 export async function iniciar() {
   const lang = idioma();
   // Lo imprescindible para la portada y el mapa (el resto, por paradas)
-  const contenido = await json(`content/${lang}.json`);
+  const contenido = await json(`content/${lang}.json?v=8c5a1dfc`);
   const I = contenido.interfaz;
   crearPaneles(I);
   crearParadas(contenido);
