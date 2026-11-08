@@ -1,0 +1,66 @@
+# Avispa asiática por comarcas de Bizkaia (Eustat), temporadas 2019-2025, avisos abril-diciembre
+
+## Base
+  Nidos 2019-2025 (abr-dic, asiática, sin anuladas): 18098; Bilbao 3 (fuera: servicio municipal propio); quedan 18095. Municipios sin comarca: ninguno; sin padrón: ninguno.
+  Correspondencia: Eustat, «Municipios de la C.A. de Euskadi» (113 municipios de Bizkaia, 7 comarcas), idéntica en pertenencia a la capa municipal de la Diputación (outputs/municipio_comarca.csv).
+  Gran Bilbao se da siempre sin Bilbao (población 2025 sin Bilbao: 523.503 hab.). La comarca sale del campo municipio.
+
+## Resumen 2019-2025 (nidos/año = media anual; tasas sobre población y superficie sin Bilbao)
+  comarca             mun nidos/año /1000hab /1000km2  prim. >=1/11 d.med d.p90   <=7d noelim
+  Gran Bilbao          26       850     1.63     2534  14.3%  15.8%     2     7  92.6%   8.8%
+  Plentzia-Mungia      15       423     6.97     2032  15.3%  16.8%     2     6  95.0%   7.5%
+  Gernika-Bermeo       20       302     6.51     1074   8.1%  23.4%     2     7  93.1%   5.6%
+  Markina-Ondarroa     12       151     5.84      731   4.8%  30.1%     2     8  88.8%   6.3%
+  Duranguesado         15       393     3.94     1243  10.0%  21.5%     2     7  90.7%   8.9%
+  Arratia-Nervión      14       221     9.12      551   8.0%  24.8%     2     7  91.6%   6.3%
+  Encartaciones        10       245     7.61      578   7.3%  27.0%     2     7  90.5%   8.7%
+  Bizkaia sin Bilbao  112      2585     3.19     1190  11.3%  20.4%     2     7  92.3%   7.9%
+
+## Nidos por temporada
+                       2019  2020  2021  2022  2023  2024  2025
+  Gran Bilbao           672   924   749   740   991   974   901
+  Plentzia-Mungia       385   358   352   376   601   471   421
+  Gernika-Bermeo        243   281   229   327   300   328   403
+  Markina-Ondarroa      112   133    82   201   155   176   197
+  Duranguesado          261   437   361   379   369   394   551
+  Arratia-Nervión       151   234   174   200   209   228   349
+  Encartaciones         166   232   191   245   245   237   400
+  Bizkaia sin Bilbao   1990  2599  2138  2468  2870  2808  3222
+
+## Frente al resto de Bizkaia (sin Bilbao), temporada como unidad; IC 95 %; * = p Holm < 0,05
+  RR = razón de tasas (cuasi-Poisson con efectos de temporada); OR = razón de odds (cuasibinomial); días = media de las diferencias anuales de mediana.
+  Gran Bilbao: RR hab 0.27 [0.25-0.30]*; RR km2 2.68 [2.42-2.97]*
+    OR primavera 1.53 [1.37-1.71]*; OR >=1/11 0.65 [0.57-0.74]*; OR <=7d 1.05 [0.84-1.31] ; OR no elim. 1.19 [1.03-1.38] ; días +0.1 [-0.2 a +0.5]
+  Plentzia-Mungia: RR hab 2.41 [2.05-2.83]*; RR km2 1.85 [1.58-2.16]*
+    OR primavera 1.55 [1.39-1.74]*; OR >=1/11 0.77 [0.66-0.90]*; OR <=7d 1.68 [1.30-2.15]*; OR no elim. 0.94 [0.80-1.10] ; días +0.0 [-0.5 a +0.5]
+  Gernika-Bermeo: RR hab 2.17 [2.01-2.35]*; RR km2 0.89 [0.82-0.96]*
+    OR primavera 0.66 [0.49-0.90]*; OR >=1/11 1.22 [0.93-1.59] ; OR <=7d 1.15 [0.96-1.38] ; OR no elim. 0.67 [0.55-0.82]*; días +0.0 [+0.0 a +0.0]*
+  Markina-Ondarroa: RR hab 1.88 [1.58-2.24]*; RR km2 0.59 [0.50-0.70]*
+    OR primavera 0.38 [0.28-0.50]*; OR >=1/11 1.73 [1.39-2.15]*; OR <=7d 0.65 [0.48-0.88]*; OR no elim. 0.80 [0.56-1.13] ; días +0.6 [+0.2 a +1.1]
+  Duranguesado: RR hab 1.28 [1.15-1.42]*; RR km2 1.05 [0.95-1.17] 
+    OR primavera 0.85 [0.63-1.14] ; OR >=1/11 1.06 [0.89-1.26] ; OR <=7d 0.80 [0.65-1.00] ; OR no elim. 1.17 [0.88-1.54] ; días +0.4 [-0.1 a +0.9]
+  Arratia-Nervión: RR hab 3.03 [2.69-3.42]*; RR km2 0.41 [0.37-0.47]*
+    OR primavera 0.65 [0.48-0.90]*; OR >=1/11 1.30 [1.15-1.48]*; OR <=7d 0.93 [0.71-1.22] ; OR no elim. 0.78 [0.58-1.05] ; días +0.4 [-0.1 a +0.9]
+  Encartaciones: RR hab 2.53 [2.21-2.89]*; RR km2 0.43 [0.38-0.49]*
+    OR primavera 0.59 [0.44-0.79]*; OR >=1/11 1.47 [1.29-1.69]*; OR <=7d 0.81 [0.59-1.10] ; OR no elim. 1.15 [0.87-1.53] ; días +0.3 [-0.2 a +0.7]
+
+## Tendencias 2019-2025 por comarca (7 temporadas: potencia baja; IC que incluye 0/1 no prueba estabilidad)
+  Nidos: binomial negativa (alfa 0,05), % al año. Proporciones: cuasibinomial, OR por año.
+  Gran Bilbao: nidos +4.5 %/año [-3.9 a +13.6], p=0.304; OR/año primavera 0.91 [0.84-0.99]; no elim. 0.91 [0.84-1.00]; <=7d 1.00 [0.88-1.14]; >=1/11 0.98 [0.90-1.06]
+  Plentzia-Mungia: nidos +5.2 %/año [-3.4 a +14.5], p=0.242; OR/año primavera 0.97 [0.89-1.06]; no elim. 0.94 [0.87-1.03]; <=7d 1.10 [0.97-1.26]; >=1/11 1.03 [0.95-1.12]
+  Gernika-Bermeo: nidos +7.7 %/año [-1.1 a +17.4], p=0.088; OR/año primavera 0.90 [0.80-1.01]; no elim. 0.85 [0.75-0.96]; <=7d 0.93 [0.83-1.04]; >=1/11 1.08 [0.94-1.23]
+  Markina-Ondarroa: nidos +10.4 %/año [+1.1 a +20.6], p=0.028; OR/año primavera 0.94 [0.81-1.09]; no elim. 0.86 [0.72-1.03]; <=7d 0.93 [0.74-1.15]; >=1/11 1.08 [0.92-1.28]
+  Duranguesado: nidos +7.4 %/año [-1.4 a +16.9], p=0.102; OR/año primavera 1.08 [0.96-1.21]; no elim. 0.98 [0.87-1.10]; <=7d 0.99 [0.89-1.11]; >=1/11 0.98 [0.87-1.09]
+  Arratia-Nervión: nidos +9.9 %/año [+0.8 a +19.9], p=0.032; OR/año primavera 1.02 [0.84-1.24]; no elim. 0.82 [0.71-0.95]; <=7d 0.99 [0.84-1.17]; >=1/11 1.02 [0.96-1.09]
+  Encartaciones: nidos +11.3 %/año [+2.1 a +21.4], p=0.015; OR/año primavera 0.82 [0.73-0.92]; no elim. 0.81 [0.72-0.91]; <=7d 0.96 [0.76-1.21]; >=1/11 1.04 [0.96-1.13]
+  Bizkaia sin Bilbao: nidos +6.9 %/año [-1.6 a +16.2], p=0.116; OR/año primavera 0.94 [0.88-1.01]; no elim. 0.90 [0.84-0.96]; <=7d 0.99 [0.88-1.11]; >=1/11 1.02 [0.95-1.11]
+  Tendencia de nidos con p Holm < 0,05 (7 comarcas): ninguna; p Holm mínima 0.104.
+  ¿Difieren las tendencias de nidos entre comarcas? Interacción comarca x año (cuasi-Poisson): F(6,35)=0.71, p=0.643 (escala 10.1).
+
+## Limitaciones
+  - Son avisos atendidos, no un censo: la tasa depende también de cuánto se busca y se avisa en cada zona.
+  - Nidos por 1.000 hab. favorece a las comarcas rurales (poca población, mucho territorio); por km² usa la superficie total del término (monte incluido). Se dan las dos.
+  - La comarca se asigna por el municipio anotado en el registro; no se comprueba con las coordenadas.
+  - Comparaciones frente al resto con la temporada como unidad (7 por comarca), 7 comarcas x 7 indicadores: se aplica Holm dentro de cada indicador, no sobre el total.
+  - Días: mediana y p90 de los eliminados; % >= 1/11 sobre eliminados con fecha de cierre válida.
+  - Cambio de registro el 01/01/2023 (CLAUDE.md): afecta por igual a todas las comarcas, pero puede desplazar las tendencias de % no eliminables.

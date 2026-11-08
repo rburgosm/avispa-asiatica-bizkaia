@@ -2,7 +2,9 @@
 data/raw/
 # Notas internas de trabajo
 CLAUDE.md
-docs/
+docs/*
+!docs/memoria_tecnica.md
+!docs/memoria_tecnica.pdf
 # Python
 __pycache__/
 *.pyc

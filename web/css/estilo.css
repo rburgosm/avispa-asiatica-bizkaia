@@ -32,13 +32,35 @@
   --rampa-4: #9c4f08;
   --rampa-5: #5a2a05;
   --tarjeta: rgba(250, 247, 240, 0.96);
+  --tarjeta-mapa: rgba(250, 247, 240, 0.9);  /* tarjetas sobre el mapa (semitransparentes) */
   --sombra-zona: rgba(29, 26, 22, 0.07);  /* zonas resaltadas en los gráficos (tinta al 7 %) */
-  --mapa-tierra: #fffdf8;
-  --mapa-mar: #e9edf0;
+  /* Mapa base (Protomaps, estilo propio en js/componentes/fondo_mapa.js): tierra en el tono del
+     papel, mar gris azulado claro, ciudad y carreteras en grises cálidos suaves */
+  --mapa-tierra: #f5f1e8;
+  --mapa-mar: #dfe5e8;
+  --mapa-urbano: #ebe5da;
+  --mapa-bosque: #e9eadf;
+  --mapa-carretera: #ffffff;
+  --mapa-carretera-borde: #ddd5c7;
+  --mapa-etiqueta: #6f675d;
   --mapa-borde: #a39a8c;
   --blanco: #ffffff;
   --letra: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --letra-texto: "Source Serif 4", Georgia, "Noto Serif", serif;
+
+  /* Escala tipográfica (móvil; escritorio en la media query). Mínimo absoluto: 13 px.
+     Los gráficos D3 usan estas mismas variables (util.js → tamano()). */
+  --t-portada: clamp(2.75rem, 7vw, 5.5rem);
+  --t-subtitulo: 20px;
+  --t-paso: 18px;
+  --t-cifra: 26px;
+  --t-titulo-grafico: 17px;
+  --t-etiqueta: 15px;
+  --t-eje: 13px;
+  --t-leyenda: 14px;
+  --t-firma: 14px;
+  --t-fecha: 32px;
+  --t-contador: 18px;
   --alto-grafico: 58svh;
 }
 
@@ -49,7 +71,7 @@ body {
   background: var(--fondo);
   color: var(--tinta);
   font-family: var(--letra-texto);
-  font-size: 1.0625rem;
+  font-size: var(--t-paso);
   line-height: 1.55;
 }
 a { color: var(--acento-2); }
@@ -62,116 +84,747 @@ a:focus-visible, summary:focus-visible, select:focus-visible, button:focus-visib
   position: absolute; width: 1px; height: 1px; overflow: hidden;
   clip: rect(0 0 0 0); white-space: nowrap;
 }
-.saltar { position: absolute; left: -999px; top: 0; background: var(--blanco); padding: .5rem; }
-.saltar:focus { left: 1rem; z-index: 10; }
-
-.cabecera, .cierre, .pie { max-width: 40rem; margin: 0 auto; padding: 2rem 16px; }
-.cabecera { padding-top: 12svh; padding-bottom: 6svh; }
-h1 { font-family: var(--letra); font-size: 2.4rem; line-height: 1.1; margin: .5rem 0; letter-spacing: -0.01em; }
-.subtitulo { font-size: 1.25rem; color: var(--tinta-suave); margin: 0 0 .75rem; }
-.firma { font-family: var(--letra); font-size: .875rem; color: var(--tinta-suave); }
-.aviso { max-width: 40rem; margin: 1rem auto; padding: 0 16px; }
+.saltar { position: absolute; left: -999px; top: 0; background: var(--blanco); padding: .5rem; z-index: 20; }
+.saltar:focus { left: 1rem; }
 strong { font-weight: 600; }
+.cifra { font-size: var(--t-cifra); font-weight: 600; color: var(--acento-texto); line-height: 1.1; }
+.aviso { max-width: 40rem; margin: 1rem auto; padding: 0 16px; position: relative; z-index: 2; }
 
-/* ---- Scrollytelling: gráfico fijo + pasos ---- */
-.scrolly { position: relative; padding: 0 0 20svh; }
-.grafico {
-  position: sticky; top: 0; z-index: 2;  /* en el móvil, los pasos pasan por debajo del gráfico */
-  height: var(--alto-grafico);
-  padding: .5rem 16px 0;
-  background: var(--fondo);
+/* ---------------------------------------------------------------- escenario del mapa (fijo) */
+.escenario {
+  position: fixed; inset: 0; z-index: 0;
+  background: var(--mapa-mar);
+  opacity: 0; visibility: hidden;
+  transition: opacity .7s ease, visibility 0s linear .7s;
 }
-.panel { margin: 0; height: 100%; display: flex; flex-direction: column; }
+.escenario.visible { opacity: 1; visibility: visible; transition: opacity .7s ease, visibility 0s; }
+.mapa { position: absolute; inset: 0; }
+/* Difuminado de los bordes hacia el papel (como los mapas impresos) */
+.vineta {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(250, 247, 240, .75), rgba(250, 247, 240, 0) 14%, rgba(250, 247, 240, 0) 86%, rgba(250, 247, 240, .75)),
+    linear-gradient(to right, rgba(250, 247, 240, .6), rgba(250, 247, 240, 0) 10%, rgba(250, 247, 240, 0) 90%, rgba(250, 247, 240, .6));
+}
+.anotaciones { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.anotaciones path { fill: none; stroke: var(--tinta); stroke-width: 1.4; }
+.etiquetas-mapa { position: absolute; inset: 0; pointer-events: none; }
+.anotacion {
+  position: absolute; max-width: 15rem;
+  font: 600 var(--t-etiqueta)/1.25 var(--letra); color: var(--tinta);
+  text-shadow: 0 0 3px var(--fondo), 0 0 3px var(--fondo), 0 0 6px var(--fondo);
+  opacity: 0; transition: opacity .6s ease;
+}
+.anotacion.visible { opacity: 1; }
+.anotacion .sub { display: block; font-weight: 400; color: var(--tinta-suave); }
+.anotacion.ilustracion { font-style: italic; font-weight: 600; color: var(--tinta-suave); }
+
+.cabeza-mapa {
+  position: absolute; top: 8px; left: 8px; right: 8px; z-index: 3;
+  display: flex; flex-direction: column; gap: 6px; pointer-events: none;
+}
+.cabeza-mapa > * { pointer-events: auto; }
+/* El rótulo de la parada sube por encima del mapa: la cabecera (o las anotaciones) se funden mientras lo pisa */
+.cabeza-mapa, .etiquetas-mapa, .anotaciones { transition: opacity .3s ease; }
+.escenario.rotulo-encima .cabeza-mapa, .escenario.rotulo-tapa .etiquetas-mapa, .escenario.rotulo-tapa .anotaciones { opacity: 0; }
+.escenario.rotulo-encima .cabeza-mapa > * { pointer-events: none; }
+.contador {
+  background: var(--tarjeta-mapa); border-radius: 4px; padding: .45rem .7rem .3rem;
+  box-shadow: 0 1px 4px rgba(29, 26, 22, .12);
+  font-family: var(--letra);
+  transition: opacity .5s ease;
+}
+.contador.oculto { opacity: 0; pointer-events: none; }
+.contador-fila { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; flex-wrap: wrap; }
+.contador-fecha { font-family: var(--letra-texto); font-size: var(--t-fecha); line-height: 1.05; font-weight: 600; color: var(--tinta); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.contador-fecha.cambia { animation: cambia-anio .6s ease both; }
+@keyframes cambia-anio { from { opacity: 0; transform: translateY(.25em); } to { opacity: 1; transform: none; } }
+.contador-fecha { display: inline-block; }
+.contador-nidos { font-size: var(--t-contador); color: var(--tinta-suave); line-height: 1.2; white-space: nowrap; }
+.contador-nidos strong { color: var(--acento-texto); font-weight: 700; font-variant-numeric: tabular-nums; }
+.barra-tiempo { display: block; width: 100%; height: 34px; overflow: visible; margin-top: 2px; }
+.barra-tiempo text { font: var(--t-eje) var(--letra); fill: var(--tinta-suave); }
+.barra-tiempo .actual text { fill: var(--tinta); font-weight: 700; }
+
+.caja-mapa {
+  background: var(--tarjeta-mapa); border-radius: 4px; padding: .4rem .7rem;
+  box-shadow: 0 1px 4px rgba(29, 26, 22, .12); font-family: var(--letra);
+  transition: opacity .5s ease;
+}
+.caja-mapa .titulo-grafico { font-size: var(--t-leyenda); margin: 0; }
+/* Móvil: cabecera del mapa compacta (sin título, que se anuncia igual a los lectores de pantalla) */
+@media (max-width: 899px) {
+  .caja-mapa { padding: .25rem .55rem; }
+  .caja-mapa .titulo-grafico { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .caja-mapa .leyenda { line-height: 1.35; margin: 0; }
+  .caja-mapa .leyenda br { display: none; }
+  .caja-mapa .titulo-leyenda { display: block; }
+  .caja-mapa .nota-grafico { font-size: 13px; margin-top: .15rem; }
+  .caja-mapa .datos { font-size: 13px; }
+  .contador { padding: .35rem .6rem .2rem; }
+  .barra-tiempo { height: 30px; }
+  body:not(.historia-empezada) .caja-mapa { display: none; }
+}
+.caja-mapa .datos { margin-top: .15rem; }
+.situacion { display: none; }
+.atribucion {
+  position: absolute; right: 4px; bottom: 2px; margin: 0; z-index: 3;
+  font: 13px/1.3 var(--letra); color: var(--tinta-suave); background: rgba(250, 247, 240, .75); padding: 0 4px;
+}
+.atribucion a { color: var(--tinta-suave); }
+
+/* ---------------------------------------------------------------- portada */
+.portada {
+  position: relative; z-index: 1;
+  min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  text-align: center; padding: 0 16px 6svh;
+  pointer-events: none;
+  /* el borde inferior del mapa se funde con el papel bajo el título */
+  background: linear-gradient(to bottom, rgba(250, 247, 240, 0) 0, rgba(250, 247, 240, 0) 42%, rgba(250, 247, 240, .9) 60%, var(--fondo) 72%);
+}
+.portada-texto { max-width: 60rem; padding: 0 1rem; }
+.portada h1 {
+  font-family: var(--letra-texto); font-weight: 600; font-size: var(--t-portada);
+  line-height: 1.02; letter-spacing: -0.015em; margin: 0 0 .35em;
+  text-shadow: 0 0 18px var(--fondo), 0 0 6px var(--fondo);
+}
+.subtitulo { font-size: var(--t-subtitulo); color: var(--tinta); margin: 0 auto .9rem; max-width: 34rem; line-height: 1.35;
+  text-shadow: 0 0 8px var(--fondo), 0 0 3px var(--fondo); }
+.firma { font-family: var(--letra); font-size: var(--t-firma); color: var(--tinta-suave); margin: 0; }
+.seguir { font: 600 1.5rem var(--letra); color: var(--tinta-suave); margin: 2svh 0 0; animation: seguir 2.2s ease-in-out infinite; }
+@keyframes seguir { 50% { transform: translateY(6px); } }
+.intro:empty { display: none; }
+.intro { position: relative; z-index: 1; max-width: 40rem; margin: 0 auto; padding: 0 16px; background: var(--fondo); }
+
+/* ---------------------------------------------------------------- scrollytelling por paradas */
+/* Cada parada: rótulo con la pregunta, gráfico fijo (sticky dentro de la parada) y tarjetas que
+   pasan por encima. El mapa no va en la parada: es el escenario fijo de toda la página. */
+.historia { position: relative; z-index: 1; padding-bottom: 10svh; }
+.parada { position: relative; }
+/* La apertura de cada parada (.rotulo) está en el bloque «aperturas de sección», más abajo */
+.parada-cuerpo { position: relative; }
+.grafico {
+  position: sticky; top: 0; z-index: 2;  /* móvil: las tarjetas pasan por debajo del gráfico */
+  height: 100svh; pointer-events: none;
+}
+.parada-mapa .grafico { display: none; }
+.panel {
+  margin: 0; position: absolute; left: 0; right: 0; top: 0; height: var(--alto-grafico);
+  display: flex; flex-direction: column; padding: .5rem 16px .25rem;
+  background: var(--fondo); pointer-events: auto;
+  box-shadow: 0 6px 10px -8px rgba(29, 26, 22, .25);
+  transition: opacity .45s ease;
+}
 .panel[hidden] { display: none; }
-.titulo-grafico { font-family: var(--letra); font-weight: 600; font-size: .9375rem; margin: 0 0 .15rem; line-height: 1.25; }
+.panel.entrando { animation: entrar .5s ease both; }
+@keyframes entrar { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.titulo-grafico { font-family: var(--letra); font-weight: 600; font-size: var(--t-titulo-grafico); margin: 0 0 .2rem; line-height: 1.25; }
 .lienzo { flex: 1; min-height: 0; position: relative; }
 .lienzo svg { display: block; width: 100%; height: 100%; font-family: var(--letra); overflow: visible; }
-.lienzo-mapa { border: 1px solid var(--linea); background: var(--mapa-mar); }
-.nota-grafico { font-family: var(--letra); font-size: .8125rem; color: var(--tinta); margin: .3rem 0 0;
+.periodo { font: 600 var(--t-fecha)/1 var(--letra-texto); color: var(--tinta); text-align: center; margin: .2rem 0 0; font-variant-numeric: tabular-nums; }
+.periodo:empty { display: none; }
+.nota-grafico { font-family: var(--letra); font-size: var(--t-leyenda); color: var(--tinta); margin: .3rem 0 0;
   border-left: 3px solid var(--gris-dato); padding: .1rem .5rem; line-height: 1.3; }
 .nota-grafico:empty { display: none; }
 .alt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
-.pasos { position: relative; z-index: 1; padding: 0 16px; pointer-events: none; }
+.pasos { position: relative; z-index: 1; margin-top: -100svh; padding: 0 16px; pointer-events: none; }
+.parada-mapa .pasos { margin-top: 0; }
+/* Cada paso es alto (su progreso mueve el gráfico) y su tarjeta se queda fija abajo mientras dura */
 .paso {
-  max-width: 34rem; margin: 0 auto 50svh;
+  position: relative; max-width: 34rem; margin: 0 auto; pointer-events: none;
+  min-height: var(--alto-paso, 130svh);
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.paso:last-child { padding-bottom: 20svh; }
+.tarjeta {
+  position: sticky; bottom: 12px;
   background: var(--tarjeta); border: 1px solid var(--linea); border-radius: 4px;
-  padding: 1rem 1.1rem; box-shadow: 0 1px 3px rgba(0,0,0,.08);
+  padding: 1rem 1.15rem; box-shadow: 0 2px 8px rgba(29, 26, 22, .1);
   pointer-events: auto;
 }
-.paso:first-child { margin-top: 2svh; }
-.paso:last-child { margin-bottom: 30svh; }
-.paso p { margin: 0 0 .6rem; }
-.paso p:last-child { margin-bottom: 0; }
-.paso.activo { border-color: var(--tinta-suave); }
-.paso .boton { margin-top: .75rem; }
+.tarjeta p { margin: 0 0 .65rem; }
+.tarjeta p:last-child { margin-bottom: 0; }
+.paso.activo .tarjeta { border-color: var(--tinta-suave); }
+.tarjeta .boton { margin-top: .75rem; }
+.paso-mapa .tarjeta {
+  background: var(--tarjeta-mapa); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  border-color: rgba(163, 154, 140, .5);
+}
+
+/* Navegación por paradas: puntos a la derecha */
+.navegacion { position: fixed; right: 6px; top: 50%; transform: translateY(-50%); z-index: 6; display: none; }
+@media (min-width: 900px) { .navegacion.visible { display: block; } }
+.navegacion ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.navegacion a { position: relative; display: flex; align-items: center; justify-content: center; text-decoration: none; width: 24px; height: 24px; }
+.navegacion .punto { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--tinta-suave); background: var(--fondo); flex: none; transition: transform .2s, background .2s; }
+.navegacion a[aria-current="true"] .punto { background: var(--tinta); border-color: var(--tinta); transform: scale(1.3); }
+.navegacion .nombre { font: 600 var(--t-leyenda) var(--letra); color: var(--tinta); background: var(--tarjeta); padding: 2px 8px; border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(29, 26, 22, .15); opacity: 0; transform: translateX(6px); transition: opacity .2s, transform .2s; pointer-events: none; white-space: nowrap;
+  position: absolute; right: 28px; top: 50%; margin-top: -.8em; }
+.navegacion a:hover .nombre, .navegacion a:focus-visible .nombre { opacity: 1; transform: none; }
+.boton { margin-top: .75rem; }
+/* Pasos de mapa: el paso es alto (su progreso mueve el mapa) y la tarjeta se queda fija abajo */
+.paso-mapa { display: flex; flex-direction: column; justify-content: flex-end; min-height: var(--alto-paso, 220svh); margin-bottom: 30svh; }
+.paso-mapa .tarjeta {
+  position: sticky; bottom: 12px;
+  background: var(--tarjeta-mapa); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  border-color: rgba(163, 154, 140, .5);
+}
 .boton {
   font: 600 1rem var(--letra); color: var(--blanco); background: var(--acento-2);
-  border: 0; border-radius: 3px; padding: .55rem .9rem; cursor: pointer;
+  border: 0; border-radius: 3px; padding: .6rem 1rem; cursor: pointer;
 }
 .boton:disabled { background: var(--gris-dato); color: var(--tinta); cursor: default; }
 
-.leyenda { font-family: var(--letra); font-size: .8125rem; color: var(--tinta-suave); margin: .25rem 0 0; line-height: 1.5; }
+.leyenda { font-family: var(--letra); font-size: var(--t-leyenda); color: var(--tinta-suave); margin: .15rem 0 0; line-height: 1.45; }
 .leyenda .clase { white-space: nowrap; margin-right: .5rem; display: inline-block; }
-.leyenda .muestra { display: inline-block; width: .9rem; height: .7rem; vertical-align: -1px; margin-right: .25rem; border: 1px solid var(--mapa-borde); }
+.leyenda .muestra { display: inline-block; width: .95rem; height: .75rem; vertical-align: -1px; margin-right: .25rem; border: 1px solid var(--mapa-borde); }
+.leyenda .muestra.punto { border-radius: 50%; width: .75rem; }
+.leyenda .muestra.hueco { border-radius: 50%; width: .75rem; background: transparent; border: 1.5px solid var(--tinta-suave); }
 .leyenda .muestra.rayada { background: repeating-linear-gradient(45deg, var(--gris-dato) 0 2px, var(--mapa-tierra) 2px 5px); }
-.marca-mapa { font-family: var(--letra); font-size: .75rem; color: var(--tinta); background: var(--tarjeta);
-  border: 1px solid var(--mapa-borde); padding: 1px 5px; border-radius: 2px; white-space: nowrap; pointer-events: none; }
+.leyenda .degradado { display: inline-block; width: 5.5rem; height: .7rem; vertical-align: -1px; margin: 0 .3rem;
+  background: linear-gradient(to right, rgba(246, 207, 134, .3), var(--rampa-2), var(--rampa-3), var(--rampa-4), var(--rampa-5)); }
 
-/* Gráficos SVG */
-.eje text { fill: var(--tinta-suave); font-size: 12px; }
+/* Gráficos SVG: tamaños de la escala tipográfica */
+.eje text { fill: var(--tinta-suave); font-size: var(--t-eje); }
 .eje line, .eje path { stroke: var(--linea); }
-.etiqueta-valor { fill: var(--tinta); font-size: 12px; font-weight: 600; }
+.etiqueta-valor { fill: var(--tinta); font-size: var(--t-etiqueta); font-weight: 600; }
 /* Halo del color del fondo para que las etiquetas se lean sobre rejillas y rayados */
-.etiqueta-valor, .etiqueta-nota, .etiqueta-serie { paint-order: stroke; stroke: var(--fondo); stroke-width: 3px; stroke-linejoin: round; }
-.etiqueta-serie { font-size: 12px; font-weight: 600; }
-.etiqueta-nota { fill: var(--tinta-suave); font-size: 12px; }
-.titulo-eje { fill: var(--tinta-suave); font-size: 12px; }
-.esquema text { font-size: 13px; fill: var(--tinta); }
-.esquema .pequeno { font-size: 12px; fill: var(--tinta-suave); }
-.esquema .grande { font-size: 15px; font-weight: 600; }
+.etiqueta-valor, .etiqueta-nota, .etiqueta-serie, .etiqueta-eje-fuerte { paint-order: stroke; stroke: var(--fondo); stroke-width: 3px; stroke-linejoin: round; }
+.etiqueta-serie { font-size: var(--t-etiqueta); font-weight: 600; }
+.etiqueta-nota { fill: var(--tinta-suave); font-size: var(--t-etiqueta); }
+.etiqueta-pequena { font-size: var(--t-eje); }
+.titulo-eje { fill: var(--tinta-suave); font-size: var(--t-eje); }
+.esquema text { font-size: var(--t-etiqueta); fill: var(--tinta); }
+.esquema .pequeno { font-size: var(--t-eje); fill: var(--tinta-suave); }
+.esquema .grande { font-size: var(--t-etiqueta); font-weight: 700; }
+.esquema .enorme { font-family: var(--letra-texto); font-size: var(--t-fecha); font-weight: 600; }
+.credito { font-size: 13px; fill: var(--tinta-suave); }
+.credito a, a .credito { fill: var(--tinta-suave); text-decoration: underline; }
+.hilo-anillo { fill: none; stroke: var(--tinta); stroke-width: 2.5; }
+.hilo-texto { font-size: var(--t-etiqueta); font-weight: 600; fill: var(--tinta); paint-order: stroke; stroke: var(--fondo); stroke-width: 4px; }
 .barra-estimacion { cursor: pointer; }
 .lienzo-estimacion svg { touch-action: pan-y; }
 
-.datos { font-family: var(--letra); font-size: .8125rem; margin-top: .25rem; }
+.datos { font-family: var(--letra); font-size: var(--t-leyenda); margin-top: .25rem; }
 .datos summary { cursor: pointer; color: var(--acento-2); }
 .datos .tabla { max-height: 30svh; overflow: auto; background: var(--blanco); }
 .datos table { border-collapse: collapse; width: 100%; }
 .datos th, .datos td { border-bottom: 1px solid var(--linea); padding: .15rem .35rem; text-align: right; }
 .datos th:first-child, .datos td:first-child { text-align: left; }
 
+/* ---------------------------------------------------------------- después de la historia */
+.explorador, .descargas, .cierre, .pie { position: relative; z-index: 1; background: var(--fondo); }
+.cierre, .pie { max-width: 40rem; margin: 0 auto; padding: 2rem 16px; }
 .explorador, .descargas { max-width: 40rem; margin: 0 auto; padding: 1.5rem 16px; font-family: var(--letra); }
-.explorador h2, .descargas h2, .cierre h2 { font-family: var(--letra); font-size: 1.35rem; }
+.explorador h2, .descargas h2, .cierre h2 { font-family: var(--letra); font-size: 1.5rem; }
 .explorador label { display: block; font-weight: 600; margin-bottom: .25rem; }
 .explorador input { font: inherit; width: 100%; max-width: 22rem; padding: .45rem .5rem; border: 1px solid var(--tinta-suave); border-radius: 3px; background: var(--blanco); }
 .resumen-municipio { min-height: 4.5em; }
-.lienzo-explorador { height: 240px; }
+.lienzo-explorador { height: 340px; }
 .enlaces { font-family: var(--letra); }
-.pie h3 { font-size: .9375rem; margin-bottom: .25rem; }
-
-.pie { font-family: var(--letra); font-size: .875rem; border-top: 1px solid var(--linea); }
-.pie h2 { font-size: 1rem; }
+.pie h3 { font-size: var(--t-firma); margin-bottom: .25rem; }
+.pie { font-family: var(--letra); font-size: var(--t-firma); border-top: 1px solid var(--linea); }
+.pie h2 { font-size: 1.1rem; }
 .notas { color: var(--tinta-suave); }
+.creditos-fotos li { margin-bottom: .25rem; }
 
 /* Metodología */
 .metodologia { font-family: var(--letra-texto); }
-.metodologia h2 { font-family: var(--letra); font-size: 1.2rem; margin-top: 2rem; }
+.metodologia h2 { font-family: var(--letra); font-size: 1.3rem; margin-top: 2rem; }
 .metodologia li { margin-bottom: .35rem; }
 .metodologia code { font-size: .875em; }
 .metodologia li, .metodologia p, .pie li { overflow-wrap: anywhere; }
 
-/* Escritorio: texto a la izquierda, gráfico fijo a la derecha */
+/* ---------------------------------------------------------------- escritorio */
 @media (min-width: 900px) {
-  :root { --alto-grafico: 100svh; }
-  .scrolly { display: grid; grid-template-columns: minmax(18rem, 2fr) 3fr; padding-bottom: 0; }
-  .grafico { grid-column: 2; grid-row: 1; padding: 1.5rem 24px; z-index: 0; }
-  .pasos { grid-column: 1; grid-row: 1; padding: 0 24px; }
-  .paso { margin-bottom: 80svh; }
-  .paso:first-child { margin-top: 30svh; }
-  .paso:last-child { margin-bottom: 40svh; }
-  h1 { font-size: 3rem; }
+  :root {
+    --t-subtitulo: 24px; --t-paso: 20px; --t-cifra: 30px; --t-titulo-grafico: 20px;
+    --t-etiqueta: 16px; --t-eje: 14px; --t-leyenda: 15px; --t-firma: 15px;
+    --t-fecha: 48px; --t-contador: 24px;
+    --alto-grafico: 100svh;
+  }
+  /* Gráficos: texto a la izquierda y gráfico grande a la derecha */
+  .panel { left: 38%; right: 0; top: 0; bottom: 0; height: auto; padding: 2.2rem 4.5vw 1.5rem 1.5rem; box-shadow: none; background: transparent; }
+  .grafico { z-index: 0; }
+  .pasos { padding: 0; }
+  .paso { margin: 0 0 0 4vw; max-width: min(32rem, 32vw); justify-content: flex-start; }
+  .tarjeta { top: 30svh; bottom: auto; margin-top: 50svh; }
+  /* Mapa: tarjetas por encima, alternando lados, fijas a media altura */
+  .paso-mapa .tarjeta { top: 42svh; }
+  .paso-mapa.derecha { margin-left: auto; margin-right: calc(4vw + 24px); }
+  .navegacion { right: 12px; }
+  .cabeza-mapa { top: 1.25rem; left: 1.5rem; right: auto; width: min(30rem, 34vw); gap: 8px; }
+  .contador { padding: .6rem .9rem .4rem; }
+  .barra-tiempo { height: 40px; }
+  .caja-mapa .titulo-grafico { font-size: var(--t-leyenda); }
+  .situacion { display: block; position: absolute; right: 1.5rem; bottom: 2rem; width: 150px; height: 130px; z-index: 3;
+    background: var(--tarjeta-mapa); border-radius: 4px; box-shadow: 0 1px 4px rgba(29, 26, 22, .12); }
+  .situacion .pais { fill: var(--mapa-tierra); stroke: var(--gris-dato); stroke-width: .6; }
+  .situacion .bizkaia { fill: var(--acento); stroke: var(--tinta); stroke-width: .6; }
+  .situacion text { font: 13px var(--letra); fill: var(--tinta-suave); }
+  .anotacion { max-width: 16rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; scroll-behavior: auto !important; }
+  *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
 }
+
+/* ---------------------------------------------------------------- mapas: cartografía D3 y detalle MapLibre */
+.mapa-svg, .mapa { position: absolute; inset: 0; transition: opacity .8s ease; }
+.mapa { opacity: 0; pointer-events: none; }
+.escenario.detalle .mapa { opacity: 1; }
+.mapa-svg svg, .mapa-svg canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.mapa-svg { background: var(--mapa-mar); opacity: 0; transition: opacity .8s ease; }
+.mapa-svg.listo { opacity: 1; }
+.escenario.detalle .mapa-svg.listo { opacity: 0; }
+.limite-municipal { fill: none; stroke: var(--tinta-suave); stroke-opacity: .4; stroke-width: .6; vector-effect: non-scaling-stroke; }
+.contorno-bizkaia { fill: none; stroke: var(--tinta); stroke-width: 1.3; stroke-opacity: .75; vector-effect: non-scaling-stroke; }
+.resalte-municipio { fill: none; stroke: var(--tinta); stroke-width: 1.8; vector-effect: non-scaling-stroke; }
+.rotulo-comarca { font: 600 13px var(--letra); letter-spacing: .16em; fill: var(--tinta-suave);
+  paint-order: stroke; stroke: var(--mapa-tierra); stroke-width: 3px; stroke-linejoin: round; transition: opacity .4s; }
+.cabecera circle { fill: var(--tinta); stroke: var(--fondo); stroke-width: 1.2; }
+.cabecera text { font: 600 13.5px var(--letra); fill: var(--tinta); paint-order: stroke; stroke: var(--fondo); stroke-width: 3px; stroke-linejoin: round; }
+.titulo-leyenda { font-weight: 600; color: var(--tinta); }
+@media (min-width: 900px) {
+  .rotulo-comarca { font-size: 14px; }
+  .cabecera text { font-size: 15px; }
+}
+
+/* ---------------------------------------------------------------- fotografías a sangre (paradas de la especie) */
+.fotos { position: absolute; inset: 0; pointer-events: none; }
+/* Móvil: en las paradas con foto, las tarjetas van por encima de la foto (y del gráfico al salir) */
+@media (max-width: 899px) { .grafico:has(.fotos) { z-index: 0; } }
+.foto { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity .9s ease; }
+.foto.visible { opacity: 1; }
+.foto picture, .foto img { display: block; width: 100%; height: 100%; }
+.foto img { object-fit: cover; }
+.pie-foto {
+  position: absolute; left: 12px; top: calc(var(--alto-panel, var(--alto-grafico)) + 6px); max-width: min(30rem, calc(100% - 24px));
+  background: rgba(29, 26, 22, .72); color: #f5f1e8; padding: .4rem .6rem; border-radius: 3px;
+  font: 13px/1.35 var(--letra); pointer-events: auto;
+}
+.pie-foto a { color: #f5f1e8; }
+@media (min-width: 900px) {
+  /* Escritorio: la foto ocupa a sangre la columna de las tarjetas (proporción 4:5) */
+  .pie-foto { top: auto; bottom: 16px; left: auto; right: 16px; font-size: 14px; max-width: 30rem; }
+  .panel.sobre-foto { background: rgba(250, 247, 240, .93); top: 1.5rem; bottom: 1.5rem; right: 1.5rem; border-radius: 4px;
+    box-shadow: 0 4px 16px rgba(29, 26, 22, .18); }
+  .parada-grafico .paso-grafico .tarjeta { box-shadow: 0 4px 16px rgba(29, 26, 22, .18); }
+}
+.progreso-lectura { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: var(--acento); transform-origin: 0 50%; transform: scaleX(0); z-index: 10; }
+
+/* Imagen estática del mapa de la portada (primera pintura), bajo el mapa vivo y con su mismo encuadre */
+.portada-mapa { position: absolute; top: 30px; left: 80px; width: calc(100% - 160px); height: calc(60% - 30px); object-fit: contain; }
+@media (max-width: 899px) { .portada-mapa { top: 40px; left: 10px; width: calc(100% - 20px); height: calc(50% - 40px); } }
+
+/* Esqueleto de carga de cada gráfico: misma caja que el gráfico final, con un brillo suave */
+.lienzo.cargando { border-radius: 4px; overflow: hidden;
+  background: linear-gradient(100deg, var(--linea) 30%, #ebe5da 50%, var(--linea) 70%) 0 0 / 300% 100%;
+  opacity: .55; animation: brillo 1.6s linear infinite; }
+@keyframes brillo { to { background-position: -150% 0; } }
+.estado-carga { position: absolute; inset: auto 0 45% 0; text-align: center; font: var(--t-leyenda) var(--letra); color: var(--tinta-suave); }
+.estado-carga .boton { margin-left: .5rem; font-size: .9rem; padding: .35rem .7rem; }
+.aviso-carga { background: var(--tarjeta); border: 1px solid var(--linea); border-radius: 4px; padding: .75rem 1rem; font-family: var(--letra); font-size: var(--t-leyenda); }
+.aviso-carga .boton { margin-left: .5rem; }
+/* maplibre-gl.css se carga después (bajo demanda) y pone .maplibregl-map en position: relative */
+.escenario .mapa.maplibregl-map { position: absolute; inset: 0; }
+
+/* ---------------------------------------------------------------- guion v2: titulares, comarcas */
+.titular { font: 700 clamp(1.15rem, 1.6vw, 1.4rem)/1.2 var(--letra); letter-spacing: .01em; color: var(--acento-texto); margin: 0 0 .55rem !important; }
+.hilo-cierre { font-weight: 600; border-left: 4px solid var(--acento); padding-left: .8rem; }
+.contador-nota { margin: 0; font: 13px/1.3 var(--letra); color: var(--tinta-suave); }
+.interruptor { display: inline-flex; border: 1px solid var(--tinta-suave); border-radius: 999px; overflow: hidden; margin: .25rem 0 .2rem; }
+.interruptor[hidden] { display: none; }
+.interruptor button { font: 600 var(--t-leyenda) var(--letra); border: 0; background: transparent; color: var(--tinta); padding: .3rem .9rem; cursor: pointer; min-height: 44px; }
+.interruptor button[aria-pressed="true"] { background: var(--tinta); color: var(--fondo); }
+.comarca { stroke: var(--fondo); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.valor-comarca { font: 700 var(--t-etiqueta) var(--letra); fill: var(--tinta); paint-order: stroke; stroke: var(--fondo); stroke-width: 3.5px; stroke-linejoin: round; }
+.comarcas-valor .rotulo-comarca { fill: var(--tinta); }
+@media (max-width: 899px) { .comarcas-valor .rotulo-comarca { letter-spacing: .02em; } }
+
+/* Paradas con foto: primero la foto a sangre (sin gráfico) y después el gráfico */
+.parada.fase-foto .panel { opacity: 0 !important; pointer-events: none; }
+.parada .panel { transition: opacity .6s ease; }
+.pie-foto { font-size: 13px; }
+@media (max-width: 899px) {
+  .parada.fase-foto .pie-foto { top: 12px; }
+  .parada.foto-sola .paso-grafico.activo .tarjeta { opacity: 0; transform: translateY(16px); }
+  .parada:not(.fase-foto) .paso-grafico.tarjeta-plegada .tarjeta { opacity: 0; transform: translateY(16px); pointer-events: none; }
+  .tarjeta { transition: opacity .5s ease, transform .5s ease; }
+}
+
+/* Ritmo en el móvil: menos recorrido vacío (cada 1-1,5 pantallas tiene que pasar algo) */
+@media (max-width: 899px) {
+  .paso { min-height: calc(var(--alto-paso, 130svh) * .72); }
+  .paso:last-child { padding-bottom: 6svh; }
+}
+
+/* === parada 2 === */
+/* «Dibuja tu estimación»: el foco del teclado se ve en la columna (el contorno CSS no se pinta
+   bien en elementos <g> de SVG) */
+.barra-estimacion:focus { outline: none; }
+.barra-estimacion:focus-visible .hueco { stroke: var(--acento-2); stroke-width: 2.5; stroke-dasharray: none; }
+.barra-estimacion:focus-visible .marca { stroke: var(--acento-2); }
+/* === fin parada 2 === */
+
+/* === buscador === «Tu municipio» (js/componentes/explorador.js) y cierre */
+.explorador { max-width: 60rem; }
+.explorador > h2, .explorador > p { max-width: 40rem; }
+#texto-explorador { font-size: var(--t-paso); line-height: 1.45; }
+.bus-selector { max-width: 30rem; margin: 1.25rem 0 .5rem; }
+.explorador .bus-etiqueta { font: 600 var(--t-leyenda)/1.2 var(--letra); color: var(--tinta-suave); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .35rem; }
+.bus-campo { position: relative; }
+.explorador .bus-campo input {
+  font: 600 1.375rem/1.2 var(--letra); width: 100%; max-width: none; min-height: 56px; padding: .6rem 3.2rem .6rem .9rem;
+  border: 2px solid var(--tinta); border-radius: 6px; background: var(--blanco); color: var(--tinta);
+  transition: box-shadow .2s ease;
+}
+.explorador .bus-campo input::placeholder { font-weight: 400; color: var(--tinta-suave); }
+.explorador .bus-campo input:focus-visible { outline: 3px solid var(--acento-2); outline-offset: 2px; }
+.bus-borrar {
+  position: absolute; right: 6px; top: 50%; transform: translateY(-50%); width: 44px; height: 44px;
+  border: 0; border-radius: 50%; background: transparent; color: var(--tinta-suave); font: 400 1.6rem/1 var(--letra); cursor: pointer;
+}
+.bus-borrar:hover { background: var(--sombra-zona); color: var(--tinta); }
+.bus-borrar:focus-visible { outline: 3px solid var(--acento-2); outline-offset: -3px; }
+.bus-borrar[hidden] { display: none; }
+.bus-opciones {
+  position: absolute; z-index: 6; left: 0; right: 0; top: calc(100% + 4px); margin: 0; padding: 4px 0; list-style: none;
+  max-height: min(22rem, 50svh); overflow-y: auto; overscroll-behavior: contain;
+  background: var(--blanco); border: 1px solid var(--linea); border-radius: 6px; box-shadow: 0 6px 18px rgba(29, 26, 22, .14);
+}
+.bus-opciones[hidden] { display: none; }
+.bus-opciones li { display: flex; align-items: center; gap: .5rem; min-height: 44px; padding: .35rem .9rem; font: 400 var(--t-paso)/1.2 var(--letra); color: var(--tinta); cursor: pointer; }
+.bus-opciones li[aria-selected="true"] { background: var(--sombra-zona); box-shadow: inset 4px 0 0 var(--tinta); }
+.bus-opciones li:hover { background: var(--sombra-zona); }
+.bus-opciones mark { background: none; color: inherit; font-weight: 700; }
+.bus-opciones .bus-vacia { cursor: default; color: var(--tinta-suave); }
+.bus-op-nota { margin-left: auto; font-size: var(--t-eje); color: var(--tinta-suave); }
+.bus-error { min-height: 1.3em; margin: .3rem 0 0; font-size: var(--t-leyenda); color: var(--acento-texto); }
+
+.bus-cuerpo { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+.bus-grafico { margin: 0; }
+.explorador .lienzo-explorador { height: 320px; }
+.bus-clave { font: var(--t-leyenda)/1.4 var(--letra); color: var(--tinta-suave); margin: .3rem 0 0; min-height: 2.8em; }
+.bus-etiq-comarca { font-weight: 400; }
+.bus-aviso-svg { paint-order: stroke; stroke: var(--fondo); stroke-width: 5px; stroke-linejoin: round; }
+
+.bus-ficha { border-top: 3px solid var(--tinta); padding-top: .6rem; }
+.bus-nombre { font: 600 1.6rem/1.15 var(--letra-texto); margin: 0 0 .6rem; color: var(--tinta); }
+.bus-sindatos { font: 600 var(--t-paso)/1.35 var(--letra); color: var(--tinta-suave); margin: 0 0 .6rem; }
+.bus-datos { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem 1rem; margin: 0; }
+.bus-datos[hidden], .bus-aviso[hidden], .bus-sindatos[hidden] { display: none; }
+.bus-dato { margin: 0; min-width: 0; }
+.bus-dato dt { font: 600 var(--t-eje)/1.25 var(--letra); color: var(--tinta-suave); margin: 0 0 .15rem; }
+.bus-dato dd { margin: 0; }
+.bus-cifra { font: 600 var(--t-cifra)/1.05 var(--letra-texto); color: var(--tinta); font-variant-numeric: tabular-nums; }
+.bus-dato-principal .bus-cifra { color: var(--acento-texto); }
+.bus-de { font: 400 var(--t-leyenda) var(--letra); color: var(--tinta-suave); }
+.bus-comarca-nombre { font: 600 var(--t-etiqueta)/1.25 var(--letra); color: var(--tinta); }
+.bus-nota { font: var(--t-eje)/1.35 var(--letra); color: var(--tinta-suave); margin-top: .2rem !important; }
+.bus-aviso { margin: .9rem 0 0; padding: .55rem .75rem; font: var(--t-leyenda)/1.4 var(--letra); color: var(--tinta);
+  background: var(--sombra-zona); border-left: 3px solid var(--gris-dato); }
+.bus-fundido .bus-nota, .bus-fundido .bus-nombre, .bus-fundido .bus-aviso, .bus-fundido .bus-comarca-nombre { animation: bus-fundido .6s ease both; }
+@keyframes bus-fundido { from { opacity: 0; } to { opacity: 1; } }
+
+@media (min-width: 900px) {
+  .bus-cuerpo { grid-template-columns: minmax(0, 1.75fr) minmax(16rem, 1fr); gap: 2.5rem; align-items: start; }
+  .bus-grafico { order: 1; }
+  .bus-ficha { order: 2; }
+  .explorador .lienzo-explorador { height: 400px; }
+  .bus-datos { grid-template-columns: 1fr; gap: 1rem; }
+  .bus-nombre { font-size: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bus-fundido .bus-nota, .bus-fundido .bus-nombre, .bus-fundido .bus-aviso, .bus-fundido .bus-comarca-nombre { animation: none; }
+}
+
+/* Cierre: lectura cómoda y enlaces táctiles de 44 px */
+.cierre { padding-top: 3rem; padding-bottom: 3rem; }
+#texto-cierre p { font: var(--t-paso)/1.55 var(--letra-texto); }
+.cierre .enlaces { list-style: none; padding: 0; margin: 1.5rem 0 0; border-top: 1px solid var(--linea); }
+.cierre .enlaces li { border-bottom: 1px solid var(--linea); }
+.cierre .enlaces a { display: flex; align-items: center; min-height: 48px; padding: .4rem 0; font: 600 var(--t-paso)/1.3 var(--letra); color: var(--acento-2); text-decoration: none; }
+.cierre .enlaces a::after { content: "→"; margin-left: auto; padding-left: .75rem; color: var(--tinta-suave); }
+.cierre .enlaces a:hover, .cierre .enlaces a:focus-visible { text-decoration: underline; }
+/* === fin buscador === */
+
+/* === aperturas de sección: rótulos, frases de paso y entradas (coordinador) ===
+   Cada parada (y el cierre y el buscador) se abre centrada, sin caja: la frase de paso de la parada
+   anterior en cursiva, como enlace; el número de la parada («3 / 6»); la pregunta en grande; una línea
+   fina de acento que se dibuja al entrar, y la entradilla si la hay. Frase + apertura: como mucho
+   unos 60 svh en escritorio y 50 svh en el móvil. */
+.rotulo {
+  position: relative; z-index: 3; box-sizing: border-box; min-height: 44svh; padding: 5svh 16px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+  background: var(--fondo);
+}
+.rotulo .frase-paso {
+  margin: 0 auto 4.5svh; max-width: 30rem; text-wrap: balance;
+  font: italic 400 clamp(1.1rem, 2.2vw, 1.4rem)/1.4 var(--letra-texto); color: var(--tinta-suave);
+}
+.rotulo .frase-paso[hidden] { display: none; }
+.rotulo-numero {
+  margin: 0 0 .9rem; font: 600 15px/1 var(--letra); letter-spacing: .14em;
+  color: var(--acento-texto); font-variant-numeric: tabular-nums;
+}
+.rotulo .pregunta {
+  margin: 0; max-width: 20ch; text-wrap: balance;
+  font: 600 clamp(2.4rem, 5.5vw, 4.2rem)/1.06 var(--letra-texto); letter-spacing: -.012em; color: var(--tinta);
+}
+.rotulo-linea {
+  display: block; width: 4.5rem; height: 3px; margin: 1.5rem auto 0; background: var(--acento);
+  border-radius: 2px; transform-origin: 50% 50%;
+}
+.rotulo .entradilla {
+  margin: 1.4rem auto 0; max-width: 34rem; text-wrap: pretty;
+  font: 400 var(--t-paso)/1.5 var(--letra-texto); color: var(--tinta-suave);
+}
+/* Paradas que empiezan sobre el mapa: el mapa se sigue viendo arriba y abajo, y una franja ancha de
+   papel semitransparente con los bordes fundidos hace legible el texto (sin cajita) */
+.parada.empieza-mapa .rotulo, .parada-mapa .rotulo {
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(250, 247, 240, 0) 0%, rgba(250, 247, 240, .98) 16%,
+    rgba(250, 247, 240, .98) 84%, rgba(250, 247, 240, 0) 100%);
+}
+/* Paradas de gráfico: el borde de arriba del papel se funde con lo anterior (mapa o gráfico) */
+.parada:not(.empieza-mapa) .rotulo::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 10svh; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(250, 247, 240, 0), var(--fondo));
+}
+/* Cierre y buscador: misma apertura, sin número, pegada a su contenido */
+.rotulo.rotulo-final { min-height: 0; padding: 9svh 0 5svh; background: transparent; }
+.cierre { padding-top: 0; }
+.cierre .rotulo .pregunta, .explorador .rotulo .pregunta { font-size: clamp(2.4rem, 5.5vw, 4.2rem); line-height: 1.06; margin: 0; }
+.explorador .rotulo .entradilla { max-width: 38rem; }
+@media (min-width: 900px) {
+  .rotulo { min-height: 54svh; padding: 6svh 16px; }
+  .rotulo .frase-paso { margin-bottom: 6svh; }
+  .rotulo-numero { font-size: 16px; }
+  .rotulo .entradilla { font-size: 20px; }
+}
+
+/* Entradas guiadas por el scroll con CSS (animation-timeline: view()): la frase entra y se desvanece
+   al salir; el número y la pregunta suben con fundido; la línea se dibuja desde el centro.
+   Mejora progresiva: sin soporte, se ven sin animación. Sin animación con movimiento reducido. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .frase-paso {
+      animation: frase-entra linear both;
+      animation-timeline: view();
+      animation-range: entry 10% exit 90%;
+    }
+    .rotulo-numero, .rotulo .pregunta, .rotulo .entradilla {
+      animation: rotulo-entra linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 40%;
+    }
+    .rotulo-linea {
+      animation: linea-dibuja linear both;
+      animation-timeline: view();
+      animation-range: entry 100% cover 45%;
+    }
+    .tarjeta .titular {
+      animation: titular-entra linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 80%;
+    }
+  }
+}
+@keyframes frase-entra {
+  0% { opacity: 0; transform: translateY(2rem); }
+  25%, 70% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(-1.5rem); }
+}
+@keyframes rotulo-entra {
+  0% { opacity: 0; transform: translateY(2.5rem); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes linea-dibuja {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+@keyframes titular-entra {
+  0% { opacity: 0; transform: translateX(-.75rem); }
+  100% { opacity: 1; transform: none; }
+}
+/* === fin aperturas de sección === */
+
+/* === transiciones (ronda 2) === */
+/* Cambio de gráfico dentro de una parada: fundido cruzado de 700 ms en el mismo sitio (app.js pone
+   «fundido-0» al panel nuevo un instante y «saliendo» al viejo hasta que se oculta) */
+.parada .panel { transition: opacity .7s cubic-bezier(.65, 0, .35, 1); }
+.panel.fundido-0 { opacity: 0; transition: none; }
+.panel.saliendo { opacity: 0; pointer-events: none; }
+/* Móvil: los paneles son opacos y las tarjetas pasan por debajo; para que no se transparente la
+   tarjeta anterior, el panel nuevo aparece ya opaco debajo y el viejo se desvanece por encima */
+@media (max-width: 899px) {
+  .panel.fundido-0 { opacity: 1; }
+  .panel.saliendo { z-index: 1; }
+}
+/* «Dibuja tu estimación»: el contador del periodo reserva su sitio desde el principio, para que el
+   gráfico no encoja (ni se muevan las columnas) al revelar los datos reales */
+#panel-estimacion .periodo:empty { display: block; min-height: 1em; }
+/* Línea de no eliminables: puntos, medias y marca del cambio de registro, con fundido */
+.lienzo-linea .punto-serie { transition: opacity .35s ease; }
+.lienzo-linea .medias { transition: opacity .5s ease; }
+.lienzo-linea .corte { transition: opacity .4s ease; }
+/* === fin transiciones (ronda 2) === */
+
+/* === mapa (ronda 2) === */
+/* Imagen estática de la portada: el mismo mapa a sangre que el mapa vivo (caja entera del relieve),
+   colocada con la misma cuenta que la cámara de la portada (js/componentes/mapa.js, relleno()):
+   la caja de los municipios encajada entre márgenes. Constantes en km, escritas por
+   scripts/web_preparar_portada.py. Al llegar el mapa vivo, mapa_narrativo.js la ajusta al píxel. */
+.escenario { container-type: size; }
+.portada-mapa {
+  /* portada:auto */
+  --pm-w: 84.19; --pm-h: 52.484; --pm-a: 143.505; --pm-b: 69.771; --pm-rw: 267.791; --pm-rh: 154.798;
+  /* /portada:auto */
+  --pm-k: min((100cqw - 160px) / var(--pm-w), (60cqh - 30px) / var(--pm-h));
+  position: absolute; max-width: none; object-fit: fill;
+  width: calc(var(--pm-k) * var(--pm-rw)); height: calc(var(--pm-k) * var(--pm-rh));
+  left: calc(80px + (100cqw - 160px) / 2 - var(--pm-k) * var(--pm-a));
+  top: calc(30px + (60cqh - 30px) / 2 - var(--pm-k) * var(--pm-b));
+}
+@media (max-width: 899px) {
+  .portada-mapa {
+    --pm-k: min((100cqw - 20px) / var(--pm-w), (50cqh - 40px) / var(--pm-h));
+    width: calc(var(--pm-k) * var(--pm-rw)); height: calc(var(--pm-k) * var(--pm-rh));
+    left: calc(10px + (100cqw - 20px) / 2 - var(--pm-k) * var(--pm-a));
+    top: calc(40px + (50cqh - 40px) / 2 - var(--pm-k) * var(--pm-b));
+  }
+}
+/* Leyenda del mapa pegada a la esquina superior izquierda; el contador, debajo */
+.cabeza-mapa { top: 16px; left: 16px; right: 16px; }
+.cabeza-mapa .caja-mapa { order: -1; }
+@media (min-width: 900px) { .cabeza-mapa { top: 18px; left: 18px; right: auto; } }
+/* Cambio entre el mapa D3 y el de detalle con el escenario oculto: sin fundido (no asoma el
+   estado anterior). El detalle no se enseña hasta estar pintado en su encuadre inicial. */
+.escenario.sin-fundido .mapa, .escenario.sin-fundido .mapa-svg, .escenario.sin-fundido .cabeza-mapa,
+.escenario.sin-fundido .cabeza-mapa > *, .escenario.sin-fundido .anotacion { transition: none !important; }
+.escenario.detalle:has(.mapa.preparando) .anotaciones, .escenario.detalle:has(.mapa.preparando) .etiquetas-mapa { opacity: 0; }
+.escenario.detalle .mapa.preparando { opacity: 0; transition: none; }
+/* === fin mapa (ronda 2) === */
+
+/* === rendimiento en móvil (coordinador) ===
+   backdrop-filter sobre un mapa que se anima es muy caro en móviles: se sustituye por un fondo casi opaco. */
+@media (max-width: 899px) {
+  .paso-mapa .tarjeta { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(250, 247, 240, .95); }
+}
+
+/* === fotos (ronda 3) === */
+/* Fondo: versión diminuta y difuminada de la propia foto (se ve mientras carga y en los bordes si la
+   pantalla pide más píxeles de los que tiene el original). La foto nunca se estira por encima de su
+   tamaño: con .limitada se muestra a su tamaño máximo, centrada. Grano SVG fijo al 4 %. */
+.foto { background: var(--fondo-alto) center / cover no-repeat; overflow: hidden; }
+@media (min-width: 900px) { .foto { background-image: var(--fondo-ancho); } }
+.foto picture { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+.foto img { opacity: 0; transition: opacity .4s ease; }
+.foto.lista img { opacity: 1; }
+.foto.limitada img { flex: none; object-fit: cover; box-shadow: 0 0 0 1px rgba(29, 26, 22, .08); }
+.foto::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+.foto .pie-foto { z-index: 1; }
+/* Móvil: el título del gráfico se oculta si repite el titular de la tarjeta (esquema.js pone la
+   clase; se conserva su alto para no redibujar el lienzo). La posición de las tarjetas la lleva el
+   bloque «maquetación móvil (ronda 4)». */
+@media (max-width: 899px) { .panel.titulo-repetido .titulo-grafico { visibility: hidden; } }
+/* === fin fotos (ronda 3) === */
+
+/* === maquetación móvil (ronda 4) ===
+   Móvil: una sola tarjeta a la vista. Las tarjetas no se desplazan: van fijas abajo (como mucho el
+   42 % de la pantalla) y solo se ve la del paso activo, y solo mientras su parada ocupa la pantalla
+   (clase «dentro», que pone app.js). Al cambiar de paso, la anterior sale en 300 ms y la nueva entra
+   después (350 ms), solo con opacity y transform. El gráfico ocupa el resto de la pantalla (app.js). */
+@media (max-width: 899px) {
+  /* El primer paso de las paradas de gráfico se alarga lo que tarda el gráfico en quedar fijo arriba
+     (se activa con el borde de arriba al 75 % y la tarjeta entra con el gráfico ya fijo): así su
+     tarjeta se lee el mismo tiempo que las demás (app.js cuenta su progreso desde ahí) */
+  .parada-grafico:not(.empieza-mapa) .paso:first-child { min-height: calc(var(--alto-paso, 130svh) * .72 + 75svh); }
+  .paso .tarjeta {
+    position: fixed; left: 16px; right: 16px; bottom: 12px; top: auto; z-index: 4;
+    max-width: 34rem; margin: 0 auto; box-sizing: border-box;
+    max-height: 50svh; overflow-y: auto; overscroll-behavior: contain;  /* objetivo 42 %; tope 50 % para no cortar texto */
+    opacity: 0; transform: translateY(14px); pointer-events: none;
+    transition: opacity .3s ease, transform .3s ease;
+  }
+  .parada.dentro .paso.activo .tarjeta {
+    opacity: 1; transform: none; pointer-events: auto;
+    transition: opacity .35s ease .3s, transform .35s cubic-bezier(.65, 0, .35, 1) .3s;
+  }
+  /* Paradas con foto: la tarjeta entra un poco después de la foto (esquema.js) */
+  .parada.dentro.foto-sola .paso-grafico.activo .tarjeta { opacity: 0; transform: translateY(14px); pointer-events: none; }
+  /* La entrada del titular va con la tarjeta (la tarjeta fija no tiene recorrido de scroll) */
+  .tarjeta .titular { animation: none; }
+}
+/* Pantallas bajas (≤ 760 px): tarjeta algo más compacta (mismo cuerpo de letra) */
+@media (max-width: 899px) and (max-height: 760px) {
+  .paso .tarjeta { padding: .8rem 1rem; }
+  .tarjeta p { margin-bottom: .5rem; }
+}
+@media (max-width: 899px) and (prefers-reduced-motion: reduce) {
+  .paso .tarjeta, .parada.dentro .paso.activo .tarjeta { transition: none; transform: none; }
+}
+/* === fin maquetación móvil (ronda 4) === */
+
+/* === navegación (ronda 5) ===
+   Puntos de la derecha (escritorio): una columna estrecha y centrada. El punto activo lleva debajo el
+   nombre de su parada en pequeño (Source Sans 3, 13 px, tinta suave), con un fundido al cambiar; los
+   demás enseñan su nombre al pasar el ratón o con el foco del teclado. El punto activo lo marca app.js
+   cuando la apertura de la parada cruza el centro de la pantalla. Los gráficos y las tarjetas de la
+   derecha dejan libre la columna, para que nada se pise. */
+@media (min-width: 900px) {
+  .navegacion { right: 10px; width: 84px; }
+  .navegacion ol { gap: 2px; align-items: center; }
+  .navegacion li { display: flex; flex-direction: column; align-items: center; width: 100%;
+    transition: transform .45s cubic-bezier(.65, 0, .35, 1); }
+  .navegacion a { width: 32px; height: 28px; }
+  .navegacion .punto { transition: transform .3s, background .3s, border-color .3s; }
+  .navegacion a[aria-current="true"] .punto { transform: scale(1.25); }
+  .navegacion .nombre { font: 600 14px/1.3 var(--letra); right: 36px; margin-top: 0; transform: translate(6px, -50%); }
+  .navegacion a:hover .nombre, .navegacion a:focus-visible .nombre { transform: translate(0, -50%); }
+  .navegacion a[aria-current="true"] .nombre { opacity: 0 !important; }
+  .navegacion .actual { display: none; box-sizing: border-box; width: 100%; padding: 0 2px 8px; text-align: center; text-wrap: balance;
+    font: 400 13px/1.25 var(--letra); color: var(--tinta-suave); pointer-events: none;
+    text-shadow: 0 0 3px var(--fondo), 0 0 3px var(--fondo), 0 0 6px var(--fondo); }
+  .navegacion li.con-nombre .actual { display: block; animation: nav-nombre .45s ease .12s both; }
+  @keyframes nav-nombre { from { opacity: 0; } to { opacity: 1; } }
+  /* La columna de la navegación ocupa ~94 px a la derecha: gráficos y tarjetas de mapa se apartan */
+  .panel { padding-right: max(4.5vw, 104px); }
+  .paso-mapa.derecha { margin-right: max(calc(4vw + 24px), 112px); }
+}
+@media (min-width: 900px) and (prefers-reduced-motion: reduce) {
+  .navegacion li.con-nombre .actual { animation: none; }
+}
+/* === fin navegación (ronda 5) === */
+
+/* === pie (ronda 6) === */
+.pie { max-width: 46rem; margin: 0 auto; padding: 3rem 16px 3.5rem; border-top: 1px solid var(--linea);
+  font-family: var(--letra); font-size: 15px; line-height: 1.5; color: var(--tinta-suave); }
+.pie p { margin: 0; }
+.pie-titulo { font-family: var(--letra-texto); font-size: 1.35rem; font-weight: 600; color: var(--tinta); letter-spacing: -.01em; }
+.pie-titulo::before { content: ""; display: block; width: 2.5rem; height: 3px; margin-bottom: .9rem; background: var(--acento); }
+.pie .pie-fuentes { margin-top: .5rem; color: var(--tinta); max-width: 38rem; }
+.pie-enlaces { list-style: none; padding: 0; margin: 1.5rem 0; display: grid; gap: .5rem; }
+.pie-enlaces a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 44px;
+  padding: .55rem .9rem; border: 1px solid var(--linea); border-radius: 4px; background: var(--blanco);
+  font-weight: 600; font-size: 16px; color: var(--acento-2); text-decoration: none; transition: border-color .2s, background-color .2s; }
+.pie-enlaces a::after { content: "→"; font-weight: 400; transition: transform .2s; }
+.pie-enlaces a:hover, .pie-enlaces a:focus-visible { border-color: var(--acento-2); }
+.pie-enlaces a:hover::after { transform: translateX(3px); }
+.pie-creditos { font-size: 14px; overflow-wrap: anywhere; }
+.pie .pie-firma { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--linea); font-size: 14px; color: var(--tinta); }
+.pie .pie-privacidad { margin-top: .35rem; font-size: 13px; }
+@media (min-width: 700px) {
+  .pie-enlaces { display: flex; flex-wrap: wrap; gap: .6rem; }
+  .pie-enlaces a { white-space: nowrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pie-enlaces a, .pie-enlaces a::after { transition: none; }
+}
+/* === fin pie (ronda 6) === */

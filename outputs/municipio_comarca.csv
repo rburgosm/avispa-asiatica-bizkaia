@@ -1,0 +1,114 @@
+codigo_ine,municipio,codigo_comarca_eustat,comarca_eustat,comarca_eustat_euskera,nombre_habitual
+48001,Abadiño,4803,Duranguesado,Durangaldea,Durangaldea
+48002,Abanto y Ciérvana-Abanto Zierbena,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48003,Amorebieta-Etxano,4803,Duranguesado,Durangaldea,Durangaldea
+48004,Amoroto,4806,Markina-Ondarroa,Markina-Ondarroa,Lea-Artibai
+48005,Arakaldo,4801,Arratia-Nervión,Arratia-Nerbioi,Arratia-Nerbioi
+48006,Arantzazu,4801,Arratia-Nervión,Arratia-Nerbioi,Arratia-Nerbioi
+48007,Munitibar-Arbatzegi Gerrikaitz,4806,Markina-Ondarroa,Markina-Ondarroa,Lea-Artibai
+48008,Artzentales,4804,Encartaciones,Enkartazioak,Enkarterri
+48009,Arrankudiaga-Zollo,4801,Arratia-Nervión,Arratia-Nerbioi,Arratia-Nerbioi
+48010,Arrieta,4807,Plentzia-Mungia,Plentzia-Mungia,Uribe
+48011,Arrigorriaga,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48012,Bakio,4807,Plentzia-Mungia,Plentzia-Mungia,Uribe
+48013,Barakaldo,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48014,Barrika,4807,Plentzia-Mungia,Plentzia-Mungia,Uribe
+48015,Basauri,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48016,Berango,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48017,Bermeo,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48018,Berriatua,4806,Markina-Ondarroa,Markina-Ondarroa,Lea-Artibai
+48019,Berriz,4803,Duranguesado,Durangaldea,Durangaldea
+48020,Bilbao,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48021,Busturia,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48022,Karrantza Harana/Valle de Carranza,4804,Encartaciones,Enkartazioak,Enkarterri
+48023,Artea,4801,Arratia-Nervión,Arratia-Nerbioi,Arratia-Nerbioi
+48024,Zeanuri,4801,Arratia-Nervión,Arratia-Nerbioi,Arratia-Nerbioi
+48025,Zeberio,4801,Arratia-Nervión,Arratia-Nerbioi,Arratia-Nerbioi
+48026,Dima,4801,Arratia-Nervión,Arratia-Nerbioi,Arratia-Nerbioi
+48027,Durango,4803,Duranguesado,Durangaldea,Durangaldea
+48028,Ea,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48029,Etxebarri,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48030,Etxebarria,4806,Markina-Ondarroa,Markina-Ondarroa,Lea-Artibai
+48031,Elantxobe,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48032,Elorrio,4803,Duranguesado,Durangaldea,Durangaldea
+48033,Ereño,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48034,Ermua,4803,Duranguesado,Durangaldea,Durangaldea
+48035,Fruiz,4807,Plentzia-Mungia,Plentzia-Mungia,Uribe
+48036,Galdakao,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48037,Galdames,4804,Encartaciones,Enkartazioak,Enkarterri
+48038,Gamiz-Fika,4807,Plentzia-Mungia,Plentzia-Mungia,Uribe
+48039,Garai,4803,Duranguesado,Durangaldea,Durangaldea
+48040,Gatika,4807,Plentzia-Mungia,Plentzia-Mungia,Uribe
+48041,Gautegiz Arteaga,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48042,Gordexola,4804,Encartaciones,Enkartazioak,Enkarterri
+48043,Gorliz,4807,Plentzia-Mungia,Plentzia-Mungia,Uribe
+48044,Getxo,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48045,Güeñes,4804,Encartaciones,Enkartazioak,Enkarterri
+48046,Gernika-Lumo,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48047,Gizaburuaga,4806,Markina-Ondarroa,Markina-Ondarroa,Lea-Artibai
+48048,Ibarrangelu,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48049,Ispaster,4806,Markina-Ondarroa,Markina-Ondarroa,Lea-Artibai
+48050,Izurtza,4803,Duranguesado,Durangaldea,Durangaldea
+48051,Lanestosa,4804,Encartaciones,Enkartazioak,Enkarterri
+48052,Larrabetzu,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48053,Laukiz,4807,Plentzia-Mungia,Plentzia-Mungia,Uribe
+48054,Leioa,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48055,Lemoa,4803,Duranguesado,Durangaldea,Durangaldea
+48056,Lemoiz,4807,Plentzia-Mungia,Plentzia-Mungia,Uribe
+48057,Lekeitio,4806,Markina-Ondarroa,Markina-Ondarroa,Lea-Artibai
+48058,Mallabia,4803,Duranguesado,Durangaldea,Durangaldea
+48059,Mañaria,4803,Duranguesado,Durangaldea,Durangaldea
+48060,Markina-Xemein,4806,Markina-Ondarroa,Markina-Ondarroa,Lea-Artibai
+48061,Maruri-Jatabe,4807,Plentzia-Mungia,Plentzia-Mungia,Uribe
+48062,Mendata,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48063,Mendexa,4806,Markina-Ondarroa,Markina-Ondarroa,Lea-Artibai
+48064,Meñaka,4807,Plentzia-Mungia,Plentzia-Mungia,Uribe
+48065,Ugao-Miraballes,4801,Arratia-Nervión,Arratia-Nerbioi,Arratia-Nerbioi
+48066,Morga,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48067,Muxika,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48068,Mundaka,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48069,Mungia,4807,Plentzia-Mungia,Plentzia-Mungia,Uribe
+48070,Aulesti,4806,Markina-Ondarroa,Markina-Ondarroa,Lea-Artibai
+48071,Muskiz,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48072,Otxandio,4801,Arratia-Nervión,Arratia-Nerbioi,Arratia-Nerbioi
+48073,Ondarroa,4806,Markina-Ondarroa,Markina-Ondarroa,Lea-Artibai
+48074,Urduña/Orduña,4801,Arratia-Nervión,Arratia-Nerbioi,Arratia-Nerbioi
+48075,Orozko,4801,Arratia-Nervión,Arratia-Nerbioi,Arratia-Nerbioi
+48076,Sukarrieta,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48077,Plentzia,4807,Plentzia-Mungia,Plentzia-Mungia,Uribe
+48078,Portugalete,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48079,Errigoiti,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48080,Valle de Trápaga-Trapagaran,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48081,Lezama,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48082,Santurtzi,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48083,Ortuella,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48084,Sestao,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48085,Sopela,4807,Plentzia-Mungia,Plentzia-Mungia,Uribe
+48086,Sopuerta,4804,Encartaciones,Enkartazioak,Enkarterri
+48087,Trucios-Turtzioz,4804,Encartaciones,Enkartazioak,Enkarterri
+48088,Ubide,4801,Arratia-Nervión,Arratia-Nerbioi,Arratia-Nerbioi
+48089,Urduliz,4807,Plentzia-Mungia,Plentzia-Mungia,Uribe
+48090,Balmaseda,4804,Encartaciones,Enkartazioak,Enkarterri
+48091,Atxondo,4803,Duranguesado,Durangaldea,Durangaldea
+48092,Bedia,4803,Duranguesado,Durangaldea,Durangaldea
+48093,Areatza,4801,Arratia-Nervión,Arratia-Nerbioi,Arratia-Nerbioi
+48094,Igorre,4801,Arratia-Nervión,Arratia-Nerbioi,Arratia-Nerbioi
+48095,Zaldibar,4803,Duranguesado,Durangaldea,Durangaldea
+48096,Zalla,4804,Encartaciones,Enkartazioak,Enkarterri
+48097,Zaratamo,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48901,Derio,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48902,Erandio,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48903,Loiu,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48904,Sondika,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48905,Zamudio,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48906,Forua,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48907,Kortezubi,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48908,Murueta,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48909,Nabarniz,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48910,Iurreta,4803,Duranguesado,Durangaldea,Durangaldea
+48911,Ajangiz,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48912,Alonsotegi,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48913,Zierbena,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia
+48914,Arratzu,4805,Gernika-Bermeo,Gernika-Bermeo,Busturialdea
+48915,Ziortza-Bolibar,4806,Markina-Ondarroa,Markina-Ondarroa,Lea-Artibai
+48916,Usansolo,4802,Gran Bilbao,Bilbo Handia,Bilbo Handia

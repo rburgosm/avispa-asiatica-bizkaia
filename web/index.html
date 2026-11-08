@@ -3,61 +3,134 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- compartir:auto -->
   <title>Tres mil nidos al año</title>
-  <meta name="description" content="Qué consigue Bizkaia retirando nidos de avispa asiática, y qué no. Con datos de Open Data Bizkaia.">
+  <meta name="description" content="Qué consigue Bizkaia retirando nidos de avispa asiática, y qué no: una evaluación con los datos abiertos de Open Data Bizkaia, de 2019 a 2025.">
+  <meta name="author" content="Roberto Burgos">
+  <meta name="theme-color" content="#faf7f0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#17140f" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Tres mil nidos al año">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="Tres mil nidos al año">
+  <meta property="og:description" content="Qué consigue Bizkaia retirando nidos de avispa asiática, y qué no: una evaluación con los datos abiertos de Open Data Bizkaia, de 2019 a 2025.">
+  <meta property="og:image" content="og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mapa de Bizkaia con la densidad media de nidos de avispa asiática avisados por km² y año en 2019-2025, junto al título «Tres mil nidos al año».">
+  <meta property="article:author" content="Roberto Burgos">
+  <meta property="article:published_time" content="2026-11">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tres mil nidos al año">
+  <meta name="twitter:description" content="Qué consigue Bizkaia retirando nidos de avispa asiática, y qué no: una evaluación con los datos abiertos de Open Data Bizkaia, de 2019 a 2025.">
+  <meta name="twitter:image" content="og-image.png">
+  <meta name="twitter:image:alt" content="Mapa de Bizkaia con la densidad media de nidos de avispa asiática avisados por km² y año en 2019-2025, junto al título «Tres mil nidos al año».">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "Tres mil nidos al año", "description": "Qué consigue Bizkaia retirando nidos de avispa asiática, y qué no: una evaluación con los datos abiertos de Open Data Bizkaia, de 2019 a 2025.", "inLanguage": "es-ES", "datePublished": "2026-11", "author": {"@type": "Person", "name": "Roberto Burgos"}, "image": {"@type": "ImageObject", "url": "og-image.png", "width": 1200, "height": 630}, "isBasedOn": "https://www.opendatabizkaia.eus"}</script>
+  <!-- /compartir:auto -->
+  <!-- Primera pintura: las dos variantes principales de letra, la imagen estática del mapa y el CSS
+       crítico de la portada en línea; la hoja de estilos completa se carga sin bloquear. -->
+  <link rel="preload" href="vendor/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="vendor/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="vendor/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="vendor/maplibre-gl.css" id="css-maplibre">
-  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="preload" href="data/portada.webp" as="image" fetchpriority="high">
+  <style>
+    @font-face { font-family: "Source Serif 4"; font-weight: 400; font-display: swap; src: url("vendor/fonts/source-serif-4-latin-400-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Source Serif 4"; font-weight: 600; font-display: swap; src: url("vendor/fonts/source-serif-4-latin-600-normal.woff2") format("woff2"); }
+    html, body { margin: 0; background: #faf7f0; color: #1d1a16; font-family: "Source Serif 4", Georgia, serif; }
+    .escenario { position: fixed; inset: 0; z-index: 0; background: #dfe5e8; }
+    .escenario { container-type: size; } .portada-mapa { /* portada:auto */ --pm-w: 84.19; --pm-h: 52.484; --pm-a: 143.505; --pm-b: 69.771; --pm-rw: 267.791; --pm-rh: 154.798; /* /portada:auto */ --pm-k: min((100cqw - 160px) / var(--pm-w), (60cqh - 30px) / var(--pm-h)); position: absolute; max-width: none; object-fit: fill; width: calc(var(--pm-k) * var(--pm-rw)); height: calc(var(--pm-k) * var(--pm-rh)); left: calc(80px + (100cqw - 160px) / 2 - var(--pm-k) * var(--pm-a)); top: calc(30px + (60cqh - 30px) / 2 - var(--pm-k) * var(--pm-b)); } @media (max-width: 899px) { .portada-mapa { --pm-k: min((100cqw - 20px) / var(--pm-w), (50cqh - 40px) / var(--pm-h)); width: calc(var(--pm-k) * var(--pm-rw)); height: calc(var(--pm-k) * var(--pm-rh)); left: calc(10px + (100cqw - 20px) / 2 - var(--pm-k) * var(--pm-a)); top: calc(40px + (50cqh - 40px) / 2 - var(--pm-k) * var(--pm-b)); } }
+    .portada { position: relative; z-index: 1; min-height: 100svh; display: flex; flex-direction: column; align-items: center;
+      justify-content: flex-end; text-align: center; padding: 0 16px 6svh; box-sizing: border-box;
+      background: linear-gradient(to bottom, rgba(250,247,240,0) 42%, rgba(250,247,240,.9) 60%, #faf7f0 72%); }
+    .portada h1 { font-weight: 600; font-size: clamp(2.75rem, 7vw, 5.5rem); line-height: 1.02; margin: 0 0 .35em; }
+    .subtitulo { font-size: 20px; margin: 0 auto .9rem; max-width: 34rem; line-height: 1.35; }
+    .firma { font-family: system-ui, sans-serif; font-size: 14px; color: #5a5248; margin: 0; }
+    html:not(.listo) .cabeza-mapa, html:not(.listo) .situacion, html:not(.listo) .atribucion { visibility: hidden; }
+    @media (min-width: 900px) { .subtitulo { font-size: 24px; } .firma { font-size: 15px; } }
+  </style>
+  <link rel="preload" href="css/estilo.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/estilo.css"></noscript>
 </head>
 <body>
   <a class="saltar" href="#historia">Saltar a la historia</a>
+  <div class="progreso-lectura" id="progreso-lectura" aria-hidden="true"></div>
 
-  <header class="cabecera">
-    <h1 id="titulo">Tres mil nidos al año</h1>
-    <p class="subtitulo" id="subtitulo"></p>
-    <p class="firma"><span id="autoria"></span> · <span id="fecha"></span></p>
-    <div class="intro" id="intro"></div>
+  <!-- Escenario del mapa: fijo y a pantalla completa (portada y pasos de mapa). Lo rellena js/componentes/mapa.js. -->
+  <div class="escenario visible" id="escenario" aria-hidden="false">
+    <img class="portada-mapa" id="portada-mapa" src="data/portada.webp" width="2000" height="1156" alt="" fetchpriority="high">
+    <div class="mapa-svg" id="mapa-svg"></div>
+    <div class="mapa" id="mapa"></div>
+    <div class="vineta" aria-hidden="true"></div>
+    <svg class="anotaciones" id="anotaciones" aria-hidden="true"></svg>
+    <div class="etiquetas-mapa" id="etiquetas-mapa" aria-hidden="true"></div>
+    <div class="cabeza-mapa">
+    <div class="contador" id="contador" aria-hidden="true"></div>
+    <div class="caja-mapa" id="caja-mapa">
+      <p class="titulo-grafico" id="titulo-mapa"></p>
+      <p class="leyenda" id="leyenda-mapa"></p>
+      <p class="nota-grafico" id="nota-mapa"></p>
+      <p class="alt" id="alt-mapa"></p>
+      <details class="datos" id="datos-mapa"><summary></summary><div class="tabla"></div></details>
+    </div>
+    </div>
+    <svg class="situacion" id="situacion" role="img"></svg>
+    <p class="atribucion" id="atribucion-mapa"></p>
+  </div>
+
+  <header class="cabecera portada">
+    <div class="portada-texto">
+      <h1 id="titulo">Tres mil nidos al año</h1>
+      <!-- Textos de content/es.json (meta), repetidos aquí para la primera pintura; app.js los vuelve a poner -->
+      <p class="subtitulo" id="subtitulo">Qué consigue Bizkaia retirando nidos de avispa asiática, y qué no</p>
+      <p class="firma"><span id="autoria">Roberto Burgos</span> · <span id="fecha">Noviembre de 2026</span></p>
+    </div>
+    <p class="seguir" aria-hidden="true">↓</p>
   </header>
+  <div class="intro" id="intro"></div>
 
   <noscript><p class="aviso">Esta página necesita JavaScript para mostrar los gráficos. La metodología está en <a href="metodologia.html">metodologia.html</a>.</p></noscript>
 
-  <main id="historia" class="scrolly">
-    <!-- Los paneles de cada gráfico los crea js/app.js (lista PANELES). -->
-    <div class="grafico" id="grafico" aria-live="off">
-      <p class="sr" id="anuncio" aria-live="polite"></p>
-    </div>
-    <div class="pasos" id="pasos"></div>
+  <main id="historia" class="historia">
+    <!-- Las paradas (rótulo, gráfico fijo y tarjetas) las crea js/app.js a partir de content/<idioma>.json.
+         Los paneles de los gráficos viven en #almacen y se mueven a la parada activa. -->
+    <div id="almacen" hidden></div>
+    <p class="sr" id="anuncio" aria-live="polite"></p>
   </main>
+  <nav class="navegacion" id="navegacion"></nav>
 
-  <section class="explorador" aria-labelledby="titulo-explorador">
-    <h2 id="titulo-explorador"></h2>
-    <p id="texto-explorador"></p>
-    <div id="explorador"></div>
-  </section>
-
+  <!-- Final: cierre («Lo que sabemos y lo que no») y buscador, con la misma apertura que las paradas -->
   <section class="cierre" id="cierre" aria-labelledby="titulo-cierre">
-    <h2 id="titulo-cierre"></h2>
+    <header class="rotulo rotulo-final">
+      <p class="frase-paso" id="frase-cierre" hidden></p>
+      <h2 class="pregunta" id="titulo-cierre"></h2>
+      <span class="rotulo-linea" aria-hidden="true"></span>
+    </header>
     <div id="texto-cierre"></div>
     <ul class="enlaces" id="enlaces-cierre"></ul>
   </section>
 
-  <section class="descargas" id="descargas" aria-labelledby="titulo-descargas">
-    <h2 id="titulo-descargas"></h2>
-    <ul id="lista-descargas"></ul>
+  <section class="explorador" id="seccion-explorador" aria-labelledby="titulo-explorador">
+    <header class="rotulo rotulo-final">
+      <h2 class="pregunta" id="titulo-explorador"></h2>
+      <span class="rotulo-linea" aria-hidden="true"></span>
+      <p class="entradilla" id="texto-explorador"></p>
+    </header>
+    <div id="explorador"></div>
   </section>
 
-  <footer class="pie">
-    <h2 id="titulo-fuentes"></h2>
-    <h3 id="titulo-conjuntos"></h3>
-    <ul id="fuentes"></ul>
-    <h3 id="titulo-otras"></h3>
-    <ul id="otras-fuentes"></ul>
-    <ul class="notas" id="notas"></ul>
-    <p id="herramientas"></p>
-    <p><a id="enlace-metodologia" href="metodologia.html">Metodología</a></p>
+  <footer class="pie" aria-label="Fuentes y créditos">
+    <p class="pie-titulo" id="pie-titulo"></p>
+    <p class="pie-fuentes" id="pie-fuentes"></p>
+    <ul class="pie-enlaces" id="pie-enlaces"><li><a href="metodologia.html">Metodología y limitaciones</a></li></ul>
+    <p class="pie-creditos" id="pie-creditos"></p>
+    <p class="pie-firma" id="pie-firma"></p>
+    <p class="pie-privacidad" id="pie-privacidad" hidden></p>
   </footer>
 
-  <script src="js/cargador.js"></script>
+  <script src="js/cargador.js" defer></script>
 </body>
 </html>

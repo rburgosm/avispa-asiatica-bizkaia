@@ -1,0 +1,323 @@
+{
+ "avispa": {
+  "autor": "Charles J. Sharp",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "url_pagina": "https://commons.wikimedia.org/wiki/File:Asian_hornet_(Vespa_velutina).jpg",
+  "descripcion_es": "Avispa asiática (Vespa velutina nigrithorax) posada sobre flores blancas de una umbelífera: tórax negro, abdomen oscuro con una banda anaranjada y patas con el extremo amarillo.",
+  "src": "img/avispa-800.webp",
+  "src2x": "img/avispa-1600.webp",
+  "adaptacion": {
+   "foco": [
+    0.47,
+    0.47
+   ],
+   "zoom": 1.0,
+   "color": "#6f7a5e",
+   "original": [
+    2717,
+    1812
+   ],
+   "proporciones": {
+    "ancho": "16:9",
+    "alto": "4:5"
+   },
+   "saturacion": 0.8,
+   "tono": [
+    1.04,
+    1.0,
+    0.93
+   ],
+   "velo": [
+    250,
+    247,
+    240
+   ],
+   "velo_alfa": 0.07,
+   "enfoque": {
+    "radius": 0.8,
+    "percent": 45,
+    "threshold": 2
+   },
+   "calidad": {
+    "avif": 62,
+    "webp": 82
+   },
+   "variantes": {
+    "ancho": {
+     "recorte": [
+      2717,
+      1528
+     ],
+     "fondo": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAAAQBgCdASowABsAPtFUpkyoJCOiMBqqqQAaCWMAuzPpAvSmJyMVUyUun2xT3Fm7dQrVTQfOC6uYcAAA/t0Lg7ckRu4E944T7spsqSpAavYlj0gOwg9VcH5488ML60Lo5QOR7g/et4IpuLLN5siZJPsRXBTvsZLCsPcKe+XPBPbgAAAA",
+     "anchuras": [
+      {
+       "w": 800,
+       "h": 450,
+       "avif": "img/avispa-ancho-800.avif",
+       "webp": "img/avispa-ancho-800.webp"
+      },
+      {
+       "w": 1200,
+       "h": 675,
+       "avif": "img/avispa-ancho-1200.avif",
+       "webp": "img/avispa-ancho-1200.webp"
+      },
+      {
+       "w": 1800,
+       "h": 1012,
+       "avif": "img/avispa-ancho-1800.avif",
+       "webp": "img/avispa-ancho-1800.webp"
+      },
+      {
+       "w": 2400,
+       "h": 1350,
+       "avif": "img/avispa-ancho-2400.avif",
+       "webp": "img/avispa-ancho-2400.webp"
+      }
+     ]
+    },
+    "alto": {
+     "recorte": [
+      1450,
+      1812
+     ],
+     "fondo": "data:image/webp;base64,UklGRtAAAABXRUJQVlA4IMQAAADwCACdASowADwAPrVSnUunJaMht/cdUOAWiWUAyjBALX4yyJH9MPqmemFGM84CPjkXYUlk5pulSl+thGeT5v7kID1WpA+Eij3ThYMf7r8rgAD+y0Ronc+FsE84TuvR7ky6gIhdV/WcPmjHstCZjlpynaAq83PUsAId7LWp/EnM539dpL4YutfkzwFsl9xY9E4wFYEBNx128QkaDzO4KdT6CHsNRwhgHuNRxO9pGZ2uKWvO8oFrZ/iuMo0XyX+ZqjgdwAAA",
+     "anchuras": [
+      {
+       "w": 800,
+       "h": 1000,
+       "avif": "img/avispa-alto-800.avif",
+       "webp": "img/avispa-alto-800.webp"
+      },
+      {
+       "w": 1200,
+       "h": 1500,
+       "avif": "img/avispa-alto-1200.avif",
+       "webp": "img/avispa-alto-1200.webp"
+      },
+      {
+       "w": 1450,
+       "h": 1812,
+       "avif": "img/avispa-alto-1450.avif",
+       "webp": "img/avispa-alto-1450.webp"
+      }
+     ]
+    }
+   },
+   "nota": "recortada y retocada"
+  }
+ },
+ "nido_primario": {
+  "autor": "Francis ITHURBURU",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0",
+  "url_pagina": "https://commons.wikimedia.org/wiki/File:Vespa_velutina_nest.JPG",
+  "descripcion_es": "Nido primario de avispa asiática: una pequeña esfera de papel pardo claro, vista por su abertura, con una sola avispa, la reina fundadora, asomada a la entrada.",
+  "src": "img/nido_primario-800.webp",
+  "src2x": "img/nido_primario-1600.webp",
+  "adaptacion": {
+   "foco": [
+    0.49,
+    0.55
+   ],
+   "zoom": 1.0,
+   "color": "#af9575",
+   "original": [
+    2116,
+    1530
+   ],
+   "proporciones": {
+    "ancho": "16:9",
+    "alto": "4:5"
+   },
+   "saturacion": 0.8,
+   "tono": [
+    1.04,
+    1.0,
+    0.93
+   ],
+   "velo": [
+    250,
+    247,
+    240
+   ],
+   "velo_alfa": 0.07,
+   "enfoque": {
+    "radius": 0.8,
+    "percent": 45,
+    "threshold": 2
+   },
+   "calidad": {
+    "avif": 62,
+    "webp": 82
+   },
+   "variantes": {
+    "ancho": {
+     "recorte": [
+      2116,
+      1190
+     ],
+     "fondo": "data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAADwBgCdASowABsAPtFcpU0oJSOiKrgMAQAaCUAVJOCYoH16j9q5L9xCnVUU0IWAKkT9+Vf5+LXEacZbGQU6VyrAAPiiuuF10GmfDFua1wPUAy2uduOb8H9RargT+UkyxsDEM2izx9qNyw1UsbC0VrZpJgKfZG2w40F+NZJ3NzXxgneKpuUnJAvWtjLFeBV4kAHWxJHRHBb56gdkAAA=",
+     "anchuras": [
+      {
+       "w": 800,
+       "h": 450,
+       "avif": "img/nido_primario-ancho-800.avif",
+       "webp": "img/nido_primario-ancho-800.webp"
+      },
+      {
+       "w": 1200,
+       "h": 675,
+       "avif": "img/nido_primario-ancho-1200.avif",
+       "webp": "img/nido_primario-ancho-1200.webp"
+      },
+      {
+       "w": 1800,
+       "h": 1012,
+       "avif": "img/nido_primario-ancho-1800.avif",
+       "webp": "img/nido_primario-ancho-1800.webp"
+      },
+      {
+       "w": 2116,
+       "h": 1190,
+       "avif": "img/nido_primario-ancho-2116.avif",
+       "webp": "img/nido_primario-ancho-2116.webp"
+      }
+     ]
+    },
+    "alto": {
+     "recorte": [
+      1224,
+      1530
+     ],
+     "fondo": "data:image/webp;base64,UklGRggBAABXRUJQVlA4IPwAAAAwCwCdASowADwAPsVWokunpSMhrVme2PAYiWNg61QQRh9L6/Bb8BQZI3KvpzxF4YjslpDXGoc+RwJe44dCcu3kaLJBLe8o+TkerjAgh+C9tQ4IyUD/s0gTO4ve608tju+E4ADuN9E45nlDR3ZD7ywfW8i1Mgu355j/iJfER4JA+Dqge9HH85k1faoI/yhF/IvxbOGVJVH9fTjZxT7WPepffK7xrPfDGQU28Qzzodj8IH9TayrOq2dM0zfPCDTC2+bLdoBz8G12qGIuSKeQHQcuvNwM8jdfEf2LvCZHIEBSN9Q/1QKscNOt9ythzhEmx0unBeAhgQhYkfT0AAA=",
+     "anchuras": [
+      {
+       "w": 800,
+       "h": 1000,
+       "avif": "img/nido_primario-alto-800.avif",
+       "webp": "img/nido_primario-alto-800.webp"
+      },
+      {
+       "w": 1200,
+       "h": 1500,
+       "avif": "img/nido_primario-alto-1200.avif",
+       "webp": "img/nido_primario-alto-1200.webp"
+      }
+     ]
+    }
+   },
+   "nota": "recortada y retocada"
+  }
+ },
+ "nido_secundario": {
+  "autor": "Père Igor",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0",
+  "url_pagina": "https://commons.wikimedia.org/wiki/File:Nid_de_frelons_asiatiques.JPG",
+  "descripcion_es": "Nido secundario de avispa asiática, grande y con forma de pera, colgado en lo alto de un árbol sin hojas, contra el cielo y con un bosque al fondo.",
+  "src": "img/nido_secundario-800.webp",
+  "src2x": "img/nido_secundario-1600.webp",
+  "adaptacion": {
+   "foco": [
+    0.6,
+    0.55
+   ],
+   "zoom": 1.4,
+   "color": "#9d9b90",
+   "original": [
+    3264,
+    2448
+   ],
+   "proporciones": {
+    "ancho": "16:9",
+    "alto": "4:5"
+   },
+   "saturacion": 0.8,
+   "tono": [
+    1.04,
+    1.0,
+    0.93
+   ],
+   "velo": [
+    250,
+    247,
+    240
+   ],
+   "velo_alfa": 0.07,
+   "enfoque": {
+    "radius": 0.8,
+    "percent": 45,
+    "threshold": 2
+   },
+   "calidad": {
+    "avif": 62,
+    "webp": 82
+   },
+   "variantes": {
+    "ancho": {
+     "recorte": [
+      2331,
+      1311
+     ],
+     "fondo": "data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAADQBQCdASowABsAPtFWokuoJKMhsBqqqQAaCWcAxcg6ffgx9tP+o0Isvz6psrZlQYvQw/g46/9AAP7x2t1feg+3L/5BiksMHEtZiQrozO9uyAmn7SZieecFcKLX12yMlvnTSmkGyoP/ttX2Gfkbdb+LRl0RQ0B7svYagAAA",
+     "anchuras": [
+      {
+       "w": 800,
+       "h": 450,
+       "avif": "img/nido_secundario-ancho-800.avif",
+       "webp": "img/nido_secundario-ancho-800.webp"
+      },
+      {
+       "w": 1200,
+       "h": 675,
+       "avif": "img/nido_secundario-ancho-1200.avif",
+       "webp": "img/nido_secundario-ancho-1200.webp"
+      },
+      {
+       "w": 1800,
+       "h": 1012,
+       "avif": "img/nido_secundario-ancho-1800.avif",
+       "webp": "img/nido_secundario-ancho-1800.webp"
+      },
+      {
+       "w": 2331,
+       "h": 1311,
+       "avif": "img/nido_secundario-ancho-2331.avif",
+       "webp": "img/nido_secundario-ancho-2331.webp"
+      }
+     ]
+    },
+    "alto": {
+     "recorte": [
+      1399,
+      1749
+     ],
+     "fondo": "data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAADQCACdASowADwAPr1Gm0unI6IhtV38AOAXiWcAygXfJr5WGvBufLfuWg0C3dYCZv4bODGPG7HcsSOfxgysU/OuxkUJdDUoFsCSWJSIqnGAAP7tWW2XCH5iYmyzmyA5KYj4903vAGchD+2QtN3E6Dc5WbpeghXQqE/TVjEOtg95W4QpR7QSRy6cR9crJVy/8talbdEBUkvMrFFsEiNn6cwMpcNFgBh+SiR5zLNVAQAAAA==",
+     "anchuras": [
+      {
+       "w": 800,
+       "h": 1000,
+       "avif": "img/nido_secundario-alto-800.avif",
+       "webp": "img/nido_secundario-alto-800.webp"
+      },
+      {
+       "w": 1200,
+       "h": 1500,
+       "avif": "img/nido_secundario-alto-1200.avif",
+       "webp": "img/nido_secundario-alto-1200.webp"
+      },
+      {
+       "w": 1399,
+       "h": 1749,
+       "avif": "img/nido_secundario-alto-1399.avif",
+       "webp": "img/nido_secundario-alto-1399.webp"
+      }
+     ]
+    }
+   },
+   "nota": "recortada y retocada"
+  }
+ }
+}

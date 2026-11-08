@@ -1,0 +1,16 @@
+{
+ "caja": [
+  -4.7,
+  42.45,
+  -1.4,
+  43.85
+ ],
+ "ancho": 2200,
+ "alto": 933,
+ "fuente": "Copernicus DEM GLO-90 (© DLR e.V., © Airbus Defence and Space GmbH; programa Copernicus de la UE y la ESA)",
+ "sombreado": {
+  "azimut": 315,
+  "altura": 45,
+  "exageracion": 2.0
+ }
+}

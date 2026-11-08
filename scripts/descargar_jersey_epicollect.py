@@ -16,5 +16,6 @@ while True:
         break
     page += 1
     time.sleep(1)
+out.mkdir(parents=True, exist_ok=True)
 (out / f"entries_{anio}.json").write_text(json.dumps(todas, ensure_ascii=False))
 print(anio, len(todas), "entradas")

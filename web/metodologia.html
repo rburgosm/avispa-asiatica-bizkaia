@@ -3,15 +3,57 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- compartir:auto -->
   <title>Metodología · Tres mil nidos al año</title>
+  <meta name="description" content="Datos, limpieza, métodos, limitaciones y reproducibilidad de «Tres mil nidos al año», sobre la retirada de nidos de avispa asiática en Bizkaia.">
+  <meta name="author" content="Roberto Burgos">
+  <meta name="theme-color" content="#faf7f0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#17140f" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Tres mil nidos al año">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="Metodología · Tres mil nidos al año">
+  <meta property="og:description" content="Datos, limpieza, métodos, limitaciones y reproducibilidad de «Tres mil nidos al año», sobre la retirada de nidos de avispa asiática en Bizkaia.">
+  <meta property="og:image" content="og-metodologia.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mapa de Bizkaia con la densidad media de nidos de avispa asiática avisados por km² y año en 2019-2025, junto al título «Metodología».">
+  <meta property="article:author" content="Roberto Burgos">
+  <meta property="article:published_time" content="2026-11">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Metodología · Tres mil nidos al año">
+  <meta name="twitter:description" content="Datos, limpieza, métodos, limitaciones y reproducibilidad de «Tres mil nidos al año», sobre la retirada de nidos de avispa asiática en Bizkaia.">
+  <meta name="twitter:image" content="og-metodologia.png">
+  <meta name="twitter:image:alt" content="Mapa de Bizkaia con la densidad media de nidos de avispa asiática avisados por km² y año en 2019-2025, junto al título «Metodología».">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Metodología · Tres mil nidos al año", "description": "Datos, limpieza, métodos, limitaciones y reproducibilidad de «Tres mil nidos al año», sobre la retirada de nidos de avispa asiática en Bizkaia.", "inLanguage": "es-ES", "datePublished": "2026-11", "author": {"@type": "Person", "name": "Roberto Burgos"}, "image": {"@type": "ImageObject", "url": "og-metodologia.png", "width": 1200, "height": 630}, "isBasedOn": "https://www.opendatabizkaia.eus", "isPartOf": {"@type": "NewsArticle", "headline": "Tres mil nidos al año"}}</script>
+  <!-- /compartir:auto -->
+  <link rel="preload" href="vendor/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="vendor/fonts/source-sans-3-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="css/metodologia.css">
 </head>
-<body>
-  <!-- El texto sale de content/<idioma>.json (bloques «metodologia», «creditos» y «descargas»). -->
-  <main class="cabecera metodologia" id="metodologia">
-    <h1>Metodología</h1>
-    <noscript><p>Esta página lee su texto de content/es.json; ábrelo para ver la metodología sin JavaScript.</p></noscript>
-  </main>
+<body class="pagina-met">
+  <!-- El texto sale de content/<idioma>.json (bloques «metodologia», «creditos» y «descargas») y de web/data/. -->
+  <a class="saltar" href="#metodologia">Saltar al texto</a>
+  <div class="met-barra"><a class="met-volver" id="met-volver" href="index.html">← <span>Volver a la pieza</span></a></div>
+  <header class="met-cabecera">
+    <div class="met-titulos" id="met-titulos">
+      <p class="met-antetitulo">Tres mil nidos al año</p>
+      <h1>Metodología</h1>
+    </div>
+  </header>
+  <div class="met-rejilla">
+    <nav class="met-indice" id="met-indice" aria-label="En esta página"></nav>
+    <article class="met-texto" id="metodologia">
+      <noscript><p>Esta página lee su texto de <a href="content/es.json">content/es.json</a> (sección «metodologia»). La memoria técnica completa está en <a href="memoria_tecnica.pdf">memoria_tecnica.pdf</a>.</p></noscript>
+    </article>
+  </div>
+  <footer class="met-pie" id="met-pie"></footer>
   <script type="module" src="js/metodologia.js"></script>
 </body>
 </html>

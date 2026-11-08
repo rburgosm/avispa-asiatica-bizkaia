@@ -1,0 +1,26 @@
+{
+ "criterio": "Nido de 2025 avisado en verano (julio-septiembre), en arbolado, retirado por Basalan, a ±1 m de la altura mediana de los nidos de árbol avisados en verano de 2025, con diámetro igual o mayor que su mediana y los días de retirada medianos de 2025, en un municipio con tasa de nidos por 1.000 habitantes igual o mayor que la mediana municipal (sin Bilbao). Desempate: altura y diámetro más cercanos a la mediana, municipio con más nidos en 2025 y número de actuación.",
+ "candidatos": 2,
+ "referencias": {
+  "altura_mediana_m": 6.0,
+  "diametro_mediano_cm": 30.0,
+  "dias_medianos_2025": 2.0,
+  "nidos_arbol_verano_2025": 535,
+  "tasa_mediana_municipal": 9.370650000000001
+ },
+ "nido": {
+  "temporada": 2025,
+  "municipio": "Morga",
+  "nidos_municipio_2025": 22,
+  "fecha_aviso": "2025-09-15",
+  "fecha_retirada": "2025-09-17",
+  "dias": 2,
+  "altura_m": 7.0,
+  "diametro_cm": 50.0,
+  "ubicacion": "arbolado",
+  "retira": "Basalan",
+  "mes": 9,
+  "lon": -2.763,
+  "lat": 43.299
+ }
+}

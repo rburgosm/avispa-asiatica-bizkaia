@@ -1,392 +1,1462 @@
 {
-  "idioma": "es",
-  "meta": {
-    "titulo": "Tres mil nidos al año",
-    "subtitulo": "Qué consigue Bizkaia retirando nidos de avispa asiática, y qué no",
-    "autoria": "Roberto Burgos",
-    "fecha": "Noviembre de 2026"
-  },
-  "intro": [],
-  "pasos": [
-    {
-      "id": "apertura",
-      "grafico": "mapa",
-      "titulo": "Nidos de avispa asiática avisados en Bizkaia, 2019-2025 (abril-diciembre)",
-      "estado": { "modo": "puntos", "temporadas": [2019, 2020, 2021, 2022, 2023, 2024, 2025], "meses": [4, 5, 6, 7, 8, 9, 10, 11, 12] },
-      "texto": ["Entre 2019 y 2025 se avisó de más de 18.000 nidos de avispa asiática en Bizkaia. Casi todos se retiraron. Esta pieza responde a una pregunta sencilla: ¿qué se consigue con eso?"],
-      "alt": "Mapa de Bizkaia en el que van apareciendo, temporada a temporada, los nidos de avispa asiática avisados entre 2019 y 2025. Hay puntos en casi todo el territorio. Bilbao aparece rayado, sin datos, porque tiene un servicio municipal propio."
-    },
-    {
-      "id": "llegada",
-      "grafico": "esquema",
-      "titulo": "Una especie que llegó de fuera",
-      "estado": { "vista": "llegada", "hitos": ["2004", "2012-04-10", "2016-07-14"] },
-      "texto": ["La avispa asiática (<em>Vespa velutina</em>) se vio por primera vez en Francia en 2004, en Lot-et-Garonne, y llegó a Bizkaia en 2012. Caza abejas a la entrada de las colmenas y, cuando un nido está cerca de una casa, preocupa a quien vive allí. Desde 2016 está en la lista de especies invasoras de la Unión Europea."],
-      "alt": "Línea del tiempo con tres fechas: 2004, primera vez en Francia; 2012, llegada a Bizkaia; 2016, lista de especies invasoras de la Unión Europea. Encima, el dibujo esquemático de una avispa oscura con una banda naranja."
-    },
-    {
-      "id": "ciclo",
-      "grafico": "esquema",
-      "titulo": "El año de un nido: tamaño y altura típicos de los nidos retirados en Bizkaia",
-      "estado": { "vista": "ciclo" },
-      "texto": ["Cada primavera, una reina fundadora construye sola un nido pequeño, del tamaño de una naranja, normalmente bajo y resguardado: es el <strong>nido primario</strong>. En verano, muchas colonias se mudan a un <strong>nido secundario</strong>, mucho mayor y casi siempre en lo alto de un árbol. En otoño, ese nido cría cientos de futuras reinas, que pasan el invierno escondidas y empiezan de nuevo en primavera."],
-      "alt": "Esquema del año de un nido. Cada círculo es el nido típico retirado en una época: su altura indica a cuántos metros estaba y su tamaño, el diámetro. Los de primavera son pequeños y bajos; los de noviembre y diciembre, grandes y altos. En invierno el nido muere y solo quedan las reinas, escondidas."
-    },
-    {
-      "id": "circuito",
-      "grafico": "esquema",
-      "titulo": "Qué pasa cuando alguien ve un nido",
-      "estado": { "vista": "circuito" },
-      "texto": ["Desde julio de 2016, quien ve un nido avisa a su ayuntamiento. El ayuntamiento lo comprueba y lo registra en una aplicación de la Diputación, y lo retira <strong>Basalan</strong>, una empresa pública foral. Los bomberos solo intervienen en casos excepcionales. Cada aviso queda registrado, y ese registro es público en Open Data Bizkaia."],
-      "alt": "Esquema de tres pasos unidos por flechas: el vecino avisa, el ayuntamiento comprueba y registra, Basalan retira el nido."
-    },
-    {
-      "id": "censo",
-      "grafico": "esquema",
-      "titulo": "Un aviso no es un censo",
-      "estado": { "vista": "censo", "nidos": 10, "avisados": 2 },
-      "nota": "Ilustración: proporción del estudio de Lagoa y otros (2025) en un pinar de Vigo.",
-      "texto": ["Un aviso no cuenta todas las avispas: solo cuenta los nidos que alguien ha visto y ha comunicado. Un estudio en un pinar de Vigo encontró al menos cinco nidos reales por cada nido avisado. Por eso, en esta pieza hablamos de nidos avisados, no de cuántas avispas hay."],
-      "alt": "Dibujo de un bosque con diez nidos. Solo dos se encienden en naranja: son los avisados. Los otros ocho nadie los ha visto ni avisado."
-    },
-    {
-      "id": "estimacion",
-      "grafico": "estimacion",
-      "titulo": "Nidos avisados por temporada (abril-diciembre)",
-      "estado": { "revelar": false },
-      "texto": ["Con casi todos los nidos retirados año tras año, ¿cuántos crees que se avisaron después? Marca tu estimación."],
-      "boton": { "accion": "revelar", "texto": "Ver los datos reales" },
-      "alt": "Gráfico interactivo de barras. Solo se ve la primera temporada; para cada una de las siguientes se puede marcar una estimación tocando su columna o, con el teclado, con las flechas arriba y abajo."
-    },
-    {
-      "id": "estimacion-real",
-      "grafico": "estimacion",
-      "titulo": "Nidos avisados por temporada (abril-diciembre)",
-      "estado": { "revelar": true },
-      "texto": ["No bajaron. Se avisó de unos 2.000 nidos en 2019 y de unos 3.200 en 2025. Con solo siete años de datos, no se puede afirmar que suban, pero desde luego no bajan."],
-      "alt": "Gráfico de barras con los nidos avisados en cada temporada. La serie no baja. La barra de 2018 está rayada en gris: es el primer año del registro, que empieza en abril y está incompleto."
-    },
-    {
-      "id": "rapidez",
-      "grafico": "tramos",
-      "titulo": "Días entre el aviso y la retirada, por temporada (nidos retirados)",
-      "estado": {},
-      "texto": ["Cuando alguien avisa, el sistema responde. La mitad de los nidos se retira en dos días o menos, y alrededor de nueve de cada diez en una semana. Esto apenas ha cambiado entre 2019 y 2025."],
-      "alt": "Barras horizontales apiladas, una por temporada, con el reparto de los nidos retirados según los días que pasaron desde el aviso: el mismo día, de 1 a 3 días, de 4 a 7 días y más de 7 días. El reparto apenas cambia de un año a otro."
-    },
-    {
-      "id": "no-eliminables",
-      "grafico": "linea",
-      "titulo": "Nidos que no se pudieron retirar (% de los avisos de cada temporada)",
-      "estado": {},
-      "texto": ["Algunos nidos no se pueden quitar: están demasiado altos o en sitios inaccesibles. Eran alrededor del 10 % hasta 2022 y alrededor del 6 % desde 2023. Pero ese mismo año cambió la forma de registrar los avisos, así que no podemos saber si se quitan mejor o se anotan de otra manera."],
-      "alt": "Gráfico de línea con el porcentaje de nidos que no se pudieron retirar en cada temporada. Una línea vertical discontinua marca el 1 de enero de 2023, cuando cambia el registro. Antes de esa marca los valores son más altos que después."
-    },
-    {
-      "id": "primavera",
-      "grafico": "mensual",
-      "titulo": "Avisos de cada mes, 2019-2025 (% del total de abril a diciembre)",
-      "estado": { "resaltar": "primavera" },
-      "texto": ["Los nidos primarios de primavera son pequeños, están bajos y se quitan con facilidad. Pero solo uno de cada diez avisos llega en primavera. La mayoría llega en verano y otoño, cuando el nido ya es grande y está en lo alto de un árbol."],
-      "alt": "Gráfico de barras con el porcentaje de avisos de cada mes, de abril a diciembre. Las barras de abril, mayo y junio, resaltadas en naranja, son las más bajas; el máximo está en agosto."
-    },
-    {
-      "id": "reinas",
-      "grafico": "mensual",
-      "titulo": "Avisos de cada mes, 2019-2025 (% del total de abril a diciembre)",
-      "estado": { "resaltar": "noviembre" },
-      "texto": ["En el País Vasco, las futuras reinas aparecen en los nidos a partir de mediados de octubre. Por eso Asturias considera que un nido retirado después del 1 de noviembre ha podido soltar ya sus reinas. En Bizkaia, entre el 16 % y el 24 % de los nidos se retira después de esa fecha, según el año."],
-      "alt": "El mismo gráfico de avisos por mes, con la zona desde el 1 de noviembre sombreada: a partir de ahí, el nido ha podido empezar a soltar reinas."
-    },
-    {
-      "id": "regiones",
-      "grafico": "regiones",
-      "titulo": "Nidos al año por cada 1.000 km², según los años desde la llegada de la avispa (escala logarítmica)",
-      "estado": {},
-      "nota": "Cada región cuenta de forma distinta (avisos, nidos detectados, nidos retirados). Solo se comparan órdenes de magnitud.",
-      "texto": ["En todas las regiones vecinas ha pasado lo mismo: la avispa llega, los nidos se multiplican durante tres a cinco años y después se estancan. Asturias, que además pone trampas en primavera y tiene un operativo coordinado, se estanca en un nivel parecido al de Bizkaia: unos 1.000 nidos por cada 1.000 km² al año, frente a unos 1.200."],
-      "alt": "Gráfico de líneas en escala logarítmica con las curvas de Bizkaia, en naranja, y de Asturias, Araba y Gipuzkoa, en gris, alineadas por los años transcurridos desde la llegada de la avispa. Todas suben con rapidez los primeros años y después se mantienen."
-    },
-    {
-      "id": "gasto",
-      "grafico": "gasto",
-      "titulo": "Gasto público identificable en la retirada de nidos, 2017-2025",
-      "estado": {},
-      "texto": ["Entre 2017 y 2019, la retirada de nidos aparecía como una partida propia en los datos públicos: salía a unos 70-100 euros por nido. Desde 2021 va dentro de un encargo anual a Basalan de más de 2 millones de euros, y con los datos abiertos ya no se puede saber cuánto cuesta."],
-      "nota": "El coste por nido es una estimación: hay meses sin línea de gasto propia.",
-      "alt": "Gráfico de barras del gasto en retirada de nidos. Solo 2017, 2018 y 2019 tienen importe propio. 2020 aparece rayado en gris, mezclado con otros trabajos, y de 2021 a 2025 también rayado, sin desglose."
-    },
-    {
-      "id": "tasas",
-      "grafico": "mapa",
-      "titulo": "Nidos avisados al año por cada 1.000 habitantes, por municipio (media 2019-2025)",
-      "estado": { "modo": "tasa" },
-      "texto": ["Hay nidos en casi todo el territorio. En proporción a sus habitantes, los municipios pequeños y rurales son los que más avisan: en los de menos de 2.000 habitantes hay unos 16 nidos al año por cada 1.000 vecinos; en los de más de 20.000, uno."],
-      "alt": "Mapa de municipios de Bizkaia coloreados según los nidos avisados al año por cada 1.000 habitantes; cuanto más oscuro, más nidos por habitante. Bilbao aparece rayado: sin datos, servicio municipal propio."
-    }
-  ],
-  "explorador": {
-    "titulo": "Tu municipio",
-    "texto": "Busca un municipio para ver cuántos nidos se avisaron cada año, cuántos hay por cada 1.000 habitantes, su puesto en Bizkaia y cuántos días se tarda en retirarlos."
-  },
-  "cierre": {
-    "titulo": "Lo que sabemos y lo que no",
-    "texto": ["Bizkaia retira casi todos los nidos de los que se avisa, y lo hace en pocos días. Pero los nidos avisados no bajan, y el resto de regiones vecinas sigue la misma curva. Lo que nadie ha medido es cuántos nidos de otoño se evitarían buscando más en primavera. Y desde 2021 no se puede saber, con datos abiertos, cuánto cuesta cada nido."],
-    "enlaces": [
-      { "texto": "Metodología y limitaciones", "url": "metodologia.html" },
-      { "texto": "Datos procesados descargables", "url": "#descargas" },
-      { "texto": "Código: los scripts del proceso, en orden", "url": "metodologia.html#proceso" }
-    ]
-  },
-  "creditos": {
-    "herramientas": "Datos preparados con Python (pandas, geopandas, shapely, statsmodels). Web con D3, Scrollama y MapLibre GL JS, y tipografías Source Serif 4 y Source Sans 3. Todo es software libre.",
-    "metodologia": "metodologia.html",
-    "texto_metodologia": "Metodología y limitaciones de los datos",
-    "notas": [
-      "Temporada: año del aviso. Las cifras usan los avisos de abril a diciembre, el periodo que se puede comparar entre años.",
-      "2018 aparece rayado en gris: es el primer año del registro y está incompleto. Las tendencias usan 2019-2025.",
-      "Bilbao tiene un servicio municipal propio de retirada de nidos y no está en el registro foral: aparece como «sin datos».",
-      "En el mapa, las coordenadas están redondeadas a unos 100 m; faltan los nidos sin coordenadas."
+ "idioma": "es",
+ "meta": {
+  "titulo": "Tres mil nidos al año",
+  "subtitulo": "Qué consigue Bizkaia retirando nidos de avispa asiática, y qué no",
+  "autoria": "Roberto Burgos",
+  "fecha": "Noviembre de 2026"
+ },
+ "intro": [],
+ "pasos": [
+  {
+   "id": "apertura-1",
+   "grafico": "mapa",
+   "titulo": "Nidos de avispa asiática avisados en Bizkaia, 2019-2025 (abril-diciembre)",
+   "titular": "Un nido en Morga",
+   "estado": {
+    "modo": "puntos",
+    "temporadas": [
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
     ],
-    "conjuntos_odb": [
-      { "titulo": "Avispa asiática en Bizkaia", "url": "https://www.opendatabizkaia.eus/es/catalogo/avispa-asiatica", "uso": "Registro de avisos y nidos: base de todos los gráficos salvo el de regiones y el de gasto" },
-      { "titulo": "Parcelario catastral de Bizkaia", "url": "https://www.opendatabizkaia.eus/es/catalogo/parcelario-catastral", "uso": "Límites municipales (capa «Municipios» del servicio del catastro foral)" },
-      { "titulo": "Encomiendas de gestión", "url": "https://www.opendatabizkaia.eus/es/catalogo/encomiendas-gestion", "uso": "Líneas de gasto de retirada de nidos (2017-2020) y encargo anual a Basalan (gráfico de gasto)" },
-      { "titulo": "Contratos menores", "url": "https://www.opendatabizkaia.eus/es/catalogo/contratos-menores", "uso": "Búsqueda de gasto relacionado: material de retirada y trajes de protección del SPEIS" },
-      { "titulo": "Contratos no menores", "url": "https://www.opendatabizkaia.eus/es/catalogo/contratos-no-menores", "uso": "Búsqueda de gasto relacionado (vestuario del SPEIS)" },
-      { "titulo": "Convenios", "url": "https://www.opendatabizkaia.eus/es/catalogo/convenios", "uso": "Búsqueda de gasto relacionado" },
-      { "titulo": "Subvenciones otorgadas", "url": "https://www.opendatabizkaia.eus/es/catalogo/subvenciones-otorgadas", "uso": "Ayudas a la apicultura (contexto del gasto)" },
-      { "titulo": "Subvenciones", "url": "https://www.opendatabizkaia.eus/es/catalogo/subvenciones", "uso": "Búsqueda de gasto relacionado" },
-      { "titulo": "Plan Anual de Contratación de la Diputación Foral", "url": "https://www.opendatabizkaia.eus/es/catalogo/plan-anual-contratacion", "uso": "Búsqueda de gasto relacionado" },
-      { "titulo": "Plan Anual de Contratación de Basalan", "url": "https://www.opendatabizkaia.eus/es/catalogo/plan-anual-contratacion-basalan", "uso": "Búsqueda de gasto relacionado" },
-      { "titulo": "Presupuestos completos", "url": "https://www.opendatabizkaia.eus/es/catalogo/presupuestos-completos", "uso": "Comprobación: no hay partida propia de avispa asiática" },
-      { "titulo": "Liquidación del presupuesto", "url": "https://www.opendatabizkaia.eus/es/catalogo/liquidacion-presupuestos", "uso": "Comprobación: el encargo a Basalan figura en el programa de Patrimonio Natural" },
-      { "titulo": "Modificaciones presupuestarias", "url": "https://www.opendatabizkaia.eus/es/catalogo/modificaciones-presupuestos", "uso": "Comprobación: no hay partida propia de avispa asiática" },
-      { "titulo": "Informes periódicos de ejecución de presupuestos", "url": "https://www.opendatabizkaia.eus/es/catalogo/ejecucion-presupuestos", "uso": "Comprobación del encargo a Basalan en 2025-2026" },
-      { "titulo": "Intervenciones del SPEIS", "url": "https://www.opendatabizkaia.eus/es/catalogo/intervenciones-speis", "uso": "Salidas de los bomberos forales por abejas y avispas (contexto de los medios, no se muestra en la pieza)" }
+    "meses": [
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
     ],
-    "otras_fuentes": [
-      { "titulo": "INE, padrón continuo por municipio (tabla 2905), 2017-2025", "url": "https://www.ine.es/jaxiT3/Tabla.htm?t=2905", "uso": "Habitantes de cada municipio para las tasas por 1.000 habitantes" },
-      { "titulo": "Principado de Asturias, informes anuales de actividad sobre la avispa asiática", "url": "https://www.asturias.es/documents/d/guest/informe-actividad-avispa-2025", "uso": "Serie de nidos de Asturias y criterio del 1 de noviembre" },
-      { "titulo": "Diputación Foral de Álava, «Vespa velutina Araban 2012-2024»", "url": "https://web.araba.eus/documents/d/araba/vespa-velutina-araban_2012_2024-web-pdf", "uso": "Serie de nidos de Araba" },
-      { "titulo": "Gobierno Vasco, manual para la gestión de la avispa asiática (2016)", "url": "https://www.euskadi.eus/contenidos/documentacion/vespa_velutina/es_def/adjuntos/vespa_velutina.pdf", "uso": "Nidos retirados en Gipuzkoa y en Bizkaia antes del registro abierto (tabla 2)" },
-      { "titulo": "Reglamento de Ejecución (UE) 2016/1141: lista de especies exóticas invasoras preocupantes para la Unión", "url": "https://eur-lex.europa.eu/eli/reg_impl/2016/1141/oj", "uso": "Fecha de entrada de la avispa asiática en la lista (2016)" },
-      { "titulo": "Haxaire, Bouguet y Tamisier (2006), Bulletin de la Société entomologique de France 111(2): 194, y Muséum national d'Histoire naturelle", "url": "https://frelonasiatique.mnhn.fr/home", "uso": "Primera detección en Francia (Lot-et-Garonne, 2004)" },
-      { "titulo": "Requier y otros (2019), Journal of Pest Science", "url": "https://doi.org/10.1007/s10340-018-1063-0", "uso": "Depredación de abejas a la entrada de las colmenas" },
-      { "titulo": "Rome y otros (2015), Journal of Applied Entomology", "url": "https://doi.org/10.1111/jen.12210", "uso": "Ciclo de la colonia y producción de futuras reinas" },
-      { "titulo": "Diéguez-Antón y otros (2022)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9597825/", "uso": "Ciclo y ubicación de los nidos en Galicia" },
-      { "titulo": "Lagoa y otros (2025), Ecosistemas", "url": "https://doi.org/10.7818/ecos.2987", "uso": "Al menos cinco nidos reales por cada nido avisado en un pinar de Vigo" },
-      { "titulo": "Pérez-de-Heredia y otros (2017), Journal of Hymenoptera Research", "url": "https://doi.org/10.3897/jhr.60.13505", "uso": "Futuras reinas en los nidos de Bizkaia y Gipuzkoa a partir de mediados de octubre" },
-      { "titulo": "Keeling y otros (2017)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5524706/", "uso": "Para erradicarla habría que encontrar más del 90 % de los nidos antes de que salgan las reinas" },
-      { "titulo": "Provincia de Noord-Brabant, evaluación de la política sobre la avispa asiática (2024)", "url": "https://open.brabant.nl/public/download/4ee09c55-298d-4481-a062-5c587585ecbe/46_20240603%20Beleidsevaluatie%20V1.0_geanonimiseerd.pdf", "uso": "Programa que retira nidos primarios sin reducir la población" },
-      { "titulo": "Leza y otros (2021), Pest Management Science", "url": "https://doi.org/10.1002/ps.6264", "uso": "Erradicación en Mallorca en un foco pequeño" },
-      { "titulo": "Defra (2024), reinas hijas de un nido destruido en noviembre en Sussex", "url": "https://deframedia.blog.gov.uk/2024/06/04/new-evidence-asian-hornets-overwintering-in-uk/", "uso": "Un nido retirado en noviembre puede haber soltado ya reinas" }
+    "alto": 110,
+    "fases": [
+     {
+      "hasta": 1,
+      "camara": "morga",
+      "marcarHilo": true,
+      "anios": [
+       2025,
+       2025
+      ],
+      "fijo": "hilo"
+     }
     ]
+   },
+   "texto": [
+    "El 15 de septiembre de 2025, en Morga, alguien avisó de un nido de avispa asiática en un árbol, a 7 metros de altura. Dos días después, un equipo de Basalan lo retiró."
+   ],
+   "alt": "Mapa de Bizkaia en el que van apareciendo, temporada a temporada, los nidos de avispa asiática avisados entre 2019 y 2025. Hay puntos en casi todo el territorio. Bilbao aparece rayado, sin datos, porque tiene un servicio municipal propio.",
+   "hilo": ""
   },
-  "interfaz": {
-    "meses": ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"],
-    "meses_largos": ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"],
-    "ver_datos": "Ver los datos del gráfico",
-    "fuentes_creditos": "Fuentes y créditos",
-    "conjuntos_odb": "Conjuntos de Open Data Bizkaia usados",
-    "otras_fuentes": "Fuentes complementarias",
-    "temporada": "Temporada",
-    "anio": "Año",
-    "mes": "Mes de aviso",
-    "nidos": "nidos",
-    "avisos": "Avisos",
-    "porcentaje": "% de los avisos",
-    "sin_dato": "sin dato",
-    "registro_incompleto": "registro incompleto",
-    "registro_incompleto_abril": "registro incompleto: empieza en abril",
-
-    "avispa_icono": "Avispa asiática (dibujo esquemático, sin escala)",
-    "llegada": {
-      "2004": "Primera vez en Francia (Lot-et-Garonne)",
-      "2012-04-10": "Llega a Bizkaia",
-      "2016-07-14": "Lista de invasoras de la UE"
-    },
-    "epocas": {
-      "primavera": "Primavera: nido primario",
-      "verano_otono": "Verano y otoño: nido secundario",
-      "tardio": "Desde el 1 de noviembre",
-      "invierno": "Invierno"
-    },
-    "ciclo_dato": "{d} cm · a {a} m · {arbol} en árbol",
-    "ciclo_invierno": "El nido muere; las reinas pasan el invierno escondidas",
-    "ciclo_nota": "Nidos retirados en {desde}-{hasta}, según la fecha de retirada. Cada valor es el típico: la mitad de los nidos está por debajo y la otra mitad por encima.",
-    "ciclo_desc": "{epoca}: {n} nidos; tamaño típico {d} cm, a {a} m de altura; {arbol} en árbol.",
-    "epoca": "Época de retirada",
-    "nidos_retirados": "Nidos retirados",
-    "diametro_tipico": "Diámetro típico",
-    "altura_tipica": "Altura típica",
-    "en_arbol": "En árbol",
-    "tabla_perfil": "Nidos retirados según la época de retirada (2019-2025)",
-    "tabla_hitos": "Hitos de la línea del tiempo (cronología de medidas)",
-    "fecha": "Fecha",
-    "hito": "Hito",
-    "fuente": "Fuente",
-    "circuito_desde": "Desde {mes} de {anio}",
-    "circuito_nodos": [
-      { "nombre": "Vecino", "detalle": "ve el nido y avisa" },
-      { "nombre": "Ayuntamiento", "detalle": "comprueba y registra" },
-      { "nombre": "Basalan", "detalle": "retira el nido" }
+  {
+   "id": "apertura-2",
+   "grafico": "mapa",
+   "titulo": "Nidos de avispa asiática avisados en Bizkaia, 2019-2025 (abril-diciembre)",
+   "titular": "",
+   "estado": {
+    "modo": "puntos",
+    "temporadas": [
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
     ],
-    "circuito_basalan": "Basalan cierra entre el {min} y el {max} de los nidos ({desde}-{hasta})",
-    "circuito_bomberos": "Bomberos forales: solo casos excepcionales",
-    "circuito_registro": "Cada aviso queda en un registro público (Open Data Bizkaia)",
-    "censo_avisados": "{n} nidos avisados",
-    "censo_sin_ver": "{n} nidos que nadie ha visto ni avisado",
-    "censo_nota": "Por cada nido avisado hay, al menos, cinco nidos reales.",
-
-    "estimacion_ayuda": "Toca cada año para marcar tu estimación",
-    "estimacion_lista": "Cuando quieras, pulsa «Ver los datos reales»",
-    "estimacion_aria": "Tu estimación de nidos avisados en {temporada}",
-    "estimacion_sin_marcar": "sin marcar",
-    "estimacion_desc": "Punto de partida: {inicio} nidos avisados en {desde}.",
-    "estimacion_desc_real": "Nidos avisados: {inicio} en {desde} y {fin} en {hasta}.",
-    "avisos_reales": "Avisos reales",
-    "tu_estimacion": "Tu estimación",
-
-    "tramos": { "mismo_dia": "El mismo día", "de_1_a_3_dias": "1-3 días", "de_4_a_7_dias": "4-7 días", "mas_de_7_dias": "Más de 7 días" },
-    "en_7_dias": "≤ 7 días",
-    "tramos_desc": "En una semana o menos se retira entre el {min} y el {max} de los nidos, según la temporada ({desde}-{hasta}).",
-
-    "cambia_registro": "cambia el registro (2023)",
-    "media_tramo": "media {desde}-{hasta}: {v}",
-    "no_eliminables": "No eliminables",
-    "linea_desc": "Media de {d0}-{d1}: {a}; media de {e0}-{e1}: {b}.",
-
-    "mensual_primavera": "Primavera (abril-junio): {v} de los avisos",
-    "mensual_noviembre": "A partir de aquí, el nido ha podido empezar a soltar reinas. Retirados después del 1 de noviembre: entre el {min} y el {max}, según el año",
-    "mensual_desc": "Primavera {primavera}, verano {verano}, otoño {otono}; el máximo, {mes}, con el {max}.",
-
-    "anios_desde_llegada": "Años desde la llegada de la avispa",
-    "region_meseta": "{region}\n{v} de media",
-    "region_incompleto": "{anio}: registro incompleto",
-    "region_desc": "{region}: {v} nidos por 1.000 km² de media en {desde}-{hasta}.",
-    "region": "Región",
-    "por_1000_km2": "Nidos por 1.000 km²",
-    "que_mide": "Qué cuenta",
-
-    "eur_nido": "{v} €/nido",
-    "eur_nido_corto": "€/nido",
-    "gasto_mezclado": "Mezclado con otros trabajos",
-    "gasto_mezclado_corto": "mezclado con otros trabajos",
-    "gasto_sin_desglose": "Sin desglose: dentro del encargo anual a Basalan ({min} a {max} al año)",
-    "sin_desglose": "sin desglose",
-    "gasto_desc": "De {desde} a {hasta}, sin desglose: va dentro de un encargo anual a Basalan de {min} a {max}.",
-    "retirada_nidos": "Retirada de nidos (línea propia)",
-    "eur_por_nido": "Coste por nido",
-    "encargo_basalan": "Encargo anual a Basalan (Patrimonio Natural)",
-    "detalle": "Detalle en las encomiendas",
-
-    "mapa_etiqueta": "Mapa de nidos de avispa asiática en Bizkaia",
-    "mapa_atribucion": "Límites: catastro foral de Bizkaia · Nidos: Open Data Bizkaia · Población: INE",
-    "nidos_mapa": "{n} nidos con coordenadas, {desde}-{hasta}",
-    "nidos_mapa_hasta": "{n} nidos con coordenadas, {desde}-{hasta}…",
-    "sin_datos_leyenda": "sin datos (servicio municipal propio)",
-    "sin_datos_municipio": "{municipio}: sin datos (servicio municipal propio)",
-    "sin_datos_corto": "sin datos",
-    "tasa_leyenda": "Nidos al año por 1.000 habitantes ({desde}-{hasta})",
-    "tasa_columna": "Nidos al año por 1.000 habitantes ({desde}-{hasta})",
-    "tasa_desc": "Tasa media de {desde}-{hasta}. Las tablas de datos dan el valor de cada municipio.",
-    "tasa_tamano": "Media de {desde}-{hasta} según el tamaño del municipio (sin Bilbao):",
-    "tamanos": { "<2.000": "menos de 2.000 habitantes", "2.000-5.000": "de 2.000 a 5.000", "5.000-20.000": "de 5.000 a 20.000", ">20.000": "más de 20.000" },
-    "municipio": "Municipio",
-    "poblacion_2025": "Habitantes (2025)",
-    "maplibre": {
-      "CooperativeGesturesHandler.WindowsHelpText": "Pulsa Ctrl y usa la rueda para acercar el mapa",
-      "CooperativeGesturesHandler.MacHelpText": "Pulsa ⌘ y usa la rueda para acercar el mapa",
-      "CooperativeGesturesHandler.MobileHelpText": "Usa dos dedos para mover el mapa",
-      "NavigationControl.ZoomIn": "Acercar",
-      "NavigationControl.ZoomOut": "Alejar",
-      "NavigationControl.ResetBearing": "Orientar al norte"
-    },
-
-    "buscar_municipio": "Municipio",
-    "buscar_ejemplo": "Escribe el nombre, por ejemplo Getxo",
-    "resumen_municipio": "<strong>{municipio}</strong>: {tasa} nidos avisados al año por cada 1.000 habitantes ({desde}-{hasta}), puesto {puesto} de {total} municipios. La mitad de sus nidos se retira en {dias} días o menos.",
-    "nota_explorador": "Avisos de abril a diciembre; {anio}, registro incompleto (rayado).",
-    "sin_datos_explorador": "Sin datos: servicio municipal propio",
-    "explorador_aria": "Nidos avisados por temporada en {municipio}",
-    "municipio_no_encontrado": "No se encuentra ese municipio. Prueba con otro nombre."
-  },
-  "descargas": {
-    "titulo": "Descarga los datos procesados",
-    "ficheros": [
-      { "nombre": "Indicadores por temporada (2018-2025, abril-diciembre)", "url": "data/descargas/indicadores_por_temporada.csv" },
-      { "nombre": "Avisos por temporada y mes (2019-2025, abril-diciembre)", "url": "data/descargas/avisos_por_temporada_y_mes_abr_dic.csv" },
-      { "nombre": "Municipios: nidos por temporada, tasa por 1.000 habitantes, puesto y días de retirada", "url": "data/descargas/municipios.csv" },
-      { "nombre": "Coordenadas de los nidos (redondeadas a unos 100 m)", "url": "data/descargas/nidos_coordenadas_redondeadas.csv" }
+    "meses": [
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "alto": 110,
+    "fases": [
+     {
+      "hasta": 1,
+      "camara": "bizkaia",
+      "tiempo": true,
+      "anios": [
+       2019,
+       2019
+      ]
+     }
     ]
+   },
+   "texto": [
+    "Ese nido no es una excepción. Ya en 2019 se avisó de 1.990 nidos, en 109 de los 113 municipios de Bizkaia: la avispa estaba en casi todo el territorio."
+   ],
+   "alt": "Mapa de Bizkaia en el que van apareciendo, temporada a temporada, los nidos de avispa asiática avisados entre 2019 y 2025. Hay puntos en casi todo el territorio. Bilbao aparece rayado, sin datos, porque tiene un servicio municipal propio.",
+   "hilo": ""
   },
-  "metodologia": {
-    "titulo": "Metodología",
-    "secciones": [
-      {
-        "id": "pregunta",
-        "titulo": "Qué se analiza",
-        "parrafos": [
-          "La pieza evalúa, con datos abiertos, qué consigue el sistema público de retirada de nidos de avispa asiática de Bizkaia y qué no consigue: cuántos nidos se avisan y dónde, cuánto se tarda en retirarlos, cuántos no se pueden retirar, en qué época se avisan, cuánto cuesta y si Bizkaia se aparta de otras regiones. No se atribuyen causas: el protocolo actual (ayuntamiento, aplicación foral y Basalan) es de julio de 2016 y no cambia en el periodo analizado.",
-          "Las tendencias se calculan con las temporadas 2019-2025. Dejamos fuera 2018 porque es el primer año del registro y está incompleto: empieza en abril, el 16 % de los nidos no tiene coordenadas y la altura del nido no se anotaba (aparece como 0). Para no esconder el efecto de esta decisión, repetimos los cálculos con 2018 incluido: la tendencia de los nidos que no se pudieron eliminar deja de ser estadísticamente significativa. Con siete temporadas, los resultados deben leerse con cautela."
-        ]
-      },
-      {
-        "id": "definiciones",
-        "titulo": "Definiciones y decisiones",
-        "lista": [
-          "Aviso: cada registro del conjunto «Avispa asiática en Bizkaia» con la especie asiática, sin los anulados ni las filas duplicadas. Es un nido que alguien ha visto y comunicado, no un censo.",
-          "Temporada: año del aviso. Solo se usan los avisos de abril a diciembre: hasta 2022 los registros anuales no siguen el año natural y no hay avisos en enero y febrero de 2019, así que los avisos de enero a marzo no son comparables entre años. Por eso el gráfico mensual va de abril a diciembre.",
-          "2018 se muestra rayado en gris como «registro incompleto» y no entra en las tendencias ni en las medias.",
-          "Días hasta la retirada: fecha de cierre menos fecha de aviso, en días enteros (las fechas no traen hora). Se anulan las diferencias negativas, que son errores de fecha.",
-          "No eliminables: avisos cerrados con el estado «no eliminable», sobre todos los avisos de la temporada.",
-          "Nido tardío: nido retirado a partir del 1 de noviembre, el criterio de Asturias para un nido que ha podido soltar reinas. Se dice siempre «ha podido», nunca «ha soltado».",
-          "Tasa por 1.000 habitantes: nidos avisados en 2019-2025 divididos entre la suma de los habitantes de cada año (padrón del INE), por mil. El tamaño del municipio se toma del padrón de 2025.",
-          "Bilbao tiene un servicio municipal propio de retirada de nidos y casi no aparece en el registro foral. En el mapa y en el buscador aparece como «sin datos (servicio municipal propio)», nunca como cero, y queda fuera de las tasas y de los puestos.",
-          "Regiones: cada serie se divide entre la superficie de la región y se alinea por los años desde la primera detección de la avispa. Bizkaia usa todos los avisos del registro abierto en el año."
-        ]
-      },
-      {
-        "id": "proceso",
-        "titulo": "Proceso (scripts de Python, en orden)",
-        "lista": [
-          "<code>scripts/descargar_bizkaia.py</code>: descarga los CSV de los conjuntos de Open Data Bizkaia (avispa asiática, encomiendas, contratos, subvenciones, presupuestos, SPEIS).",
-          "<code>scripts/descargar_municipios_bizkaia.py</code>: límites municipales del catastro foral.",
-          "<code>scripts/descargar_comparativa_regiones.py</code>: informes y notas de otras regiones.",
-          "<code>scripts/explorar_avispa.py</code> y <code>scripts/avispa_llegamos_tarde.py</code>: limpieza del registro (doble codificación UTF-8, fechas de 2018 a 2022 con el día y el mes intercambiados, fecha de relleno 9999-12-31, duplicados y anulados). Todos los análisis reutilizan esta limpieza.",
-          "<code>scripts/avispa_indicadores_control.py</code>: indicadores por temporada (días hasta la retirada, no eliminables, quién retira, primavera, retirados después del 1 de noviembre) y sus tendencias.",
-          "<code>scripts/avispa_cifras_guion.py</code>: perfil de los nidos según la época, reparto mensual y tasas por 1.000 habitantes según el tamaño del municipio (con el padrón del INE).",
-          "<code>scripts/avispa_comparativa_regiones.py</code>: series de nidos de las regiones, densidad por 1.000 km² y tendencias en la meseta.",
-          "<code>scripts/avispa_gasto.py</code>: búsqueda y clasificación del gasto público relacionado en catorce conjuntos y coste por nido.",
-          "<code>scripts/avispa_politicas_hitos.py</code>: cronología de medidas con su fuente y su estado de verificación.",
-          "<code>scripts/web_preparar_datos.py</code>: lee los resultados anteriores y genera los JSON de la web y los CSV descargables. Comprueba que las cifras recalculadas coinciden con las de los análisis.",
-          "<code>scripts/web_descargar_librerias.py</code> y <code>scripts/web_descargar_fuentes.py</code>: copian las librerías y las tipografías a la propia web, con versión fija y su huella SHA-256."
-        ]
-      },
-      {
-        "id": "herramientas",
-        "titulo": "Herramientas",
-        "lista": [
-          "Python con pandas, geopandas, shapely, pyproj y statsmodels para obtener, limpiar, analizar y preparar los datos.",
-          "Tendencias de proporciones: modelo lineal generalizado cuasibinomial por temporada, con la razón de probabilidades por año y su intervalo de confianza del 95 %. Tendencia de los nidos: regresión log-lineal y, como contraste, binomial negativa.",
-          "Web estática con D3 7.9.0, Scrollama 3.2.0 y MapLibre GL JS 4.7.1, sin mapa base externo ni claves de API; tipografías Source Serif 4 y Source Sans 3 (licencia SIL Open Font License), alojadas en la propia web. Todo es software libre."
-        ]
-      },
-      {
-        "id": "limitaciones",
-        "titulo": "Limitaciones",
-        "lista": [
-          "Son avisos, no un censo: dependen de que alguien vea el nido y avise. Un estudio en Vigo encontró al menos cinco nidos reales por cada nido avisado.",
-          "Solo hay siete temporadas comparables (2019-2025). La subida de los nidos avisados, de alrededor del 7 % al año, depende del modelo: con una regresión log-lineal el intervalo de confianza del 95 % va del 2 % al 12 %; con una binomial negativa va del −1,6 % al 16,1 % y no es concluyente. Además, puede deberse a que se avisa más: la proporción de avisos de avispa asiática frente a los de avispa común baja.",
-          "El 1 de enero de 2023 cambia la aplicación o el criterio de registro. La bajada de los nidos no eliminables (del 9,5 % al 6,2 %) es un escalón justo en esa fecha: no se puede presentar como una mejora.",
-          "Hasta 2022 los registros anuales no siguen el año natural; por eso se usan solo los avisos de abril a diciembre.",
-          "El coste de retirar los nidos solo se ve en 2017-2019 (unos 70-100 € por nido). Es una estimación con meses sin línea de gasto propia; las líneas de 2019 vienen cortadas y se ha supuesto a qué meses corresponden. Desde 2021 la retirada va sin desglose dentro del encargo anual a Basalan, cuyo contenido además cambia entre años.",
-          "Las series de las regiones miden cosas distintas (avisos, nidos detectados, nidos retirados) y el esfuerzo de búsqueda cambia entre regiones: solo sirven para comparar órdenes de magnitud y no prueban ninguna causa.",
-          "El tamaño y la altura de los nidos los anota quien avisa o quien acude; no consta si se miden o se estiman, y se redondean.",
-          "En el mapa las coordenadas se redondean a unos 100 m y faltan los avisos sin coordenadas (la mayoría, de 2018 y 2019); sí cuentan en las series, en las tasas y en el buscador."
-        ]
-      }
+  {
+   "id": "apertura-3",
+   "grafico": "mapa",
+   "titulo": "Nidos de avispa asiática avisados en Bizkaia, 2019-2025 (abril-diciembre)",
+   "titular": "",
+   "estado": {
+    "modo": "puntos",
+    "temporadas": [
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "meses": [
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "alto": 170,
+    "fases": [
+     {
+      "hasta": 1,
+      "camara": "bizkaia",
+      "tiempo": true,
+      "anios": [
+       2020,
+       2022
+      ]
+     }
     ]
+   },
+   "texto": [
+    "Los avisos suben y bajan de un año a otro: 2.599 en 2020, 2.138 en 2021, 2.469 en 2022."
+   ],
+   "alt": "Mapa de Bizkaia en el que van apareciendo, temporada a temporada, los nidos de avispa asiática avisados entre 2019 y 2025. Hay puntos en casi todo el territorio. Bilbao aparece rayado, sin datos, porque tiene un servicio municipal propio.",
+   "hilo": ""
+  },
+  {
+   "id": "apertura-4",
+   "grafico": "mapa",
+   "titulo": "Nidos de avispa asiática avisados en Bizkaia, 2019-2025 (abril-diciembre)",
+   "titular": "",
+   "estado": {
+    "modo": "puntos",
+    "temporadas": [
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "meses": [
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "alto": 140,
+    "fases": [
+     {
+      "hasta": 1,
+      "camara": "mungia",
+      "tiempo": true,
+      "anios": [
+       2023,
+       2024
+      ],
+      "anotacion": "mungia"
+     }
+    ]
+   },
+   "texto": [
+    "Mungia es casi todos los años el municipio con más avisos: 871 entre 2019 y 2025. Le siguen Getxo y Galdakao."
+   ],
+   "alt": "Mapa de Bizkaia en el que van apareciendo, temporada a temporada, los nidos de avispa asiática avisados entre 2019 y 2025. Hay puntos en casi todo el territorio. Bilbao aparece rayado, sin datos, porque tiene un servicio municipal propio.",
+   "hilo": ""
+  },
+  {
+   "id": "apertura-5",
+   "grafico": "mapa",
+   "titulo": "Nidos de avispa asiática avisados en Bizkaia, 2019-2025 (abril-diciembre)",
+   "titular": "",
+   "estado": {
+    "modo": "puntos",
+    "temporadas": [
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "meses": [
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "alto": 110,
+    "fases": [
+     {
+      "hasta": 1,
+      "camara": "bizkaia",
+      "tiempo": true,
+      "anios": [
+       2025,
+       2025
+      ],
+      "marcarHilo": true
+     }
+    ]
+   },
+   "texto": [
+    "2025 cerró con 3.222 avisos, el máximo desde 2019. Uno de ellos era el nido de Morga."
+   ],
+   "alt": "Mapa de Bizkaia en el que van apareciendo, temporada a temporada, los nidos de avispa asiática avisados entre 2019 y 2025. Hay puntos en casi todo el territorio. Bilbao aparece rayado, sin datos, porque tiene un servicio municipal propio.",
+   "hilo": ""
+  },
+  {
+   "id": "apertura-6",
+   "grafico": "mapa",
+   "titulo": "Nidos de avispa asiática avisados en Bizkaia, 2019-2025 (abril-diciembre)",
+   "titular": "",
+   "estado": {
+    "modo": "puntos",
+    "temporadas": [
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "meses": [
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "alto": 160,
+    "fases": [
+     {
+      "hasta": 0.5,
+      "capa": "densidad",
+      "camara": "bizkaia",
+      "anotacion": "densidad"
+     },
+     {
+      "hasta": 1,
+      "capa": "densidad",
+      "camara": "bilbao",
+      "anotacion": "bilbao"
+     }
+    ]
+   },
+   "texto": [
+    "En total, entre 2019 y 2025 se avisó de más de 18.000 nidos. Casi todos se retiraron. Esta pieza responde a una pregunta sencilla: ¿qué se consigue con eso?"
+   ],
+   "alt": "Mapa de Bizkaia en el que van apareciendo, temporada a temporada, los nidos de avispa asiática avisados entre 2019 y 2025. Hay puntos en casi todo el territorio. Bilbao aparece rayado, sin datos, porque tiene un servicio municipal propio.",
+   "hilo": ""
+  },
+  {
+   "id": "llegada",
+   "grafico": "esquema",
+   "titulo": "Una especie que llegó de fuera",
+   "titular": "Una especie que llegó de fuera",
+   "estado": {
+    "vista": "llegada",
+    "hitos": [
+     "2004",
+     "2012-04-10",
+     "2016-07-14"
+    ],
+    "alto": 230
+   },
+   "texto": [
+    "La avispa asiática (<em>Vespa velutina</em>) se vio por primera vez en Francia en 2004 y llegó a Bizkaia en 2012. Caza abejas a la entrada de las colmenas. Desde 2016 está en la lista de especies invasoras de la Unión Europea."
+   ],
+   "alt": "Fotografía de una avispa asiática y una línea del tiempo con tres fechas: 2004, primera vez en Francia; 2012, llegada a Bizkaia; 2016, lista de especies invasoras de la Unión Europea.",
+   "hilo": ""
+  },
+  {
+   "id": "ciclo",
+   "grafico": "esquema",
+   "titulo": "El año de un nido: tamaño y altura típicos de los nidos retirados en Bizkaia",
+   "titular": "El año de un nido",
+   "estado": {
+    "vista": "ciclo",
+    "alto": 250
+   },
+   "texto": [
+    "En primavera, una reina construye sola un nido pequeño y bajo: el <strong>nido primario</strong>. En verano, muchas colonias se mudan a un <strong>nido secundario</strong>, grande y en lo alto de un árbol. En otoño crían cientos de futuras reinas."
+   ],
+   "alt": "Esquema del año de un nido. Cada círculo es el nido típico retirado en una época: su altura indica a cuántos metros estaba y su tamaño, el diámetro. Los de primavera son pequeños y bajos; los de noviembre y diciembre, grandes y altos. En invierno el nido muere y solo quedan las reinas, escondidas.",
+   "hilo": ""
+  },
+  {
+   "id": "circuito",
+   "grafico": "esquema",
+   "titulo": "Qué pasa cuando alguien ve un nido",
+   "titular": "Del aviso a la retirada",
+   "estado": {
+    "vista": "circuito",
+    "alto": 120
+   },
+   "texto": [
+    "Desde 2016, quien ve un nido avisa a su ayuntamiento, que lo registra en una aplicación foral. Lo retira <strong>Basalan</strong>, empresa pública de la Diputación. Cada aviso queda en un registro público: Open Data Bizkaia."
+   ],
+   "alt": "Esquema de tres pasos unidos por flechas: el vecino avisa, el ayuntamiento comprueba y registra, Basalan retira el nido.",
+   "hilo": ""
+  },
+  {
+   "id": "censo",
+   "grafico": "mapa",
+   "titulo": "Un aviso no es un censo",
+   "titular": "Un aviso no es un censo",
+   "estado": {
+    "modo": "censo",
+    "alto": 200,
+    "fases": [
+     {
+      "hasta": 0.1,
+      "camara": "censo",
+      "fantasmas": 0
+     },
+     {
+      "hasta": 1,
+      "camara": "censo",
+      "fantasmas": 1,
+      "anotacion": "fantasma"
+     }
+    ]
+   },
+   "nota": "Ilustración: proporción del estudio de Lagoa y otros (2025) en un pinar de Vigo.",
+   "texto": [
+    "Un aviso no es un censo: solo cuenta los nidos que alguien ha visto y comunicado. En un pinar de Vigo había al menos cinco nidos reales por cada nido avisado."
+   ],
+   "alt": "Mapa de detalle de una zona arbolada de Morga con los nidos avisados en naranja y, alrededor, círculos huecos que ilustran los nidos sin avisar: cuatro por cada nido avisado, según la proporción del estudio de Vigo. No son ubicaciones reales.",
+   "hilo": ""
+  },
+  {
+   "id": "estimacion",
+   "grafico": "estimacion",
+   "titulo": "Nidos avisados por temporada (abril-diciembre)",
+   "titular": "¿Cuántos nidos?",
+   "estado": {
+    "revelar": false,
+    "alto": 130
+   },
+   "texto": [
+    "Con casi todos los nidos retirados año tras año, ¿cuántos crees que se avisaron después? Marca tu estimación."
+   ],
+   "boton": {
+    "accion": "revelar",
+    "texto": "Ver los datos reales"
+   },
+   "alt": "Gráfico interactivo de barras. Solo se ve la primera temporada; para cada una de las siguientes se puede marcar una estimación tocando su columna o, con el teclado, con las flechas arriba y abajo.",
+   "hilo": ""
+  },
+  {
+   "id": "estimacion-real",
+   "grafico": "estimacion",
+   "titulo": "Nidos avisados por temporada (abril-diciembre)",
+   "titular": "",
+   "estado": {
+    "revelar": true,
+    "alto": 160
+   },
+   "texto": [
+    "No bajaron: subieron. Se avisó de unos 2.000 nidos en 2019 y de unos 3.200 en 2025. Parte de la subida puede deberse a que la gente avisa más: los avisos de avispa común, una especie autóctona, crecieron todavía más."
+   ],
+   "alt": "Gráfico de barras con los nidos avisados en cada temporada. La serie no baja. La barra de 2018 está rayada en gris: es el primer año del registro, que empieza en abril y está incompleto.",
+   "hilo": ""
+  },
+  {
+   "id": "rapidez",
+   "grafico": "tramos",
+   "titulo": "Días entre el aviso y la retirada (nidos retirados, 2019-2025)",
+   "titular": "Dos días",
+   "estado": {
+    "alto": 160
+   },
+   "texto": [
+    "Cuando alguien avisa, el sistema responde. La mitad de los nidos se retira en dos días o menos, y alrededor de nueve de cada diez en una semana. Esto apenas ha cambiado entre 2019 y 2025."
+   ],
+   "alt": "Gráfico de puntos apilados: cada punto son 10 nidos retirados entre 2019 y 2025, colocados según los días que pasaron desde el aviso hasta la retirada. Casi todos se acumulan entre 0 y 3 días; más de la mitad, en 2 días o menos. Un anillo marca el nido de Morga, retirado en 2 días.",
+   "hilo": "El nido de Morga se retiró en 2 días: como la mitad de los nidos."
+  },
+  {
+   "id": "no-eliminables",
+   "grafico": "linea",
+   "titulo": "Nidos que no se pudieron retirar (% de los avisos de cada temporada)",
+   "titular": "Los nidos que no se pueden quitar",
+   "estado": {
+    "alto": 150
+   },
+   "texto": [
+    "Algunos nidos no se pueden quitar: están demasiado altos o inaccesibles. Pasaron de alrededor del 10 % a alrededor del 6 % en 2023. Ese año también cambió el registro, así que no sabemos si se quitan mejor o se anotan distinto."
+   ],
+   "alt": "Gráfico de línea con el porcentaje de nidos que no se pudieron retirar en cada temporada. Una línea vertical discontinua marca el 1 de enero de 2023, cuando cambia el registro. Antes de esa marca los valores son más altos que después.",
+   "hilo": ""
+  },
+  {
+   "id": "primavera",
+   "grafico": "mensual",
+   "titulo": "Avisos de cada mes, 2019-2025 (% del total de abril a diciembre)",
+   "titular": "La primavera, casi sin avisos",
+   "estado": {
+    "resaltar": "primavera",
+    "alto": 150
+   },
+   "texto": [
+    "Los nidos primarios de primavera son pequeños, están bajos y se quitan con facilidad. Pero solo uno de cada diez avisos llega en primavera. La mayoría llega en verano y otoño, cuando el nido ya es grande y está en lo alto de un árbol."
+   ],
+   "alt": "Gráfico de barras con el porcentaje de avisos de cada mes en Bizkaia, de abril a diciembre, y una línea con el reparto de Asturias, muy parecido. Las barras de abril, mayo y junio, resaltadas, son las más bajas; el máximo está en agosto.",
+   "hilo": "El nido de Morga se avisó en septiembre, como la mayoría: en verano."
+  },
+  {
+   "id": "reinas",
+   "grafico": "mensual",
+   "titulo": "Avisos de cada mes, 2019-2025 (% del total de abril a diciembre)",
+   "titular": "Después del 1 de noviembre",
+   "estado": {
+    "resaltar": "noviembre",
+    "alto": 130
+   },
+   "texto": [
+    "En el País Vasco, las futuras reinas aparecen en los nidos desde mediados de octubre. Un nido retirado después del 1 de noviembre ha podido soltarlas. En Bizkaia, eso pasa con entre el 16 % y el 24 % de los nidos, según el año."
+   ],
+   "alt": "El mismo gráfico de avisos por mes, con la zona desde el 1 de noviembre sombreada: a partir de ahí, el nido ha podido empezar a soltar reinas.",
+   "hilo": ""
+  },
+  {
+   "id": "comarca-territorio",
+   "grafico": "mapa",
+   "titulo": "Nidos avisados por comarca, 2019-2025 (media anual; sin Bilbao)",
+   "titular": "Por territorio",
+   "estado": {
+    "modo": "comarcas",
+    "alto": 120,
+    "fases": [
+     {
+      "hasta": 1,
+      "camara": "bizkaia",
+      "medida": "km2"
+     }
+    ]
+   },
+   "texto": [
+    "Por superficie, los nidos se concentran en Gran Bilbao y en Plentzia-Mungia: Gran Bilbao tiene casi tres veces más nidos por kilómetro cuadrado que el resto de Bizkaia."
+   ],
+   "nota": "Bilbao tiene un servicio municipal propio y no está en este registro.",
+   "alt": "Mapa de las siete comarcas de Bizkaia coloreadas según los nidos avisados al año por kilómetro cuadrado. Gran Bilbao y Plentzia-Mungia son las más oscuras. Bilbao aparece rayado: sin datos, servicio municipal propio.",
+   "hilo": ""
+  },
+  {
+   "id": "comarca-habitante",
+   "grafico": "mapa",
+   "titulo": "Nidos avisados por comarca, 2019-2025 (media anual; sin Bilbao)",
+   "titular": "Por habitante",
+   "estado": {
+    "modo": "comarcas",
+    "alto": 120,
+    "fases": [
+     {
+      "hasta": 1,
+      "camara": "bizkaia",
+      "medida": "hab"
+     }
+    ]
+   },
+   "texto": [
+    "Pero por habitante el mapa se invierte: en Arratia-Nervión se avisa de unos 9 nidos al año por cada 1.000 vecinos; en Gran Bilbao, de menos de 2."
+   ],
+   "nota": "Bilbao tiene un servicio municipal propio y no está en este registro.",
+   "alt": "El mismo mapa de comarcas coloreado según los nidos avisados al año por cada 1.000 habitantes. El orden se invierte: Arratia-Nervión, Encartaciones y las comarcas rurales son las más oscuras; Gran Bilbao, la más clara.",
+   "hilo": ""
+  },
+  {
+   "id": "tasas",
+   "grafico": "mapa",
+   "titulo": "Nidos avisados al año por cada 1.000 habitantes, por municipio (media 2019-2025)",
+   "titular": "",
+   "estado": {
+    "modo": "tasa",
+    "alto": 130,
+    "fases": [
+     {
+      "hasta": 0.5,
+      "camara": "bizkaia",
+      "anotacion": "bilbao"
+     },
+     {
+      "hasta": 1,
+      "camara": "bizkaia",
+      "resaltar": "pequenos",
+      "anotacion": "tasa"
+     }
+    ]
+   },
+   "texto": [
+    "Hay nidos en casi todo el territorio. En proporción a sus habitantes, los municipios pequeños y rurales son los que más avisan: en los de menos de 2.000 habitantes hay unos 16 nidos al año por cada 1.000 vecinos; en los de más de 20.000, uno."
+   ],
+   "alt": "Mapa de municipios de Bizkaia coloreados según los nidos avisados al año por cada 1.000 habitantes; cuanto más oscuro, más nidos por habitante. Bilbao aparece rayado: sin datos, servicio municipal propio.",
+   "hilo": ""
+  },
+  {
+   "id": "comarca-tarde",
+   "grafico": "mapa",
+   "titulo": "Nidos avisados por comarca, 2019-2025 (media anual; sin Bilbao)",
+   "titular": "El interior, más tarde",
+   "estado": {
+    "modo": "comarcas",
+    "alto": 120,
+    "fases": [
+     {
+      "hasta": 1,
+      "camara": "bizkaia",
+      "medida": "tarde"
+     }
+    ]
+   },
+   "texto": [
+    "En las comarcas del interior y del este se retiran más nidos tarde. Después del 1 de noviembre se retira el 30 % de los nidos en Markina-Ondarroa y el 27 % en Encartaciones, frente al 20 % de media."
+   ],
+   "nota": "Bilbao tiene un servicio municipal propio y no está en este registro.",
+   "alt": "Mapa de comarcas coloreado según el porcentaje de nidos retirados después del 1 de noviembre. Markina-Ondarroa, Encartaciones y Arratia-Nervión están por encima de la media de Bizkaia, del 20 %.",
+   "hilo": ""
+  },
+  {
+   "id": "regiones",
+   "grafico": "regiones",
+   "titulo": "Nidos al año por cada 1.000 km², según los años desde la llegada de la avispa (escala logarítmica)",
+   "titular": "La misma curva",
+   "estado": {
+    "alto": 170
+   },
+   "nota": "Cada región cuenta de forma distinta (avisos, nidos detectados, nidos retirados). Solo se comparan órdenes de magnitud.",
+   "texto": [
+    "En las regiones vecinas ha pasado lo mismo: la avispa llega, se multiplica de tres a cinco años y se estanca. Asturias, con trampas en primavera, se estanca en un nivel parecido: unos 1.000 nidos por 1.000 km² al año, frente a unos 1.200 en Bizkaia."
+   ],
+   "alt": "Gráfico de líneas en escala logarítmica con las curvas de Bizkaia, en naranja, y de Asturias, Araba y Gipuzkoa, en gris, alineadas por los años transcurridos desde la llegada de la avispa. Todas suben con rapidez los primeros años y después se mantienen.",
+   "hilo": ""
+  },
+  {
+   "id": "regiones-fuera",
+   "grafico": "regiones",
+   "titulo": "Nidos al año por cada 1.000 km², según los años desde la llegada de la avispa (escala logarítmica)",
+   "titular": "Lo que se ha probado fuera",
+   "estado": {
+    "alto": 110
+   },
+   "texto": [
+    "Ningún programa ha conseguido reducir la avispa una vez asentada. En Noord-Brabant (Países Bajos) retiraron cientos de nidos primarios y los nidos siguieron subiendo. Mallorca la erradicó cuando era un foco pequeño, y volvió."
+   ],
+   "nota": "Cada región cuenta de forma distinta (avisos, nidos detectados, nidos retirados). Solo se comparan órdenes de magnitud.",
+   "alt": "Gráfico de líneas en escala logarítmica con las curvas de Bizkaia, en naranja, y de Asturias, Araba y Gipuzkoa, en gris, alineadas por los años transcurridos desde la llegada de la avispa. Todas suben con rapidez los primeros años y después se mantienen.",
+   "hilo": ""
+  },
+  {
+   "id": "gasto",
+   "grafico": "gasto",
+   "titulo": "Gasto público identificable en la retirada de nidos, 2017-2025",
+   "titular": "El coste que dejó de verse",
+   "estado": {
+    "alto": 170
+   },
+   "texto": [
+    "Hasta 2019, la retirada de nidos tenía partida propia: unos 70-100 euros por nido. Desde 2021 va dentro de un encargo anual a Basalan de más de 2 millones de euros, y con los datos abiertos ya no se puede saber cuánto cuesta."
+   ],
+   "nota": "El coste por nido es una estimación: hay meses sin línea de gasto propia.",
+   "alt": "Gráfico del gasto en retirada de nidos. 2017, 2018 y 2019 tienen importe propio, de 50.000 a 137.000 euros. 2020 aparece mezclado con otros trabajos. De 2021 a 2025, un bloque grande representa el encargo anual a Basalan, de 2,1 a 2,7 millones de euros, con una franja estimada del 5 al 9 % donde estaría la retirada de nidos, sin desglose.",
+   "hilo": ""
   }
+ ],
+ "explorador": {
+  "titulo": "¿Y en tu municipio?",
+  "texto": "Hasta aquí, Bizkaia entera. Busca tu municipio para ver cuántos nidos se avisaron cada año, cuántos hay por cada 1.000 habitantes, cómo está frente a su comarca y cuántos días se tarda en retirarlos."
+ },
+ "cierre": {
+  "titulo": "Lo que sabemos y lo que no",
+  "texto": [
+   "Bizkaia retira casi todos los nidos de los que se avisa, y lo hace en pocos días. Pero los nidos avisados no bajan, y el resto de regiones vecinas sigue la misma curva. Lo que nadie ha medido es cuántos nidos de otoño se evitarían buscando más en primavera. Y desde 2021 no se puede saber, con datos abiertos, cuánto cuesta cada nido."
+  ],
+  "enlaces": [
+   {
+    "texto": "Metodología y limitaciones",
+    "url": "metodologia.html"
+   },
+   {
+    "texto": "Datos procesados descargables",
+    "url": "#descargas"
+   },
+   {
+    "texto": "Código: los scripts del proceso, en orden",
+    "url": "metodologia.html#proceso"
+   }
+  ],
+  "titular": "Lo que sabemos y lo que no",
+  "hilo": "El nido de Morga se retiró rápido. Pero en 2025 hubo 3.222 avisos como ese, más que ningún año desde 2019."
+ },
+ "creditos": {
+  "herramientas": "Datos preparados con Python (pandas, geopandas, shapely, statsmodels). Web con D3, Scrollama y MapLibre GL JS, y tipografías Source Serif 4 y Source Sans 3. Todo es software libre.",
+  "metodologia": "metodologia.html",
+  "texto_metodologia": "Metodología y limitaciones de los datos",
+  "notas": [
+   "Temporada: año del aviso. Las cifras usan los avisos de abril a diciembre, el periodo que se puede comparar entre años.",
+   "2018 aparece rayado en gris: es el primer año del registro y está incompleto. Las tendencias usan 2019-2025.",
+   "Bilbao tiene un servicio municipal propio de retirada de nidos y no está en el registro foral: aparece como «sin datos».",
+   "En el mapa, las coordenadas están redondeadas a unos 100 m; faltan los nidos sin coordenadas."
+  ],
+  "conjuntos_odb": [
+   {
+    "titulo": "Avispa asiática en Bizkaia",
+    "url": "https://www.opendatabizkaia.eus/es/catalogo/avispa-asiatica",
+    "uso": "Registro de avisos y nidos: base de todos los gráficos salvo el de regiones y el de gasto"
+   },
+   {
+    "titulo": "Parcelario catastral de Bizkaia",
+    "url": "https://www.opendatabizkaia.eus/es/catalogo/parcelario-catastral",
+    "uso": "Límites municipales (capa «Municipios» del servicio del catastro foral)"
+   },
+   {
+    "titulo": "Encomiendas de gestión",
+    "url": "https://www.opendatabizkaia.eus/es/catalogo/encomiendas-gestion",
+    "uso": "Líneas de gasto de retirada de nidos (2017-2020) y encargo anual a Basalan (gráfico de gasto)"
+   },
+   {
+    "titulo": "Contratos menores",
+    "url": "https://www.opendatabizkaia.eus/es/catalogo/contratos-menores",
+    "uso": "Búsqueda de gasto relacionado: material de retirada y trajes de protección del SPEIS"
+   },
+   {
+    "titulo": "Contratos no menores",
+    "url": "https://www.opendatabizkaia.eus/es/catalogo/contratos-no-menores",
+    "uso": "Búsqueda de gasto relacionado (vestuario del SPEIS)"
+   },
+   {
+    "titulo": "Convenios",
+    "url": "https://www.opendatabizkaia.eus/es/catalogo/convenios",
+    "uso": "Búsqueda de gasto relacionado"
+   },
+   {
+    "titulo": "Subvenciones otorgadas",
+    "url": "https://www.opendatabizkaia.eus/es/catalogo/subvenciones-otorgadas",
+    "uso": "Ayudas a la apicultura (contexto del gasto)"
+   },
+   {
+    "titulo": "Subvenciones",
+    "url": "https://www.opendatabizkaia.eus/es/catalogo/subvenciones",
+    "uso": "Búsqueda de gasto relacionado"
+   },
+   {
+    "titulo": "Plan Anual de Contratación de la Diputación Foral",
+    "url": "https://www.opendatabizkaia.eus/es/catalogo/plan-anual-contratacion",
+    "uso": "Búsqueda de gasto relacionado"
+   },
+   {
+    "titulo": "Plan Anual de Contratación de Basalan",
+    "url": "https://www.opendatabizkaia.eus/es/catalogo/plan-anual-contratacion-basalan",
+    "uso": "Búsqueda de gasto relacionado"
+   },
+   {
+    "titulo": "Presupuestos completos",
+    "url": "https://www.opendatabizkaia.eus/es/catalogo/presupuestos-completos",
+    "uso": "Comprobación: no hay partida propia de avispa asiática"
+   },
+   {
+    "titulo": "Liquidación del presupuesto",
+    "url": "https://www.opendatabizkaia.eus/es/catalogo/liquidacion-presupuestos",
+    "uso": "Comprobación: el encargo a Basalan figura en el programa de Patrimonio Natural"
+   },
+   {
+    "titulo": "Modificaciones presupuestarias",
+    "url": "https://www.opendatabizkaia.eus/es/catalogo/modificaciones-presupuestos",
+    "uso": "Comprobación: no hay partida propia de avispa asiática"
+   },
+   {
+    "titulo": "Informes periódicos de ejecución de presupuestos",
+    "url": "https://www.opendatabizkaia.eus/es/catalogo/ejecucion-presupuestos",
+    "uso": "Comprobación del encargo a Basalan en 2025-2026"
+   },
+   {
+    "titulo": "Intervenciones del SPEIS",
+    "url": "https://www.opendatabizkaia.eus/es/catalogo/intervenciones-speis",
+    "uso": "Salidas de los bomberos forales por abejas y avispas (contexto de los medios, no se muestra en la pieza)"
+   }
+  ],
+  "otras_fuentes": [
+   {
+    "titulo": "INE, padrón continuo por municipio (tabla 2905), 2017-2025",
+    "url": "https://www.ine.es/jaxiT3/Tabla.htm?t=2905",
+    "uso": "Habitantes de cada municipio para las tasas por 1.000 habitantes"
+   },
+   {
+    "titulo": "Principado de Asturias, informes anuales de actividad sobre la avispa asiática",
+    "url": "https://www.asturias.es/documents/d/guest/informe-actividad-avispa-2025",
+    "uso": "Serie de nidos de Asturias y criterio del 1 de noviembre"
+   },
+   {
+    "titulo": "Diputación Foral de Álava, «Vespa velutina Araban 2012-2024»",
+    "url": "https://web.araba.eus/documents/d/araba/vespa-velutina-araban_2012_2024-web-pdf",
+    "uso": "Serie de nidos de Araba"
+   },
+   {
+    "titulo": "Gobierno Vasco, manual para la gestión de la avispa asiática (2016)",
+    "url": "https://www.euskadi.eus/contenidos/documentacion/vespa_velutina/es_def/adjuntos/vespa_velutina.pdf",
+    "uso": "Nidos retirados en Gipuzkoa y en Bizkaia antes del registro abierto (tabla 2)"
+   },
+   {
+    "titulo": "Reglamento de Ejecución (UE) 2016/1141: lista de especies exóticas invasoras preocupantes para la Unión",
+    "url": "https://eur-lex.europa.eu/eli/reg_impl/2016/1141/oj",
+    "uso": "Fecha de entrada de la avispa asiática en la lista (2016)"
+   },
+   {
+    "titulo": "Haxaire, Bouguet y Tamisier (2006), Bulletin de la Société entomologique de France 111(2): 194, y Muséum national d'Histoire naturelle",
+    "url": "https://frelonasiatique.mnhn.fr/home",
+    "uso": "Primera detección en Francia (Lot-et-Garonne, 2004)"
+   },
+   {
+    "titulo": "Requier y otros (2019), Journal of Pest Science",
+    "url": "https://doi.org/10.1007/s10340-018-1063-0",
+    "uso": "Depredación de abejas a la entrada de las colmenas"
+   },
+   {
+    "titulo": "Rome y otros (2015), Journal of Applied Entomology",
+    "url": "https://doi.org/10.1111/jen.12210",
+    "uso": "Ciclo de la colonia y producción de futuras reinas"
+   },
+   {
+    "titulo": "Diéguez-Antón y otros (2022)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9597825/",
+    "uso": "Ciclo y ubicación de los nidos en Galicia"
+   },
+   {
+    "titulo": "Lagoa y otros (2025), Ecosistemas",
+    "url": "https://doi.org/10.7818/ecos.2987",
+    "uso": "Al menos cinco nidos reales por cada nido avisado en un pinar de Vigo"
+   },
+   {
+    "titulo": "Pérez-de-Heredia y otros (2017), Journal of Hymenoptera Research",
+    "url": "https://doi.org/10.3897/jhr.60.13505",
+    "uso": "Futuras reinas en los nidos de Bizkaia y Gipuzkoa a partir de mediados de octubre"
+   },
+   {
+    "titulo": "Keeling y otros (2017)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5524706/",
+    "uso": "Para erradicarla habría que encontrar más del 90 % de los nidos antes de que salgan las reinas"
+   },
+   {
+    "titulo": "Provincia de Noord-Brabant, evaluación de la política sobre la avispa asiática (2024)",
+    "url": "https://open.brabant.nl/public/download/4ee09c55-298d-4481-a062-5c587585ecbe/46_20240603%20Beleidsevaluatie%20V1.0_geanonimiseerd.pdf",
+    "uso": "Programa que retira nidos primarios sin reducir la población"
+   },
+   {
+    "titulo": "Leza y otros (2021), Pest Management Science",
+    "url": "https://doi.org/10.1002/ps.6264",
+    "uso": "Erradicación en Mallorca en un foco pequeño"
+   },
+   {
+    "titulo": "Defra (2024), reinas hijas de un nido destruido en noviembre en Sussex",
+    "url": "https://deframedia.blog.gov.uk/2024/06/04/new-evidence-asian-hornets-overwintering-in-uk/",
+    "uso": "Un nido retirado en noviembre puede haber soltado ya reinas"
+   }
+  ]
+ },
+ "interfaz": {
+  "meses": [
+   "ene",
+   "feb",
+   "mar",
+   "abr",
+   "may",
+   "jun",
+   "jul",
+   "ago",
+   "sep",
+   "oct",
+   "nov",
+   "dic"
+  ],
+  "meses_largos": [
+   "enero",
+   "febrero",
+   "marzo",
+   "abril",
+   "mayo",
+   "junio",
+   "julio",
+   "agosto",
+   "septiembre",
+   "octubre",
+   "noviembre",
+   "diciembre"
+  ],
+  "ver_datos": "Ver los datos del gráfico",
+  "fuentes_creditos": "Fuentes y créditos",
+  "conjuntos_odb": "Conjuntos de Open Data Bizkaia usados",
+  "otras_fuentes": "Fuentes complementarias",
+  "temporada": "Temporada",
+  "anio": "Año",
+  "mes": "Mes de aviso",
+  "nidos": "nidos",
+  "avisos": "Avisos",
+  "porcentaje": "% de los avisos",
+  "sin_dato": "sin dato",
+  "registro_incompleto": "registro incompleto",
+  "registro_incompleto_abril": "registro incompleto: empieza en abril",
+  "avispa_icono": "Avispa asiática (dibujo esquemático, sin escala)",
+  "llegada": {
+   "2004": "Primera vez en Francia (Lot-et-Garonne)",
+   "2012-04-10": "Llega a Bizkaia",
+   "2016-07-14": "Lista de invasoras de la UE"
+  },
+  "epocas": {
+   "primavera": "Primavera: nido primario",
+   "verano_otono": "Verano y otoño: nido secundario",
+   "tardio": "Desde el 1 de noviembre",
+   "invierno": "Invierno"
+  },
+  "ciclo_dato": "{d} cm · a {a} m · {arbol} en árbol",
+  "ciclo_invierno": "El nido muere; las reinas pasan el invierno escondidas",
+  "ciclo_nota": "Nidos retirados en {desde}-{hasta}, según la fecha de retirada. Cada valor es el típico: la mitad de los nidos está por debajo y la otra mitad por encima.",
+  "ciclo_desc": "{epoca}: {n} nidos; tamaño típico {d} cm, a {a} m de altura; {arbol} en árbol.",
+  "epoca": "Época de retirada",
+  "nidos_retirados": "Nidos retirados",
+  "diametro_tipico": "Diámetro típico",
+  "altura_tipica": "Altura típica",
+  "en_arbol": "En árbol",
+  "tabla_perfil": "Nidos retirados según la época de retirada (2019-2025)",
+  "tabla_hitos": "Hitos de la línea del tiempo (cronología de medidas)",
+  "fecha": "Fecha",
+  "hito": "Hito",
+  "fuente": "Fuente",
+  "circuito_desde": "Desde {mes} de {anio}",
+  "circuito_nodos": [
+   {
+    "nombre": "Vecino",
+    "detalle": "ve el nido y avisa"
+   },
+   {
+    "nombre": "Ayuntamiento",
+    "detalle": "comprueba y registra"
+   },
+   {
+    "nombre": "Basalan",
+    "detalle": "retira el nido"
+   }
+  ],
+  "circuito_basalan": "Basalan cierra entre el {min} y el {max} de los nidos ({desde}-{hasta})",
+  "circuito_bomberos": "Bomberos forales: solo casos excepcionales",
+  "circuito_registro": "Cada aviso queda en un registro público (Open Data Bizkaia)",
+  "censo_avisados": "{n} nidos avisados",
+  "censo_sin_ver": "{n} nidos sin avisar (ilustración)",
+  "censo_nota": "Por cada nido avisado hay, al menos, cinco nidos reales.",
+  "estimacion_ayuda": "Toca cada año para marcar tu estimación",
+  "estimacion_lista": "Cuando quieras, pulsa «Ver los datos reales»",
+  "estimacion_aria": "Tu estimación de nidos avisados en {temporada}",
+  "estimacion_sin_marcar": "sin marcar",
+  "estimacion_desc": "Punto de partida: {inicio} nidos avisados en {desde}.",
+  "estimacion_desc_real": "Nidos avisados: {inicio} en {desde} y {fin} en {hasta}.",
+  "avisos_reales": "Avisos reales",
+  "tu_estimacion": "Tu estimación",
+  "tramos": {
+   "mismo_dia": "El mismo día",
+   "de_1_a_3_dias": "1-3 días",
+   "de_4_a_7_dias": "4-7 días",
+   "mas_de_7_dias": "Más de 7 días"
+  },
+  "en_7_dias": "≤ 7 días",
+  "tramos_desc": "En una semana o menos se retira entre el {min} y el {max} de los nidos, según la temporada ({desde}-{hasta}).",
+  "cambia_registro": "cambia el registro (2023)",
+  "media_tramo": "media {desde}-{hasta}: {v}",
+  "no_eliminables": "No eliminables",
+  "linea_desc": "Media de {d0}-{d1}: {a}; media de {e0}-{e1}: {b}.",
+  "mensual_primavera": "Primavera (abril-junio): {v} de los avisos",
+  "mensual_noviembre": "A partir de aquí, el nido ha podido empezar a soltar reinas. Retirados después del 1 de noviembre: entre el {min} y el {max}, según el año",
+  "mensual_desc": "Primavera {primavera}, verano {verano}, otoño {otono}; el máximo, {mes}, con el {max}.",
+  "anios_desde_llegada": "Años desde la llegada de la avispa",
+  "region_meseta": "{region}\n{v} de media",
+  "region_incompleto": "{anio}: registro incompleto",
+  "region_desc": "{region}: {v} nidos por 1.000 km² de media en {desde}-{hasta}.",
+  "region": "Región",
+  "por_1000_km2": "Nidos por 1.000 km²",
+  "que_mide": "Qué cuenta",
+  "eur_nido": "{v} €/nido",
+  "eur_nido_corto": "€/nido",
+  "gasto_mezclado": "Mezclado con otros trabajos",
+  "gasto_mezclado_corto": "mezclado con otros trabajos",
+  "gasto_sin_desglose": "Sin desglose: dentro del encargo anual a Basalan ({min} a {max} al año)",
+  "sin_desglose": "sin desglose",
+  "gasto_desc": "De {desde} a {hasta}, sin desglose: va dentro de un encargo anual a Basalan de {min} a {max}.",
+  "retirada_nidos": "Retirada de nidos (línea propia)",
+  "eur_por_nido": "Coste por nido",
+  "encargo_basalan": "Encargo anual a Basalan (Patrimonio Natural)",
+  "detalle": "Detalle en las encomiendas",
+  "mapa_etiqueta": "Mapa de nidos de avispa asiática en Bizkaia",
+  "mapa_atribucion": "Límites: catastro foral de Bizkaia · Nidos: Open Data Bizkaia · Población: INE",
+  "nidos_mapa": "{n} nidos con coordenadas, {desde}-{hasta}",
+  "nidos_mapa_hasta": "{n} nidos con coordenadas, {desde}-{hasta}…",
+  "sin_datos_leyenda": "sin datos (servicio municipal propio)",
+  "sin_datos_municipio": "{municipio}: sin datos (servicio municipal propio)",
+  "sin_datos_corto": "sin datos",
+  "tasa_leyenda": "Nidos al año por 1.000 habitantes ({desde}-{hasta})",
+  "tasa_columna": "Nidos al año por 1.000 habitantes ({desde}-{hasta})",
+  "tasa_desc": "Tasa media de {desde}-{hasta}. Las tablas de datos dan el valor de cada municipio.",
+  "tasa_tamano": "Media de {desde}-{hasta} según el tamaño del municipio (sin Bilbao):",
+  "tamanos": {
+   "<2.000": "menos de 2.000 habitantes",
+   "2.000-5.000": "de 2.000 a 5.000",
+   "5.000-20.000": "de 5.000 a 20.000",
+   ">20.000": "más de 20.000"
+  },
+  "municipio": "Municipio",
+  "poblacion_2025": "Habitantes (2025)",
+  "maplibre": {
+   "CooperativeGesturesHandler.WindowsHelpText": "Pulsa Ctrl y usa la rueda para acercar el mapa",
+   "CooperativeGesturesHandler.MacHelpText": "Pulsa ⌘ y usa la rueda para acercar el mapa",
+   "CooperativeGesturesHandler.MobileHelpText": "Usa dos dedos para mover el mapa",
+   "NavigationControl.ZoomIn": "Acercar",
+   "NavigationControl.ZoomOut": "Alejar",
+   "NavigationControl.ResetBearing": "Orientar al norte"
+  },
+  "buscar_municipio": "Municipio",
+  "buscar_ejemplo": "Escribe el nombre, por ejemplo Getxo",
+  "resumen_municipio": "<strong>{municipio}</strong>: {tasa} nidos avisados al año por cada 1.000 habitantes ({desde}-{hasta}), puesto {puesto} de {total} municipios. {dias_frase}.",
+  "nota_explorador": "Avisos de abril a diciembre; {anio}, registro incompleto (rayado).",
+  "sin_datos_explorador": "Sin datos: servicio municipal propio",
+  "explorador_aria": "Nidos avisados al año por 1.000 habitantes en {municipio}, con su tendencia, la de Bizkaia y la de su comarca",
+  "municipio_no_encontrado": "No se encuentra ese municipio. Prueba con otro nombre.",
+  "anot_punto": "Cada punto, un nido avisado",
+  "anot_densidad": "Donde más avisos se concentran",
+  "anot_fantasma": "Ilustración: no son ubicaciones reales",
+  "anot_tasa": "{municipio}: {v} nidos al año por cada 1.000 habitantes",
+  "densidad_leyenda": "Concentración de avisos",
+  "menos": "menos",
+  "mas": "más",
+  "contador_nidos": "{n} nidos avisados",
+  "contador_aria": "{fecha}: {n} nidos avisados desde abril de {desde}",
+  "censo_leyenda_nota": "Proporción de Lagoa y otros (2025): al menos cinco nidos reales por cada aviso",
+  "situacion": "Situación de Bizkaia en la península ibérica",
+  "foto_credito": "Foto: {autor} ({licencia}), Wikimedia Commons",
+  "creditos_fotos": "Fotografías",
+  "navegacion": "Partes de la historia",
+  "mapa_base": "Mapa base: Protomaps © colaboradores de OpenStreetMap",
+  "pie_fuentes": "Datos: Open Data Bizkaia (registro de nidos de avispa asiática y conjuntos económicos de la Diputación), INE, Eustat y Copernicus.",
+  "pie_enlaces": [
+   {"texto": "Metodología y limitaciones", "url": "metodologia.html"},
+   {"texto": "Datos descargables", "url": "metodologia.html#descargas"},
+   {"texto": "Código en GitHub", "url": "https://github.com/rburgosm/avispa-asiatica-bizkaia"}
+  ],
+  "pie_creditos": "Fotografías: Wikimedia Commons (CC BY-SA), créditos en la metodología. Mapa: relieve Copernicus DEM, límites del catastro foral de Bizkaia, mapa base Protomaps © colaboradores de OpenStreetMap.",
+  "pie_firma": "Roberto Burgos · Noviembre de 2026 · Textos y datos procesados CC BY 4.0 · Código MIT",
+  "pie_privacidad": "Estadísticas de visitas anónimas, sin cookies (Umami).",
+  "contador_fecha": "{mes} de {anio}",
+  "primavera_corta": "primavera",
+  "densidad_unidad": "Nidos avisados por km² y año ({desde}-{hasta})",
+  "foto_adaptada": "adaptada: recortada y retocada",
+  "periodo_anios": "{n} años desde la llegada",
+  "cartografia_titulo": "Cartografía y fotografías",
+  "carto_relieve": "Relieve sombreado: {fuente}; calculado con numpy y Pillow (luz del noroeste).",
+  "carto_densidad": "Superficie de densidad: estimación de densidad por núcleos (núcleo gaussiano de {nucleo} m sobre celdas de {celda} m) a partir de las coordenadas redondeadas de los nidos; en nidos avisados por km² y año, sin Bilbao.",
+  "carto_base": "Mapa de detalle del paso «Un aviso no es un censo»: Protomaps (build {build}, esquema {version}), datos © colaboradores de OpenStreetMap; recorte con la herramienta oficial pmtiles.",
+  "carto_censo": "Ilustración del censo: {por} nidos sin avisar por cada nido avisado en {anio} en una ventana de {municipio}, colocados al azar a {d0}-{d1} m; no son ubicaciones reales. Proporción de Lagoa y otros (2025): al menos cinco nidos reales por cada aviso.",
+  "carto_limites": "Límites municipales: catastro foral de Bizkaia. Comarcas: Eustat. Situación: Natural Earth.",
+  "cargando": "Cargando datos…",
+  "error_carga": "No se han podido cargar estos datos. Comprueba la conexión.",
+  "reintentar": "Reintentar",
+  "contador_nota": "En el mapa, los que tienen coordenadas",
+  "por_territorio": "Por territorio",
+  "por_habitante": "Por habitante",
+  "comarca_km2": "Nidos avisados al año por km²",
+  "comarca_hab": "Nidos avisados al año por 1.000 habitantes",
+  "comarca_tarde": "Nidos retirados después del 1 de noviembre (%)",
+  "media_bizkaia": "Bizkaia sin Bilbao: {v}",
+  "busca_municipio": "Busca tu municipio",
+  "tendencia_banda": "La banda muestra entre qué valores está la tendencia con un 95 % de confianza",
+  "tendencia_linea": "Tendencia: {v} al año",
+  "interruptor_aria": "Medida del mapa de comarcas",
+  "anot_mungia": "{municipio}: {n} avisos en {desde}-{hasta}",
+  "eje_tasa": "Nidos avisados al año por 1.000 habitantes",
+  "bizkaia_sin_bilbao": "Bizkaia sin Bilbao",
+  "comarca_de": "Comarca: {comarca}.",
+  "tramos_unidad": "Cada punto, {n} nidos retirados ({desde}-{hasta})",
+  "tramos_eje": "Días entre el aviso y la retirada",
+  "tramos_mas_de": "más de {n}",
+  "tramos_mas_de_corto": "> {n}",
+  "tramos_mitad": "Más de la mitad, en {d} días o menos ({v})",
+  "tramos_nueve": "Nueve de cada diez, en una semana o menos ({v})",
+  "tramos_desc_puntos": "De {n} nidos retirados en {desde}-{hasta}, el {v2} se retiró en {d} días o menos y el {v7}, en una semana o menos.",
+  "tramos_tabla_dias": "Días entre aviso y retirada",
+  "tramos_tabla_acum": "% acumulado",
+  "mensual_bizkaia": "Bizkaia {desde}-{hasta}",
+  "mensual_asturias": "Asturias {desde}-{hasta}",
+  "mensual_primavera_asturias": "En Asturias, {v}",
+  "mensual_primario": "Nido primario: pequeño y bajo",
+  "mensual_secundario": "Nido secundario: grande, en la copa",
+  "mensual_primario_corto": "Nido primario",
+  "mensual_secundario_corto": "Nido secundario",
+  "mensual_nota_asturias": "Asturias: avisos semanales de {desde}-{hasta} leídos de una gráfica de su informe de 2025 (sin enero ni febrero). Se compara solo la forma del calendario.",
+  "mensual_desc_asturias": "En Asturias ({desde}-{hasta}), la primavera reúne el {v} de los avisos.",
+  "gasto_franja": "Aquí dentro, sin desglose",
+  "gasto_franja_sub": "Escenario, no dato: al coste por nido de 2018 ({eur} €), unos {min}-{max} al año, el {pmin}-{pmax} del encargo",
+  "gasto_bloque": "Encargo anual a Basalan: de {min} a {max}",
+  "gasto_escenario": "Escenario al coste de 2018",
+  "puesto_bizkaia": "Puesto en Bizkaia",
+  "dias_nota_uno": "La mitad de sus nidos se retira en 1 día o menos",
+  "dias_nota": "La mitad de sus nidos se retira en {dias} días o menos",
+  "comarca_compara": "En {anio}: {vm} nidos por 1.000 habitantes, {cmp} ({vc}).",
+  "pocos_nidos": "Con tan pocos nidos (menos de {pocos} al año de media), un solo año cambia mucho la tasa: no se dibuja la tendencia, solo el valor de cada año.",
+  "clave_explorador": "Rectas: tendencia {desde}-{hasta}. Círculos: valor de cada año en {municipio}. Línea discontinua: su comarca, año a año.",
+  "clave_explorador_pocos": "Círculos: valor de cada año en {municipio} (sin tendencia). Recta naranja: tendencia de Bizkaia. Línea discontinua: su comarca."
+ },
+ "descargas": {
+  "titulo": "Descarga los datos procesados",
+  "ficheros": [
+   {
+    "nombre": "Indicadores por temporada (2018-2025, abril-diciembre)",
+    "url": "data/descargas/indicadores_por_temporada.csv"
+   },
+   {
+    "nombre": "Avisos por temporada y mes (2019-2025, abril-diciembre)",
+    "url": "data/descargas/avisos_por_temporada_y_mes_abr_dic.csv"
+   },
+   {
+    "nombre": "Municipios: nidos por temporada, tasa por 1.000 habitantes, puesto y días de retirada",
+    "url": "data/descargas/municipios.csv"
+   },
+   {
+    "nombre": "Coordenadas de los nidos (redondeadas a unos 100 m)",
+    "url": "data/descargas/nidos_coordenadas_redondeadas.csv"
+   }
+  ]
+ },
+ "metodologia": {
+  "titulo": "Metodología",
+  "secciones": [
+   {
+    "id": "pregunta",
+    "titulo": "Qué se analiza",
+    "parrafos": [
+     "La pieza evalúa, con datos abiertos, qué consigue el sistema público de retirada de nidos de avispa asiática de Bizkaia y qué no consigue: cuántos nidos se avisan y dónde, cuánto se tarda en retirarlos, cuántos no se pueden retirar, en qué época se avisan, cuánto cuesta y si Bizkaia se aparta de otras regiones. No se atribuyen causas: el protocolo actual (ayuntamiento, aplicación foral y Basalan) es de julio de 2016 y no cambia en el periodo analizado.",
+     "Las tendencias se calculan con las temporadas 2019-2025. Dejamos fuera 2018 porque es el primer año del registro y está incompleto: empieza en abril, el 16 % de los nidos no tiene coordenadas y la altura del nido no se anotaba (aparece como 0). Para no esconder el efecto de esta decisión, repetimos los cálculos con 2018 incluido: la tendencia de los nidos que no se pudieron eliminar deja de ser estadísticamente significativa. Con siete temporadas, los resultados deben leerse con cautela."
+    ]
+   },
+   {
+    "id": "conjuntos",
+    "tipo": "conjuntos"
+   },
+   {
+    "id": "fuentes",
+    "tipo": "fuentes"
+   },
+   {
+    "id": "limpieza",
+    "titulo": "Limpieza del registro",
+    "parrafos": [
+     "La limpieza está en <code>scripts/explorar_avispa.py</code> y la reutilizan todos los análisis. Los datos brutos se guardan tal cual en <code>data/raw/</code> y nunca se corrigen en origen."
+    ],
+    "lista": [
+     "Doble codificación UTF-8 en los textos («Ã³» en lugar de «ó»): se deshace.",
+     "Fechas con el día y el mes intercambiados en 2018-2022: se corrigen 5.073 fechas de aviso y 5.037 de cierre. La prueba es el número correlativo de cada actuación: su correlación de Spearman con la fecha de aviso pasa de 0,54-0,59 a 0,999-1,000 en cada año; en 2023-2025, sin corregir, ya es 1,00. Sin esta corrección, las medianas de espera salían de 30 a 90 días.",
+     "Fecha de cierre de relleno «9999-12-31» (161 filas): se trata como vacía.",
+     "Se quitan 42 filas duplicadas exactas y los avisos anulados, y solo se usa la especie «avispa asiática»: quedan 22.551 avisos en 2018-2025.",
+     "Hasta 2022 los registros anuales no siguen el año natural: el de 2019 termina el 04/02/2020 y el de 2020 empieza el 13/02/2020, y no hay avisos en enero y febrero de 2019 (el hueco ya está en el registro publicado; no lo crea la corrección de fechas). Por eso se apartan los 416 avisos de enero a marzo. El periodo principal (2019-2025, abril-diciembre) tiene 18.098 avisos.",
+     "Se anulan los 7 intervalos negativos entre aviso y retirada (errores de fecha) y se marcan como no válidas las alturas de 0 m o de más de 60 m."
+    ]
+   },
+   {
+    "id": "definiciones",
+    "titulo": "Definiciones y decisiones",
+    "lista": [
+     "Aviso: cada registro del conjunto «Avispa asiática en Bizkaia» con la especie asiática, sin los anulados ni las filas duplicadas. Es un nido que alguien ha visto y comunicado, no un censo.",
+     "Temporada: año del aviso. Solo se usan los avisos de abril a diciembre: hasta 2022 los registros anuales no siguen el año natural y no hay avisos en enero y febrero de 2019, así que los avisos de enero a marzo no son comparables entre años. Por eso el gráfico mensual va de abril a diciembre.",
+     "2018 se muestra rayado en gris como «registro incompleto» y no entra en las tendencias ni en las medias.",
+     "Días hasta la retirada: fecha de cierre menos fecha de aviso, en días enteros (las fechas no traen hora). Se anulan las diferencias negativas, que son errores de fecha.",
+     "No eliminables: avisos cerrados con el estado «no eliminable», sobre todos los avisos de la temporada.",
+     "Nido tardío: nido retirado a partir del 1 de noviembre, el criterio de Asturias para un nido que ha podido soltar reinas. Se dice siempre «ha podido», nunca «ha soltado».",
+     "Tasa por 1.000 habitantes: nidos avisados en 2019-2025 divididos entre la suma de los habitantes de cada año (padrón del INE), por mil. El tamaño del municipio se toma del padrón de 2025.",
+     "Bilbao tiene un servicio municipal propio de retirada de nidos y casi no aparece en el registro foral. En el mapa y en el buscador aparece como «sin datos (servicio municipal propio)», nunca como cero, y queda fuera de las tasas y de los puestos.",
+     "Regiones: cada serie se divide entre la superficie de la región y se alinea por los años desde la primera detección de la avispa. Bizkaia usa todos los avisos del registro abierto en el año."
+    ]
+   },
+   {
+    "id": "metodos",
+    "titulo": "Métodos estadísticos",
+    "lista": [
+     "Análisis de sensibilidad con 2018: cada tendencia se repite incluyendo 2018. La de los nidos no eliminables es significativa en 2019-2025 (razón de probabilidades por año 0,901; IC 95 %: 0,841-0,965) y deja de serlo con 2018 (0,948; IC 95 %: 0,888-1,012).",
+     "Tendencia de los nidos con dos modelos. Regresión log-lineal: +7,0 % al año (IC 95 %: 2,3 %-12,0 %). Binomial negativa: +6,9 % al año (IC 95 %: −1,6 % a 16,1 %; p = 0,12). La estimación central es casi la misma; cambia la dispersión: la log-lineal la estima con los siete puntos y la binomial negativa la fija de antemano (α = 0,05, en torno a un 22 % de variación entre años), más de lo que se observa (coeficiente de variación del 16 %). Con siete temporadas ninguna es mejor que la otra, y se dan las dos.",
+     "Peso de la avispa asiática frente a la avispa común en los avisos: baja (razón de probabilidades por año 0,940; IC 95 %: 0,905-0,975). Por eso la subida de los avisos puede deberse en parte a que se avisa más.",
+     "Proporciones (no eliminables, retirados en 7 días o menos, primavera, después del 1 de noviembre): modelo cuasibinomial con la temporada como unidad, por la sobredispersión entre años.",
+     "Comarcas: cada comarca de Eustat se compara con el resto de Bizkaia (sin Bilbao) con modelos cuasi-Poisson (razón de tasas) y cuasibinomiales (razón de probabilidades) con efectos de temporada. Los valores p se corrigen por comparaciones múltiples con el método de Holm.",
+     "Días hasta la retirada en 2019-2025: mediana de 2 días; el 92 % de los 16.562 nidos retirados se retira en 7 días o menos."
+    ]
+   },
+   {
+    "id": "cifras",
+    "titulo": "De dónde sale cada cifra",
+    "parrafos": [
+     "Ninguna cifra de la pieza se escribe a mano. Los gráficos, las etiquetas, las notas y los textos alternativos se leen de <code>web/data/</code>, que generan los scripts. Las cifras redondeadas de los textos («más de 18.000», «entre el 16 % y el 24 %») las comprueba <code>scripts/web_comprobar_cifras.py</code> contra esos datos, y el proceso se detiene si alguna no cuadra.",
+     "En la tabla, la flecha va de los scripts (carpeta <code>scripts/</code>) a los datos de la web que salen de ellos (carpeta <code>web/data/</code>)."
+    ],
+    "tabla": {
+     "cabecera": [
+      "Parada",
+      "Cifras",
+      "Scripts → datos de la web"
+     ],
+     "filas": [
+      [
+       "Un nido en Morga",
+       "Fecha, altura, días hasta la retirada y quién retira el nido que acompaña la historia",
+       "<span class=\"met-origen\"><code>web_preparar_hilo.py</code><span>→ <code>nido_hilo.json</code></span></span>"
+      ],
+      [
+       "Apertura (mapa)",
+       "Nidos por temporada, municipios con avisos y municipios con más avisos; puntos del mapa",
+       "<span class=\"met-origen\"><code>web_preparar_datos.py</code><span>→ <code>apertura.json</code>, <code>nidos.json</code></span></span>"
+      ],
+      [
+       "Una especie que llegó de fuera; Del aviso a la retirada",
+       "Fechas de la cronología: llegada a Francia y a Bizkaia, lista de la UE, protocolo foral de julio de 2016",
+       "<span class=\"met-origen\"><code>avispa_politicas_hitos.py</code><code>web_preparar_datos.py</code><span>→ <code>cronologia.json</code></span></span>"
+      ],
+      [
+       "Un aviso no es un censo",
+       "Nidos sin avisar por cada nido avisado (ilustración)",
+       "<span class=\"met-origen\"><code>web_preparar_hilo.py</code><span>→ <code>censo_ilustracion.json</code></span></span>"
+      ],
+      [
+       "¿Cuántos nidos?",
+       "Nidos por temporada, crecimiento de los avisos de avispa asiática y de avispa común, tendencia",
+       "<span class=\"met-origen\"><code>avispa_indicadores_control.py</code><code>web_preparar_datos.py</code><span>→ <code>indicadores.json</code></span></span>"
+      ],
+      [
+       "Dos días; Los nidos que no se pueden quitar",
+       "Días hasta la retirada, retirados en una semana, no eliminables antes y después de 2023",
+       "<span class=\"met-origen\"><code>avispa_indicadores_control.py</code><code>web_preparar_datos.py</code><span>→ <code>indicadores.json</code></span></span>"
+      ],
+      [
+       "La primavera, casi sin avisos; Después del 1 de noviembre",
+       "Reparto mensual, avisos de primavera, retirados después del 1 de noviembre; reparto de Asturias",
+       "<span class=\"met-origen\"><code>avispa_cifras_guion.py</code><code>avispa_indicadores_control.py</code><code>digitalizar_asturias.py</code><span>→ <code>mensual.json</code>, <code>indicadores.json</code>, <code>asturias_mensual.json</code></span></span>"
+      ],
+      [
+       "Por territorio; Por habitante; El interior, más tarde",
+       "Nidos por km² y por 1.000 habitantes y retirados después del 1 de noviembre por comarca; superficie de densidad",
+       "<span class=\"met-origen\"><code>avispa_comarcas.py</code><code>web_preparar_densidad.py</code><span>→ <code>comarcas.geojson</code>, <code>densidad.geojson</code></span></span>"
+      ],
+      [
+       "La misma curva; Lo que se ha probado fuera",
+       "Nidos por 1.000 km² de cada región, alineados por años desde la llegada",
+       "<span class=\"met-origen\"><code>avispa_comparativa_regiones.py</code><code>web_preparar_datos.py</code><span>→ <code>regiones.json</code></span></span>"
+      ],
+      [
+       "El coste que dejó de verse",
+       "Gasto identificable por año, coste por nido y encargo anual a Basalan",
+       "<span class=\"met-origen\"><code>avispa_gasto.py</code><code>web_preparar_datos.py</code><span>→ <code>gasto.json</code></span></span>"
+      ],
+      [
+       "Cierre y tu municipio",
+       "Tasas por 1.000 habitantes según el tamaño del municipio; ficha de cada municipio",
+       "<span class=\"met-origen\"><code>avispa_cifras_guion.py</code><code>web_preparar_datos.py</code><span>→ <code>municipios.geojson</code>, <code>municipios_serie.json</code></span></span>"
+      ]
+     ]
+    }
+   },
+   {
+    "id": "hilo",
+    "titulo": "El nido de Morga y los nidos sin avisar",
+    "parrafos": [
+     "El nido que acompaña la historia, en {municipio}, no se ha elegido a mano: lo selecciona <code>scripts/web_preparar_hilo.py</code> con un criterio fijo. {criterio} Cumplían todos los criterios {candidatos} nidos. Se publican el municipio, las fechas, la altura y el diámetro, y las coordenadas redondeadas a unos 100 m; nunca la dirección.",
+     "En el paso «Un aviso no es un censo», el mapa dibuja {por} nidos sin avisar por cada nido avisado alrededor de {municipio}. Es una ilustración de la proporción que encontraron Lagoa y otros (2025) en un pinar de Vigo (al menos cinco nidos reales por cada aviso; el avisado es uno de esos cinco). Esos nidos se colocan al azar, con una semilla fija: no son ubicaciones reales, y el propio mapa lo dice."
+    ]
+   },
+   {
+    "id": "regiones",
+    "titulo": "Comparación con otras regiones",
+    "parrafos": [
+     "Las series de otras regiones salen de sus informes oficiales (Asturias, Araba y, para Gipuzkoa, el manual del Gobierno Vasco). Cada serie se divide entre la superficie de la región y se alinea por los años desde la primera detección: Bizkaia, 2012; Gipuzkoa, 2010; Araba, 2012; Asturias, 2014. En la meseta, Bizkaia (2019-2025) tiene una media de 1.191 nidos por 1.000 km² y Asturias (2021-2025), 1.021.",
+     "El reparto mensual de Asturias no se publica en tabla: se ha digitalizado de la gráfica de avisos semanales de su informe de 2025 con <code>scripts/digitalizar_asturias.py</code>, leyendo los píxeles de cada serie. Sirve para comparar la forma del reparto, no cifras exactas.",
+     "No es una comparación causal. Las series miden cosas distintas (avisos, nidos detectados, nidos retirados), el esfuerzo de búsqueda y las políticas cambian entre regiones, y que dos regiones con políticas distintas estén en niveles parecidos no prueba que una política funcione mejor que otra."
+    ]
+   },
+   {
+    "id": "gasto",
+    "titulo": "Gasto y coste por nido",
+    "lista": [
+     "La retirada de nidos no tiene partida propia en los presupuestos forales. <code>scripts/avispa_gasto.py</code> busca el gasto relacionado en los conjuntos económicos de Open Data Bizkaia con una expresión regular en castellano y euskera. Los 853 candidatos se clasifican con reglas explícitas, cada una con su motivo: 90 se incluyen, 753 se excluyen, 8 quedan como dudosos y 2 como contexto. La clasificación completa está en <code>outputs/avispa_gasto_candidatos.csv</code>.",
+     "Importes: obligaciones reconocidas del ejercicio. Los conjuntos no indican si los contratos incluyen IVA. No se suman gastos de naturaleza distinta (por ejemplo, las ayudas a la apicultura no se cuentan como control).",
+     "Coste por nido: solo se puede calcular con las líneas de la encomienda a Basalan que nombran meses (2018 y 2019), divididas entre los nidos que Basalan cerró en esos meses: de 68 a 98 euros por nido. Las líneas de 2017 y 2020 no nombran meses y hay meses sin línea propia, así que es una estimación.",
+     "Desde 2021 la retirada va dentro del encargo anual a Basalan del Servicio de Patrimonio Natural (de 2,1 a 2,7 millones de euros en 2021-2025), que incluye otros trabajos y cambia de contenido entre años: el coste de la retirada no se puede aislar. El escenario de 2021-2025 al coste por nido de 2018 es un escenario, no un dato."
+    ]
+   },
+   {
+    "id": "cronologia",
+    "titulo": "Cronología de medidas",
+    "parrafos": [
+     "<code>scripts/avispa_politicas_hitos.py</code> reúne 42 hitos (detección, normas, protocolos y campañas), cada uno con su fecha, su fuente enlazada y la cita literal. Cada hito lleva un estado de verificación: «confirmado» (27; se ha leído una fuente primaria oficial: BOE, DOUE, Diputación, Gobierno Vasco, MITECO u Open Data Bizkaia), «confirmado por prensa» (8; noticia que reproduce una nota oficial que no se ha podido leer) y «no confirmado» (7; solo visto en el extracto de un buscador). La pieza muestra los 35 confirmados; los no confirmados se quedan fuera.",
+     "La cronología fecha el contexto, pero no sirve para atribuir causas: el protocolo actual es del 1 de julio de 2016 y no cambia en 2018-2025."
+    ]
+   },
+   {
+    "id": "proceso",
+    "titulo": "Proceso (scripts de Python, en orden)",
+    "lista": [
+     "<code>scripts/descargar_bizkaia.py</code>: descarga los CSV de los conjuntos de Open Data Bizkaia (avispa asiática, encomiendas, contratos, subvenciones, presupuestos, SPEIS).",
+     "<code>scripts/descargar_municipios_bizkaia.py</code>: límites municipales del catastro foral.",
+     "<code>scripts/descargar_comarcas.py</code>: clasificación oficial de municipios y comarcas de Eustat (113 municipios de Bizkaia, 7 comarcas), contrastada con la capa municipal de la Diputación.",
+     "<code>scripts/descargar_externos.py</code>: fuentes externas a Open Data Bizkaia (padrón del INE, informes de otras regiones, GBIF, Euskalmet y documentos de la cronología). No vuelve a bajar lo que ya existe y compara cada fichero con la huella SHA-256 de la descarga original.",
+     "<code>scripts/descargar_comparativa_regiones.py</code>: informes y notas de otras regiones.",
+     "<code>scripts/explorar_avispa.py</code> y <code>scripts/avispa_llegamos_tarde.py</code>: limpieza del registro (doble codificación UTF-8, fechas de 2018 a 2022 con el día y el mes intercambiados, fecha de relleno 9999-12-31, duplicados y anulados). Todos los análisis reutilizan esta limpieza.",
+     "<code>scripts/avispa_indicadores_control.py</code>: indicadores por temporada (días hasta la retirada, no eliminables, quién retira, primavera, retirados después del 1 de noviembre) y sus tendencias.",
+     "<code>scripts/avispa_cifras_guion.py</code>: perfil de los nidos según la época, reparto mensual y tasas por 1.000 habitantes según el tamaño del municipio (con el padrón del INE).",
+     "<code>scripts/avispa_comarcas.py</code>: nidos, tasas y retirada tardía por comarca de Eustat (sin Bilbao), comparados con el resto de Bizkaia.",
+     "<code>scripts/avispa_estabilizacion.py</code>: nidos por temporada, cuadrículas de 1 km² ocupadas y tendencia con binomial negativa, como contraste de la log-lineal.",
+     "<code>scripts/digitalizar_asturias.py</code>: digitaliza la gráfica de avisos semanales del informe de 2025 de Asturias para comparar su reparto mensual con el de Bizkaia.",
+     "<code>scripts/avispa_comparativa_regiones.py</code>: series de nidos de las regiones, densidad por 1.000 km² y tendencias en la meseta.",
+     "<code>scripts/avispa_validacion_estacionalidad.py</code>: contrasta el reparto mensual de Bizkaia con el de Asturias, Araba, Jersey, Reino Unido y Francia.",
+     "<code>scripts/avispa_gasto.py</code>: búsqueda y clasificación del gasto público relacionado en doce conjuntos económicos y coste por nido.",
+     "<code>scripts/avispa_politicas_hitos.py</code>: cronología de medidas con su fuente y su estado de verificación.",
+     "<code>scripts/web_preparar_datos.py</code>: lee los resultados anteriores y genera los JSON de la web y los CSV descargables. Comprueba que las cifras recalculadas coinciden con las de los análisis.",
+     "<code>scripts/web_preparar_hilo.py</code>: elige el nido de Morga con un criterio fijo y prepara la ilustración de los nidos sin avisar.",
+     "<code>scripts/web_preparar_densidad.py</code>: superficie de densidad de nidos (estimación por núcleos), contorno, comarcas y rótulos del mapa.",
+     "<code>scripts/web_preparar_situacion.py</code>: mapa de situación con Natural Earth.",
+     "<code>scripts/web_preparar_relieve.py</code>: relieve sombreado a partir del modelo digital de superficie Copernicus GLO-90.",
+     "<code>scripts/web_descargar_mapa_base.py</code>: recorte de Bizkaia del mapa base de Protomaps con la herramienta oficial <code>pmtiles</code>.",
+     "<code>scripts/web_descargar_imagenes.py</code> y <code>scripts/web_adaptar_imagenes.py</code>: fotos de Wikimedia Commons con su autoría y su licencia (<code>web/img/creditos_imagenes.csv</code>), recortadas y en varios tamaños.",
+     "<code>scripts/web_preparar_portada.py</code>: imagen estática del primer fotograma del mapa de la portada, para que se vea al instante.",
+     "<code>scripts/web_descargar_librerias.py</code> y <code>scripts/web_descargar_fuentes.py</code>: copian las librerías y las tipografías a la propia web, con versión fija y su huella SHA-256.",
+     "<code>scripts/web_comprimir.py</code>: versiones comprimidas (gzip) de los ficheros de texto y peso de la página.",
+     "<code>scripts/web_comprobar_cifras.py</code>: comprueba cada cifra redondeada de los textos contra los datos de la web; sale con error si alguna no cuadra.",
+     "<code>scripts/memoria_pdf.py</code> y <code>scripts/web_copiar_memoria.py</code>: generan la memoria técnica en PDF y la copian a la web.",
+     "<code>scripts/reproducir.py</code>: ejecuta todos los pasos anteriores en orden (ver «Reproducir»)."
+    ]
+   },
+   {
+    "id": "herramientas",
+    "titulo": "Herramientas",
+    "lista": [
+     "Python con pandas, geopandas, shapely, pyproj y statsmodels para obtener, limpiar, analizar y preparar los datos.",
+     "Tendencias de proporciones: modelo lineal generalizado cuasibinomial por temporada, con la razón de probabilidades por año y su intervalo de confianza del 95 %. Tendencia de los nidos: regresión log-lineal y, como contraste, binomial negativa.",
+     "Web estática con D3 7.9.0, Scrollama 3.2.0 y MapLibre GL JS 4.7.1, sin mapa base externo ni claves de API; tipografías Source Serif 4 y Source Sans 3 (licencia SIL Open Font License), alojadas en la propia web. Todo es software libre."
+    ],
+    "tabla": {
+     "cabecera": [
+      "Uso",
+      "Herramienta y versión"
+     ],
+     "filas": [
+      [
+       "Lenguaje",
+       "Python 3.12.3"
+      ],
+      [
+       "Datos y estadística",
+       "pandas 3.1.0, NumPy 2.5.4, SciPy 1.18.1, statsmodels 0.15.0"
+      ],
+      [
+       "Geometría",
+       "GeoPandas 1.2.0, Shapely 2.2.0, pyproj 3.8.0"
+      ],
+      [
+       "Imágenes y figuras de control",
+       "Matplotlib 3.11.2, Pillow 13.0.0"
+      ],
+      [
+       "Texto de los PDF de otras regiones",
+       "pdftotext (Poppler 24.02.0)"
+      ],
+      [
+       "Mapa base",
+       "go-pmtiles 1.31.2 (CLI), build de Protomaps del 07/11/2026"
+      ],
+      [
+       "Web",
+       "D3 7.9.0, Scrollama 3.2.0, MapLibre GL JS 4.7.1, PMTiles 4.4.1, @protomaps/basemaps 5.7.2"
+      ],
+      [
+       "Tipografías",
+       "Source Serif 4 y Source Sans 3 (Fontsource 5.2.5, SIL Open Font License)"
+      ],
+      [
+       "Pruebas de la web",
+       "Playwright con Chromium"
+      ],
+      [
+       "Memoria técnica",
+       "Python-Markdown 3.11.3 y WeasyPrint 70.0"
+      ]
+     ]
+    }
+   },
+   {
+    "id": "limitaciones",
+    "titulo": "Limitaciones",
+    "lista": [
+     "Son avisos, no un censo: dependen de que alguien vea el nido y avise. Un estudio en Vigo encontró al menos cinco nidos reales por cada nido avisado.",
+     "Solo hay siete temporadas comparables (2019-2025). La subida de los nidos avisados, de alrededor del 7 % al año, depende del modelo: con una regresión log-lineal el intervalo de confianza del 95 % va del 2 % al 12 %; con una binomial negativa va del −1,6 % al 16,1 % y no es concluyente. Además, puede deberse a que se avisa más: la proporción de avisos de avispa asiática frente a los de avispa común baja.",
+     "El 1 de enero de 2023 cambia la aplicación o el criterio de registro. La bajada de los nidos no eliminables (del 9,5 % al 6,2 %) es un escalón justo en esa fecha: no se puede presentar como una mejora.",
+     "Hasta 2022 los registros anuales no siguen el año natural; por eso se usan solo los avisos de abril a diciembre.",
+     "El coste de retirar los nidos solo se ve en 2017-2019 (unos 70-100 € por nido). Es una estimación con meses sin línea de gasto propia; las líneas de 2019 vienen cortadas y se ha supuesto a qué meses corresponden. Desde 2021 la retirada va sin desglose dentro del encargo anual a Basalan, cuyo contenido además cambia entre años.",
+     "Las series de las regiones miden cosas distintas (avisos, nidos detectados, nidos retirados) y el esfuerzo de búsqueda cambia entre regiones: solo sirven para comparar órdenes de magnitud y no prueban ninguna causa.",
+     "El tamaño y la altura de los nidos los anota quien avisa o quien acude; no consta si se miden o se estiman, y se redondean.",
+     "En el mapa las coordenadas se redondean a unos 100 m y faltan los avisos sin coordenadas (la mayoría, de 2018 y 2019); sí cuentan en las series, en las tasas y en el buscador.",
+     "No hay datos de 2026. El conjunto «Avispa asiática en Bizkaia» figura en el portal como actualizado el 29/07/2026, pero los avisos acaban el 30/12/2025 y los cierres el 15/01/2026 (la descarga del 08/11/2026 es idéntica, byte a byte, a la del 07/11/2026). La pieza no puede decir nada de la temporada de 2026.",
+     "El registro no informa del método de retirada (pértiga, biocida, plataforma) ni del coste de cada actuación."
+    ]
+   },
+   {
+    "id": "reproducir",
+    "titulo": "Reproducir",
+    "parrafos": [
+     "Todo el proceso, de la descarga a la comprobación de las cifras, está en scripts de Python con herramientas libres, en el repositorio <a href=\"https://github.com/rburgosm/avispa-asiatica-bizkaia\">github.com/rburgosm/avispa-asiatica-bizkaia</a>. Contiene la web, los scripts y los resultados de los análisis (<code>outputs/</code>). Los datos brutos no se suben: se regeneran con los scripts de descarga.",
+     "Una sola orden lo regenera todo, en cuatro fases (descarga, análisis, web y comprobación); si un paso falla, se detiene y dice cuál:"
+    ],
+    "codigo": "# Todo, con descargas (unos 2,3 GB la primera vez)\npython -I scripts/reproducir.py\n\n# Sin descargar: usa data/raw/ tal como está\npython -I scripts/reproducir.py --sin-descargas\n\n# Solo enseña los pasos y sus órdenes\npython -I scripts/reproducir.py --lista",
+    "lista": [
+     "Requisitos: Python 3.12 con pandas, numpy, geopandas, shapely, pyproj, scipy, statsmodels, matplotlib, openpyxl y Pillow, y pdftotext y pdftoppm (poppler-utils) para leer los PDF.",
+     "Huella del conjunto principal: la descarga del 08/11/2026 del recurso «Datos de nidos de avispa asiática» (6.631.908 bytes) tiene el SHA-256 <code>2da62168e1f298013b2590ecd025b1c45341fa70915638cc094d5fcaba4fc6d4</code>. Sirve para comprobar que se parte del mismo fichero."
+    ]
+   },
+   {
+    "id": "cartografia",
+    "tipo": "cartografia",
+    "titulo": "Cartografía"
+   },
+   {
+    "id": "fotos",
+    "tipo": "fotos"
+   },
+   {
+    "id": "descargas",
+    "tipo": "descargas"
+   }
+  ],
+  "interfaz": {
+   "volver": "Volver a la pieza",
+   "indice": "En esta página",
+   "memoria_pdf": "Memoria técnica (PDF)",
+   "repositorio": "Código en GitHub",
+   "datos": "Datos procesados (CSV)",
+   "entradilla": "Cómo se ha hecho «Tres mil nidos al año»: qué datos se usan, cómo se limpian y se analizan, de qué script sale cada cifra y qué no se puede afirmar con ellos.",
+   "fotos_titulo": "Fotografías",
+   "tamano": "Tamaño",
+   "fichero": "Fichero",
+   "conjunto": "Conjunto",
+   "uso": "Para qué se usa",
+   "fuente": "Fuente",
+   "pdf_texto": "Memoria técnica completa, con el origen de cada cifra"
+  },
+  "pie": [
+   "«Tres mil nidos al año». Pieza, datos y metodología: Roberto Burgos, noviembre de 2026. Reto de Periodismo de Datos de Open Data Bizkaia 2026.",
+   "Licencias: código con licencia MIT; textos, gráficos y datos procesados con licencia CC BY 4.0. Datos de origen: Open Data Bizkaia (Diputación Foral de Bizkaia) y las fuentes citadas en esta página.",
+   "Software libre alojado en la propia web: D3 (licencia ISC), Scrollama (MIT), MapLibre GL JS, PMTiles y @protomaps/basemaps (BSD-3); tipografías Source Serif 4 y Source Sans 3 (SIL Open Font License). Textos de las licencias en <code>vendor/</code>."
+  ]
+ },
+ "paradas": [
+  {
+   "id": "mapa",
+   "pregunta": "Un nido, y otros 18.000",
+   "entradilla": "",
+   "paso_siguiente": "Con esto claro, la primera pregunta: cuando alguien avisa, ¿funciona la respuesta?",
+   "pasos": [
+    "apertura-1",
+    "apertura-2",
+    "apertura-3",
+    "apertura-4",
+    "apertura-5",
+    "apertura-6",
+    "llegada",
+    "ciclo",
+    "circuito",
+    "censo"
+   ]
+  },
+  {
+   "id": "respuesta",
+   "pregunta": "¿Funciona la respuesta?",
+   "entradilla": "",
+   "paso_siguiente": "El sistema responde bien a lo que se le avisa. La cuestión es cuándo llegan los avisos.",
+   "pasos": [
+    "estimacion",
+    "estimacion-real",
+    "rapidez",
+    "no-eliminables"
+   ]
+  },
+  {
+   "id": "cuando",
+   "pregunta": "¿Cuándo se actúa?",
+   "entradilla": "",
+   "paso_siguiente": "Y no ocurre igual en toda Bizkaia.",
+   "pasos": [
+    "primavera",
+    "reinas"
+   ]
+  },
+  {
+   "id": "comarcas",
+   "pregunta": "¿Pasa igual en toda Bizkaia?",
+   "entradilla": "",
+   "paso_siguiente": "Si alejamos la mirada, Bizkaia tampoco es una excepción.",
+   "pasos": [
+    "comarca-territorio",
+    "comarca-habitante",
+    "tasas",
+    "comarca-tarde"
+   ]
+  },
+  {
+   "id": "regiones",
+   "pregunta": "¿Es Bizkaia distinta?",
+   "entradilla": "",
+   "paso_siguiente": "Queda una pregunta: cuánto cuesta todo esto.",
+   "pasos": [
+    "regiones",
+    "regiones-fuera"
+   ]
+  },
+  {
+   "id": "gasto",
+   "pregunta": "¿Cuánto cuesta?",
+   "entradilla": "",
+   "paso_siguiente": "Con todo esto, ya podemos responder a la pregunta del principio.",
+   "pasos": [
+    "gasto"
+   ]
+  }
+ ]
 }

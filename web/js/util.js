@@ -135,3 +135,10 @@ export async function json(ruta) {
 // Lista <li> de fuentes {titulo, url, uso} (pie de la historia y metodología).
 export const listaFuentes = (l) => (l || []).map((f) =>
   `<li>${f.url ? `<a href="${f.url}">${f.titulo}</a>` : f.titulo}${f.uso ? `. ${f.uso}` : ""}</li>`).join("");
+
+// Tamaño de letra de la escala tipográfica (variable CSS en px) para calcular márgenes y
+// anchos en los gráficos: los textos SVG usan las mismas variables desde el CSS.
+export const tamano = (nombre) => parseFloat(variableCss(nombre)) || 14;
+
+// Interpolación lineal limitada a [0, 1] (progreso de un paso dentro de un tramo).
+export const tramo = (p, a, b) => Math.max(0, Math.min(1, (p - a) / (b - a || 1)));

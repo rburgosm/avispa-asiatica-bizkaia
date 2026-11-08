@@ -1,12 +1,14 @@
 """Reconstrucción de la estabilización de la avispa asiática en Bizkaia (2018-2025).
 
 Uso:
-    python -I scripts/avispa_estabilizacion.py <nidos.csv> <padron_ine.json> [carpeta_gbif] [carpeta_salida]
+    python -I scripts/avispa_estabilizacion.py <nidos.csv> <padron_ine.json> [carpeta_gbif] [carpeta_salida] [--sin-descarga]
 
 - nidos.csv: conjunto «Avispa asiática en Bizkaia» de Open Data Bizkaia.
 - padron_ine.json: tabla 2905 del INE (padrón municipal), para las tasas por habitante.
 - carpeta_gbif (opcional): si se indica, descarga ahí los registros de GBIF de Vespa velutina
   en Bizkaia (2010-2017) como contexto de la llegada, y los resume.
+- --sin-descarga: no llama a GBIF; resume el JSON ya guardado en carpeta_gbif (la fecha de
+  descarga que se anota es la de modificación del fichero).
 Escribe <salida>/avispa_estabilizacion.txt y <salida>/avispa_estabilizacion.png (por defecto, outputs/).
 
 Medidas (todas sobre nidos de avispa asiática, sin anuladas, por temporada):
@@ -76,19 +78,26 @@ def dinamica(celdas_por_anio: dict) -> pd.DataFrame:
     return pd.DataFrame(filas).set_index("temporada")
 
 
-def gbif(carpeta: Path) -> list[str]:
+def gbif(carpeta: Path, descargar: bool = True) -> list[str]:
     """Descarga los registros de GBIF de Vespa velutina en el rectángulo de Bizkaia, 2010-2017."""
-    carpeta.mkdir(parents=True, exist_ok=True)
-    clave = get_json("https://api.gbif.org/v1/species/match", {"name": "Vespa velutina"})["usageKey"]
-    params = {"taxonKey": clave, "decimalLatitude": f"{LAT_MIN},{LAT_MAX}",
-              "decimalLongitude": f"{LON_MIN},{LON_MAX}", "year": "2010,2017", "limit": 300}
-    r = get_json(GBIF, params)
-    (carpeta / "gbif_vespa_velutina_bizkaia_2010_2017.json").write_text(json.dumps(r), encoding="utf-8")
+    fichero = carpeta / "gbif_vespa_velutina_bizkaia_2010_2017.json"
+    if descargar:
+        carpeta.mkdir(parents=True, exist_ok=True)
+        clave = get_json("https://api.gbif.org/v1/species/match", {"name": "Vespa velutina"})["usageKey"]
+        params = {"taxonKey": clave, "decimalLatitude": f"{LAT_MIN},{LAT_MAX}",
+                  "decimalLongitude": f"{LON_MIN},{LON_MAX}", "year": "2010,2017", "limit": 300}
+        r = get_json(GBIF, params)
+        fichero.write_text(json.dumps(r), encoding="utf-8")
+        fecha = pd.Timestamp.now()
+    else:
+        r = json.loads(fichero.read_text(encoding="utf-8"))
+        clave = r["results"][0]["taxonKey"] if r["results"] else "?"
+        fecha = pd.Timestamp.fromtimestamp(fichero.stat().st_mtime)
     regs = pd.DataFrame([{k: o.get(k) for k in ("year", "eventDate", "locality", "municipality",
                                                  "stateProvince", "basisOfRecord", "datasetName")}
                          for o in r["results"]])
     L = [f"GBIF: {r['count']} registros de Vespa velutina en el rectángulo de Bizkaia entre 2010 y 2017"
-         f" (descarga: {pd.Timestamp.now():%Y-%m-%d}; clave de taxón {clave})."]
+         f" (descarga: {fecha:%Y-%m-%d}; clave de taxón {clave})."]
     if len(regs):
         L.append("  Por año: " + ", ".join(f"{int(a)}: {n}" for a, n in regs.year.value_counts().sort_index().items()))
         L.append(f"  Primer registro: {regs.sort_values('eventDate').iloc[0].to_dict()}")
@@ -100,9 +109,11 @@ def gbif(carpeta: Path) -> list[str]:
 
 
 def main() -> None:
-    ruta, ruta_pob = Path(sys.argv[1]), Path(sys.argv[2])
-    carpeta_gbif = Path(sys.argv[3]) if len(sys.argv) > 3 and sys.argv[3] != "-" else None
-    salida = Path(sys.argv[4] if len(sys.argv) > 4 else "outputs")
+    sin_descarga = "--sin-descarga" in sys.argv
+    argv = [x for x in sys.argv if x != "--sin-descarga"]
+    ruta, ruta_pob = Path(argv[1]), Path(argv[2])
+    carpeta_gbif = Path(argv[3]) if len(argv) > 3 and argv[3] != "-" else None
+    salida = Path(argv[4] if len(argv) > 4 else "outputs")
     d = preparar(ruta)
     L = []
     p = lambda x: f"{100 * x:.1f} %"
@@ -166,7 +177,7 @@ def main() -> None:
     if carpeta_gbif:
         L.append("\n## Antes de 2018 (contexto, GBIF)")
         try:
-            L += gbif(carpeta_gbif)
+            L += gbif(carpeta_gbif, descargar=not sin_descarga)
         except OSError as e:
             L.append(f"  No se pudo descargar GBIF: {e}")
 

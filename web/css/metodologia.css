@@ -1,0 +1,169 @@
+/* === metodología === Solo para web/metodologia.html. Usa las variables y las tipografías de estilo.css. */
+
+.pagina-met { --met-col: 40rem; --met-papel-2: #f1ece2; --met-papel-3: #f3eee4; --met-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace; }
+
+/* Cabecera */
+.met-cabecera { border-bottom: 1px solid var(--linea); }
+.met-barra {
+  position: sticky; top: 0; z-index: 5;
+  padding: 10px 16px; background: var(--fondo); border-bottom: 1px solid var(--linea);
+  font-family: var(--letra); font-size: var(--t-leyenda);
+}
+.met-volver { display: inline-flex; align-items: center; gap: .4em; min-height: 44px; color: var(--tinta); text-decoration: none; font-weight: 600; }
+.met-volver:hover span { text-decoration: underline; }
+.met-titulos { max-width: var(--met-col); margin: 0 auto; padding: 2.25rem 16px 2rem; }
+.met-antetitulo { margin: 0 0 .5rem; font: 600 var(--t-leyenda) var(--letra); letter-spacing: .06em; text-transform: uppercase; }
+.met-antetitulo a { color: var(--acento-texto); text-decoration: none; }
+.met-titulos h1 { margin: 0 0 1rem; font: 700 clamp(2.4rem, 7vw, 3.75rem)/1.05 var(--letra); letter-spacing: -.01em; }
+.met-entradilla { margin: 0 0 1rem; font-size: var(--t-subtitulo); line-height: 1.45; color: var(--tinta); }
+.met-firma { margin: 0 0 1.25rem; font: 400 var(--t-firma) var(--letra); color: var(--tinta-suave); }
+.met-accesos { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; font-family: var(--letra); font-size: var(--t-leyenda); }
+.met-accesos a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px;
+  border: 1px solid var(--acento-2); border-radius: 22px; color: var(--acento-2); text-decoration: none; font-weight: 600;
+}
+.met-accesos a:hover { background: var(--acento-2); color: var(--blanco); }
+
+/* Rejilla: índice + columna de lectura */
+.met-rejilla { max-width: var(--met-col); margin: 0 auto; padding: 0 16px; }
+
+/* Índice: desplegable en el móvil */
+.met-indice { position: sticky; top: 65px; z-index: 4; margin: 1rem 0 0; font-family: var(--letra); }
+.met-indice details { background: var(--fondo); border: 1px solid var(--linea); border-radius: 4px; }
+.met-indice summary {
+  cursor: pointer; min-height: 44px; display: flex; align-items: center; padding: 0 14px;
+  font-weight: 600; font-size: var(--t-leyenda); list-style: none;
+}
+.met-indice summary::-webkit-details-marker { display: none; }
+.met-indice summary::after { content: "▾"; margin-left: auto; color: var(--tinta-suave); }
+.met-indice details[open] summary::after { content: "▴"; }
+.met-indice ol { list-style: none; margin: 0; padding: 4px 0 10px; max-height: 60svh; overflow-y: auto; }
+.met-indice a {
+  display: block; padding: 7px 14px; border-left: 3px solid transparent;
+  color: var(--tinta-suave); text-decoration: none; font-size: var(--t-leyenda); line-height: 1.3;
+}
+.met-indice a:hover { color: var(--tinta); }
+.met-indice a[aria-current="true"] { color: var(--tinta); font-weight: 600; border-left-color: var(--acento); }
+
+/* Texto */
+.met-texto { font-family: var(--letra-texto); font-size: var(--t-paso); line-height: 1.6; padding-bottom: 3rem; }
+.met-seccion { padding-top: 1.25rem; scroll-margin-top: 80px; }
+.met-seccion h2 {
+  margin: 2rem 0 1rem; padding-top: 1.25rem; border-top: 1px solid var(--linea);
+  font: 700 1.6rem/1.2 var(--letra); scroll-margin-top: 80px;
+}
+.met-seccion:first-child h2 { border-top: 0; margin-top: 1rem; }
+.met-texto p { margin: 0 0 1.1rem; }
+.met-texto a { color: var(--acento-2); text-decoration-thickness: 1px; text-underline-offset: 2px; overflow-wrap: anywhere; }
+.met-texto a:hover { text-decoration-thickness: 2px; }
+.met-lista { margin: 0 0 1.25rem; padding-left: 1.2em; }
+.met-lista li { margin-bottom: .7rem; padding-left: .2em; }
+.met-lista li::marker { color: var(--acento); }
+
+/* Código: monoespaciada discreta */
+.met-texto code {
+  font-family: var(--met-mono); font-size: .8em; padding: .08em .3em;
+  background: rgba(29, 26, 22, .05); border: 1px solid var(--linea); border-radius: 3px; overflow-wrap: anywhere;
+}
+.met-codigo {
+  margin: 0 0 1.25rem; padding: 14px 16px; overflow-x: auto;
+  background: var(--met-papel-2); border: 1px solid var(--linea); border-left: 3px solid var(--acento-2); border-radius: 3px;
+  font-size: 15px; line-height: 1.55;
+}
+.met-codigo code { background: none; border: 0; padding: 0; font-size: 14px; white-space: pre; overflow-wrap: normal; }
+
+/* Proceso: pasos numerados */
+.met-pasos { list-style: none; counter-reset: paso; margin: 0 0 1.25rem; padding: 0; }
+.met-pasos li {
+  counter-increment: paso; position: relative; padding: .7rem 0 .7rem 2.6rem; border-bottom: 1px solid var(--linea);
+}
+.met-pasos li::before {
+  content: counter(paso); position: absolute; left: 0; top: .8rem;
+  width: 1.9rem; text-align: right; font: 600 var(--t-leyenda) var(--letra); color: var(--tinta-suave);
+}
+.met-script { display: block; margin-bottom: .2rem; }
+.met-desc { display: block; }
+
+/* Tablas */
+.met-tabla-caja { margin: 0 0 1.5rem; }
+.met-tabla { width: 100%; border-collapse: collapse; font-family: var(--letra); font-size: 16px; line-height: 1.4; }
+.met-tabla th {
+  text-align: left; vertical-align: bottom; padding: 8px 10px 8px 0;
+  font-size: var(--t-leyenda); font-weight: 600; color: var(--tinta-suave); border-bottom: 2px solid var(--tinta);
+}
+.met-tabla td { vertical-align: top; padding: 10px 10px 10px 0; border-bottom: 1px solid var(--linea); }
+.met-tabla td:first-child { font-weight: 600; }
+.met-tabla code { font-size: 13px; }
+.met-tabla-descargas td:last-child, .met-tabla-descargas th:last-child { text-align: right; white-space: nowrap; color: var(--tinta-suave); font-variant-numeric: tabular-nums; }
+.met-formato { font-size: 13px; font-weight: 600; color: var(--tinta-suave); border: 1px solid var(--linea); border-radius: 3px; padding: 0 4px; margin-left: 4px; }
+.met-pdf { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-family: var(--letra); }
+.met-pdf a { font-weight: 600; font-size: 1.05em; }
+.met-pdf span { color: var(--tinta-suave); font-size: 16px; }
+
+/* Móvil: cada fila de tabla se lee como una ficha */
+@media (max-width: 699px) {
+  .met-tabla thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .met-tabla, .met-tabla tbody, .met-tabla tr, .met-tabla td { display: block; width: 100%; }
+  .met-tabla tr { padding: 10px 0; border-bottom: 1px solid var(--linea); }
+  .met-tabla td { border: 0; padding: 2px 0; }
+  .met-tabla td:not(:first-child)::before {
+    content: attr(data-etiqueta); display: block; font-size: 13px; font-weight: 600; color: var(--tinta-suave);
+    text-transform: uppercase; letter-spacing: .04em; margin-top: 6px;
+  }
+  .met-tabla-descargas tr { display: flex; justify-content: space-between; gap: 12px; }
+  .met-tabla-descargas td { width: auto; }
+  .met-tabla-descargas td::before { display: none !important; }
+  .met-tabla-descargas td:last-child { text-align: right; }
+}
+
+/* Fotografías */
+.met-fotos { list-style: none; margin: 0 0 1.25rem; padding: 0; }
+.met-foto { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: start; padding: 12px 0; border-bottom: 1px solid var(--linea); font-size: 16px; line-height: 1.45; }
+.met-foto img { width: 96px; height: 72px; object-fit: cover; border-radius: 2px; background: var(--linea); }
+
+/* Pie */
+.met-pie { border-top: 1px solid var(--linea); background: var(--met-papel-3); }
+.met-pie-dentro { max-width: var(--met-col); margin: 0 auto; padding: 2rem 16px 3rem; font-family: var(--letra); font-size: var(--t-firma); color: var(--tinta-suave); line-height: 1.5; }
+.met-pie-dentro p { margin: 0 0 .75rem; }
+.met-pie-dentro a { color: var(--acento-2); }
+.met-pie code { font-family: var(--met-mono); font-size: .9em; }
+
+/* Escritorio: índice fijo a la izquierda de la columna */
+@media (min-width: 1100px) {
+  .met-titulos { max-width: calc(var(--met-col) + 17rem + 4rem); padding: 3.5rem 32px 2.5rem; }
+  .met-titulos h1 { font-size: clamp(3rem, 5vw, 4.5rem); }
+  .met-entradilla { max-width: 52rem; font-size: clamp(1.3rem, 1.6vw, 1.55rem); }
+  .met-rejilla {
+    max-width: calc(var(--met-col) + 17rem + 4rem); padding: 0 32px;
+    display: grid; grid-template-columns: 17rem minmax(0, var(--met-col)); column-gap: 4rem; align-items: start;
+  }
+  .met-indice { top: 80px; margin-top: 2.25rem; }
+  .met-indice details { border: 0; background: none; }
+  .met-indice summary { pointer-events: none; padding-left: 14px; min-height: 0; margin-bottom: 6px; font-size: 13px;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--tinta-suave); }
+  .met-indice summary::after { content: none; }
+  .met-indice ol { max-height: calc(100svh - 140px); padding-top: 0; border-left: 1px solid var(--linea); }
+  .met-indice a { margin-left: -1px; }
+  .met-pie-dentro { max-width: calc(var(--met-col) + 17rem + 4rem); padding-left: calc(17rem + 4rem + 32px); }
+}
+@media (prefers-reduced-motion: no-preference) { html:has(.pagina-met) { scroll-behavior: smooth; } }
+
+/* Tabla de cifras: columna de origen, un script por línea */
+.met-origen > code { display: table; margin-bottom: 4px; white-space: nowrap; }
+.met-origen > span { display: block; margin-top: 2px; color: var(--tinta-suave); }
+.met-origen > span code { white-space: nowrap; }
+@media (min-width: 700px) {
+  .met-tabla-cifras td:first-child { width: 24%; }
+  .met-tabla-cifras td:nth-child(2) { width: 36%; }
+}
+
+/* Móvil: la barra y el índice fijos no tapan el título al saltar; scripts más compactos */
+@media (max-width: 1099px) {
+  .met-seccion, .met-seccion h2 { scroll-margin-top: 130px; }
+  .met-pasos li { padding-left: 2rem; }
+  .met-pasos li::before { width: 1.4rem; }
+  .met-script code { font-size: 14px; }
+}
+@media (min-width: 1100px) { .met-indice details[open] summary::after { content: none; } }
+@media (max-width: 699px) { .met-tabla-fuentes td::before { display: none !important; } .met-tabla-fuentes td:last-child { margin-top: 2px; } }
+@media (max-width: 699px) { .met-codigo code { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 13px; } .met-codigo { padding: 12px; } }

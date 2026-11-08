@@ -57,6 +57,55 @@ C = [
     ("Paso 12", "unos 16 nidos por 1.000 en los de menos de 2.000", tam.get("<2.000"), round(tam.get("<2.000", 0)) == 16),
     ("Paso 12", "uno en los de más de 20.000", tam.get(">20.000"), round(tam.get(">20.000", 0)) == 1),
 ]
+# --- Guion v2: apertura, revelación, comarcas y nido hilo ---
+ap, com, hil = J("apertura.json"), J("comarcas.geojson"), J("nido_hilo.json")
+av = dict(zip(ap["temporadas"], ap["avisos"]))
+prim = {r["temporada"]: r["municipio"] for r in ap["primero_por_temporada"]}
+mas = {r["municipio"]: r["n"] for r in ap["mas_avisos_periodo"]}
+ast, comun = dict(zip(ind["temporadas"], ind["avisos_asiatica"])), dict(zip(ind["temporadas"], ind["avisos_comun"]))
+crece = lambda d_: (d_[d1] / d_[d0] - 1)  # noqa: E731
+cp = {f["properties"]["nombre"]: f["properties"] for f in com["features"]}
+ref = com["bizkaia_sin_bilbao"]
+nh = hil["nido"]
+C += [
+    ("Apert. 1", "15 de septiembre de 2025, Morga, árbol, 7 m, retirado 2 días después por Basalan",
+     [nh["fecha_aviso"], nh["municipio"], nh["altura_m"], nh["dias"], nh["retira"]],
+     nh["fecha_aviso"] == "2025-09-15" and nh["municipio"] == "Morga" and nh["altura_m"] == 7 and nh["dias"] == 2
+     and nh["retira"] == "Basalan" and nh["ubicacion"] == "arbolado"),
+    ("Apert. 2", "1.990 nidos en 2019", av[2019], av[2019] == 1990),
+    ("Apert. 2", "109 de los 113 municipios en 2019", [ap["municipios_con_avisos"][0], ap["municipios_total"]],
+     ap["municipios_con_avisos"][0] == 109 and ap["municipios_total"] == 113),
+    ("Apert. 3", "2.599 en 2020, 2.138 en 2021, 2.469 en 2022", [av[2020], av[2021], av[2022]],
+     [av[2020], av[2021], av[2022]] == [2599, 2138, 2469]),
+    ("Apert. 4", "Mungia, primero casi todos los años (todas salvo 2020)", prim,
+     all(v == "Mungia" for k, v in prim.items() if k != 2020) and prim[2020] != "Mungia"),
+    ("Apert. 4", "Mungia 871 en 2019-2025; le siguen Getxo y Galdakao", list(mas.items())[:3],
+     list(mas)[:3] == ["Mungia", "Getxo", "Galdakao"] and mas["Mungia"] == 871),
+    ("Apert. 4", "Getxo 646 y Galdakao 607 (comprobación)", [mas.get("Getxo"), mas.get("Galdakao")],
+     mas.get("Getxo") == 646 and mas.get("Galdakao") == 607),
+    ("Apert. 5", "3.222 avisos en 2025, el máximo desde 2019", av[2025], av[2025] == 3222 and av[2025] == max(av.values())),
+    ("Apert. 6", "más de 18.000 nidos (suma de la apertura)", sum(av.values()), 18000 < sum(av.values()) < 19000
+     and sum(av.values()) == ind["total_periodo"]),
+    ("Revel.", "asiática +62 % (1.990 -> 3.222)", round(crece(ast), 4), round(100 * crece(ast)) == 62),
+    ("Revel.", "común +117 % (127 -> 276), «todavía más»", [comun[d0], comun[d1], round(crece(comun), 4)],
+     comun[d0] == 127 and comun[d1] == 276 and round(100 * crece(comun)) == 117 and crece(comun) > crece(ast)),
+    ("Revel.", "tendencia log-lineal creciente (IC 95 % sobre cero)", ind["tendencia"]["crecimiento_ic95"],
+     ind["tendencia"]["crecimiento_ic95"][0] > 0),
+    ("Calend.", "septiembre cae en «verano» (julio-septiembre) y el hilo se avisó en septiembre", nh["mes"], nh["mes"] in (7, 8, 9)),
+    ("Comarc.", "Gran Bilbao y Plentzia-Mungia, las más densas por km²",
+     sorted(cp, key=lambda k: -cp[k]["por_km2"])[:2], sorted(cp, key=lambda k: -cp[k]["por_km2"])[:2] == ["Gran Bilbao", "Plentzia-Mungia"]),
+    ("Comarc.", "Gran Bilbao casi tres veces más por km² que el resto", cp["Gran Bilbao"]["rr_km2"], 2.5 <= cp["Gran Bilbao"]["rr_km2"] < 3),
+    ("Comarc.", "Arratia-Nervión unos 9 por 1.000; Gran Bilbao menos de 2",
+     [cp["Arratia-Nervión"]["por_1000hab"], cp["Gran Bilbao"]["por_1000hab"]],
+     round(cp["Arratia-Nervión"]["por_1000hab"]) == 9 and cp["Gran Bilbao"]["por_1000hab"] < 2
+     and max(cp, key=lambda k: cp[k]["por_1000hab"]) == "Arratia-Nervión"),
+    ("Comarc.", "después del 1/11: Markina-Ondarroa 30 %, Encartaciones 27 %, media 20 %",
+     [cp["Markina-Ondarroa"]["tras_1nov"], cp["Encartaciones"]["tras_1nov"], ref["tras_1nov"]],
+     round(100 * cp["Markina-Ondarroa"]["tras_1nov"]) == 30 and round(100 * cp["Encartaciones"]["tras_1nov"]) == 27
+     and round(100 * ref["tras_1nov"]) == 20),
+    ("Cierre", "3.222 avisos en 2025, más que ningún año desde 2019", av[2025], av[2025] == max(av.values())),
+]
+
 mal = 0
 for paso, frase, valor, ok in C:
     mal += not ok

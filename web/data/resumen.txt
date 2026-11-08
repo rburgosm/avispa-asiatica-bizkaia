@@ -1,10 +1,13 @@
 Avisos abril-diciembre: 2018-2025 22135; periodo principal 2019-2025 18098
 Tramos de días: diferencia máxima con pct_le7 = 0.0000
 Nidos 2019-2025 en avispa_indicadores_temporada.csv: 18098 (base recalculada: 18098)
+Días hasta la retirada 2019-2025: n=16562, [3312, 3518, 2329, 1770, 1461, 1286, 971, 632, 1283]; acumulado <=2 días 0.5530, <=7 días 0.9225, mediana 2; igual que avispa_dias_tramos.csv: True
 Reparto mensual recalculado igual que outputs/avispa_reparto_mensual.csv: True
+Asturias 2023-2025, reparto abr-dic: 4 0.012, 5 0.021, 6 0.067, 7 0.166, 8 0.189, 9 0.149, 10 0.181, 11 0.162, 12 0.052; primavera 0.100
 Hitos en cronologia.json (estado confirmado, confirmado_secundaria): 35
 Tasas por tamaño (media 2019-2025): {'<2.000': 16.4, '2.000-5.000': 7.8, '5.000-20.000': 3.3, '>20.000': 1.1}; sin cruzar: []
 Cortes de la tasa por 1.000 habitantes (quintiles de 112 municipios): [2.8, 6.3, 14.7, 20.7]
 Puntos 2018-2025 abr-dic: sin coordenadas 965; fuera de Bizkaia (>200 m): 49; en el mapa 21121
 Puntos con coordenadas por temporada: {2018: 3392, 2019: 1726, 2020: 2591, 2021: 2132, 2022: 2409, 2023: 2867, 2024: 2802, 2025: 3202}
-Tamaño: indicadores.json 1 KB, mensual.json 1 KB, esquemas.json 0 KB, regiones.json 3 KB, gasto.json 1 KB, cronologia.json 12 KB, municipios.geojson 171 KB, nidos.json 436 KB, municipios_serie.json 14 KB, descargas/avisos_por_temporada_y_mes_abr_dic.csv 2 KB, descargas/indicadores_por_temporada.csv 1 KB, descargas/municipios.csv 7 KB, descargas/nidos_coordenadas_redondeadas.csv 436 KB
+Apertura: avisos [1990, 2599, 2138, 2469, 2870, 2810, 3222]; municipios con avisos [109, 110, 107, 112, 110, 111, 112]; más avisos [{'municipio': 'Mungia', 'n': 871}, {'municipio': 'Getxo', 'n': 646}, {'municipio': 'Galdakao', 'n': 607}]
+Tamaño: indicadores.json 2 KB, mensual.json 1 KB, asturias_mensual.json 1 KB, esquemas.json 0 KB, regiones.json 3 KB, gasto.json 2 KB, cronologia.json 12 KB, municipios.geojson 171 KB, nidos.json 436 KB, municipios_serie.json 27 KB, apertura.json 1 KB, descargas/avisos_por_temporada_y_mes_abr_dic.csv 2 KB, descargas/indicadores_por_temporada.csv 1 KB, descargas/municipios.csv 7 KB, descargas/nidos_coordenadas_redondeadas.csv 436 KB

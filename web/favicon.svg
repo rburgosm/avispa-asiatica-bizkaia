@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .fondo { fill: #faf7f0; } .anillo { fill: none; stroke: #1d1a16; } .punto { fill: #c4600a; }
+    @media (prefers-color-scheme: dark) {
+      .fondo { fill: #17140f; } .anillo { stroke: #ece6da; } .punto { fill: #d0701c; }
+    }
+  </style>
+  <rect class="fondo" width="32" height="32" rx="7"/>
+  <circle class="anillo" cx="16" cy="16" r="10.5" stroke-width="3.5"/>
+  <circle class="punto" cx="16" cy="16" r="6.0"/>
+</svg>

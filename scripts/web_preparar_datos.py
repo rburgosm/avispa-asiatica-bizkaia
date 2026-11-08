@@ -13,6 +13,7 @@ generar antes con sus scripts:
 - avispa_comparativa_regiones.csv y avispa_comparativa_meseta.csv (scripts/avispa_comparativa_regiones.py)
 - avispa_gasto_anual.csv y avispa_gasto_coste_nido.csv (scripts/avispa_gasto.py)
 - avispa_politicas_hitos.csv (scripts/avispa_politicas_hitos.py)
+- asturias_avisos_mensual.csv (scripts/digitalizar_asturias.py)
 
 El perfil de los nidos por época, el reparto mensual y las tasas por 1.000 habitantes se
 recalculan importando las funciones de scripts/avispa_cifras_guion.py (misma base: temporadas
@@ -21,11 +22,15 @@ recalculan importando las funciones de scripts/avispa_cifras_guion.py (misma bas
 Escribe en web/data/:
 - indicadores.json  por temporada (2018-2025; 2018 marcada como registro incompleto): nidos
                     avisados, no eliminables, tramos de días entre aviso y retirada, quién retira,
-                    primavera y retirados después del 1 de noviembre.
+                    primavera y retirados después del 1 de noviembre; distribución de los días
+                    entre aviso y retirada de 2019-2025 (dias_distribucion).
 - mensual.json      avisos por mes, de abril a diciembre (2019-2025).
+- asturias_mensual.json  reparto mensual de los avisos de Asturias 2023-2025 (abril-diciembre),
+                    para dibujarlo sobre el de Bizkaia.
 - esquemas.json     perfil de los nidos retirados según la época (paso 2).
 - regiones.json     curvas de nidos por 1.000 km² alineadas por años desde la llegada.
-- gasto.json        gasto identificable en la retirada de nidos (2017-2025) y coste por nido.
+- gasto.json        gasto identificable en la retirada de nidos (2017-2025), coste por nido y
+                    escenario de 2021-2025 al coste por nido de 2018 (no es un dato).
 - cronologia.json   hitos confirmados de la cronología de medidas.
 - nidos.json        puntos en columnas planas [lon, lat, temporada, mes], redondeados a
                     3 decimales (~100 m; también evita señalar viviendas concretas).
@@ -49,6 +54,7 @@ import pandas as pd
 
 RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "scripts"))
+import avispa_indicadores_control as control  # noqa: E402
 from avispa_avisos_poblacion import padron  # noqa: E402
 from avispa_cifras_guion import TEMPORADAS, base, perfil_epoca, reparto_mensual, tasas_tamano  # noqa: E402
 from avispa_llegamos_tarde import preparar  # noqa: E402
@@ -112,6 +118,75 @@ def indicadores(R: list) -> dict:
         "pct_elim_despues_1nov": col(1 - T.pct_elim_antes_1nov),
         "tramos": {"claves": tramos, "n": col(D.n.reindex(t)),
                    "valores": [col(D.loc[x, tramos]) for x in t]},
+        # Avisos de abril a diciembre de asiática y de avispa común (control de las ganas de avisar)
+        "avisos_asiatica": col(T.avisos_asiatica_abr_dic), "avisos_comun": col(T.avisos_comun_abr_dic),
+        "tendencia": tendencia(T.nidos),
+    }
+
+
+def tendencia(nidos: pd.Series) -> dict:
+    """Tendencia log-lineal de los nidos avisados 2019-2025 (MCO de log(nidos) sobre la temporada,
+    statsmodels) con el intervalo de confianza del 95 % de la recta ajustada, en nidos."""
+    import statsmodels.api as sm
+    y = nidos.loc[list(TEMPORADAS)].astype(float)
+    X = sm.add_constant(np.array(y.index, dtype=float) - TEMPORADAS[0])
+    m = sm.OLS(np.log(y.values), X).fit()
+    pr = m.get_prediction(X).summary_frame(alpha=0.05)
+    lo, hi = m.conf_int(alpha=0.05)[1]
+    return {"temporadas": [int(x) for x in y.index], "ajuste": [round(float(np.exp(v)), 1) for v in pr["mean"]],
+            "inferior": [round(float(np.exp(v)), 1) for v in pr["mean_ci_lower"]],
+            "superior": [round(float(np.exp(v)), 1) for v in pr["mean_ci_upper"]],
+            "crecimiento_anual": round(float(np.exp(m.params[1]) - 1), 4),
+            "crecimiento_ic95": [round(float(np.exp(lo) - 1), 4), round(float(np.exp(hi) - 1), 4)],
+            "p": round(float(m.pvalues[1]), 4), "metodo": "MCO de log(nidos) ~ temporada, 2019-2025; IC 95 % de la recta"}
+
+
+def dias_distribucion(ruta_nidos: Path, R: list) -> dict:
+    """Nidos retirados de 2019-2025 según los días entre aviso y retirada (0, 1, …, 7 y más de 7),
+    con las definiciones de avispa_indicadores_control.py (su función base: avisos de abril a
+    diciembre, días negativos descartados; nidos «CERRADA - ELIMINADO» con días válidos)."""
+    d, _ = control.base(ruta_nidos)
+    e = d[d.eliminado & d.dias.notna() & d.temporada.isin(TEMPORADAS)]
+    n = e.dias.clip(upper=8).astype(int).value_counts().reindex(range(9), fill_value=0)
+    # Control: mismo total y mismos tramos que avispa_dias_tramos.csv (2019-2025)
+    D = pd.read_csv(OUT / "avispa_dias_tramos.csv", index_col="temporada").loc[list(TEMPORADAS)]
+    tramos = [n[0], n[1:4].sum(), n[4:8].sum(), n[8]]
+    csv = [(D[c] * D.n).sum() for c in ["mismo_dia", "de_1_a_3_dias", "de_4_a_7_dias", "mas_de_7_dias"]]
+    ok = int(D.n.sum()) == len(e) and np.allclose(tramos, csv, atol=1)
+    acum = n.cumsum() / n.sum()
+    R.append(f"Días hasta la retirada 2019-2025: n={len(e)}, {n.tolist()}; acumulado <=2 días {acum[2]:.4f}, "
+             f"<=7 días {acum[7]:.4f}, mediana {e.dias.median():.0f}; igual que avispa_dias_tramos.csv: {ok}")
+    if not ok:
+        raise SystemExit("La distribución de días no cuadra con avispa_dias_tramos.csv")
+    return {"dias": list(range(8)), "mas_de": 7, "n": [int(v) for v in n], "total": int(len(e)),
+            "periodo": [min(TEMPORADAS), max(TEMPORADAS)], "mediana": limpio(e.dias.median()),
+            "definicion": "Nidos retirados (CERRADA - ELIMINADO) de las temporadas 2019-2025, avisados de abril "
+                          "a diciembre, con días válidos (>= 0) entre el aviso y el cierre; el último valor de n "
+                          "son los de más de 7 días."}
+
+
+def asturias_mensual(R: list) -> dict:
+    """Reparto mensual de los avisos de Asturias 2023-2025 (gráfica digitalizada del informe de
+    2025, scripts/digitalizar_asturias.py) sobre abril-diciembre, la misma ventana de Bizkaia."""
+    a = pd.read_csv(OUT / "asturias_avisos_mensual.csv", dtype={"anio": str})
+    a = a[a.mes.between(4, 12)]
+    tot = a[a.anio.eq("2023-2025")].set_index("mes")
+    anios = sorted(x for x in a.anio.unique() if x != "2023-2025")
+    R.append("Asturias 2023-2025, reparto abr-dic: " + ", ".join(f"{m} {v:.3f}" for m, v in tot.proporcion_abr_dic.items())
+             + f"; primavera {tot.proporcion_abr_dic.loc[4:6].sum():.3f}")
+    return {
+        "region": "Asturias", "periodo": [int(anios[0]), int(anios[-1])], "meses": [int(m) for m in tot.index],
+        "proporcion": [limpio(v) for v in tot.proporcion_abr_dic],
+        "avisos": [limpio(v, 0) for v in tot.avisos],
+        "por_anio": {x: [limpio(v) for v in a[a.anio.eq(x)].sort_values("mes").proporcion_abr_dic] for x in anios},
+        "primavera": limpio(tot.proporcion_abr_dic.loc[4:6].sum()),
+        "fuente": "Principado de Asturias, informe de actividad de 2025 sobre la avispa asiática, gráfica «Flujo de "
+                  "recepción de avisos» (avisos por semana, 2023-2025), digitalizada con scripts/digitalizar_asturias.py",
+        "comparacion": "Avisos de nidos de Asturias en 2023-2025 frente a los de Bizkaia en 2019-2025: porcentaje de "
+                       "los avisos de abril a diciembre que llega en cada mes (suma de los años). La gráfica de Asturias "
+                       "empieza en marzo (semana 10): no hay enero ni febrero y marzo, incompleto, queda fuera. Los "
+                       "avisos de cada semana se reparten entre sus 7 días antes de sumarlos por mes. Error de la digitalización: unos ±15 avisos por semana. "
+                       "Solo se compara la forma del calendario, no el número de nidos.",
     }
 
 
@@ -180,7 +255,20 @@ def gasto() -> dict:
     if len(tot18):
         coste["2018"] = {"min": limpio(tot18.eur_nido.iloc[0], 1), "max": limpio(tot18.eur_nido.iloc[0], 1),
                          "nota": "las tres líneas juntas"}
-    return {"anios": anios, "coste_nido": coste}
+    # Escenario (no es un dato): nidos de Basalan de cada temporada al coste por nido de 2018 (las tres
+    # líneas juntas), frente al encargo anual; mismo cálculo que el apartado 3c de avispa_gasto.txt.
+    esc = {}
+    if len(tot18):
+        eur18 = float(tot18.eur.iloc[0]) / float(tot18.nidos_basalan.iloc[0])
+        sd = [a["anio"] for a in anios if a["estado"] == "sin_desglose"]
+        filas = {y: {"nidos_basalan": int(A.at[y, "nidos_temporada_basalan"]),
+                     "eur": limpio(A.at[y, "nidos_temporada_basalan"] * eur18, 0),
+                     "pct_encargo": limpio(A.at[y, "nidos_temporada_basalan"] * eur18
+                                           / A.at[y, "encargo_basalan_patrimonio_natural_eur"], 4)} for y in sd}
+        esc = {"eur_nido": limpio(eur18, 2), "anios": {str(y): f for y, f in filas.items()},
+               "nota": "Escenario, no dato: nidos retirados por Basalan en cada temporada por el coste por nido de "
+                       "2018 (las tres líneas juntas), a precios de 2018, frente al encargo anual de Patrimonio Natural."}
+    return {"anios": anios, "coste_nido": coste, "escenario_2018": esc}
 
 
 def cronologia() -> dict:
@@ -212,8 +300,10 @@ def main() -> None:
     suma = sum(n for t, n in zip(ind["temporadas"], ind["nidos"]) if t in TEMPORADAS)
     R.append(f"Nidos 2019-2025 en avispa_indicadores_temporada.csv: {suma} (base recalculada: {len(d)})")
     ind["total_periodo"] = suma
+    ind["dias_distribucion"] = dias_distribucion(ruta_nidos, R)
     tam["indicadores.json"] = escribir(salida / "indicadores.json", ind)
     tam["mensual.json"] = escribir(salida / "mensual.json", mensual(d, R))
+    tam["asturias_mensual.json"] = escribir(salida / "asturias_mensual.json", asturias_mensual(R))
     tam["esquemas.json"] = escribir(salida / "esquemas.json", esquemas(d))
     tam["regiones.json"] = escribir(salida / "regiones.json", regiones())
     tam["gasto.json"] = escribir(salida / "gasto.json", gasto())
@@ -286,8 +376,24 @@ def main() -> None:
     R.append("Puntos con coordenadas por temporada: " + str(pd.Series(plano[:, 2].astype(int)).value_counts()
                                                             .sort_index().to_dict()))
 
-    # --- Buscador por municipio ---
+    # --- Buscador por municipio: serie, tasas anuales, tendencia y comarca ---
     nombre = {k: ine.get(k, n) for k, n in zip(m.clave, m.nombre)}
+    cc = pd.read_csv(OUT / "municipio_comarca.csv")
+    cod_comarca = dict(zip(cc.codigo_ine - 48000, cc.comarca_eustat))
+    comarca = {k: cod_comarca.get(int(c)) for k, c in zip(m.clave, m.cod)}
+
+    def ajuste(v):
+        """Recta de MCO (numpy.polyfit) de la tasa anual sobre la temporada: valores en 2019 y 2025."""
+        a, b = np.polyfit(np.array(T, dtype=float), np.array(v, dtype=float), 1)
+        return [limpio(a * T[0] + b, 3), limpio(a * T[-1] + b, 3)]
+    tasa_anual = 1000 * nm[T] / pob[T]
+    tasa_anual.loc[tasa_anual.index.isin(SIN_DATOS)] = np.nan
+    sinb = [k for k in pob.index if k not in SIN_DATOS]
+    biz_anual = (1000 * nm.loc[sinb, T].sum() / pob.loc[sinb, T].sum())
+    com_anual = {}
+    for c0 in sorted(set(v for v in comarca.values() if v)):
+        ks = [k for k in sinb if comarca.get(k) == c0]
+        com_anual[c0] = [limpio(v, 3) for v in 1000 * nm.loc[ks, T].sum() / pob.loc[ks, T].sum()]
     munis = []
     for k in pob.index:
         sd = k in SIN_DATOS
@@ -295,11 +401,34 @@ def main() -> None:
                       "nidos": [int(v) for v in st.loc[k]],
                       "tasa": None if sd else limpio(tasa[k], 4),
                       "puesto": None if sd else int(puesto[k]),
-                      "dias_mediana": None if sd or k not in dias.index else limpio(dias[k], 1)})
+                      "dias_mediana": None if sd or k not in dias.index else limpio(dias[k], 1),
+                      "comarca": comarca.get(k),
+                      "tasa_anual": None if sd else [limpio(v, 3) for v in tasa_anual.loc[k, T]],
+                      "tendencia": None if sd else ajuste(tasa_anual.loc[k, T])})
     munis.sort(key=lambda x: x["nombre"])
     tam["municipios_serie.json"] = escribir(salida / "municipios_serie.json", {
-        "temporadas": serie_t, "incompletas": INCOMPLETAS, "periodo": [T[0], T[-1]],
+        "temporadas": serie_t, "incompletas": INCOMPLETAS, "periodo": [T[0], T[-1]], "temporadas_tasa": T,
+        "bizkaia_tasa_anual": [limpio(v, 3) for v in biz_anual], "bizkaia_tendencia": ajuste(biz_anual),
+        "comarcas_tasa_anual": com_anual,
         "con_puesto": int(validas.size), "municipios": munis})
+
+    # --- Apertura: avisos por temporada y mes (todos, con y sin coordenadas), municipios con avisos
+    #     y municipios con más avisos ---
+    nombre_de = lambda k: nombre.get(k, str(k).title())  # noqa: E731
+    am = d.groupby(["temporada", "mes_alta"]).size().unstack(fill_value=0).reindex(index=T, columns=range(4, 13), fill_value=0)
+    pm = d.groupby(["temporada", "muni"]).size().reset_index(name="n")
+    primero = pm.sort_values(["temporada", "n"], ascending=[True, False]).groupby("temporada").head(1)
+    tot = d.groupby("muni").size().sort_values(ascending=False)
+    ap = {"temporadas": T, "meses": list(range(4, 13)),
+          "avisos": [int(v) for v in am.sum(axis=1)], "avisos_mes": [[int(v) for v in fila] for fila in am.values],
+          "municipios_con_avisos": [int(v) for v in d.groupby("temporada").muni.nunique().reindex(T)],
+          "municipios_total": int(len(m)),
+          "primero_por_temporada": [{"temporada": int(r.temporada), "municipio": nombre_de(r.muni), "n": int(r.n)}
+                                    for r in primero.itertuples()],
+          "mas_avisos_periodo": [{"municipio": nombre_de(k), "n": int(v)} for k, v in tot.head(5).items()]}
+    tam["apertura.json"] = escribir(salida / "apertura.json", ap)
+    R.append(f"Apertura: avisos {ap['avisos']}; municipios con avisos {ap['municipios_con_avisos']}; "
+             f"más avisos {ap['mas_avisos_periodo'][:3]}")
 
     # --- Descargas CSV (datos procesados) ---
     dd = salida / "descargas"
