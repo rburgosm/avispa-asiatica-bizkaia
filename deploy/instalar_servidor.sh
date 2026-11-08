@@ -6,7 +6,9 @@
 set -euo pipefail
 D=/tmp/tresmilnidos-deploy
 DOM=tresmilnidos.eus
-NOMBRES=(tresmilnidos.eus www.tresmilnidos.eus avispabizkaia.eus www.avispabizkaia.eus avispa-asiatica-bizkaia.eus www.avispa-asiatica-bizkaia.eus)
+# Por defecto, solo el principal; cuando los secundarios resuelvan a Cloudflare, volver a ejecutar con
+# NOMBRES="tresmilnidos.eus www.tresmilnidos.eus avispabizkaia.eus www.avispabizkaia.eus avispa-asiatica-bizkaia.eus www.avispa-asiatica-bizkaia.eus"
+read -r -a NOMBRES <<< "${NOMBRES:-tresmilnidos.eus www.tresmilnidos.eus}"
 VH=/etc/nginx/sites-available/$DOM.conf
 
 install -d -o roberto -g www-data -m 2755 /var/www/$DOM
@@ -22,7 +24,7 @@ probar
 
 # 2) Certificado para los seis nombres
 ARGS=(); for n in "${NOMBRES[@]}"; do ARGS+=(-d "$n"); done
-certbot certonly --nginx --non-interactive --agree-tos --keep-until-expiring --deploy-hook "systemctl reload nginx" --cert-name $DOM "${ARGS[@]}"
+certbot certonly --nginx --non-interactive --agree-tos --keep-until-expiring --expand --deploy-hook "systemctl reload nginx" --cert-name $DOM "${ARGS[@]}"
 
 # 3) Contraseña de vista previa (usuario «vista»); la contraseña la genera el autor y la pasa en la variable CLAVE
 if [ -n "${CLAVE:-}" ]; then printf 'vista:%s\n' "$(openssl passwd -apr1 "$CLAVE")" > /etc/nginx/tresmilnidos.htpasswd; chmod 640 /etc/nginx/tresmilnidos.htpasswd; chown root:www-data /etc/nginx/tresmilnidos.htpasswd; fi

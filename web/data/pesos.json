@@ -4,8 +4,8 @@
  "total_comprimido_sin_mapa_base_kb": 9004,
  "mapa_base_pmtiles_kb": 25328,
  "primera_carga": {
-  "index.html": 3.1,
-  "css/estilo.css": 12.8,
+  "index.html": 3.3,
+  "css/estilo.css": 12.9,
   "js/cargador.js": 1.2,
   "js/app.js": 9.7,
   "js/util.js": 2.7,

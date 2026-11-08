@@ -20,9 +20,9 @@
 .met-accesos { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; font-family: var(--letra); font-size: var(--t-leyenda); }
 .met-accesos a {
   display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px;
-  border: 1px solid var(--acento-2); border-radius: 22px; color: var(--acento-2); text-decoration: none; font-weight: 600;
+  border: 1px solid var(--enlace); border-radius: 22px; color: var(--enlace); text-decoration: none; font-weight: 600;
 }
-.met-accesos a:hover { background: var(--acento-2); color: var(--blanco); }
+.met-accesos a:hover { background: var(--enlace); color: var(--blanco); }
 
 /* Rejilla: índice + columna de lectura */
 .met-rejilla { max-width: var(--met-col); margin: 0 auto; padding: 0 16px; }
@@ -54,7 +54,7 @@
 }
 .met-seccion:first-child h2 { border-top: 0; margin-top: 1rem; }
 .met-texto p { margin: 0 0 1.1rem; }
-.met-texto a { color: var(--acento-2); text-decoration-thickness: 1px; text-underline-offset: 2px; overflow-wrap: anywhere; }
+.met-texto a { color: var(--enlace); text-decoration-thickness: 1px; text-underline-offset: 2px; overflow-wrap: anywhere; }
 .met-texto a:hover { text-decoration-thickness: 2px; }
 .met-lista { margin: 0 0 1.25rem; padding-left: 1.2em; }
 .met-lista li { margin-bottom: .7rem; padding-left: .2em; }
@@ -67,7 +67,7 @@
 }
 .met-codigo {
   margin: 0 0 1.25rem; padding: 14px 16px; overflow-x: auto;
-  background: var(--met-papel-2); border: 1px solid var(--linea); border-left: 3px solid var(--acento-2); border-radius: 3px;
+  background: var(--met-papel-2); border: 1px solid var(--linea); border-left: 3px solid var(--enlace); border-radius: 3px;
   font-size: 15px; line-height: 1.55;
 }
 .met-codigo code { background: none; border: 0; padding: 0; font-size: 14px; white-space: pre; overflow-wrap: normal; }
@@ -125,7 +125,7 @@
 .met-pie { border-top: 1px solid var(--linea); background: var(--met-papel-3); }
 .met-pie-dentro { max-width: var(--met-col); margin: 0 auto; padding: 2rem 16px 3rem; font-family: var(--letra); font-size: var(--t-firma); color: var(--tinta-suave); line-height: 1.5; }
 .met-pie-dentro p { margin: 0 0 .75rem; }
-.met-pie-dentro a { color: var(--acento-2); }
+.met-pie-dentro a { color: var(--enlace); }
 .met-pie code { font-family: var(--met-mono); font-size: .9em; }
 
 /* Escritorio: índice fijo a la izquierda de la columna */
@@ -144,7 +144,8 @@
   .met-indice summary::after { content: none; }
   .met-indice ol { max-height: calc(100svh - 140px); padding-top: 0; border-left: 1px solid var(--linea); }
   .met-indice a { margin-left: -1px; }
-  .met-pie-dentro { max-width: calc(var(--met-col) + 17rem + 4rem); padding-left: calc(17rem + 4rem + 32px); }
+  .met-pie-dentro { max-width: calc(var(--met-col) + 17rem + 4rem); padding-left: 32px; padding-right: 32px; columns: 2; column-gap: 4rem; }
+  .met-pie-dentro > * { break-inside: avoid; }
 }
 @media (prefers-reduced-motion: no-preference) { html:has(.pagina-met) { scroll-behavior: smooth; } }
 

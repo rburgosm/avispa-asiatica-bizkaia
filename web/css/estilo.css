@@ -25,6 +25,7 @@
   --acento: #c4600a;            /* serie 1, naranja velutina: la avispa asiática */
   --acento-texto: #9a4a06;      /* naranja para cifras en el texto; 5,9:1 */
   --acento-2: #3a62c9;          /* serie 2, azul: acción pública (retiradas, Basalan, gasto) */
+  --enlace: #9a4a06;            /* enlaces y botones de la interfaz: naranja oscuro (5,9:1); el azul queda solo para datos de acción pública */
   --acento-3: #1a9a8a;          /* serie 3, verde azulado */
   --rampa-1: #f6cf86;           /* rampa ámbar del mapa, de menos a más */
   --rampa-2: #eba545;
@@ -74,10 +75,10 @@ body {
   font-size: var(--t-paso);
   line-height: 1.55;
 }
-a { color: var(--acento-2); }
+a { color: var(--enlace); }
 a:focus-visible, summary:focus-visible, select:focus-visible, button:focus-visible, input:focus-visible,
 [tabindex]:focus-visible {
-  outline: 3px solid var(--acento-2);
+  outline: 3px solid var(--enlace);
   outline-offset: 2px;
 }
 .sr {
@@ -272,7 +273,7 @@ strong { font-weight: 600; }
   border-color: rgba(163, 154, 140, .5);
 }
 .boton {
-  font: 600 1rem var(--letra); color: var(--blanco); background: var(--acento-2);
+  font: 600 1rem var(--letra); color: var(--blanco); background: var(--enlace);
   border: 0; border-radius: 3px; padding: .6rem 1rem; cursor: pointer;
 }
 .boton:disabled { background: var(--gris-dato); color: var(--tinta); cursor: default; }
@@ -308,7 +309,7 @@ strong { font-weight: 600; }
 .lienzo-estimacion svg { touch-action: pan-y; }
 
 .datos { font-family: var(--letra); font-size: var(--t-leyenda); margin-top: .25rem; }
-.datos summary { cursor: pointer; color: var(--acento-2); }
+.datos summary { cursor: pointer; color: var(--enlace); }
 .datos .tabla { max-height: 30svh; overflow: auto; background: var(--blanco); }
 .datos table { border-collapse: collapse; width: 100%; }
 .datos th, .datos td { border-bottom: 1px solid var(--linea); padding: .15rem .35rem; text-align: right; }
@@ -465,8 +466,8 @@ strong { font-weight: 600; }
 /* «Dibuja tu estimación»: el foco del teclado se ve en la columna (el contorno CSS no se pinta
    bien en elementos <g> de SVG) */
 .barra-estimacion:focus { outline: none; }
-.barra-estimacion:focus-visible .hueco { stroke: var(--acento-2); stroke-width: 2.5; stroke-dasharray: none; }
-.barra-estimacion:focus-visible .marca { stroke: var(--acento-2); }
+.barra-estimacion:focus-visible .hueco { stroke: var(--enlace); stroke-width: 2.5; stroke-dasharray: none; }
+.barra-estimacion:focus-visible .marca { stroke: var(--enlace); }
 /* === fin parada 2 === */
 
 /* === buscador === «Tu municipio» (js/componentes/explorador.js) y cierre */
@@ -482,13 +483,13 @@ strong { font-weight: 600; }
   transition: box-shadow .2s ease;
 }
 .explorador .bus-campo input::placeholder { font-weight: 400; color: var(--tinta-suave); }
-.explorador .bus-campo input:focus-visible { outline: 3px solid var(--acento-2); outline-offset: 2px; }
+.explorador .bus-campo input:focus-visible { outline: 3px solid var(--enlace); outline-offset: 2px; }
 .bus-borrar {
   position: absolute; right: 6px; top: 50%; transform: translateY(-50%); width: 44px; height: 44px;
   border: 0; border-radius: 50%; background: transparent; color: var(--tinta-suave); font: 400 1.6rem/1 var(--letra); cursor: pointer;
 }
 .bus-borrar:hover { background: var(--sombra-zona); color: var(--tinta); }
-.bus-borrar:focus-visible { outline: 3px solid var(--acento-2); outline-offset: -3px; }
+.bus-borrar:focus-visible { outline: 3px solid var(--enlace); outline-offset: -3px; }
 .bus-borrar[hidden] { display: none; }
 .bus-opciones {
   position: absolute; z-index: 6; left: 0; right: 0; top: calc(100% + 4px); margin: 0; padding: 4px 0; list-style: none;
@@ -546,7 +547,7 @@ strong { font-weight: 600; }
 #texto-cierre p { font: var(--t-paso)/1.55 var(--letra-texto); }
 .cierre .enlaces { list-style: none; padding: 0; margin: 1.5rem 0 0; border-top: 1px solid var(--linea); }
 .cierre .enlaces li { border-bottom: 1px solid var(--linea); }
-.cierre .enlaces a { display: flex; align-items: center; min-height: 48px; padding: .4rem 0; font: 600 var(--t-paso)/1.3 var(--letra); color: var(--acento-2); text-decoration: none; }
+.cierre .enlaces a { display: flex; align-items: center; min-height: 48px; padding: .4rem 0; font: 600 var(--t-paso)/1.3 var(--letra); color: var(--enlace); text-decoration: none; }
 .cierre .enlaces a::after { content: "→"; margin-left: auto; padding-left: .75rem; color: var(--tinta-suave); }
 .cierre .enlaces a:hover, .cierre .enlaces a:focus-visible { text-decoration: underline; }
 /* === fin buscador === */
@@ -813,9 +814,9 @@ strong { font-weight: 600; }
 .pie-enlaces { list-style: none; padding: 0; margin: 1.5rem 0; display: grid; gap: .5rem; }
 .pie-enlaces a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 44px;
   padding: .55rem .9rem; border: 1px solid var(--linea); border-radius: 4px; background: var(--blanco);
-  font-weight: 600; font-size: 16px; color: var(--acento-2); text-decoration: none; transition: border-color .2s, background-color .2s; }
+  font-weight: 600; font-size: 16px; color: var(--enlace); text-decoration: none; transition: border-color .2s, background-color .2s; }
 .pie-enlaces a::after { content: "→"; font-weight: 400; transition: transform .2s; }
-.pie-enlaces a:hover, .pie-enlaces a:focus-visible { border-color: var(--acento-2); }
+.pie-enlaces a:hover, .pie-enlaces a:focus-visible { border-color: var(--enlace); }
 .pie-enlaces a:hover::after { transform: translateX(3px); }
 .pie-creditos { font-size: 14px; overflow-wrap: anywhere; }
 .pie .pie-firma { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--linea); font-size: 14px; color: var(--tinta); }
