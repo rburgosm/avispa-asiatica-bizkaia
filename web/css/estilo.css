@@ -901,3 +901,9 @@ strong { font-weight: 600; }
   .pista-bajar { transition: none; }
 }
 /* === fin móvil: tarjetas que suben (ronda 8) === */
+
+/* === móvil: legibilidad sobre el mapa (coordinador) === */
+@media (max-width: 899px) {
+  .paso-mapa .tarjeta, #historia .tarjeta { background: var(--fondo); }
+  .anotacion { background: rgba(250, 247, 240, .92); padding: .15rem .4rem; border-radius: 3px; text-shadow: none; }
+}
