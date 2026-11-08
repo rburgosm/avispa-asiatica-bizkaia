@@ -828,3 +828,7 @@ strong { font-weight: 600; }
   .pie-enlaces a, .pie-enlaces a::after { transition: none; }
 }
 /* === fin pie (ronda 6) === */
+
+/* Navegación oculta en el cierre y el buscador (coordinador) */
+.navegacion { transition: opacity .4s; }
+.navegacion.oculta-final { opacity: 0; pointer-events: none; }

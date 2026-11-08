@@ -107,6 +107,17 @@ function crearParadas(c) {
   });
   $("navegacion").setAttribute("aria-label", c.interfaz.navegacion);
   $("navegacion").innerHTML = `<ol>${nav.join("")}</ol>`;
+  // Al llegar al cierre y al buscador ya no hay parada que marcar: la navegación se funde
+  const navEl = $("navegacion");
+  const finales = ["cierre", "seccion-explorador"].map((id) => document.getElementById(id)).filter(Boolean);
+  if ("IntersectionObserver" in window && finales.length) {
+    const vistos = new Set();
+    const io = new IntersectionObserver((es) => {
+      es.forEach((e) => (e.isIntersecting ? vistos.add(e.target) : vistos.delete(e.target)));
+      navEl.classList.toggle("oculta-final", vistos.size > 0);
+    }, { rootMargin: "0px 0px -40% 0px" });
+    finales.forEach((el) => io.observe(el));
+  }
 }
 
 // Datos de cada fichero (se piden una sola vez) y gráficos que se crean al acercarse su parada
