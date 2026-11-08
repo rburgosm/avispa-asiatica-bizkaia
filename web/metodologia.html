@@ -38,7 +38,14 @@
   <link rel="preload" href="vendor/fonts/source-sans-3-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/estilo.css">
   <link rel="stylesheet" href="css/metodologia.css">
-  <script defer src="https://estadisticas.observatoribicivlc.org/script.js" data-website-id="00aa2983-a486-4eeb-a83c-50b99b4a9fd5" data-domains="tresmilnidos.eus"></script>
+  <!-- Estadísticas (Umami, sin cookies): se piden después del evento «load» y no bloquean la página. Con
+       «defer», js/metodologia.js esperaba a este script (los módulos y los defer se ejecutan en orden) y, si el servidor de
+       estadísticas no responde (está detrás de Cloudflare, bloqueado a veces en España), el texto no se pintaba. -->
+  <script data-website-id="00aa2983-a486-4eeb-a83c-50b99b4a9fd5" data-domains="tresmilnidos.eus">
+    (function (yo) { addEventListener("load", function () { var s = document.createElement("script"); s.async = true;
+      s.src = "https://estadisticas.observatoribicivlc.org/script.js"; s.dataset.websiteId = yo.dataset.websiteId;
+      s.dataset.domains = yo.dataset.domains; document.head.appendChild(s); }, { once: true }); })(document.currentScript);
+  </script>
 </head>
 <body class="pagina-met">
   <!-- El texto sale de content/<idioma>.json (bloques «metodologia», «creditos» y «descargas») y de web/data/. -->

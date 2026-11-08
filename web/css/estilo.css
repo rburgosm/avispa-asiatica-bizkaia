@@ -358,6 +358,10 @@ strong { font-weight: 600; }
   .tarjeta { top: 30svh; bottom: auto; margin-top: 50svh; }
   /* Mapa: tarjetas por encima, alternando lados, fijas a media altura */
   .paso-mapa .tarjeta { top: 42svh; }
+  /* Apertura: la tarjeta arriba en su paso (app.js cambia el mapa cuando llega al 65 %); cuando se
+     activa la siguiente, la anterior se funde para no pasar por encima de la cabecera del mapa */
+  .paso-apertura .tarjeta { margin-top: 0; transition: opacity .35s ease; }
+  .paso-apertura:has(~ .paso.activo) .tarjeta { opacity: 0; pointer-events: none; }
   .paso-mapa.derecha { margin-left: auto; margin-right: calc(4vw + 24px); }
   .navegacion { right: 12px; }
   .cabeza-mapa { top: 1.25rem; left: 1.5rem; right: auto; width: min(30rem, 34vw); gap: 8px; }

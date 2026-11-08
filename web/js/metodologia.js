@@ -5,7 +5,7 @@ import { json } from "./util.js";
 
 const lang = new URLSearchParams(location.search).get("lang") === "eu" ? "eu" : "es";
 const sufijo = lang === "es" ? "" : "?lang=" + lang;
-const c = await json(`content/${lang}.json?v=8c5a1dfc`);
+const c = await json(`content/${lang}.json?v=a569e483`);
 const m = c.metodologia, cr = c.creditos, I = c.interfaz, MI = m.interfaz || {};
 document.documentElement.lang = c.idioma;
 document.title = `${m.titulo} · ${c.meta.titulo}`;

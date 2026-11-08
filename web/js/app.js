@@ -94,7 +94,7 @@ function crearParadas(c) {
       <div class="parada-cuerpo">
         <div class="grafico" id="grafico-${pa.id}"></div>
         <div class="pasos">${pasos.map((p) => `
-          <div class="paso ${p.grafico === "mapa" ? `paso-mapa ${lado++ % 2 ? "derecha" : "izquierda"}` : "paso-grafico"}"
+          <div class="paso ${p.grafico === "mapa" ? `paso-mapa ${lado++ % 2 ? "derecha" : "izquierda"}` : "paso-grafico"}${p.id.startsWith("apertura-") ? " paso-apertura" : ""}"
             id="paso-${p.id}" data-indice="${p.indice}" data-parada="${pa.id}" data-grafico="${p.grafico}" style="--alto-paso:${alto(p)}svh">
             <div class="tarjeta">${p.titular ? `<p class="titular">${p.titular}</p>` : ""}${parrafos(p.texto)}${
               p.boton ? `<button type="button" class="boton" data-accion="${p.boton.accion}">${p.boton.texto}</button>` : ""}</div>
@@ -141,7 +141,7 @@ const datos = async (claves) => Object.fromEntries(await Promise.all(claves.map(
 export async function iniciar() {
   const lang = idioma();
   // Lo imprescindible para la portada y el mapa (el resto, por paradas)
-  const contenido = await json(`content/${lang}.json?v=8c5a1dfc`);
+  const contenido = await json(`content/${lang}.json?v=a569e483`);
   const I = contenido.interfaz;
   crearPaneles(I);
   crearParadas(contenido);
@@ -491,7 +491,12 @@ export async function iniciar() {
   const LINEA_FIJO = 0.6;
   const primeroDeGrafico = (el) => innerWidth < 900 && el.matches(".parada-grafico:not(.empieza-mapa) .paso:first-child");
 
+  // Apertura en escritorio: la tarjeta va arriba en su paso (sin el hueco de 50 svh) y el mapa cambia
+  // cuando su borde de arriba llega al 65 % de la pantalla, con la tarjeta ya a la vista; entre una
+  // tarjeta y la siguiente hay lo que mide el paso (estado.alto, 70-85 svh)
+  const LINEA_APERTURA = 0.65;
   function lineaDe(el) {
+    if (innerWidth >= 900 && el.classList.contains("paso-apertura")) return LINEA_APERTURA;
     if (primeroDeGrafico(el)) return LINEA_FIJO;
     if (!el.classList.contains("paso-grafico") || !el.previousElementSibling) return LINEA;
     const t = el.querySelector(".tarjeta");
