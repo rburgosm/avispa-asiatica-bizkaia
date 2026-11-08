@@ -907,3 +907,4 @@ strong { font-weight: 600; }
   .paso-mapa .tarjeta, #historia .tarjeta { background: var(--fondo); }
   .anotacion { background: rgba(250, 247, 240, .92); padding: .15rem .4rem; border-radius: 3px; text-shadow: none; }
 }
+@media (max-width: 899px) { .etiqueta-asturias { display: none; } }  /* móvil: Asturias ya está en la leyenda y en la nota */

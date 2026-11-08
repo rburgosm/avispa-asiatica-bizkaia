@@ -64,7 +64,7 @@ export function crearMensual(contenedor, { mensual, indicadores, asturias, hilo 
   const gAst = g.append("g");
   const lineaAst = gAst.append("path").attr("fill", "none").attr("stroke", "var(--tinta-suave)").attr("stroke-width", 2.2)
     .attr("stroke-linejoin", "round");
-  const etAst = gAst.append("text").attr("class", "etiqueta-serie").attr("fill", "var(--tinta-suave)")
+  const etAst = gAst.append("text").attr("class", "etiqueta-serie etiqueta-asturias").attr("fill", "var(--tinta-suave)")
     .attr("text-anchor", "end").attr("opacity", 0);
   const gIconos = g.append("g");
   const gHilo = g.append("g").attr("class", "hilo").attr("opacity", 0);
