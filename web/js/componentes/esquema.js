@@ -120,10 +120,10 @@ export function crearEsquema(contenedor, { esquemas, indicadores, cronologia, im
     const trazo = g.append("line").attr("x1", x(a0)).attr("y1", yl).attr("y2", yl).attr("x2", x(a0))
       .attr("stroke", "var(--acento)").attr("stroke-width", 6).attr("stroke-linecap", "round");
     // los demás hitos confirmados de la cronología, como puntos pequeños
-    const otros = movil ? [] : cronologia.hitos.filter((hh) => !lista.includes(hh) && fraccion(hh) >= a0 && fraccion(hh) <= a1);
+    const otros = []; // sin puntos sueltos: sin rótulo no se entienden (lo pidió el usuario); la cronología completa está en la tabla
     const puntos = g.append("g").selectAll("circle").data(otros).join("circle").attr("cx", (hh) => x(fraccion(hh))).attr("cy", yl)
       .attr("r", 3).attr("fill", "var(--fondo)").attr("stroke", "var(--tinta-suave)").attr("opacity", 0);
-    const anio = g.append("text").attr("class", "enorme").attr("y", yl - 22).attr("text-anchor", "middle").attr("opacity", 0.9);
+    const anio = g.append("text").attr("class", "enorme").attr("y", yl - 22).attr("text-anchor", "middle").attr("opacity", 0); // el año que sigue al trazo se confundía con un hito: oculto
     const ancho = Math.min(220, w / lista.length - 10);
     const grupos = lista.map((hh, i) => {
       const xx = x(fraccion(hh));
