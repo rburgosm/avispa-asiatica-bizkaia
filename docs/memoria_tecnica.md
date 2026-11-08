@@ -2,7 +2,9 @@
 
 **Qué consigue Bizkaia retirando nidos de avispa asiática, y qué no**
 
-Memoria técnica (base 6). Reto de Periodismo de Datos de Open Data Bizkaia 2026, categoría a) Visualización de datos. Autor: Roberto Burgos. Noviembre de 2026.
+Memoria técnica (base 6). Reto de Periodismo de Datos de Open Data Bizkaia 2026, categoría a) Visualización de datos. Autor: Roberto Burgos. Noviembre de 2026. Web: <https://tresmilnidos.eus>.
+
+<!-- En el PDF, la portada y el índice los compone scripts/memoria_pdf.py (título y subtítulo de web/content/es.json, bloque «meta»); lo que hay antes del primer apartado no se imprime. -->
 
 <!-- Todas las cifras de esta memoria salen de outputs/ o de web/data/. Cada una lleva al lado un comentario con su origen. Las cifras redondeadas del texto de la web se comprueban con scripts/web_comprobar_cifras.py (36 de 36 cuadran el 08/11/2026). -->
 
@@ -10,7 +12,24 @@ Memoria técnica (base 6). Reto de Periodismo de Datos de Open Data Bizkaia 2026
 
 «Tres mil nidos al año» es una web estática de una sola página que se recorre con el scroll. El eje son **los mapas y los gráficos interactivos**: un mapa a pantalla completa con los 21.121 nidos avisados en 2018-2025 que tienen coordenadas<!-- web/data/resumen.txt: «en el mapa 21121» (2018-2025, abril-diciembre) -->, que se anima por temporadas y meses, una superficie de densidad, mapas de comarcas y municipios, y gráficos que cambian de serie en cada paso (días hasta la retirada, nidos no eliminables, reparto mensual, curvas de otras regiones y gasto). El lector también interactúa: dibuja su estimación de los nidos de cada año antes de ver los datos reales y busca su municipio para ver su ficha (serie, tasa, puesto y días de retirada).
 
-El texto acompaña: tarjetas breves, de unas 40 palabras de media, que dicen qué mirar en cada gráfico. El detalle del método y las limitaciones va a una página de metodología aparte (`web/metodologia.html`). Por eso la presentamos a la categoría de visualización y no a la de investigación.
+El texto acompaña: tarjetas breves, de unas 40 palabras de media, que dicen qué mirar en cada gráfico. El detalle del método y las limitaciones va a una página de metodología aparte (<https://tresmilnidos.eus/metodologia.html>). Por eso la presentamos a la categoría de visualización y no a la de investigación.
+
+La historia se organiza en **seis paradas**. Cada una tiene un gráfico o un mapa fijo, se abre con una pregunta y enlaza con la siguiente con una frase de paso:
+
+| Parada | Pregunta | Qué se ve |
+|---|---|---|
+| 1. Mapa | «Un nido, y otros 18.000» | El nido de Morga, los avisos que se encienden temporada a temporada, la llegada de la especie, el año de un nido, el circuito del aviso y los nidos sin avisar |
+| 2. Serie por temporada | «¿Funciona la respuesta?» | Estimación del lector, nidos reales, días hasta la retirada y nidos no eliminables |
+| 3. Calendario | «¿Cuándo se actúa?» | Reparto mensual de los avisos, primavera y retirados después del 1 de noviembre |
+| 4. Comarcas | «¿Pasa igual en toda Bizkaia?» | Nidos por km² y por 1.000 habitantes en las 7 comarcas de Eustat, tasas por tamaño de municipio y retirada tardía por comarca |
+| 5. Regiones | «¿Es Bizkaia distinta?» | Nidos por 1.000 km² de Bizkaia y otras regiones y lo que se ha probado fuera |
+| 6. Gasto | «¿Cuánto cuesta?» | Gasto identificable por año, coste por nido y encargo anual a Basalan |
+
+Cierra con «Lo que sabemos y lo que no» y con el buscador de municipios, que da también su comarca.
+
+**El nido de Morga.** Un nido real del registro acompaña la historia: se avisó el 15/09/2025 en Morga, en un árbol a 7 m de altura, y Basalan lo retiró dos días después.<!-- web/data/nido_hilo.json: fecha_aviso 2025-09-15, fecha_retirada 2025-09-17, dias 2, altura_m 7.0, retira Basalan --> No se ha elegido a mano: `web_preparar_hilo.py` lo selecciona con un criterio fijo (nido de 2025 avisado en verano, en arbolado, retirado por Basalan, con altura, diámetro y días de retirada en torno a las medianas de 2025, en un municipio con una tasa igual o mayor que la mediana municipal, y un desempate explícito). Cumplían todos los criterios 2 nidos.<!-- web/data/nido_hilo.json: criterio y candidatos 2 --> Se publican el municipio, las fechas, la altura y el diámetro, y las coordenadas redondeadas a unos 100 m; nunca la dirección.
+
+**Los nidos sin avisar.** En el paso «Un aviso no es un censo», el mapa dibuja 4 nidos sin avisar por cada nido avisado alrededor de Morga, a 150-900 m de cada uno.<!-- web/data/censo_ilustracion.json: por_nido 4, distancia_m [150, 900], semilla 2025 --> Es una ilustración de la proporción de Lagoa y otros (2025) en un pinar de Vigo: al menos cinco nidos reales por cada aviso, el avisado incluido. Los nidos se colocan al azar con una semilla fija; no son ubicaciones reales, y el propio mapa lo dice.
 
 ## 2. Pregunta y objetivo
 
@@ -75,7 +94,7 @@ Complementan el conjunto principal; ninguna lo sustituye.
 
 Todo el proceso está en scripts de Python, en `scripts/`. Ninguna cifra de la web se escribe a mano: los gráficos, las etiquetas, las notas y los textos alternativos se leen de `web/data/*.json`, que genera un script.
 
-**Fase 1. Obtención.** `descargar_bizkaia.py` lee la ficha de cada conjunto y descarga sus CSV (`/es/dump/<id>/<nombre>?format=csv`). `descargar_municipios_bizkaia.py` baja los límites municipales del servicio REST del catastro foral (EPSG:25830). `descargar_comarcas.py` baja las clasificaciones de Eustat y las contrasta con la capa municipal de la Diputación. `descargar_comparativa_regiones.py` guarda las notas oficiales y de prensa de otras regiones. Decisión: guardar los datos brutos tal cual (`data/raw/`) y no corregirlos nunca en origen.
+**Fase 1. Obtención.** `descargar_bizkaia.py` lee la ficha de cada conjunto y descarga sus CSV (`/es/dump/<id>/<nombre>?format=csv`); el registro de nidos queda además en `data/raw/bizkaia/avispa_asiatica/nidos.csv`, que es la ruta que leen los análisis. `descargar_municipios_bizkaia.py` baja los límites municipales del servicio REST del catastro foral (EPSG:25830). `descargar_comarcas.py` baja las clasificaciones de Eustat y las contrasta con la capa municipal de la Diputación. `descargar_externos.py` baja las fuentes de fuera de Open Data Bizkaia (padrón del INE, informes de Asturias y Araba, GBIF, Euskalmet y documentos de la cronología), no vuelve a bajar lo que ya existe y compara cada fichero con la huella SHA-256 de la descarga original. `descargar_comparativa_regiones.py` guarda las notas oficiales y de prensa de otras regiones. Decisión: guardar los datos brutos tal cual (`data/raw/`) y no corregirlos nunca en origen.
 
 **Fase 2. Limpieza** (`explorar_avispa.py`, reutilizada por `avispa_llegamos_tarde.py` y por todos los análisis):
 
@@ -105,7 +124,7 @@ Todo el proceso está en scripts de Python, en `scripts/`. Ninguna cifra de la w
 
 - `web_preparar_datos.py` lee los resultados anteriores y genera los JSON de la web y los CSV descargables. Las coordenadas se redondean a 3 decimales (unos 100 m), para no señalar viviendas concretas.
 - `web_preparar_densidad.py` calcula la superficie de densidad: estimación por núcleos sobre una rejilla de 250 m, con núcleo gaussiano de 1.500 m (`scipy.ndimage`), en bandas con los mismos cortes para todas las capas.<!-- scripts/web_preparar_densidad.py: CELDA_M = 250, NUCLEO_M = 1500 -->
-- `web_preparar_hilo.py`, `web_preparar_relieve.py`, `web_preparar_situacion.py`, `web_descargar_mapa_base.py` y `web_preparar_portada.py` preparan el nido que acompaña la historia, el relieve, el mapa de situación, el mapa base y la imagen de portada.
+- `web_preparar_hilo.py` elige el nido de Morga y coloca los nidos de la ilustración. `web_preparar_relieve.py`, `web_preparar_situacion.py`, `web_descargar_mapa_base.py`, `web_preparar_portada.py` y `web_preparar_compartir.py` preparan el relieve, el mapa de situación, el mapa base, la imagen de portada y las imágenes y metadatos para compartir.
 - `web_descargar_librerias.py` y `web_descargar_fuentes.py` copian las librerías y las tipografías a la propia web, con versión fija y huella SHA-256. La web funciona sin CDN, sin claves de API y sin llamadas a terceros.
 
 **Fase 6. Comprobación de cifras.**
@@ -119,10 +138,10 @@ Todo el proceso está en scripts de Python, en `scripts/`. Ninguna cifra de la w
 - **Periodo 2019-2025.** 2018 es el primer año del registro y está incompleto: empieza en abril, tiene un 16 % de avisos sin coordenadas y la altura no se anotaba (figura como 0). Se muestra rayado en gris y queda fuera de las tendencias y de las medias. **Análisis de sensibilidad:** cada tendencia se repite con 2018. La de los nidos no eliminables es significativa en 2019-2025 (razón de probabilidades por año 0,901; IC 95 %: 0,841-0,965) y deja de serlo con 2018 (0,948; IC 95 %: 0,888-1,012).<!-- outputs/avispa_indicadores_control.txt, apartado 2 -->
 - **Abril-diciembre.** Hasta 2022 los registros anuales no siguen el año natural: el de 2019 termina el 04/02/2020 y el de 2020 empieza el 13/02/2020. Además, no hay avisos en enero y febrero de 2019. Por eso los avisos de enero a marzo no son comparables entre años y se apartan (416 en 2018-2025). Base del periodo principal: 18.098 avisos.<!-- outputs/avispa_indicadores_control.txt, apartados «Base y limpieza» y 11; 18098 en web/data/resumen.txt -->
 - **Bilbao** tiene un servicio municipal propio de retirada de nidos: aparece con 3 avisos en 2019-2025. En los mapas y en el buscador figura como «sin datos (servicio municipal propio)», nunca como cero, y queda fuera de las tasas, de los puestos y de la comarca del Gran Bilbao.<!-- outputs/avispa_comarcas.txt, «Base» -->
-- **Comarcas de Eustat** (7), asignadas por el municipio del aviso. Cada comarca se compara con el resto de Bizkaia (sin Bilbao) mediante modelos cuasi-Poisson (razón de tasas) y cuasibinomiales (razón de probabilidades) con efectos de temporada, corrigiendo los valores p por comparaciones múltiples con el método de Holm.
+- **Comarcas de Eustat** (7), asignadas por el municipio del aviso con la clasificación oficial de Eustat, idéntica en pertenencia a la capa municipal de la Diputación. Cada comarca se compara con el resto de Bizkaia (sin Bilbao) mediante modelos cuasi-Poisson (razón de tasas) y cuasibinomiales (razón de probabilidades) con efectos de temporada, corrigiendo los valores p por comparaciones múltiples con el método de Holm. Gran Bilbao (sin Bilbao) tiene 2,7 veces más nidos por km² que el resto, pero por habitante el orden se invierte: 9,1 nidos al año por 1.000 habitantes en Arratia-Nervión y 1,6 en Gran Bilbao. Después del 1 de noviembre se retira el 30 % de los nidos en Markina-Ondarroa y el 27 % en Encartaciones, frente al 20 % del conjunto.<!-- outputs/avispa_comarcas.txt: RR km2 Gran Bilbao 2.68; /1000hab 9.12 y 1.63; >=1/11 30.1 %, 27.0 %, Bizkaia sin Bilbao 20.4 % -->
 - **Tasas por 1.000 habitantes:** avisos de 2019-2025 divididos entre la suma de los habitantes de cada año (padrón del INE). El tamaño del municipio se fija con el padrón de 2025.
 - **Proporciones** (no eliminables, retirados en 7 días o menos, primavera, después del 1 de noviembre): modelo lineal generalizado cuasibinomial con la temporada como unidad, por la sobredispersión entre años. Se da la razón de probabilidades por año con su IC 95 %; algunos modelos se ajustan además por el mes del aviso.
-- **Tendencia de los nidos, dos modelos que difieren.** Con una regresión log-lineal (mínimos cuadrados de log(nidos) sobre la temporada, avisos de abril a diciembre) los nidos suben un 7,0 % al año (IC 95 %: 2,3 %-12,0 %).<!-- web/data/indicadores.json: tendencia.crecimiento_anual 0.0701, crecimiento_ic95 [0.0226, 0.1197], p 0.0122 --> Con una binomial negativa (todos los avisos de la temporada) suben un 6,9 % al año, pero con un intervalo del −1,6 % al 16,1 %, que no es concluyente.<!-- outputs/avispa_estabilizacion.txt: «Tendencia desde 2019 (binomial negativa): +6.9 % al año (IC 95 %: -1.6 % a +16.1 %; p = 0.117)» --> La estimación central es casi la misma; lo que cambia es la dispersión. La log-lineal la estima con los siete puntos (5 grados de libertad). La binomial negativa la fija de antemano (α = 0,05, equivalente a una variación de en torno al 22 % entre años)<!-- scripts/avispa_estabilizacion.py, línea 118: NegativeBinomial(alpha=0.05); sqrt(0.05) ≈ 0.22 -->, más de lo que se observa (coeficiente de variación del 16 %).<!-- outputs/avispa_estabilizacion.txt: «Coeficiente de variación 2019-2025: 0.16» --> Con siete temporadas, ninguna de las dos es mejor que la otra, y la pieza da las dos. Además, la subida puede deberse en parte a que se avisa más: el peso de la avispa asiática frente a la avispa común en los avisos baja (razón de probabilidades por año 0,940; IC 95 %: 0,905-0,975).<!-- outputs/avispa_indicadores_control.txt, apartado 7 -->
+- **Tendencia de los nidos, dos modelos que difieren.** Con una regresión log-lineal (mínimos cuadrados de log(nidos) sobre la temporada, avisos de abril a diciembre) los nidos suben un 7,0 % al año (IC 95 %: 2,3 %-12,0 %).<!-- web/data/indicadores.json: tendencia.crecimiento_anual 0.0701, crecimiento_ic95 [0.0226, 0.1197], p 0.0122 --> Con una binomial negativa (todos los avisos de la temporada) suben un 6,9 % al año, pero con un intervalo del −1,6 % al 16,1 %, que no es concluyente.<!-- outputs/avispa_estabilizacion.txt: «Tendencia desde 2019 (binomial negativa): +6.9 % al año (IC 95 %: -1.6 % a +16.1 %; p = 0.117)» --> La estimación central es casi la misma; lo que cambia es la dispersión. La log-lineal la estima con los siete puntos (5 grados de libertad). La binomial negativa la fija de antemano (α = 0,05, equivalente a una variación de en torno al 22 % entre años)<!-- scripts/avispa_estabilizacion.py, línea 118: NegativeBinomial(alpha=0.05); sqrt(0.05) ≈ 0.22 -->, más de lo que se observa (coeficiente de variación del 16 %).<!-- outputs/avispa_estabilizacion.txt: «Coeficiente de variación 2019-2025: 0.16» --> Con siete temporadas, ninguna de las dos es mejor que la otra, y la pieza da las dos. Entre 2019 y 2025 los avisos de avispa asiática crecen un 62 % y los de avispa común, un 117 %.<!-- web/data/indicadores.json: avisos_asiatica 1990 -> 3222; avisos_comun 127 -> 276 --> Además, la subida puede deberse en parte a que se avisa más: el peso de la avispa asiática frente a la avispa común en los avisos baja (razón de probabilidades por año 0,940; IC 95 %: 0,905-0,975).<!-- outputs/avispa_indicadores_control.txt, apartado 7 -->
 - **Días hasta la retirada:** fecha de cierre menos fecha de aviso, en días enteros, porque las fechas no traen hora. En 2019-2025 la mediana es de 2 días y el 92 % se retira en 7 días o menos (16.562 nidos).<!-- web/data/resumen.txt: «n=16562 ... <=7 días 0.9225, mediana 2» -->
 - **Nido tardío:** nido retirado a partir del 1 de noviembre, el criterio de Asturias para un nido que ha podido soltar reinas. Son entre el 16 % y el 24 % según el año.<!-- web/data/indicadores.json: pct_elim_despues_1nov 2019-2025 = 0,156-0,237 --> Se dice siempre «ha podido», nunca «ha soltado».
 - **Coste por nido:** solo se puede calcular con las líneas de la encomienda que nombran meses (2018-2019), divididas entre los nidos que Basalan cerró en esos meses: de 68 a 98 euros por nido.<!-- outputs/avispa_gasto.txt, apartado 3 a) --> El escenario de 2021-2025 al coste de 2018 se presenta como escenario, no como dato.
@@ -135,13 +154,13 @@ Todo el proceso está en scripts de Python, en `scripts/`. Ninguna cifra de la w
 | Lenguaje | Python 3.12.3 |
 | Datos y estadística | pandas 3.1.0, NumPy 2.5.4, SciPy 1.18.1, statsmodels 0.15.0 |
 | Geometría | GeoPandas 1.2.0, Shapely 2.2.0, pyproj 3.8.0 |
-| Imágenes y figuras de control | Matplotlib 3.11.2, Pillow 13.0.0 |
+| Imágenes y figuras de control | Matplotlib 3.11.2, Pillow 13.0.0, fontTools 4.68.0 |
 | Texto de los PDF de otras regiones | pdftotext (Poppler 24.02.0) |
 | Mapa base | go-pmtiles 1.31.2 (CLI), build de Protomaps del 07/11/2026 |
 | Web | D3 7.9.0, Scrollama 3.2.0, MapLibre GL JS 4.7.1, PMTiles 4.4.1, @protomaps/basemaps 5.7.2 |
 | Tipografías | Source Serif 4 y Source Sans 3 (Fontsource 5.2.5, SIL Open Font License) |
 | Pruebas de la web | Playwright con Chromium |
-| Esta memoria | Python-Markdown 3.11.3 y WeasyPrint 70.0 (`scripts/memoria_pdf.py`) |
+| Esta memoria | Python-Markdown 3.11.3, WeasyPrint 70.0 y Pillow 13.0.0 para la portada (`scripts/memoria_pdf.py`) |
 
 <!-- Versiones: entorno ~/Proyectos/observatorio-patinetes/.venv (importlib, 08/11/2026); web/vendor/VERSIONES.txt; web/vendor/fonts/VERSIONES.txt; web/data/mapa_base/mapa_base.json; .venv del proyecto para markdown y weasyprint. -->
 
@@ -155,57 +174,27 @@ Todo el proceso está en scripts de Python, en `scripts/`. Ninguna cifra de la w
 - **Regiones:** las series miden cosas distintas (avisos, nidos detectados, nidos retirados) y el esfuerzo de búsqueda cambia entre regiones. Solo sirven para comparar órdenes de magnitud.
 - **Tamaño y altura de los nidos:** los anota quien avisa o quien acude; no consta si se miden o se estiman, y se redondean.
 - **Mapa:** las coordenadas se redondean a unos 100 m y faltan 965 avisos sin coordenadas, casi todos de 2018 y 2019. Sí cuentan en las series, en las tasas y en el buscador.<!-- web/data/resumen.txt: «sin coordenadas 965» -->
+- **No hay datos de 2026.** El conjunto «Avispa asiática en Bizkaia» figura en el portal como actualizado el 29/07/2026, pero los avisos acaban el 30/12/2025 y los cierres el 15/01/2026 (la descarga del 08/11/2026 es idéntica, byte a byte, a la del 07/11/2026). La pieza no dice nada de la temporada de 2026.
 - **Bilbao** no está en el registro foral, y el registro no informa del método de retirada (pértiga, biocida, plataforma) ni del coste de cada actuación.
 
-## 9. Reproducibilidad
+## 9. Despliegue
 
-- **Repositorio:** <https://github.com/rburgosm/avispa-asiatica-bizkaia> (se hará público antes de la presentación). Contiene la web, los scripts y los resultados de los análisis (`outputs/`). Código con licencia MIT; textos, gráficos y datos procesados con CC BY 4.0. Los datos brutos (`data/raw/`) no se suben: se regeneran con los scripts de descarga.
+La pieza está publicada en **<https://tresmilnidos.eus>** como web estática: HTML, CSS, JavaScript y ficheros de datos (`web/`), sin servidor de aplicaciones ni base de datos. Las librerías, las tipografías y el mapa base van alojados en la propia web, con versión fija, así que no hay CDN, claves de API ni llamadas a terceros. Los ficheros de texto se sirven también comprimidos (`web_comprimir.py`), y `web_preparar_compartir.py --url-base https://tresmilnidos.eus/` escribe los metadatos para compartir con la dirección absoluta. Esta memoria se descarga desde la página de metodología (`web/memoria_tecnica.pdf`).
+
+## 10. Reproducibilidad
+
+- **Repositorio:** <https://github.com/rburgosm/avispa-asiatica-bizkaia> (público antes de la presentación). Contiene la web, los scripts y los resultados de los análisis (`outputs/`). Código con licencia MIT; textos, gráficos y datos procesados con CC BY 4.0. Los datos brutos (`data/raw/`) no se suben: se regeneran con los scripts de descarga.
 - **Datos procesados descargables** desde la propia web (`web/data/descargas/`): avisos por temporada y mes, indicadores por temporada, ficha por municipio y nidos con coordenadas redondeadas.
 - **Huella del conjunto principal:** la descarga del 08/11/2026 del recurso «Datos de nidos de avispa asiática» (6.631.908 bytes) tiene el SHA-256 `2da62168e1f298013b2590ecd025b1c45341fa70915638cc094d5fcaba4fc6d4`. Sirve para comprobar que se parte del mismo fichero.
 
-**Regenerarlo todo, en orden** (desde la raíz del proyecto, con un entorno que tenga las librerías del apartado 7):
+**Regenerarlo todo.** `scripts/reproducir.py` ejecuta los 42 pasos en orden, en cuatro fases (descarga, análisis, web y comprobación), con el mismo intérprete y la opción `-I`; si un paso falla, se detiene y dice cuál. Requisitos: Python 3.12 con las librerías del apartado 7 (más openpyxl) y `pdftotext` y `pdftoppm` (poppler-utils).
 
 ```
-# 1. Obtención
-python -I scripts/descargar_bizkaia.py data/raw/bizkaia avispa-asiatica encomiendas-gestion \
-    contratos-menores contratos-no-menores convenios subvenciones-otorgadas subvenciones \
-    plan-anual-contratacion plan-anual-contratacion-basalan presupuestos-completos \
-    liquidacion-presupuestos modificaciones-presupuestos ejecucion-presupuestos intervenciones-speis
-#    (los scripts leen el registro de nidos en data/raw/bizkaia/avispa_asiatica/nidos.csv)
-python -I scripts/descargar_municipios_bizkaia.py
-python -I scripts/descargar_comarcas.py
-python -I scripts/descargar_comparativa_regiones.py data/raw/externos
-# 2-4. Limpieza, validación y análisis
-python -I scripts/explorar_avispa.py data/raw/bizkaia/avispa_asiatica/nidos.csv data/raw/ine/padron_bizkaia_2905.json
-python -I scripts/avispa_indicadores_control.py
-python -I scripts/avispa_cifras_guion.py
-python -I scripts/avispa_comarcas.py
-python -I scripts/avispa_estabilizacion.py data/raw/bizkaia/avispa_asiatica/nidos.csv data/raw/ine/padron_bizkaia_2905.json
-python -I scripts/digitalizar_asturias.py data/raw/externos/asturias/informe_2025.pdf outputs/asturias_avisos_semanales_digitalizado.csv
-python -I scripts/avispa_comparativa_regiones.py data/raw/externos outputs
-python -I scripts/avispa_gasto.py
-python -I scripts/avispa_politicas_hitos.py
-# 5. Web
-python -I scripts/web_preparar_datos.py
-python -I scripts/web_preparar_hilo.py
-python -I scripts/web_preparar_densidad.py
-python -I scripts/web_preparar_situacion.py
-python -I scripts/web_preparar_relieve.py
-python -I scripts/web_descargar_mapa_base.py
-python -I scripts/web_descargar_imagenes.py && python -I scripts/web_adaptar_imagenes.py
-python -I scripts/web_preparar_portada.py
-python -I scripts/web_descargar_librerias.py && python -I scripts/web_descargar_fuentes.py
-python -I scripts/web_comprimir.py
-# 6. Comprobación
-python -I scripts/web_comprobar_cifras.py
-# Esta memoria en PDF
-.venv/bin/python -I scripts/memoria_pdf.py
+python -I scripts/reproducir.py                  # todo, con descargas (unos 2,3 GB la primera vez)
+python -I scripts/reproducir.py --sin-descargas  # usa data/raw/ tal como está
+python -I scripts/reproducir.py --lista          # solo enseña los pasos y sus órdenes
+.venv/bin/python -I scripts/memoria_pdf.py       # esta memoria en PDF
+python -I scripts/web_copiar_memoria.py          # copia el PDF a la web
 ```
-
-<!-- PENDIENTE de cerrar antes de presentar (no visible en el PDF):
-1) descargar_bizkaia.py guarda el conjunto en data/raw/bizkaia/avispa-asiatica/datos-nidos-avispa-asiatica.csv, pero los scripts leen data/raw/bizkaia/avispa_asiatica/nidos.csv. Es el mismo fichero (mismo SHA-256, comprobado el 08/11/2026), pero falta un paso con script que lo copie o un cambio de ruta por defecto.
-2) El padrón del INE (data/raw/ine/padron_bizkaia_2905*.json, de https://servicios.ine.es/wstempus/js/ES/DATOS_TABLA/2905?nult=9&tip=A) y los PDF de Asturias y Araba (URL en scripts/avispa_comparativa_regiones.py, diccionario URL) no se descargan con ningún script.
-3) docs/ está en .gitignore: esta memoria no se sube al repositorio tal como está.
--->
 
 La página de metodología de la web (`web/metodologia.html`) recoge las mismas definiciones, decisiones y limitaciones para el público general.

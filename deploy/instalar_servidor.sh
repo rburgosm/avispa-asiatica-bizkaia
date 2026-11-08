@@ -28,7 +28,7 @@ certbot certonly --nginx --non-interactive --agree-tos --keep-until-expiring --e
 
 # 3) Contraseña de vista previa (usuario «vista»); la contraseña la genera el autor y la pasa en la variable CLAVE
 if [ -n "${CLAVE:-}" ]; then printf 'vista:%s\n' "$(openssl passwd -apr1 "$CLAVE")" > /etc/nginx/tresmilnidos.htpasswd; chmod 640 /etc/nginx/tresmilnidos.htpasswd; chown root:www-data /etc/nginx/tresmilnidos.htpasswd; fi
-[ -f /etc/nginx/tresmilnidos.htpasswd ] || { echo "Falta CLAVE para la vista previa"; exit 1; }
+# (vista previa retirada: la web es pública)
 
 # 4) Vhost completo
 install -m 644 $D/nginx/$DOM.conf $VH

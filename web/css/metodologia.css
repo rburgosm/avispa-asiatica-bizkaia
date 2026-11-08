@@ -146,6 +146,7 @@
   .met-indice a { margin-left: -1px; }
   .met-pie-dentro { max-width: calc(var(--met-col) + 17rem + 4rem); padding-left: 32px; padding-right: 32px; columns: 2; column-gap: 4rem; }
   .met-pie-dentro > * { break-inside: avoid; }
+  .met-pie-dentro > * { break-inside: avoid; }
 }
 @media (prefers-reduced-motion: no-preference) { html:has(.pagina-met) { scroll-behavior: smooth; } }
 
