@@ -305,7 +305,7 @@
     "alto": 230
    },
    "texto": [
-    "La avispa asiática (<em>Vespa velutina</em>) se vio por primera vez en Francia en 2004 y llegó a Bizkaia en 2012. Caza abejas a la entrada de las colmenas. Desde 2016 está en la lista de especies invasoras de la Unión Europea."
+    "Para responder, primero hay que conocer a la avispa. La avispa asiática (<em>Vespa velutina</em>) se vio por primera vez en Francia en 2004 y llegó a Bizkaia en 2012. Caza abejas a la entrada de las colmenas y desde 2016 es especie invasora en la Unión Europea."
    ],
    "alt": "Fotografía de una avispa asiática y una línea del tiempo con tres fechas: 2004, primera vez en Francia; 2012, llegada a Bizkaia; 2016, lista de especies invasoras de la Unión Europea.",
    "hilo": ""
@@ -976,9 +976,18 @@
   "mapa_base": "Mapa base: Protomaps © colaboradores de OpenStreetMap",
   "pie_fuentes": "Datos: Open Data Bizkaia (registro de nidos de avispa asiática y conjuntos económicos de la Diputación), INE, Eustat y Copernicus.",
   "pie_enlaces": [
-   {"texto": "Metodología y limitaciones", "url": "metodologia.html"},
-   {"texto": "Datos descargables", "url": "metodologia.html#descargas"},
-   {"texto": "Código en GitHub", "url": "https://github.com/rburgosm/avispa-asiatica-bizkaia"}
+   {
+    "texto": "Metodología y limitaciones",
+    "url": "metodologia.html"
+   },
+   {
+    "texto": "Datos descargables",
+    "url": "metodologia.html#descargas"
+   },
+   {
+    "texto": "Código en GitHub",
+    "url": "https://github.com/rburgosm/avispa-asiatica-bizkaia"
+   }
   ],
   "pie_creditos": "Fotografías: Wikimedia Commons (CC BY-SA), créditos en la metodología. Mapa: relieve Copernicus DEM, límites del catastro foral de Bizkaia, mapa base Protomaps © colaboradores de OpenStreetMap.",
   "pie_firma": "Roberto Burgos · Noviembre de 2026 · Textos y datos procesados CC BY 4.0 · Código MIT",
