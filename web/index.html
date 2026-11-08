@@ -51,6 +51,8 @@
     .portada h1 { font-weight: 600; font-size: clamp(2.75rem, 7vw, 5.5rem); line-height: 1.02; margin: 0 0 .35em; }
     .subtitulo { font-size: 20px; margin: 0 auto .9rem; max-width: 34rem; line-height: 1.35; }
     .firma { font-family: system-ui, sans-serif; font-size: 14px; color: #5a5248; margin: 0; }
+    .seguir { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; margin-top: 3svh; padding: 8px 16px;
+      font: 600 17px system-ui, sans-serif; color: #1d1a16; text-decoration: none; }
     html:not(.listo) .cabeza-mapa, html:not(.listo) .situacion, html:not(.listo) .atribucion { visibility: hidden; }
     @media (min-width: 900px) { .subtitulo { font-size: 24px; } .firma { font-size: 15px; } }
   </style>
@@ -91,7 +93,7 @@
       <p class="subtitulo" id="subtitulo">Qué consigue Bizkaia retirando nidos de avispa asiática, y qué no</p>
       <p class="firma"><span id="autoria">Roberto Burgos</span> · <span id="fecha">Noviembre de 2026</span></p>
     </div>
-    <p class="seguir" aria-hidden="true">↓</p>
+    <a class="seguir" href="#historia"><span>Baja para empezar</span><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
   </header>
   <div class="intro" id="intro"></div>
 
