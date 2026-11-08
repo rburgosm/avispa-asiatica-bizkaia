@@ -266,7 +266,7 @@ export function crearMapa(datos, textos) {
     if (n === "densidad") lista.push({ lnglat: centro(cajaAlta), html: I.anot_densidad, dist: 80, radio: 14 });
     if (n === "bilbao" && bilbao) lista.push({ lnglat: centro(cajaBilbao), dist: 70, vertical: "abajo", radio: 18,
       html: plantilla(I.sin_datos_municipio, { municipio: bilbao.properties.nombre }) });
-    if (n === "fantasma") {
+    if (n === "fantasma" && escritorio()) {  // en el móvil no: tapaba los nidos y la leyenda ya dice que es una ilustración
       const k = Math.floor(datos.censo.fantasmas.length / 4) * 2;
       lista.push({ lnglat: [datos.censo.fantasmas[k], datos.censo.fantasmas[k + 1]], html: I.anot_fantasma, clase: "ilustracion", dist: escritorio() ? 90 : 60, radio: 9,
         lado: escritorio() ? "derecha" : "izquierda" });  // en escritorio, lejos de la tarjeta (a la izquierda)
