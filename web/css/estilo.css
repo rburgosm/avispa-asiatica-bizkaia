@@ -594,6 +594,11 @@ strong { font-weight: 600; }
   background: linear-gradient(to bottom, rgba(250, 247, 240, 0) 0%, rgba(250, 247, 240, .98) 16%,
     rgba(250, 247, 240, .98) 84%, rgba(250, 247, 240, 0) 100%);
 }
+/* Primera parada, pegada a la portada: el papel sigue sin corte desde el pie de la portada (si no,
+   entre los dos asomaba una franja de mapa); solo se funde por abajo */
+#almacen + .parada .rotulo {
+  background: linear-gradient(to bottom, var(--fondo) 0%, rgba(250, 247, 240, .98) 84%, rgba(250, 247, 240, 0) 100%);
+}
 /* Paradas de gráfico: el borde de arriba del papel se funde con lo anterior (mapa o gráfico) */
 .parada:not(.empieza-mapa) .rotulo::before {
   content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 10svh; pointer-events: none;
